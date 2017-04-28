@@ -9,16 +9,24 @@
 import Foundation
 
 protocol FileSystemObject {
+    var path: String {get set}
     var name: String {get}
+    var menuName: String {get}
 }
 
 struct Directory: FileSystemObject {
     
     let name: String
     var contents = [FileSystemObject]()
+    var path: String
     
-    init(name: String) {
+    var menuName: String {
+        return name
+    }
+    
+    init(name: String, path: String) {
         self.name = name
+        self.path = path
     }
     
     mutating func add(object: FileSystemObject){
@@ -30,13 +38,24 @@ struct File: FileSystemObject {
     
     let name: String
     let ext: String
+    var path: String
     
-    init(name: String, ext: String) {
-        self.name = name
-        self.ext = ext
+    var menuName: String {
+        
+        if ext.characters.count > 0 {
+            return "\(name)" + "." + "\(ext)"
+        }
+        else{
+            return name
+        }
+        
     }
     
-    
+    init(name: String, ext: String, path: String) {
+        self.name = name
+        self.ext = ext
+        self.path = path
+    }
 }
 
 
@@ -44,6 +63,7 @@ class FileSystem {
 
     // MARK: - Internal
     var acceptedFileTypes = [String]()
+    let knownContainerTypes = ["xcodeproj", "xcworkspace", "xcassets", "lproj"]
     
     func buildFileSystemStructure(atPath path: String) -> Directory {
         return fileSystemObject(atPath: path) as! Directory
@@ -54,6 +74,13 @@ class FileSystem {
     private func fileSystemObject(atPath path: String) -> FileSystemObject? {
         
         print("path: \(path)")
+
+        let itemName = path.components(separatedBy: "/").last!
+        
+        // Filter hidden files
+        if itemName.characters.count > 0, itemName.characters.first == "." {
+            return nil
+        }
         
         var isDirectory: ObjCBool = false
         let exists = fileManager.fileExists(atPath: path, isDirectory: &isDirectory)
@@ -62,10 +89,29 @@ class FileSystem {
             return nil
         }
         
-        if isDirectory.boolValue {
+        var isPackage = false
+        
+        knownContainerTypes.forEach {
+            if itemName.contains($0) {
+                isPackage = true
+            }
+        }
+        
+        if isPackage {
+         
+            let nameWithExtension = path.components(separatedBy: "/").last!
+            
+            let file = File(name: nameWithExtension,
+                            ext: "",
+                            path: path)
+    
+            return file
+        }
+        else if isDirectory.boolValue {
             
             let name = path.components(separatedBy: "/").last!
-            var directory = Directory(name: name)
+            var directory = Directory(name: name,
+                                      path: path)
             
             guard let contents = try? fileManager.contentsOfDirectory(atPath: path) else {
                 return directory
@@ -90,7 +136,8 @@ class FileSystem {
             }
             
             let file = File(name: name.deletingPathExtension(),
-                            ext: name.pathExtension)
+                            ext: name.pathExtension,
+                            path: path)
             
             return file
         }

@@ -17,4 +17,8 @@ extension String {
     func deletingPathExtension() -> String {
         return (self as NSString).deletingPathExtension
     }
+    
+    func contains(find: String) -> Bool{
+        return self.range(of: find) != nil
+    }
 }

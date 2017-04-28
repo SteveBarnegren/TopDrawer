@@ -38,42 +38,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         fileSystem.acceptedFileTypes = ["xcodeproj", "xcworkspace"]
         let rootDirectory = fileSystem.buildFileSystemStructure(atPath: "/Users/stevebarnegren/Documents/PROJECTS")
         
-        
-        
-        
-        
-        
-        
-        // Build the menu
-//        let menu = NSMenu()
-//        let item = NSMenuItem(title: "Test menu", action: #selector(menuPressed), keyEquivalent: "")
-//        item.target = self
-//        menu.addItem(item)
-//        
-//        let innerMenu = NSMenu()
-//        let innerMenuItem = NSMenuItem(title: "inner item", action: #selector(innerItemPressed), keyEquivalent: "")
-//        innerMenuItem.target = self
-//        innerMenu.addItem(innerMenuItem)
-//        item.submenu = innerMenu
-        
-        statusItem.menu = rootDirectory.convertToNSMenu()
+        // Make the menu
+        statusItem.menu = rootDirectory.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
 
+    }
+    
+    // MARK: - Actions
+    
+    func menuItemPressed(item: NSMenuItem) {
+        print("Menu item pressed")
+        
+        guard let path = item.representedObject as? String else {
+            print("Unable to obtain path from menu object")
+            return
+        }
+        
+        NSWorkspace.shared().openFile(path)
     }
 }
 
+// MARK: - Convert Directory to NSMenu
 
 extension Directory {
     
-    func convertToNSMenu() -> NSMenu {
+    func convertToNSMenu(target: AnyObject, selector: Selector) -> NSMenu {
 
         let menu = NSMenu()
         
         for inner in self.contents {
             
-            let item = NSMenuItem(title: inner.name, action: nil, keyEquivalent: "")
+            let item = NSMenuItem(title: inner.menuName, action: selector, keyEquivalent: "")
+            item.target = target
+            item.representedObject = inner.path
             
             if let innerDir = inner as? Directory {
-                item.submenu = innerDir.convertToNSMenu()
+                item.submenu = innerDir.convertToNSMenu(target: target, selector: selector)
             }
             
             menu.addItem(item)
