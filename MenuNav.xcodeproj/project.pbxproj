@@ -403,6 +403,7 @@
 				0978BED71EB393110023AC66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0978BED81EB393110023AC66 /* Build configuration list for PBXNativeTarget "MenuNavTests" */ = {
 			isa = XCConfigurationList;
@@ -411,6 +412,7 @@
 				0978BEDA1EB393110023AC66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
