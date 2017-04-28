@@ -40,7 +40,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Make the menu
         statusItem.menu = rootDirectory.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
-
+        
+        // Add rebuild item
+        statusItem.menu?.addItem(NSMenuItem.separator())
+        let rebuildItem = NSMenuItem(title: "Rebuild", action: #selector(rebuild), keyEquivalent: "")
+        rebuildItem.target = self
+        statusItem.menu?.addItem(rebuildItem)
     }
     
     // MARK: - Actions
@@ -54,6 +59,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         NSWorkspace.shared().openFile(path)
+    }
+    
+    func rebuild() {
+        print("Rebuild menu")
+        buildMenu()
     }
 }
 
