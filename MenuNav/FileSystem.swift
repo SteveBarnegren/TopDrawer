@@ -45,20 +45,13 @@ class FileSystem {
     // MARK: - Internal
     var acceptedFileTypes = [String]()
     
-    func buildFileSystemStructure(atPath path: String) {
-        
-        var rootDirectory = fileSystemObject(atPath: path)
-        
-        print("structure: \(rootDirectory)")
-        
-        
-        
-        
-        
-        
+    func buildFileSystemStructure(atPath path: String) -> Directory {
+        return fileSystemObject(atPath: path) as! Directory
     }
     
-    func fileSystemObject(atPath path: String) -> FileSystemObject? {
+    // MARK: - Build Directory Structure
+    
+    private func fileSystemObject(atPath path: String) -> FileSystemObject? {
         
         print("path: \(path)")
         

@@ -11,30 +11,75 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    //there is a bug in Xcode that prevents it from recognizing NSSquareStatusItemLength, but since it’s just a constant that’s defined as -2, you just use -2 in it’s place
     let statusItem = NSStatusBar.system().statusItem(withLength: -2)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        
         
         if let button = statusItem.button {
             button.image = NSImage(named: "StatusBarButtonImage")
             button.action = #selector(statusBarButtonPressed)
         }
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        
+        // Build menu
+        buildMenu()
     }
     
     func statusBarButtonPressed() {
         print("Status bar button pressed")
-        
-        let fileSystem = FileSystem()
-        fileSystem.acceptedFileTypes = ["xcodeproj", "xcworkspace"]
-        fileSystem.buildFileSystemStructure(atPath: "/Users/stevebarnegren/Documents/PROJECTS")
-        
     }
     
+    // MARK: - Build menu
+    
+    func buildMenu() {
+        
+        // Get the file structure
+        let fileSystem = FileSystem()
+        fileSystem.acceptedFileTypes = ["xcodeproj", "xcworkspace"]
+        let rootDirectory = fileSystem.buildFileSystemStructure(atPath: "/Users/stevebarnegren/Documents/PROJECTS")
+        
+        
+        
+        
+        
+        
+        
+        // Build the menu
+//        let menu = NSMenu()
+//        let item = NSMenuItem(title: "Test menu", action: #selector(menuPressed), keyEquivalent: "")
+//        item.target = self
+//        menu.addItem(item)
+//        
+//        let innerMenu = NSMenu()
+//        let innerMenuItem = NSMenuItem(title: "inner item", action: #selector(innerItemPressed), keyEquivalent: "")
+//        innerMenuItem.target = self
+//        innerMenu.addItem(innerMenuItem)
+//        item.submenu = innerMenu
+        
+        statusItem.menu = rootDirectory.convertToNSMenu()
+
+    }
+}
+
+
+extension Directory {
+    
+    func convertToNSMenu() -> NSMenu {
+
+        let menu = NSMenu()
+        
+        for inner in self.contents {
+            
+            let item = NSMenuItem(title: inner.name, action: nil, keyEquivalent: "")
+            
+            if let innerDir = inner as? Directory {
+                item.submenu = innerDir.convertToNSMenu()
+            }
+            
+            menu.addItem(item)
+        }
+        
+        return menu
+    }
 }
 
