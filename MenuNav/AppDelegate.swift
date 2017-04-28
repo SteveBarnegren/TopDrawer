@@ -29,8 +29,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func statusBarButtonPressed() {
         print("Status bar button pressed")
+        
+        let fileSystem = FileSystem()
+        fileSystem.acceptedFileTypes = ["xcodeproj", "xcworkspace"]
+        fileSystem.buildFileSystemStructure(atPath: "/Users/stevebarnegren/Documents/PROJECTS")
+        
     }
-
-
+    
 }
 
