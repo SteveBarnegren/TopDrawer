@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import AppKit
 
 protocol FileSystemObject {
     var path: String {get set}
     var name: String {get}
     var menuName: String {get}
+    var image: NSImage? {get}
 }
 
 struct Directory: FileSystemObject {
@@ -19,7 +21,8 @@ struct Directory: FileSystemObject {
     let name: String
     var contents = [FileSystemObject]()
     var path: String
-    
+    var image: NSImage?
+
     var menuName: String {
         return name
     }
@@ -32,6 +35,10 @@ struct Directory: FileSystemObject {
     mutating func add(object: FileSystemObject){
         contents.append(object)
     }
+    
+//    var image: NSImage? {
+//        return nil
+//    }
 }
 
 struct File: FileSystemObject {
@@ -39,6 +46,7 @@ struct File: FileSystemObject {
     let name: String
     let ext: String
     var path: String
+    var image: NSImage?
     
     var menuName: String {
         
@@ -101,10 +109,11 @@ class FileSystem {
          
             let nameWithExtension = path.components(separatedBy: "/").last!
             
-            let file = File(name: nameWithExtension,
+            var file = File(name: nameWithExtension,
                             ext: "",
                             path: path)
-    
+            file.image = NSWorkspace.shared().icon(forFile: path)
+
             return file
         }
         else if isDirectory.boolValue {
@@ -112,6 +121,7 @@ class FileSystem {
             let name = path.components(separatedBy: "/").last!
             var directory = Directory(name: name,
                                       path: path)
+            directory.image = NSWorkspace.shared().icon(forFile: path)
             
             guard let contents = try? fileManager.contentsOfDirectory(atPath: path) else {
                 return directory
@@ -135,9 +145,10 @@ class FileSystem {
                 return nil
             }
             
-            let file = File(name: name.deletingPathExtension(),
+            var file = File(name: name.deletingPathExtension(),
                             ext: name.pathExtension,
                             path: path)
+            file.image = NSWorkspace.shared().icon(forFile: path)
             
             return file
         }

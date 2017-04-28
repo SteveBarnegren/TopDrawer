@@ -70,6 +70,7 @@ extension Directory {
             let item = NSMenuItem(title: inner.menuName, action: selector, keyEquivalent: "")
             item.target = target
             item.representedObject = inner.path
+            item.image = inner.image
             
             if let innerDir = inner as? Directory {
                 item.submenu = innerDir.convertToNSMenu(target: target, selector: selector)
