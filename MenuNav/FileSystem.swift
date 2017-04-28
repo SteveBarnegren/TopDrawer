@@ -112,7 +112,7 @@ class FileSystem {
             var file = File(name: nameWithExtension,
                             ext: "",
                             path: path)
-            file.image = NSWorkspace.shared().icon(forFile: path)
+            file.image = imageForPath(path)
 
             return file
         }
@@ -121,7 +121,7 @@ class FileSystem {
             let name = path.components(separatedBy: "/").last!
             var directory = Directory(name: name,
                                       path: path)
-            directory.image = NSWorkspace.shared().icon(forFile: path)
+            directory.image = imageForPath(path)
             
             guard let contents = try? fileManager.contentsOfDirectory(atPath: path) else {
                 return directory
@@ -148,11 +148,17 @@ class FileSystem {
             var file = File(name: name.deletingPathExtension(),
                             ext: name.pathExtension,
                             path: path)
-            file.image = NSWorkspace.shared().icon(forFile: path)
+            file.image = imageForPath(path)
             
             return file
         }
         
+    }
+    
+    func imageForPath(_ path: String) -> NSImage {
+        let image = NSWorkspace.shared().icon(forFile: path)
+        return image.resizeImage(width: image.size.width/2, height: image.size.height/2)
+
     }
 
     

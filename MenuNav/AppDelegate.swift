@@ -72,7 +72,7 @@ extension Directory {
             item.representedObject = inner.path
             item.image = inner.image
             
-            if let innerDir = inner as? Directory {
+            if let innerDir = inner as? Directory, innerDir.contents.count > 0 {
                 item.submenu = innerDir.convertToNSMenu(target: target, selector: selector)
             }
             

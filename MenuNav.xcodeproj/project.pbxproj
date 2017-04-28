@@ -12,6 +12,7 @@
 		0978BEC31EB393110023AC66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0978BEC21EB393110023AC66 /* Assets.xcassets */; };
 		0978BEC61EB393110023AC66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0978BEC41EB393110023AC66 /* Main.storyboard */; };
 		0978BED11EB393110023AC66 /* MenuNavTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BED01EB393110023AC66 /* MenuNavTests.swift */; };
+		67A02E191EB4001A00D2A8CA /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */; };
 		67B4361A1EB3DCDB003E5886 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileSystem.swift */; };
 		67B4361B1EB3DCDB003E5886 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileSystem.swift */; };
 		67B4361E1EB3E8A3003E5886 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B4361D1EB3E8A3003E5886 /* String+Extensions.swift */; };
@@ -38,6 +39,7 @@
 		0978BECC1EB393110023AC66 /* MenuNavTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuNavTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0978BED01EB393110023AC66 /* MenuNavTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavTests.swift; sourceTree = "<group>"; };
 		0978BED21EB393110023AC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+Extensions.swift"; sourceTree = "<group>"; };
 		67B436191EB3DCDB003E5886 /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		67B4361D1EB3E8A3003E5886 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				67B4361D1EB3E8A3003E5886 /* String+Extensions.swift */,
+				67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				67B4361E1EB3E8A3003E5886 /* String+Extensions.swift in Sources */,
 				0978BEC11EB393110023AC66 /* ViewController.swift in Sources */,
 				67B4361A1EB3DCDB003E5886 /* FileSystem.swift in Sources */,
+				67A02E191EB4001A00D2A8CA /* NSImage+Extensions.swift in Sources */,
 				0978BEBF1EB393110023AC66 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
