@@ -10,6 +10,8 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    var appWindowController: NSWindowController?
 
     let statusItem = NSStatusBar.system().statusItem(withLength: -2)
     
@@ -46,6 +48,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let rebuildItem = NSMenuItem(title: "Rebuild", action: #selector(rebuild), keyEquivalent: "")
         rebuildItem.target = self
         statusItem.menu?.addItem(rebuildItem)
+        
+        // Add settings item
+        let settingsItem = NSMenuItem(title: "Settings", action: #selector(openSettings), keyEquivalent: "")
+        settingsItem.target = self
+        statusItem.menu?.addItem(settingsItem)
     }
     
     // MARK: - Actions
@@ -64,6 +71,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func rebuild() {
         print("Rebuild menu")
         buildMenu()
+    }
+    
+    func openSettings() {
+        print("Open settings")
+        
+        let storyboard = NSStoryboard(name: "App", bundle: nil)
+        appWindowController = storyboard.instantiateInitialController() as? NSWindowController
+        appWindowController?.showWindow(self)
     }
 }
 
