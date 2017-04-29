@@ -38,9 +38,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Get the file structure
         let fileSystem = FileSystem()
         fileSystem.acceptedFileTypes = ["xcodeproj", "xcworkspace"]
-        let rootDirectory = fileSystem.buildFileSystemStructure(atPath: "/Users/stevebarnegren/Documents/PROJECTS")
         
-        // Make the menu
+        guard let path = Settings.path else {
+            showSetupMenu()
+            return
+        }
+        
+        guard let rootDirectory = fileSystem.buildFileSystemStructure(atPath: path) else {
+            showSetupMenu()
+            return
+        }
+        
         statusItem.menu = rootDirectory.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
         
         // Add rebuild item
@@ -53,6 +61,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let settingsItem = NSMenuItem(title: "Settings", action: #selector(openSettings), keyEquivalent: "")
         settingsItem.target = self
         statusItem.menu?.addItem(settingsItem)
+    }
+    
+    func showSetupMenu() {
+        let setupItem = NSMenuItem(title: "Setup (No root dir set)", action: #selector(openSettings), keyEquivalent: "")
+        let setupMenu = NSMenu()
+        setupMenu.addItem(setupItem)
+        statusItem.menu = setupMenu
     }
     
     // MARK: - Actions
@@ -79,6 +94,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let storyboard = NSStoryboard(name: "App", bundle: nil)
         appWindowController = storyboard.instantiateInitialController() as? NSWindowController
         appWindowController?.showWindow(self)
+        NSApp.activate(ignoringOtherApps: true)
     }
 }
 

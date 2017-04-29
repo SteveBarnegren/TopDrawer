@@ -73,8 +73,8 @@ class FileSystem {
     var acceptedFileTypes = [String]()
     let knownContainerTypes = ["xcodeproj", "xcworkspace", "xcassets", "lproj"]
     
-    func buildFileSystemStructure(atPath path: String) -> Directory {
-        return fileSystemObject(atPath: path) as! Directory
+    func buildFileSystemStructure(atPath path: String) -> Directory? {
+        return fileSystemObject(atPath: path) as? Directory
     }
     
     // MARK: - Build Directory Structure

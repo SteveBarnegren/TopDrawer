@@ -4,6 +4,7 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -31,7 +32,49 @@
                     <view key="view" id="cf1-ga-p4k">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ot-s0-Cy6">
+                                <rect key="frame" x="20" y="204" width="440" height="46"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZd-ra-UMi">
+                                        <rect key="frame" x="201.5" y="29" width="37" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="F2N-sm-Zm9">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gSr-TE-ehb">
+                                        <rect key="frame" x="161" y="-7" width="118" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Path" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R2d-Mf-pz9">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="chooseFolderButtonPressedWithSender:" target="Arv-Nj-IMh" id="Vr7-fc-E5j"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6Ot-s0-Cy6" firstAttribute="top" secondItem="cf1-ga-p4k" secondAttribute="top" constant="20" id="QjY-wX-YN0"/>
+                            <constraint firstAttribute="trailing" secondItem="6Ot-s0-Cy6" secondAttribute="trailing" constant="20" id="s5q-KI-u76"/>
+                            <constraint firstItem="6Ot-s0-Cy6" firstAttribute="leading" secondItem="cf1-ga-p4k" secondAttribute="leading" constant="20" id="xbo-o0-VAL"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="gSr-TE-ehb" id="MHn-fC-b8F"/>
+                        <outlet property="textField" destination="zZd-ra-UMi" id="ob5-gK-EaP"/>
+                    </connections>
                 </viewController>
                 <customObject id="P7g-lk-mRR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
