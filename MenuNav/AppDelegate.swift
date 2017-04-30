@@ -15,6 +15,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system().statusItem(withLength: -2)
     
+    var isRebuilding = false {
+        didSet{
+            if isRebuilding == true {
+                showRebuldingMenu()
+            }
+        }
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         
@@ -35,6 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func buildMenu() {
         
+        isRebuilding = true
+        
         // Get the file structure
         let fileSystem = FileSystem()
         fileSystem.acceptedFileTypes = ["xcodeproj", "xcworkspace"]
@@ -44,10 +54,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        guard let rootDirectory = fileSystem.buildFileSystemStructure(atPath: path) else {
-            showSetupMenu()
-            return
+        DispatchQueue.global().async {
+            
+            guard let rootDirectory = fileSystem.buildFileSystemStructure(atPath: path) else {
+                
+                DispatchQueue.main.async(execute: {
+                    self.showSetupMenu()
+                })
+                return
+            }
+            
+            DispatchQueue.main.async(execute: {
+                self.showFileStructureMenu(withRootDirectory: rootDirectory)
+            })
         }
+        
+    }
+    
+    func showSetupMenu() {
+        
+        isRebuilding = false
+        
+        let setupItem = NSMenuItem(title: "Setup (No root dir set)", action: #selector(openSettings), keyEquivalent: "")
+        let setupMenu = NSMenu()
+        setupMenu.addItem(setupItem)
+        statusItem.menu = setupMenu        
+    }
+    
+    func showFileStructureMenu(withRootDirectory rootDirectory: Directory) {
+        
+        isRebuilding = false
         
         statusItem.menu = rootDirectory.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
         
@@ -63,11 +99,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu?.addItem(settingsItem)
     }
     
-    func showSetupMenu() {
-        let setupItem = NSMenuItem(title: "Setup (No root dir set)", action: #selector(openSettings), keyEquivalent: "")
-        let setupMenu = NSMenu()
-        setupMenu.addItem(setupItem)
-        statusItem.menu = setupMenu
+    func showRebuldingMenu() {
+        
+        isRebuilding = false
+        
+        let rebuildingItem = NSMenuItem(title: "Rebuilding... (please wait)", action: nil, keyEquivalent: "")
+        let menu = NSMenu()
+        menu.addItem(rebuildingItem)
+        statusItem.menu = menu
     }
     
     // MARK: - Actions

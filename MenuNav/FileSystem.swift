@@ -71,7 +71,7 @@ class FileSystem {
 
     // MARK: - Internal
     var acceptedFileTypes = [String]()
-    let knownContainerTypes = ["xcodeproj", "xcworkspace", "xcassets", "lproj"]
+    let knownContainerTypes = ["xcodeproj", "xcworkspace", "xcassets", "lproj", "framework", "bundle"]
     
     func buildFileSystemStructure(atPath path: String) -> Directory? {
         return fileSystemObject(atPath: path) as? Directory
@@ -98,25 +98,28 @@ class FileSystem {
         }
         
         var isPackage = false
-        
-        knownContainerTypes.forEach {
-            if itemName.contains($0) {
-                isPackage = true
-            }
+        if isDirectory.boolValue && itemName.contains(".") {
+            isPackage = true
         }
         
-        if isPackage {
-         
-            let nameWithExtension = path.components(separatedBy: "/").last!
-            
-            var file = File(name: nameWithExtension,
-                            ext: "",
-                            path: path)
-            file.image = imageForPath(path)
-
-            return file
-        }
-        else if isDirectory.boolValue {
+//        knownContainerTypes.forEach {
+//            if itemName.contains($0) {
+//                isPackage = true
+//            }
+//        }
+        
+//        if isPackage {
+//         
+//            let nameWithExtension = path.components(separatedBy: "/").last!
+//            
+//            var file = File(name: nameWithExtension,
+//                            ext: "",
+//                            path: path)
+//            file.image = imageForPath(path)
+//
+//            return file
+//        }
+        if isDirectory.boolValue && !isPackage {
             
             let name = path.components(separatedBy: "/").last!
             var directory = Directory(name: name,
@@ -138,15 +141,26 @@ class FileSystem {
         else{
             
             let nameWithExtension = path.components(separatedBy: "/").last!
-            let name = nameWithExtension.deletingPathExtension()
-            let ext = nameWithExtension.pathExtension
+            
+            let name: String
+            let ext: String
+            
+            if isPackage {
+                
+                name = nameWithExtension.components(separatedBy: ".").first!
+                ext = nameWithExtension.components(separatedBy: ".").last!
+            }
+            else{
+                name = nameWithExtension.deletingPathExtension()
+                ext = nameWithExtension.pathExtension
+            }
             
             guard acceptedFileTypes.contains(ext) else {
                 return nil
             }
             
-            var file = File(name: name.deletingPathExtension(),
-                            ext: name.pathExtension,
+            var file = File(name: name,
+                            ext: ext,
                             path: path)
             file.image = imageForPath(path)
             
@@ -157,8 +171,8 @@ class FileSystem {
     
     func imageForPath(_ path: String) -> NSImage {
         let image = NSWorkspace.shared().icon(forFile: path)
-        return image.resizeImage(width: image.size.width/2, height: image.size.height/2)
-
+        image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
+        return image
     }
 
     
