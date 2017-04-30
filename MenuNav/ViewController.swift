@@ -13,6 +13,7 @@ class ViewController: NSViewController {
     @IBOutlet weak private var textField: NSTextField!
     @IBOutlet weak private var button: NSButton!
     @IBOutlet weak var iconImageView: NSImageView!
+    @IBOutlet weak private var openAtLoginCheckbox: NSButton!
 
     // MARK: - NSViewController
     
@@ -22,6 +23,7 @@ class ViewController: NSViewController {
         iconImageView.image = NSImage(named: "AppIcon")
         
         updatePathLabel()
+        updateOpenAtLoginCheckbox()
     }
     
     // MARK: - Actions
@@ -50,12 +52,24 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func openAtLoginCheckboxPressed(sender: NSButton){
+        print("Open at login checkbox pressed")
+        
+        let isOn = (openAtLoginCheckbox.state == NSOnState)
+        Settings.openAtLogin = isOn
+    }
+    
     // MARK: - Update
     
     func updatePathLabel() {
         
         let text = Settings.path ?? "No path set"
         textField.stringValue = text
+    }
+    
+    func updateOpenAtLoginCheckbox() {
+        
+        openAtLoginCheckbox.state = Settings.openAtLogin ? NSOnState : NSOffState
     }
 }
 
