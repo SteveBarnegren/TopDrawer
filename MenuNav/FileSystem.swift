@@ -81,7 +81,7 @@ class FileSystem {
     
     private func fileSystemObject(atPath path: String) -> FileSystemObject? {
         
-        print("path: \(path)")
+        //print("path: \(path)")
 
         let itemName = path.components(separatedBy: "/").last!
         
