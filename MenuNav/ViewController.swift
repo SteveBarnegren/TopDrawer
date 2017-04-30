@@ -69,6 +69,8 @@ class ViewController: NSViewController {
     
     func updateOpenAtLoginCheckbox() {
         
+        print("State: \(Settings.openAtLogin))")
+        
         openAtLoginCheckbox.state = Settings.openAtLogin ? NSOnState : NSOffState
     }
 }

@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 import ServiceManagement
+import IYLoginItem
 
 fileprivate let userDefaults = UserDefaults.standard
 
@@ -28,16 +29,16 @@ class Settings {
     
     static var openAtLogin: Bool {
         get {
-            return userDefaults.bool(forKey: #function)
+            return Bundle.main.isLoginItem()
         }
         set {
             
-            guard let bundleId = Bundle.main.bundleIdentifier else {
-                fatalError("Cannot find application bundle id")
+            if newValue == true {
+                Bundle.main.addToLoginItems()
             }
-            
-            SMLoginItemSetEnabled(bundleId as CFString, openAtLogin)
-            userDefaults.set(openAtLogin, forKey: #function)
+            else{
+                Bundle.main.removeFromLoginItems()
+            }
         }
     }
 }

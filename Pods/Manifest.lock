@@ -1,0 +1,12 @@
+PODS:
+  - IYLoginItem (0.1)
+
+DEPENDENCIES:
+  - IYLoginItem
+
+SPEC CHECKSUMS:
+  IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
+
+PODFILE CHECKSUM: b4b578f951f80131b7cd15782da0d06da3e6a308
+
+COCOAPODS: 1.2.1
