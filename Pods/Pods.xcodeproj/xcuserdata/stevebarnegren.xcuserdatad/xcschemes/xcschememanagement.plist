@@ -19,15 +19,25 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SBSwiftUtils.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2501126A98A13620BF972F59B2C4B9B1</key>
+		<key>6E22266CB518954C46B4FA4B6FB56048</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6E22266CB518954C46B4FA4B6FB56048</key>
+		<key>811A8ED2CC7BF1FDC3093DE448D8E4EC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B2324669BEEDB89EB397EA8480E0B8FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

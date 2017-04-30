@@ -1,12 +1,17 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
 
 target 'MenuNav' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for MenuNav
+  # IYLoginItem
   pod 'IYLoginItem'
+
+  # SBSwiftUtils
+  pod 'SBSwiftUtils'
+  #pod 'SBSwiftUtils', :path => ENV['SB_SWIFT_UTILS_ROOT']
+
+
+
 
   target 'MenuNavTests' do
     inherit! :search_paths

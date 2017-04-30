@@ -1,0 +1,6 @@
+framework module SBSwiftUtils {
+  umbrella header "SBSwiftUtils-umbrella.h"
+
+  export *
+  module * { export * }
+}

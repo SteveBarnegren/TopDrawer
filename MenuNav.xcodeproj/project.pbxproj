@@ -19,8 +19,6 @@
 		67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E1D1EB4F21D00D2A8CA /* Settings.swift */; };
 		67B4361A1EB3DCDB003E5886 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileSystem.swift */; };
 		67B4361B1EB3DCDB003E5886 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileSystem.swift */; };
-		67B4361E1EB3E8A3003E5886 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B4361D1EB3E8A3003E5886 /* String+Extensions.swift */; };
-		67B4361F1EB3E8A3003E5886 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B4361D1EB3E8A3003E5886 /* String+Extensions.swift */; };
 		EDCEB08F82E917D13DEF915D /* Pods_MenuNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1F7D33AD80C55EA1FDA055 /* Pods_MenuNav.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +50,6 @@
 		67A02E1A1EB4079B00D2A8CA /* App.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = App.storyboard; sourceTree = "<group>"; };
 		67A02E1D1EB4F21D00D2A8CA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		67B436191EB3DCDB003E5886 /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
-		67B4361D1EB3E8A3003E5886 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		AB12359BFC8B335D00E0DEAC /* Pods-MenuNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNav.release.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNav/Pods-MenuNav.release.xcconfig"; sourceTree = "<group>"; };
 		B81A077AF79BAA7A75A6EA01 /* Pods-MenuNavTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNavTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNavTests/Pods-MenuNavTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,7 +147,6 @@
 		67B4361C1EB3E88C003E5886 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				67B4361D1EB3E8A3003E5886 /* String+Extensions.swift */,
 				67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */,
 			);
 			name = Utils;
@@ -371,7 +367,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67B4361E1EB3E8A3003E5886 /* String+Extensions.swift in Sources */,
 				0978BEC11EB393110023AC66 /* ViewController.swift in Sources */,
 				67A02E1E1EB4F21D00D2A8CA /* Settings.swift in Sources */,
 				67B4361A1EB3DCDB003E5886 /* FileSystem.swift in Sources */,
@@ -385,7 +380,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				67B4361B1EB3DCDB003E5886 /* FileSystem.swift in Sources */,
-				67B4361F1EB3E8A3003E5886 /* String+Extensions.swift in Sources */,
 				67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */,
 				0978BED11EB393110023AC66 /* MenuNavTests.swift in Sources */,
 			);

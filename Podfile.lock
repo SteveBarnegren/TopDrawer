@@ -1,12 +1,15 @@
 PODS:
   - IYLoginItem (0.1)
+  - SBSwiftUtils (0.1.2)
 
 DEPENDENCIES:
   - IYLoginItem
+  - SBSwiftUtils
 
 SPEC CHECKSUMS:
   IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
+  SBSwiftUtils: 0773364f5db62f09f8a3048bb05906a19dca1af6
 
-PODFILE CHECKSUM: b4b578f951f80131b7cd15782da0d06da3e6a308
+PODFILE CHECKSUM: bbe880373df3c8e0226cb75da9b6028a0c52559b
 
 COCOAPODS: 1.2.1
