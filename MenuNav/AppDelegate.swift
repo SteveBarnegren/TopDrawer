@@ -25,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
+        NSApp.activate(ignoringOtherApps: true)
         
         if let button = statusItem.button {
             button.image = NSImage(named: "StatusBarButtonImage")
@@ -75,10 +76,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         isRebuilding = false
         
+        // Add setup item
         let setupItem = NSMenuItem(title: "Setup (No root dir set)", action: #selector(openSettings), keyEquivalent: "")
         let setupMenu = NSMenu()
         setupMenu.addItem(setupItem)
-        statusItem.menu = setupMenu        
+        statusItem.menu = setupMenu
+        
+        // Add quit item
+        addQuitItemToStatusMenu()
     }
     
     func showFileStructureMenu(withRootDirectory rootDirectory: Directory) {
@@ -97,16 +102,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let settingsItem = NSMenuItem(title: "Settings", action: #selector(openSettings), keyEquivalent: "")
         settingsItem.target = self
         statusItem.menu?.addItem(settingsItem)
+        
+        // Add quit item
+        addQuitItemToStatusMenu()
     }
     
     func showRebuldingMenu() {
         
         isRebuilding = false
         
+        // Add rebuilding item
         let rebuildingItem = NSMenuItem(title: "Rebuilding... (please wait)", action: nil, keyEquivalent: "")
         let menu = NSMenu()
         menu.addItem(rebuildingItem)
         statusItem.menu = menu
+        
+        // Add quit item
+        addQuitItemToStatusMenu()
+    }
+    
+    func addQuitItemToStatusMenu() {
+        let quitItem = NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "")
+        statusItem.menu?.addItem(quitItem)
     }
     
     // MARK: - Actions
@@ -133,7 +150,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let storyboard = NSStoryboard(name: "App", bundle: nil)
         appWindowController = storyboard.instantiateInitialController() as? NSWindowController
         appWindowController?.showWindow(self)
-        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    func quit() {
+        NSApp.terminate(self)
     }
 }
 
