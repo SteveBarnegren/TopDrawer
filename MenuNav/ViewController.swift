@@ -12,11 +12,14 @@ class ViewController: NSViewController {
     
     @IBOutlet weak private var textField: NSTextField!
     @IBOutlet weak private var button: NSButton!
+    @IBOutlet weak var iconImageView: NSImageView!
 
     // MARK: - NSViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        iconImageView.image = NSImage(named: "AppIcon")
         
         updatePathLabel()
     }

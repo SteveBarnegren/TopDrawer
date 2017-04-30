@@ -150,6 +150,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let storyboard = NSStoryboard(name: "App", bundle: nil)
         appWindowController = storyboard.instantiateInitialController() as? NSWindowController
         appWindowController?.showWindow(self)
+        appWindowController?.window?.level = Int(CGWindowLevelForKey(.floatingWindow))
+        appWindowController?.window?.makeKeyAndOrderFront(self)
     }
     
     func quit() {
