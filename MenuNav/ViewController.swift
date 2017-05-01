@@ -66,6 +66,21 @@ class ViewController: NSViewController {
         Settings.openAtLogin = isOn
     }
     
+    @IBAction func addFileTypeButtonPressed(sender: NSButton){
+        print("Add file type button pressed")
+        
+        let title = "Add a file extension"
+        let button = "Add"
+        
+        let input = TextInputViewController.create(title: title, button: button) {
+            _ in
+        }
+        
+        addChildViewController(input)
+        view.addSubview(input.view)
+        input.view.pinToSuperviewEdges()
+    }
+    
     // MARK: - Update
     
     func updatePathLabel() {

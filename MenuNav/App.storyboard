@@ -122,12 +122,12 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="i89-ck-yQG"/>
                                         </constraints>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hB8-kh-wG3">
-                                            <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="YES" id="hB8-kh-wG3">
+                                            <rect key="frame" x="1" y="83" width="238" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="QWQ-OK-xth">
-                                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                            <rect key="frame" x="226" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -143,6 +143,9 @@
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <action selector="addFileTypeButtonPressedWithSender:" target="Arv-Nj-IMh" id="XNj-ra-zWH"/>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fNH-mA-SH0">
                                                 <rect key="frame" x="27" y="5" width="19" height="21"/>
@@ -215,6 +218,75 @@
                 <customObject id="P7g-lk-mRR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="398.5" y="-103.5"/>
+        </scene>
+        <!--Text Input View Controller-->
+        <scene sceneID="wEH-ZH-j5U">
+            <objects>
+                <viewController storyboardIdentifier="TextInputViewController" id="bRV-gS-PhU" customClass="TextInputViewController" customModule="MenuNav" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="6hY-Tm-eKm">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHL-Pr-1jp">
+                                <rect key="frame" x="16" y="100" width="418" height="100"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-SJ-eIH">
+                                        <rect key="frame" x="191.5" y="83" width="35" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Title" id="iUq-k6-bGT">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drE-bW-XuJ">
+                                        <rect key="frame" x="134" y="41" width="150" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="OQW-SU-h7l"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="iMc-Kh-d5e">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mPH-UR-E5O">
+                                        <rect key="frame" x="168.5" y="-7" width="81" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BPm-C3-1lB">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="submitButtonPressedWithSender:" target="bRV-gS-PhU" id="B0Y-zX-QIZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="UHL-Pr-1jp" firstAttribute="leading" secondItem="6hY-Tm-eKm" secondAttribute="leading" constant="16" id="BdT-DB-pxr"/>
+                            <constraint firstItem="UHL-Pr-1jp" firstAttribute="centerY" secondItem="6hY-Tm-eKm" secondAttribute="centerY" id="KzP-Go-ZmO"/>
+                            <constraint firstAttribute="trailing" secondItem="UHL-Pr-1jp" secondAttribute="trailing" constant="16" id="XDs-nF-5Pr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="mPH-UR-E5O" id="GBX-jv-asK"/>
+                        <outlet property="textField" destination="drE-bW-XuJ" id="RqO-fH-tRR"/>
+                        <outlet property="titleLabel" destination="zsj-SJ-eIH" id="OVF-08-xxt"/>
+                    </connections>
+                </viewController>
+                <customObject id="fYF-zE-tD4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="406" y="290"/>
         </scene>
     </scenes>
     <resources>

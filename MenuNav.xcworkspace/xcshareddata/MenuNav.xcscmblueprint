@@ -5,11 +5,13 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "20C01FC91303EAB71B0FB37DFA35D7954A03A8A8" : 9223372036854775807,
+    "9A428B36C4127720D05D67A27F25D5BDB23E3B09" : 9223372036854775807,
     "366DC0C239DCE8EE1DF8760B7C051BA4413D2526" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "63F471D2-B578-4D23-927C-1E59C4A7A62D",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "20C01FC91303EAB71B0FB37DFA35D7954A03A8A8" : "MenuNav\/",
+    "9A428B36C4127720D05D67A27F25D5BDB23E3B09" : "..\/..\/CodeProjects\/SBAutoLayout\/SBAutoLayout",
     "366DC0C239DCE8EE1DF8760B7C051BA4413D2526" : "..\/..\/CodeProjects\/SBSwiftUtils"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "MenuNav",
@@ -25,6 +27,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/SteveBarnegren\/SBSwiftUtils.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "366DC0C239DCE8EE1DF8760B7C051BA4413D2526"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/SteveBarnegren\/SBAutoLayout.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9A428B36C4127720D05D67A27F25D5BDB23E3B09"
     }
   ]
 }
