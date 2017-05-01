@@ -68,11 +68,8 @@ class ViewController: NSViewController {
     
     @IBAction func addFileTypeButtonPressed(sender: NSButton){
         print("Add file type button pressed")
-        
-        let title = "Add a file extension"
-        let button = "Add"
-        
-        let input = TextInputViewController.create(title: title, button: button) {
+                
+        let input = TextInputViewController.create{
             text in
             
             Settings.addFileType(ext: text)
@@ -83,6 +80,15 @@ class ViewController: NSViewController {
         addChildViewController(input)
         view.addSubview(input.view)
         input.view.pinToSuperviewEdges()
+    }
+    
+    @IBAction func deleteFileTypeButtonPressed(sender: NSButton){
+        
+        tableView.selectedRowIndexes.forEach{
+            Settings.removeFileType(atIndex: $0)
+        }
+        
+        tableView.reloadData()
     }
 
     
@@ -124,8 +130,8 @@ extension ViewController : NSTableViewDataSource {
         
         let fileType = Settings.fileTypes[row]
         
-        cell.textField?.stringValue = fileType
-        cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType)
+        cell.textField?.stringValue = fileType.stringRepresentation()
+        cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType.ext ?? "" )
         
         return cell
     }

@@ -46,19 +46,26 @@ class Settings {
     
     // MARK: - File Types
         
-    static var fileTypes: [String] {
+    static var fileTypes: [FileType] {
         
         get {
             let types = userDefaults.object(forKey: #function) as? [String]
-            return types ?? []
+            
+            if let types = types {
+                return types.flatMap{ FileType(stringRepresentation: $0) }
+            }
+            else{
+                return []
+            }
+            
         }
         set {
-            userDefaults.set(newValue, forKey: #function)
+            userDefaults.set(newValue.map{ $0.stringRepresentation() }, forKey: #function)
             userDefaults.synchronize()
         }
     }
     
-    static func addFileType(ext: String) {
+    static func addFileType(ext: FileType) {
     
         var types = fileTypes
         types.append(ext)

@@ -70,7 +70,7 @@ struct File: FileSystemObject {
 class FileSystem {
 
     // MARK: - Internal
-    var acceptedFileTypes = [String]()
+    var acceptedFileTypes = [FileType]()
     
     func buildFileSystemStructure(atPath path: String) -> Directory? {
         return fileSystemObject(atPath: path) as? Directory
@@ -137,7 +137,7 @@ class FileSystem {
                 ext = nameWithExtension.pathExtension
             }
             
-            guard acceptedFileTypes.contains(ext) else {
+            guard isAcceptedFileType(name: name, ext: ext) else {
                 return nil
             }
             
@@ -149,6 +149,18 @@ class FileSystem {
             return file
         }
         
+    }
+    
+    func isAcceptedFileType(name: String, ext: String) -> Bool {
+        
+        for fileType in acceptedFileTypes {
+            
+            if fileType.matchesFile(withName: name, ext: ext) {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func imageForPath(_ path: String) -> NSImage {

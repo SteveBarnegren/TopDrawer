@@ -13,28 +13,26 @@ class TextInputViewController: NSViewController {
 
     // MARK: - Internal
     
-    static func create(title: String, button: String, handler: @escaping (String) -> ()) -> NSViewController {
+    static func create(handler: @escaping (FileType) -> ()) -> NSViewController {
         
         let storyboard = NSStoryboard(name: "App", bundle: nil)
         let viewController = storyboard.instantiateController(withIdentifier: "TextInputViewController") as! TextInputViewController
-        viewController.titleText = title
-        viewController.buttonText = button
         viewController.handler = handler
         return viewController
     }
     
-    var trimInput = true
-    var disableWhiteSpace = true
-    
     // MARK: - Outlets
-    @IBOutlet weak fileprivate var titleLabel: NSTextField!
-    @IBOutlet weak fileprivate var textField: NSTextField!
-    @IBOutlet weak fileprivate var button: NSButton!
+    @IBOutlet weak fileprivate var fileNameTextField: NSTextField!
+    @IBOutlet weak fileprivate var extensionTextField: NSTextField!
+    @IBOutlet weak fileprivate var readoutLabel: NSTextField!
+    @IBOutlet weak fileprivate var submitButton: NSButton!
     
     // MARK: - Properties
-    fileprivate var titleText: String!
-    fileprivate var buttonText: String!
-    fileprivate var handler: (String) -> () = {_ in}
+    fileprivate var handler: (FileType) -> () = {_ in}
+    
+    var canSubmit: Bool {
+        return fileNameTextField.sanitisedText.length > 0 || extensionTextField.sanitisedText.length > 0
+    }
     
     // MARK: - NSViewController
     
@@ -45,51 +43,59 @@ class TextInputViewController: NSViewController {
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor.white.cgColor
         
-        // Title Label
-        titleLabel.stringValue = titleText
-        
         // Text Field
-        textField.delegate = self
+        fileNameTextField.delegate = self
+        extensionTextField.delegate = self
         
         // Button
-        button.title = buttonText
+        submitButton.title = "Add"
         
         // Update UI
         updateButton()
+        updateReadoutLabel()
     }
     
     // MARK: - Update UI
     
     fileprivate func updateButton() {
         
-        let isVisible = (getFileTypeText().length > 0)
-        
-        button.alphaValue = isVisible ? 1 : 0
-        button.isEnabled = isVisible
+        submitButton.alphaValue = canSubmit ? 1 : 0
+        submitButton.isEnabled = canSubmit
     }
     
-    // MARK: - Get Text
-    
-    fileprivate func getFileTypeText() -> String {
+    fileprivate func updateReadoutLabel() {
         
-        var text = textField.stringValue
+        var fileName = fileNameTextField.sanitisedText
+        var ext = extensionTextField.sanitisedText
         
-        if trimInput {
-            text = text.trimmed()
+        if fileName.length == 0 && ext.length == 0 {
+            readoutLabel.alphaValue = 0
+            return
         }
         
-        if disableWhiteSpace && text.contains(" ") {
-            text = text.components(separatedBy: " ").first!
+        
+        if fileName.length == 0 {
+            fileName = "*"
         }
         
-        return text
+        if ext.length == 0 {
+            ext = "*"
+        }
+        
+        readoutLabel.stringValue = fileName + "." + ext
+        readoutLabel.alphaValue = 1
     }
     
     // MARK: - Actions
     
     @IBAction func submitButtonPressed(sender: NSButton){
         print("Submit button pressed")
-        handler(getFileTypeText())
+             
+        let fileType = FileType(name: fileNameTextField.sanitisedText,
+                                ext: extensionTextField.sanitisedText)
+        
+        handler( fileType )
+        
         view.removeFromSuperview()
         removeFromParentViewController()
     }
@@ -102,12 +108,35 @@ class TextInputViewController: NSViewController {
 }
 
 // MARK: - NSTextFieldDelegate
-extension TextInputViewController : NSTextFieldDelegate {
+extension TextInputViewController: NSTextFieldDelegate {
     
     override func controlTextDidChange(_ obj: Notification) {
+    
+        guard let textField = obj.object as? NSTextField else {
+            fatalError("Couldn't obtain text field from delegate callback")
+        }
         
-        textField.stringValue = getFileTypeText()
-        print("Text field text changed to: \(textField.stringValue)")
+        textField.stringValue = textField.sanitisedText
+        
         updateButton()
+        updateReadoutLabel()
     }
 }
+
+extension NSTextField {
+    
+    var sanitisedText: String {
+        
+        var text = stringValue
+        text = text.trimmed()
+        
+        if text.contains(" ") {
+            text = text.components(separatedBy: " ").first!
+        }
+        
+        return text
+    }
+    
+}
+
+
