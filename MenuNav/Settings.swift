@@ -46,7 +46,7 @@ class Settings {
     
     // MARK: - File Types
         
-    private var fileTypes: [String] {
+    static var fileTypes: [String] {
         
         get {
             let types = userDefaults.object(forKey: #function) as? [String]
@@ -58,14 +58,14 @@ class Settings {
         }
     }
     
-    private func addFileType(ext: String) {
+    static func addFileType(ext: String) {
     
         var types = fileTypes
         types.append(ext)
         fileTypes = types
     }
     
-    private func removeFileType(atIndex index: Int) {
+    static func removeFileType(atIndex index: Int) {
         
         var types = fileTypes
         types.remove(at: index)

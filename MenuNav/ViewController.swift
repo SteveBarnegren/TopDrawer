@@ -55,7 +55,7 @@ class ViewController: NSViewController {
             
             let path = result.path
             Settings.path = path
-            (NSApp.delegate as? AppDelegate)?.rebuild()
+            rebuild()
         }
     }
     
@@ -73,7 +73,11 @@ class ViewController: NSViewController {
         let button = "Add"
         
         let input = TextInputViewController.create(title: title, button: button) {
-            _ in
+            text in
+            
+            Settings.addFileType(ext: text)
+            self.tableView.reloadData()
+            self.rebuild()
         }
         
         addChildViewController(input)
@@ -96,12 +100,18 @@ class ViewController: NSViewController {
         
         openAtLoginCheckbox.state = Settings.openAtLogin ? NSOnState : NSOffState
     }
+    
+    // MARK: - Rebuild
+    
+    func rebuild() {
+        (NSApp.delegate as? AppDelegate)?.rebuild()
+    }
 }
 
 extension ViewController : NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return 3
+        return Settings.fileTypes.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -112,8 +122,10 @@ extension ViewController : NSTableViewDataSource {
             fatalError("Unable to create table cell")
         }
         
-        cell.textField?.stringValue = "This is a test"
-        cell.imageView?.image = nil
+        let fileType = Settings.fileTypes[row]
+        
+        cell.textField?.stringValue = fileType
+        cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType)
         
         return cell
     }

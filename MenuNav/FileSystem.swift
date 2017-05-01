@@ -71,7 +71,6 @@ class FileSystem {
 
     // MARK: - Internal
     var acceptedFileTypes = [String]()
-    let knownContainerTypes = ["xcodeproj", "xcworkspace", "xcassets", "lproj", "framework", "bundle"]
     
     func buildFileSystemStructure(atPath path: String) -> Directory? {
         return fileSystemObject(atPath: path) as? Directory
@@ -101,24 +100,7 @@ class FileSystem {
         if isDirectory.boolValue && itemName.contains(".") {
             isPackage = true
         }
-        
-//        knownContainerTypes.forEach {
-//            if itemName.contains($0) {
-//                isPackage = true
-//            }
-//        }
-        
-//        if isPackage {
-//         
-//            let nameWithExtension = path.components(separatedBy: "/").last!
-//            
-//            var file = File(name: nameWithExtension,
-//                            ext: "",
-//                            path: path)
-//            file.image = imageForPath(path)
-//
-//            return file
-//        }
+
         if isDirectory.boolValue && !isPackage {
             
             let name = path.components(separatedBy: "/").last!

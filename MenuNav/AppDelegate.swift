@@ -20,6 +20,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         didSet{
             if isRebuilding == true {
                 showRebuldingMenu()
+                print("Started Rebuilding menu")
+            }
+            else{
+                print("Finished Rebuilding menu")
             }
         }
     }
@@ -49,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Get the file structure
         let fileSystem = FileSystem()
-        fileSystem.acceptedFileTypes = ["xcodeproj", "xcworkspace"]
+        fileSystem.acceptedFileTypes = Settings.fileTypes
         
         guard let path = Settings.path else {
             showSetupMenu()
