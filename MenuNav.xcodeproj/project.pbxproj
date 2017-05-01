@@ -101,10 +101,9 @@
 				67A02E1C1EB4F1FB00D2A8CA /* Settings */,
 				67B436181EB3DC9F003E5886 /* FileSystem */,
 				0978BEBE1EB393110023AC66 /* AppDelegate.swift */,
-				0978BEC01EB393110023AC66 /* ViewController.swift */,
+				67FAAAD21EB724CD00224C24 /* AppPanel */,
 				0978BEC21EB393110023AC66 /* Assets.xcassets */,
 				0978BEC41EB393110023AC66 /* Main.storyboard */,
-				67A02E1A1EB4079B00D2A8CA /* App.storyboard */,
 				0978BEC71EB393110023AC66 /* Info.plist */,
 			);
 			path = MenuNav;
@@ -150,6 +149,15 @@
 				67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		67FAAAD21EB724CD00224C24 /* AppPanel */ = {
+			isa = PBXGroup;
+			children = (
+				67A02E1A1EB4079B00D2A8CA /* App.storyboard */,
+				0978BEC01EB393110023AC66 /* ViewController.swift */,
+			);
+			name = AppPanel;
 			sourceTree = "<group>";
 		};
 		D075667EEC942CB0D78B84E8 /* Pods */ = {

@@ -15,7 +15,7 @@ fileprivate let userDefaults = UserDefaults.standard
 
 class Settings {
     
-    // MARK: - Internal
+    // MARK: - Path
     
     static var path: String? {
         get{
@@ -26,6 +26,8 @@ class Settings {
             userDefaults.synchronize()
         }
     }
+    
+    // MARK: - Open at login
     
     static var openAtLogin: Bool {
         get {
@@ -40,5 +42,33 @@ class Settings {
                 Bundle.main.removeFromLoginItems()
             }
         }
+    }
+    
+    // MARK: - File Types
+        
+    private var fileTypes: [String] {
+        
+        get {
+            let types = userDefaults.object(forKey: #function) as? [String]
+            return types ?? []
+        }
+        set {
+            userDefaults.set(newValue, forKey: #function)
+            userDefaults.synchronize()
+        }
+    }
+    
+    private func addFileType(ext: String) {
+    
+        var types = fileTypes
+        types.append(ext)
+        fileTypes = types
+    }
+    
+    private func removeFileType(atIndex index: Int) {
+        
+        var types = fileTypes
+        types.remove(at: index)
+        fileTypes = types
     }
 }

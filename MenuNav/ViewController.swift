@@ -14,14 +14,21 @@ class ViewController: NSViewController {
     @IBOutlet weak private var button: NSButton!
     @IBOutlet weak var iconImageView: NSImageView!
     @IBOutlet weak private var openAtLoginCheckbox: NSButton!
+    @IBOutlet weak private var tableView: NSTableView!
 
     // MARK: - NSViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        // IconImageView
         iconImageView.image = NSImage(named: "AppIcon")
         
+        // TableView
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // Update UI
         updatePathLabel()
         updateOpenAtLoginCheckbox()
     }
@@ -73,5 +80,29 @@ class ViewController: NSViewController {
         
         openAtLoginCheckbox.state = Settings.openAtLogin ? NSOnState : NSOffState
     }
+}
+
+extension ViewController : NSTableViewDataSource {
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        let identifier = "FileExtensionCell"
+        
+        guard let cell = tableView.make(withIdentifier: identifier, owner: nil) as? NSTableCellView else {
+            fatalError("Unable to create table cell")
+        }
+        
+        cell.textField?.stringValue = "This is a test"
+        cell.imageView?.image = nil
+        
+        return cell
+    }
+}
+
+extension ViewController : NSTableViewDelegate {
 }
 
