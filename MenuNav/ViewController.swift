@@ -80,6 +80,7 @@ class ViewController: NSViewController {
         view.addSubview(input.view)
         input.view.pinToSuperviewEdges()
     }
+
     
     // MARK: - Update
     

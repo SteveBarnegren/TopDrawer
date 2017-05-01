@@ -64,13 +64,13 @@
                                         </connections>
                                     </button>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-k4-DVV">
-                                        <rect key="frame" x="67.5" y="55" width="240" height="100"/>
+                                        <rect key="frame" x="67" y="55" width="241" height="100"/>
                                         <clipView key="contentView" id="lzl-2m-Giq">
-                                            <rect key="frame" x="1" y="1" width="238" height="98"/>
+                                            <rect key="frame" x="1" y="1" width="239" height="98"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="RWF-u1-aR4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="98"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="239" height="98"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -90,7 +90,7 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView identifier="FileExtensionCell" id="t5j-X7-LGY">
-                                                                    <rect key="frame" x="1" y="1" width="235" height="17"/>
+                                                                    <rect key="frame" x="1" y="1" width="236" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGF-0h-up2">
@@ -99,7 +99,7 @@
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="Run-EL-w04"/>
                                                                         </imageView>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHi-0u-Zsg">
-                                                                            <rect key="frame" x="25" y="0.0" width="210" height="17"/>
+                                                                            <rect key="frame" x="25" y="0.0" width="211" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="cej-j9-pxW">
                                                                                 <font key="font" metaFont="system"/>
@@ -122,12 +122,12 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="i89-ck-yQG"/>
                                         </constraints>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="YES" id="hB8-kh-wG3">
-                                            <rect key="frame" x="1" y="83" width="238" height="16"/>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="hB8-kh-wG3">
+                                            <rect key="frame" x="1" y="83" width="239" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="QWQ-OK-xth">
-                                            <rect key="frame" x="226" y="17" width="15" height="102"/>
+                                            <rect key="frame" x="227" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -271,11 +271,27 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VqV-Rf-ddg">
+                                <rect key="frame" x="405" y="268" width="45" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="3Ft-Zo-yKK"/>
+                                    <constraint firstAttribute="width" constant="45" id="Xcc-79-ZPg"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="CloseButton" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="uWw-fF-DcE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="closeButtonPressedWithSender:" target="bRV-gS-PhU" id="Jad-Bn-f3j"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="UHL-Pr-1jp" firstAttribute="leading" secondItem="6hY-Tm-eKm" secondAttribute="leading" constant="16" id="BdT-DB-pxr"/>
                             <constraint firstItem="UHL-Pr-1jp" firstAttribute="centerY" secondItem="6hY-Tm-eKm" secondAttribute="centerY" id="KzP-Go-ZmO"/>
+                            <constraint firstAttribute="trailing" secondItem="VqV-Rf-ddg" secondAttribute="trailing" id="N4o-kL-jlH"/>
                             <constraint firstAttribute="trailing" secondItem="UHL-Pr-1jp" secondAttribute="trailing" constant="16" id="XDs-nF-5Pr"/>
+                            <constraint firstItem="VqV-Rf-ddg" firstAttribute="top" secondItem="6hY-Tm-eKm" secondAttribute="top" id="uFQ-Gq-eRJ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -290,6 +306,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CloseButton" width="64" height="64"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>

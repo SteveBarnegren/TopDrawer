@@ -93,8 +93,15 @@ class TextInputViewController: NSViewController {
         view.removeFromSuperview()
         removeFromParentViewController()
     }
+    
+    @IBAction func closeButtonPressed(sender: NSButton){
+        view.removeFromSuperview()
+        removeFromParentViewController()
+    }
+
 }
 
+// MARK: - NSTextFieldDelegate
 extension TextInputViewController : NSTextFieldDelegate {
     
     override func controlTextDidChange(_ obj: Notification) {
