@@ -153,14 +153,21 @@ class FileSystem {
     
     func isAcceptedFileType(name: String, ext: String) -> Bool {
         
+        var include = false
+        var exclude = false
+        
         for fileType in acceptedFileTypes {
             
-            if fileType.matchesFile(withName: name, ext: ext) {
-                return true
+            if fileType.includesFile(withName: name, ext: ext) {
+                include = true
+            }
+            
+            if fileType.excludesFile(withName: name, ext: ext) {
+                exclude = true
             }
         }
         
-        return false
+        return (include && !exclude)
     }
     
     func imageForPath(_ path: String) -> NSImage {

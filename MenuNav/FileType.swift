@@ -12,8 +12,9 @@ public struct FileType {
     
     let name: String?
     let ext: String?
+    let exclude: Bool
     
-    init(name: String?, ext: String?) {
+    init(name: String?, ext: String?, exclude: Bool) {
         
         var name = name
         var ext = ext
@@ -26,16 +27,36 @@ public struct FileType {
             ext = nil
         }
         
-        
         if name == nil && ext == nil {
             fatalError("FileType must have non nil name or ext")
         }
         
         self.name = name
         self.ext = ext
+        self.exclude = exclude
     }
     
-    func matchesFile(withName name: String, ext: String) -> Bool {
+    func includesFile(withName name: String, ext: String) -> Bool {
+        
+        if self.exclude {
+            return false
+        }
+        
+        return matchesFile(withName: name, ext: ext)
+    }
+    
+    func excludesFile(withName name: String, ext: String) -> Bool {
+        
+        if self.exclude {
+            return matchesFile(withName: name, ext: ext)
+        }
+        
+        return false
+    }
+    
+    // MARK: - Matching
+    
+    private func matchesFile(withName name: String, ext: String) -> Bool {
         
         switch (self.name, self.ext) {
         case (.some, nil):
@@ -62,6 +83,25 @@ public struct FileType {
     // MARK: - String Representation
     
     init?(stringRepresentation: String) {
+        
+        var stringRepresentation = stringRepresentation
+        
+        if stringRepresentation.length == 0 {
+            return nil
+        }
+        
+        // is excluding?
+        if stringRepresentation.characters.first! == "." {
+            exclude = true
+            
+            let index = stringRepresentation.index(stringRepresentation.startIndex, offsetBy: 1)
+            stringRepresentation = stringRepresentation.substring(from: index)
+        }
+        else{
+            exclude = false
+        }
+        
+        // Get name and extension
         
         let components = stringRepresentation.components(separatedBy: ".")
         
@@ -92,7 +132,13 @@ public struct FileType {
         
         let name = self.name ?? "*"
         let ext = self.ext ?? "*"
-        return name + "." + ext
+        let fileName = name + "." + ext
+        
+        if exclude {
+            return "." + fileName
+        }
+        else{
+            return fileName
+        }
     }
-    
 }

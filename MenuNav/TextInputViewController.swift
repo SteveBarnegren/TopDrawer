@@ -25,8 +25,11 @@ class TextInputViewController: NSViewController {
     @IBOutlet weak fileprivate var fileNameTextField: NSTextField!
     @IBOutlet weak fileprivate var extensionTextField: NSTextField!
     @IBOutlet weak fileprivate var readoutLabel: NSTextField!
-    @IBOutlet weak fileprivate var submitButton: NSButton!
-    
+    //@IBOutlet weak fileprivate var addButton: NSButton!
+    //@IBOutlet weak fileprivate var notButton: NSButton!
+    @IBOutlet weak private var addButtonStackView: NSStackView!
+    @IBOutlet weak private var notButtonStackView: NSStackView!
+
     // MARK: - Properties
     fileprivate var handler: (FileType) -> () = {_ in}
     
@@ -47,20 +50,21 @@ class TextInputViewController: NSViewController {
         fileNameTextField.delegate = self
         extensionTextField.delegate = self
         
-        // Button
-        submitButton.title = "Add"
-        
         // Update UI
-        updateButton()
+        updateSubmitButtons()
         updateReadoutLabel()
     }
     
     // MARK: - Update UI
     
-    fileprivate func updateButton() {
+    fileprivate func updateSubmitButtons() {
         
-        submitButton.alphaValue = canSubmit ? 1 : 0
-        submitButton.isEnabled = canSubmit
+        [addButtonStackView, notButtonStackView].forEach{
+            $0.alphaValue = canSubmit ? 1 : 0
+        }
+        
+        //submitButton.alphaValue = canSubmit ? 1 : 0
+        //submitButton.isEnabled = canSubmit
     }
     
     fileprivate func updateReadoutLabel() {
@@ -88,19 +92,31 @@ class TextInputViewController: NSViewController {
     
     // MARK: - Actions
     
-    @IBAction func submitButtonPressed(sender: NSButton){
-        print("Submit button pressed")
-             
-        let fileType = FileType(name: fileNameTextField.sanitisedText,
-                                ext: extensionTextField.sanitisedText)
-        
-        handler( fileType )
-        
+    @IBAction func addButtonPressed(sender: NSButton){
+        print("Add button pressed")
+        submit(exclude: false)
+    }
+    
+    @IBAction func notButtonPressed(sender: NSButton){
+        print("Not button pressed")
+        submit(exclude: true)
+    }
+    
+    @IBAction func closeButtonPressed(sender: NSButton){
         view.removeFromSuperview()
         removeFromParentViewController()
     }
     
-    @IBAction func closeButtonPressed(sender: NSButton){
+    // MARK: - Submit
+    
+    func submit(exclude: Bool) {
+        
+        let fileType = FileType(name: fileNameTextField.sanitisedText,
+                                ext: extensionTextField.sanitisedText,
+                                exclude: exclude)
+        
+        handler( fileType )
+        
         view.removeFromSuperview()
         removeFromParentViewController()
     }
@@ -118,7 +134,7 @@ extension TextInputViewController: NSTextFieldDelegate {
         
         textField.stringValue = textField.sanitisedText
         
-        updateButton()
+        updateSubmitButtons()
         updateReadoutLabel()
     }
 }
