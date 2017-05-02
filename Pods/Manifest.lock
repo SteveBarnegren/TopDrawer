@@ -5,18 +5,14 @@ PODS:
 
 DEPENDENCIES:
   - IYLoginItem
-  - SBAutoLayout (from `/Users/stevebarnegren/Documents/PROJECTS/CodeProjects/SBAutoLayout/SBAutoLayout`)
+  - SBAutoLayout
   - SBSwiftUtils
-
-EXTERNAL SOURCES:
-  SBAutoLayout:
-    :path: /Users/stevebarnegren/Documents/PROJECTS/CodeProjects/SBAutoLayout/SBAutoLayout
 
 SPEC CHECKSUMS:
   IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
-  SBAutoLayout: 66262297111842b213e7e9e861b124157116960c
+  SBAutoLayout: 654afc7ab68c6d7e4663fb75729c76e494cda1ce
   SBSwiftUtils: 0773364f5db62f09f8a3048bb05906a19dca1af6
 
-PODFILE CHECKSUM: 61b8c716e0c72ae65aa5b8672e9dce9632645c72
+PODFILE CHECKSUM: 3b52f65d37c92db15a9e9bb5d5c9b145f0943fe7
 
 COCOAPODS: 1.2.1

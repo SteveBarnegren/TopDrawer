@@ -11,8 +11,8 @@ target 'MenuNav' do
   #pod 'SBSwiftUtils', :path => ENV['SB_SWIFT_UTILS_ROOT']
 
   # SBAutoLayout
-  #pod 'SBAutoLayout'
-  pod 'SBAutoLayout', :path => ENV['SB_AUTOLAYOUT_ROOT']
+  pod 'SBAutoLayout'
+  #pod 'SBAutoLayout', :path => ENV['SB_AUTOLAYOUT_ROOT']
 
 
   target 'MenuNavTests' do

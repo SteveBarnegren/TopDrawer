@@ -59,6 +59,7 @@ class ViewController: NSViewController {
             
             let path = result.path
             Settings.path = path
+            self.updatePathLabel()
             rebuild()
         }
     }
