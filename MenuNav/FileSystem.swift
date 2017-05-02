@@ -18,7 +18,7 @@ protocol FileSystemObject {
 
 struct Directory: FileSystemObject {
     
-    let name: String
+    var name: String
     var contents = [FileSystemObject]()
     var path: String
     var image: NSImage?
@@ -226,7 +226,9 @@ class FileSystem {
             if innerDir.containedFiles.count == 0 && innerDir.containedDirectories.count == 1 {
                 
                 for innerDirDir in innerDir.containedDirectories {
-                    newContents.append(directoryByShorteningPaths(inDirectory: innerDirDir))
+                    var newDir = directoryByShorteningPaths(inDirectory: innerDirDir)
+                    newDir.name = innerDir.name
+                    newContents.append(newDir)
                 }
             }
             else{
