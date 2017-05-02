@@ -15,6 +15,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var iconImageView: NSImageView!
     @IBOutlet weak private var openAtLoginCheckbox: NSButton!
     @IBOutlet weak private var onlyShowFoldersWithMatchingFoldersCheckbox: NSButton!
+    @IBOutlet weak private var shortenPathsWherePossibleCheckbox: NSButton!
     @IBOutlet weak private var tableView: NSTableView!
 
     // MARK: - NSViewController
@@ -33,6 +34,7 @@ class ViewController: NSViewController {
         updatePathLabel()
         updateOpenAtLoginCheckbox()
         updateOnlyShowFoldersWithMatchingFilesCheckbox()
+        updateShortenPathsWherePossibleCheckbox()
     }
     
     // MARK: - Actions
@@ -74,6 +76,14 @@ class ViewController: NSViewController {
         Settings.onlyShowFoldersWithMatchingFiles = isOn
         rebuild()
     }
+    
+    @IBAction func shortenPathsWherePossibleCheckboxPressed(sender: NSButton){
+        
+        let isOn = (shortenPathsWherePossibleCheckbox.state == NSOnState)
+        Settings.shortenPathsWherePossible = isOn
+        rebuild()
+    }
+
     
     @IBAction func addFileTypeButtonPressed(sender: NSButton){
         print("Add file type button pressed")
@@ -118,8 +128,12 @@ class ViewController: NSViewController {
     
     func updateOnlyShowFoldersWithMatchingFilesCheckbox() {
         onlyShowFoldersWithMatchingFoldersCheckbox.state = Settings.onlyShowFoldersWithMatchingFiles ? NSOnState : NSOffState
-
     }
+    
+    func updateShortenPathsWherePossibleCheckbox() {
+        shortenPathsWherePossibleCheckbox.state = Settings.shortenPathsWherePossible ? NSOnState : NSOffState
+    }
+
     
     // MARK: - Rebuild
     

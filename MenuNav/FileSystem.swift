@@ -79,12 +79,19 @@ class FileSystem {
     
     func buildFileSystemStructure(atPath path: String) -> Directory? {
         
+        // Get File Structure
         guard var rootDirectory = fileSystemObject(atPath: path) as? Directory else {
             return nil
         }
         
+        // Only show folders with matching files?
         if Settings.onlyShowFoldersWithMatchingFiles {
             rootDirectory = directoryByRemovingDeadPaths(inDirectory: rootDirectory)
+        }
+        
+        // Shorten paths?
+        if Settings.shortenPathsWherePossible {
+            rootDirectory = directoryByShorteningPaths(inDirectory: rootDirectory)
         }
         
         return rootDirectory
@@ -163,6 +170,8 @@ class FileSystem {
         
     }
     
+    // MARK: - Removing Dead paths
+    
     func directoryByRemovingDeadPaths(inDirectory directory: Directory) -> Directory {
         
         var newContents = [FileSystemObject]()
@@ -194,6 +203,45 @@ class FileSystem {
         for innerDir in directory.containedDirectories {
             
             if doesDirectoryLeadToAcceptedFileType(innerDir) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    // MARK: - Shortening Paths
+    
+    func directoryByShorteningPaths(inDirectory directory: Directory) -> Directory {
+        
+        var newContents = [FileSystemObject]()
+        
+        directory.containedFiles.forEach {
+            newContents.append($0)
+        }
+        
+        for innerDir in directory.containedDirectories {
+            
+            if innerDir.containedFiles.count == 0 && innerDir.containedDirectories.count == 1 {
+                newContents.append(contentsOf: innerDir.contents)
+            }
+            else{
+                newContents.append(directoryByShorteningPaths(inDirectory: innerDir))
+            }
+        }
+        
+        var newDirectory = directory
+        newDirectory.contents = newContents
+        return newDirectory
+        
+    }
+    
+    // MARK: - Helpers
+    
+    func doesDirectoryContainAcceptedFiles(_ directory: Directory) -> Bool {
+        
+        for file in directory.containedFiles {
+            if isAcceptedFileType(name: file.name, ext: file.ext) {
                 return true
             }
         }

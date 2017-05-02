@@ -55,7 +55,18 @@ class Settings {
             userDefaults.synchronize()
         }
     }
-
+    
+    // MARK: - Shorten paths where possible
+    
+    static var shortenPathsWherePossible: Bool {
+        get{
+            return userDefaults.bool(forKey: #function)
+        }
+        set{
+            userDefaults.setValue(newValue, forKey: #function)
+            userDefaults.synchronize()
+        }
+    }
     
     // MARK: - File Types
         
