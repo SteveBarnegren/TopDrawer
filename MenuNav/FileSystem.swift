@@ -220,10 +220,14 @@ class FileSystem {
             newContents.append($0)
         }
         
+        
         for innerDir in directory.containedDirectories {
             
             if innerDir.containedFiles.count == 0 && innerDir.containedDirectories.count == 1 {
-                newContents.append(contentsOf: innerDir.contents)
+                
+                for innerDirDir in innerDir.containedDirectories {
+                    newContents.append(directoryByShorteningPaths(inDirectory: innerDirDir))
+                }
             }
             else{
                 newContents.append(directoryByShorteningPaths(inDirectory: innerDir))
