@@ -54,6 +54,20 @@ public struct FileType {
         return false
     }
     
+    var displayName: String{
+        
+        let name = self.name ?? "*"
+        let ext = self.ext ?? "*"
+        let fileName = name + "." + ext
+        
+        if exclude {
+            return fileName + " (!)"
+        }
+        else{
+            return fileName
+        }
+    }
+    
     // MARK: - Matching
     
     private func matchesFile(withName name: String, ext: String) -> Bool {

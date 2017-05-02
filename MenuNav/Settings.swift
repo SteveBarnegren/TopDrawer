@@ -44,6 +44,19 @@ class Settings {
         }
     }
     
+    // MARK: - Only show folders with matching files
+    
+    static var onlyShowFoldersWithMatchingFiles: Bool {
+        get{
+            return userDefaults.bool(forKey: #function)
+        }
+        set{
+            userDefaults.setValue(newValue, forKey: #function)
+            userDefaults.synchronize()
+        }
+    }
+
+    
     // MARK: - File Types
         
     static var fileTypes: [FileType] {

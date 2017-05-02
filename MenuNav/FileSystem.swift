@@ -27,6 +27,14 @@ struct Directory: FileSystemObject {
         return name
     }
     
+    var containedFiles: [File] {
+        return contents.flatMap{ $0 as? File }
+    }
+    
+    var containedDirectories: [Directory] {
+        return contents.flatMap{ $0 as? Directory }
+    }
+    
     init(name: String, path: String) {
         self.name = name
         self.path = path
@@ -35,10 +43,7 @@ struct Directory: FileSystemObject {
     mutating func add(object: FileSystemObject){
         contents.append(object)
     }
-    
-//    var image: NSImage? {
-//        return nil
-//    }
+
 }
 
 struct File: FileSystemObject {
@@ -73,15 +78,22 @@ class FileSystem {
     var acceptedFileTypes = [FileType]()
     
     func buildFileSystemStructure(atPath path: String) -> Directory? {
-        return fileSystemObject(atPath: path) as? Directory
+        
+        guard var rootDirectory = fileSystemObject(atPath: path) as? Directory else {
+            return nil
+        }
+        
+        if Settings.onlyShowFoldersWithMatchingFiles {
+            rootDirectory = directoryByRemovingDeadPaths(inDirectory: rootDirectory)
+        }
+        
+        return rootDirectory
     }
     
     // MARK: - Build Directory Structure
     
     private func fileSystemObject(atPath path: String) -> FileSystemObject? {
         
-        //print("path: \(path)")
-
         let itemName = path.components(separatedBy: "/").last!
         
         // Filter hidden files
@@ -149,6 +161,44 @@ class FileSystem {
             return file
         }
         
+    }
+    
+    func directoryByRemovingDeadPaths(inDirectory directory: Directory) -> Directory {
+        
+        var newContents = [FileSystemObject]()
+        
+        for file in directory.containedFiles {
+            newContents.append(file)
+        }
+        
+        for innerDir in directory.containedDirectories {
+            if doesDirectoryLeadToAcceptedFileType(innerDir) {
+                newContents.append(directoryByRemovingDeadPaths(inDirectory: innerDir))
+            }
+        }
+        
+        var newDirectory = directory
+        newDirectory.contents = newContents
+        
+        return newDirectory
+    }
+    
+    func doesDirectoryLeadToAcceptedFileType(_ directory: Directory) -> Bool {
+        
+        for file in directory.containedFiles {
+            if isAcceptedFileType(name: file.name, ext: file.ext) {
+                return true
+            }
+        }
+        
+        for innerDir in directory.containedDirectories {
+            
+            if doesDirectoryLeadToAcceptedFileType(innerDir) {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func isAcceptedFileType(name: String, ext: String) -> Bool {

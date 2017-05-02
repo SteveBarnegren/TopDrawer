@@ -31,14 +31,14 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="Arv-Nj-IMh" customClass="ViewController" customModule="MenuNav" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cf1-ga-p4k">
-                        <rect key="frame" x="0.0" y="0.0" width="415" height="327"/>
+                        <rect key="frame" x="0.0" y="0.0" width="415" height="343"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ot-s0-Cy6">
-                                <rect key="frame" x="20" y="20" width="375" height="287"/>
+                                <rect key="frame" x="20" y="20" width="375" height="303"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GhN-E0-7Ld">
-                                        <rect key="frame" x="152.5" y="217" width="70" height="70"/>
+                                        <rect key="frame" x="152.5" y="233" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="6TS-Re-bp8"/>
                                             <constraint firstAttribute="width" secondItem="GhN-E0-7Ld" secondAttribute="height" multiplier="1:1" id="vwu-yG-qom"/>
@@ -46,7 +46,7 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Ffg-yA-FbP"/>
                                     </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZd-ra-UMi">
-                                        <rect key="frame" x="169" y="192" width="37" height="17"/>
+                                        <rect key="frame" x="169" y="208" width="37" height="17"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Label" id="F2N-sm-Zm9">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -54,7 +54,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gSr-TE-ehb">
-                                        <rect key="frame" x="128.5" y="156" width="118" height="32"/>
+                                        <rect key="frame" x="128.5" y="172" width="118" height="32"/>
                                         <buttonCell key="cell" type="push" title="Choose Path" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R2d-Mf-pz9">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -64,7 +64,7 @@
                                         </connections>
                                     </button>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-k4-DVV">
-                                        <rect key="frame" x="67" y="55" width="241" height="100"/>
+                                        <rect key="frame" x="67" y="71" width="241" height="100"/>
                                         <clipView key="contentView" id="lzl-2m-Giq">
                                             <rect key="frame" x="1" y="1" width="239" height="98"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +76,7 @@
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn width="236" minWidth="40" maxWidth="1000" id="CF7-TV-OJ8">
+                                                        <tableColumn width="235" minWidth="40" maxWidth="1000" id="CF7-TV-OJ8">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -122,20 +122,20 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="i89-ck-yQG"/>
                                         </constraints>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="YES" id="hB8-kh-wG3">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="hB8-kh-wG3">
                                             <rect key="frame" x="1" y="83" width="239" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="QWQ-OK-xth">
-                                            <rect key="frame" x="230" y="17" width="15" height="102"/>
+                                            <rect key="frame" x="232" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GcA-nI-bW9">
-                                        <rect key="frame" x="164.5" y="22" width="46" height="25"/>
+                                        <rect key="frame" x="164.5" y="44" width="46" height="19"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vmx-MM-fcb">
-                                                <rect key="frame" x="0.0" y="5" width="19" height="21"/>
+                                                <rect key="frame" x="0.0" y="-1" width="19" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="vmx-MM-fcb" secondAttribute="height" multiplier="1:1" id="1Gi-CE-UWv"/>
                                                 </constraints>
@@ -148,7 +148,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fNH-mA-SH0">
-                                                <rect key="frame" x="27" y="5" width="19" height="21"/>
+                                                <rect key="frame" x="27" y="-1" width="19" height="21"/>
                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5BP-zi-tWe">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -171,6 +171,16 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="urG-VN-SS2">
+                                        <rect key="frame" x="41.5" y="20" width="292" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Only show folders that lead to matching files" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="M9N-ug-dzb">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="onlyShowFoldersWithMatchingFilesCheckboxPressedWithSender:" target="Arv-Nj-IMh" id="XU0-pk-UEn"/>
+                                        </connections>
+                                    </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="yGI-p5-XH4">
                                         <rect key="frame" x="134" y="-2" width="107" height="18"/>
                                         <buttonCell key="cell" type="check" title="Open at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tQA-st-YPe">
@@ -192,8 +202,10 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -213,6 +225,7 @@
                     <connections>
                         <outlet property="button" destination="gSr-TE-ehb" id="MHn-fC-b8F"/>
                         <outlet property="iconImageView" destination="GhN-E0-7Ld" id="TaC-Et-Yrz"/>
+                        <outlet property="onlyShowFoldersWithMatchingFoldersCheckbox" destination="urG-VN-SS2" id="hHn-v5-5Fj"/>
                         <outlet property="openAtLoginCheckbox" destination="yGI-p5-XH4" id="Bcz-TY-W22"/>
                         <outlet property="tableView" destination="RWF-u1-aR4" id="ixZ-XK-d9d"/>
                         <outlet property="textField" destination="zZd-ra-UMi" id="ob5-gK-EaP"/>

@@ -14,6 +14,7 @@ class ViewController: NSViewController {
     @IBOutlet weak private var button: NSButton!
     @IBOutlet weak var iconImageView: NSImageView!
     @IBOutlet weak private var openAtLoginCheckbox: NSButton!
+    @IBOutlet weak private var onlyShowFoldersWithMatchingFoldersCheckbox: NSButton!
     @IBOutlet weak private var tableView: NSTableView!
 
     // MARK: - NSViewController
@@ -31,6 +32,7 @@ class ViewController: NSViewController {
         // Update UI
         updatePathLabel()
         updateOpenAtLoginCheckbox()
+        updateOnlyShowFoldersWithMatchingFilesCheckbox()
     }
     
     // MARK: - Actions
@@ -64,6 +66,13 @@ class ViewController: NSViewController {
         
         let isOn = (openAtLoginCheckbox.state == NSOnState)
         Settings.openAtLogin = isOn
+    }
+    
+    @IBAction func onlyShowFoldersWithMatchingFilesCheckboxPressed(sender: NSButton){
+        
+        let isOn = (onlyShowFoldersWithMatchingFoldersCheckbox.state == NSOnState)
+        Settings.onlyShowFoldersWithMatchingFiles = isOn
+        rebuild()
     }
     
     @IBAction func addFileTypeButtonPressed(sender: NSButton){
@@ -107,6 +116,11 @@ class ViewController: NSViewController {
         openAtLoginCheckbox.state = Settings.openAtLogin ? NSOnState : NSOffState
     }
     
+    func updateOnlyShowFoldersWithMatchingFilesCheckbox() {
+        onlyShowFoldersWithMatchingFoldersCheckbox.state = Settings.onlyShowFoldersWithMatchingFiles ? NSOnState : NSOffState
+
+    }
+    
     // MARK: - Rebuild
     
     func rebuild() {
@@ -130,7 +144,7 @@ extension ViewController : NSTableViewDataSource {
         
         let fileType = Settings.fileTypes[row]
         
-        cell.textField?.stringValue = fileType.stringRepresentation()
+        cell.textField?.stringValue = fileType.displayName
         cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType.ext ?? "" )
         
         return cell
