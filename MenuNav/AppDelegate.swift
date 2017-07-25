@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         isRebuilding = true
         
         // Get the file structure
-        let builder = FileStructureBuilder(fileManager: FileManager.default,
+        let builder = FileStructureBuilder(fileReader: FileManager.default,
                                            rules: Settings.fileTypes)
         
         guard let path = Settings.path else {

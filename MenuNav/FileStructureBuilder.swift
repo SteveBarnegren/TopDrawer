@@ -9,18 +9,29 @@
 import Foundation
 import AppKit
 
+// MARK: - ****** FileReader ******
+
+protocol FileReader: class {
+    func fileExists(atPath path: String, isDirectory: UnsafeMutablePointer<ObjCBool>?) -> Bool
+    func contentsOfDirectory(atPath path: String) throws -> [String]
+}
+
+extension FileManager: FileReader {}
+
+// MARK: - ****** FileStructureBuilder ******
+
 class FileStructureBuilder {
     
     // MARK: - Init
     
-    init(fileManager: FileManager, rules: [FileRule]) {
+    init(fileReader: FileReader, rules: [FileRule]) {
         self.rules = rules
-        self.fileManager = fileManager
+        self.fileReader = fileReader
     }
 
     // MARK: - Properties
     private let rules: [FileRule]
-    private let fileManager: FileManager
+    private let fileReader: FileReader
     
     // MARK: - Build Directory Structure
     
@@ -54,7 +65,7 @@ class FileStructureBuilder {
         }
         
         var isDirectory: ObjCBool = false
-        let exists = fileManager.fileExists(atPath: path, isDirectory: &isDirectory)
+        let exists = fileReader.fileExists(atPath: path, isDirectory: &isDirectory)
         
         guard exists else{
             return nil
@@ -72,7 +83,7 @@ class FileStructureBuilder {
                                       path: path)
             directory.image = imageForPath(path)
             
-            guard let contents = try? fileManager.contentsOfDirectory(atPath: path) else {
+            guard let contents = try? fileReader.contentsOfDirectory(atPath: path) else {
                 return directory
             }
             
