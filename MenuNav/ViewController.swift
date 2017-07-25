@@ -92,7 +92,7 @@ class ViewController: NSViewController {
         let input = TextInputViewController.create{
             text in
             
-            Settings.addFileType(ext: text)
+            //Settings.addFileType(ext: text)
             self.tableView.reloadData()
             self.rebuild()
         }
@@ -105,7 +105,7 @@ class ViewController: NSViewController {
     @IBAction func deleteFileTypeButtonPressed(sender: NSButton){
         
         tableView.selectedRowIndexes.forEach{
-            Settings.removeFileType(atIndex: $0)
+            Settings.removeRule(atIndex: $0)
         }
         
         tableView.reloadData()
@@ -146,7 +146,7 @@ class ViewController: NSViewController {
 extension ViewController : NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return Settings.fileTypes.count
+        return Settings.fileRules.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -157,7 +157,7 @@ extension ViewController : NSTableViewDataSource {
             fatalError("Unable to create table cell")
         }
         
-        let fileType = Settings.fileTypes[row]
+        let fileType = Settings.fileRules[row]
         
         cell.textField?.stringValue = fileType.displayName
         cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType.ext ?? "" )

@@ -30,6 +30,7 @@ class FileStructureBuilder {
     }
 
     // MARK: - Properties
+    
     private let rules: [FileRule]
     private let fileReader: FileReader
     

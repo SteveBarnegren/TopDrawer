@@ -94,6 +94,8 @@ public struct FileRule {
         return false
     }
     
+    /*
+    
     // MARK: - String Representation
     
     init?(stringRepresentation: String) {
@@ -154,5 +156,43 @@ public struct FileRule {
         else{
             return fileName
         }
+    }
+    */
+    
+}
+
+// MARK: - DictionaryRepresentable
+
+extension FileRule: DictionaryRepresentable {
+    
+    struct FileRuleDictionaryKeys {
+        static let FileName = "FileName"
+        static let FileExtension = "FileExtension"
+        static let exclude = "Exclude"
+    }
+    
+    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+        
+        self.init(name: dictionary[FileRuleDictionaryKeys.FileName] as? String,
+                  ext: dictionary[FileRuleDictionaryKeys.FileExtension] as? String,
+                  exclude: dictionary[FileRuleDictionaryKeys.exclude] as? Bool ?? false)
+        
+    }
+    
+    func dictionaryRepresentation() -> Dictionary<String, Any> {
+        
+        var dictionary = Dictionary<String, Any>()
+        
+        if let fileName = name {
+            dictionary[FileRuleDictionaryKeys.FileName] = fileName
+        }
+        
+        if let ext = ext {
+            dictionary[FileRuleDictionaryKeys.FileExtension] = ext
+        }
+        
+        dictionary[FileRuleDictionaryKeys.exclude] = exclude
+        
+        return dictionary
     }
 }

@@ -70,13 +70,13 @@ class Settings {
     
     // MARK: - File Types
         
-    static var fileTypes: [FileRule] {
+    static var fileRules: [FileRule] {
         
         get {
-            let types = userDefaults.object(forKey: #function) as? [String]
+            let types = userDefaults.object(forKey: #function) as? [Dictionary<String, Any>]
             
             if let types = types {
-                return types.flatMap{ FileRule(stringRepresentation: $0) }
+                return types.flatMap{ FileRule(dictionaryRepresentation: $0) }
             }
             else{
                 return []
@@ -84,22 +84,19 @@ class Settings {
             
         }
         set {
-            userDefaults.set(newValue.map{ $0.stringRepresentation() }, forKey: #function)
+            userDefaults.set(newValue.map{ $0.dictionaryRepresentation() }, forKey: #function)
             userDefaults.synchronize()
         }
     }
     
-    static func addFileType(ext: FileRule) {
-    
-        var types = fileTypes
-        types.append(ext)
-        fileTypes = types
+    static func add(rule: FileRule) {
+        fileRules = fileRules.appending(rule)
     }
     
-    static func removeFileType(atIndex index: Int) {
+    static func removeRule(atIndex index: Int) {
         
-        var types = fileTypes
-        types.remove(at: index)
-        fileTypes = types
+        var rules = fileRules
+        rules.remove(at: index)
+        fileRules = rules
     }
 }

@@ -53,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Get the file structure
         let builder = FileStructureBuilder(fileReader: FileManager.default,
-                                           rules: Settings.fileTypes)
+                                           rules: Settings.fileRules)
         
         guard let path = Settings.path else {
             showSetupMenu()
