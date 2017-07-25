@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct FileType {
+public struct FileRule {
     
     let name: String?
     let ext: String?

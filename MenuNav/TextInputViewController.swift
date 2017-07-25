@@ -13,7 +13,7 @@ class TextInputViewController: NSViewController {
 
     // MARK: - Internal
     
-    static func create(handler: @escaping (FileType) -> ()) -> NSViewController {
+    static func create(handler: @escaping (FileRule) -> ()) -> NSViewController {
         
         let storyboard = NSStoryboard(name: "App", bundle: nil)
         let viewController = storyboard.instantiateController(withIdentifier: "TextInputViewController") as! TextInputViewController
@@ -31,7 +31,7 @@ class TextInputViewController: NSViewController {
     @IBOutlet weak private var notButtonStackView: NSStackView!
 
     // MARK: - Properties
-    fileprivate var handler: (FileType) -> () = {_ in}
+    fileprivate var handler: (FileRule) -> () = {_ in}
     
     var canSubmit: Bool {
         return fileNameTextField.sanitisedText.length > 0 || extensionTextField.sanitisedText.length > 0
@@ -111,7 +111,7 @@ class TextInputViewController: NSViewController {
     
     func submit(exclude: Bool) {
         
-        let fileType = FileType(name: fileNameTextField.sanitisedText,
+        let fileType = FileRule(name: fileNameTextField.sanitisedText,
                                 ext: extensionTextField.sanitisedText,
                                 exclude: exclude)
         

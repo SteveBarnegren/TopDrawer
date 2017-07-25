@@ -52,8 +52,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         isRebuilding = true
         
         // Get the file structure
-        let fileSystem = FileSystem()
-        fileSystem.acceptedFileTypes = Settings.fileTypes
+        let builder = FileStructureBuilder(fileManager: FileManager.default,
+                                           rules: Settings.fileTypes)
         
         guard let path = Settings.path else {
             showSetupMenu()
@@ -62,7 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         DispatchQueue.global().async {
             
-            guard let rootDirectory = fileSystem.buildFileSystemStructure(atPath: path) else {
+            guard let rootDirectory = builder.buildFileSystemStructure(atPath: path) else {
                 
                 DispatchQueue.main.async(execute: {
                     self.showSetupMenu()

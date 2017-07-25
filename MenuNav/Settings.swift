@@ -70,13 +70,13 @@ class Settings {
     
     // MARK: - File Types
         
-    static var fileTypes: [FileType] {
+    static var fileTypes: [FileRule] {
         
         get {
             let types = userDefaults.object(forKey: #function) as? [String]
             
             if let types = types {
-                return types.flatMap{ FileType(stringRepresentation: $0) }
+                return types.flatMap{ FileRule(stringRepresentation: $0) }
             }
             else{
                 return []
@@ -89,7 +89,7 @@ class Settings {
         }
     }
     
-    static func addFileType(ext: FileType) {
+    static func addFileType(ext: FileRule) {
     
         var types = fileTypes
         types.append(ext)

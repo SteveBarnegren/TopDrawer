@@ -9,73 +9,20 @@
 import Foundation
 import AppKit
 
-protocol FileSystemObject {
-    var path: String {get set}
-    var name: String {get}
-    var menuName: String {get}
-    var image: NSImage? {get}
-}
-
-struct Directory: FileSystemObject {
+class FileStructureBuilder {
     
-    var name: String
-    var contents = [FileSystemObject]()
-    var path: String
-    var image: NSImage?
-
-    var menuName: String {
-        return name
-    }
+    // MARK: - Init
     
-    var containedFiles: [File] {
-        return contents.flatMap{ $0 as? File }
-    }
-    
-    var containedDirectories: [Directory] {
-        return contents.flatMap{ $0 as? Directory }
-    }
-    
-    init(name: String, path: String) {
-        self.name = name
-        self.path = path
-    }
-    
-    mutating func add(object: FileSystemObject){
-        contents.append(object)
+    init(fileManager: FileManager, rules: [FileRule]) {
+        self.rules = rules
+        self.fileManager = fileManager
     }
 
-}
-
-struct File: FileSystemObject {
+    // MARK: - Properties
+    private let rules: [FileRule]
+    private let fileManager: FileManager
     
-    let name: String
-    let ext: String
-    var path: String
-    var image: NSImage?
-    
-    var menuName: String {
-        
-        if ext.characters.count > 0 {
-            return "\(name)" + "." + "\(ext)"
-        }
-        else{
-            return name
-        }
-        
-    }
-    
-    init(name: String, ext: String, path: String) {
-        self.name = name
-        self.ext = ext
-        self.path = path
-    }
-}
-
-
-class FileSystem {
-
-    // MARK: - Internal
-    var acceptedFileTypes = [FileType]()
+    // MARK: - Build Directory Structure
     
     func buildFileSystemStructure(atPath path: String) -> Directory? {
         
@@ -96,8 +43,6 @@ class FileSystem {
         
         return rootDirectory
     }
-    
-    // MARK: - Build Directory Structure
     
     private func fileSystemObject(atPath path: String) -> FileSystemObject? {
         
@@ -260,13 +205,13 @@ class FileSystem {
         var include = false
         var exclude = false
         
-        for fileType in acceptedFileTypes {
+        for rule in rules {
             
-            if fileType.includesFile(withName: name, ext: ext) {
+            if rule.includesFile(withName: name, ext: ext) {
                 include = true
             }
             
-            if fileType.excludesFile(withName: name, ext: ext) {
+            if rule.excludesFile(withName: name, ext: ext) {
                 exclude = true
             }
         }
@@ -280,11 +225,4 @@ class FileSystem {
         return image
     }
 
-    
-    // MARK: - Properties
-    
-    private let fileManager = FileManager.default
-    
-   
-    
 }
