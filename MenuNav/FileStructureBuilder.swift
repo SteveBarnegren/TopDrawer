@@ -113,13 +113,14 @@ class FileStructureBuilder {
                 ext = nameWithExtension.pathExtension
             }
             
-            guard isAcceptedFileType(name: name, ext: ext) else {
-                return nil
-            }
-            
             var file = File(name: name,
                             ext: ext,
                             path: path)
+
+            guard shouldInclude(file: file) else {
+                return nil
+            }
+            
             file.image = imageForPath(path)
             
             return file
@@ -152,7 +153,7 @@ class FileStructureBuilder {
     func doesDirectoryLeadToAcceptedFileType(_ directory: Directory) -> Bool {
         
         for file in directory.containedFiles {
-            if isAcceptedFileType(name: file.name, ext: file.ext) {
+            if shouldInclude(file: file) {
                 return true
             }
         }
@@ -204,7 +205,7 @@ class FileStructureBuilder {
     func doesDirectoryContainAcceptedFiles(_ directory: Directory) -> Bool {
         
         for file in directory.containedFiles {
-            if isAcceptedFileType(name: file.name, ext: file.ext) {
+            if shouldInclude(file: file) {
                 return true
             }
         }
@@ -212,26 +213,45 @@ class FileStructureBuilder {
         return false
     }
     
-    func isAcceptedFileType(name: String, ext: String) -> Bool {
+    func shouldInclude(file: File) -> Bool {
         
         var include = false
         var exclude = false
-        
+
         for rule in rules {
             
-            /*
-            if rule.includesFile(withName: name, ext: ext) {
+            if rule.includes(file: file) {
                 include = true
             }
-            
-            if rule.excludesFile(withName: name, ext: ext) {
+
+            if rule.excludes(file: file) {
                 exclude = true
             }
- */
         }
         
         return (include && !exclude)
     }
+    
+//    func isAcceptedFileType(name: String, ext: String) -> Bool {
+//        
+//        var include = false
+//        var exclude = false
+//        
+//        for rule in rules {
+//            
+//            /*
+//            if rule.includesFile(withName: name, ext: ext) {
+//                include = true
+//            }
+//            
+//            if rule.excludesFile(withName: name, ext: ext) {
+//                exclude = true
+//            }
+// */
+//        }
+//        
+//        return (include && !exclude)
+//    }
     
     func imageForPath(_ path: String) -> NSImage {
         let image = NSWorkspace.shared().icon(forFile: path)
