@@ -146,7 +146,31 @@ public struct FileRule {
     var displayName: String {
         return "Rule Display Name"
     }
+    
+}
 
+// MARK: - Equatable
+
+extension FileRule.Target: Equatable {
+    public static func ==(lhs: FileRule.Target, rhs: FileRule.Target) -> Bool {
+        
+        switch (lhs, rhs) {
+        case let (.files(n1, e1), .files(n2, e2)):
+            return n1 == n2 && e1 == e2
+        case let (.folders(n1), .folders(n2)):
+            return n1 == n2
+        default:
+            return false
+        }
+    }
+}
+
+extension FileRule: Equatable {
+    public static func ==(lhs: FileRule, rhs: FileRule) -> Bool {
+        
+        return( lhs.filter == rhs.filter &&
+            lhs.target == rhs.target )
+    }
 }
 
 // MARK: - DictionaryRepresentable

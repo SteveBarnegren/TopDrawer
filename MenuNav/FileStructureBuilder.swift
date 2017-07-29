@@ -232,27 +232,6 @@ class FileStructureBuilder {
         return (include && !exclude)
     }
     
-//    func isAcceptedFileType(name: String, ext: String) -> Bool {
-//        
-//        var include = false
-//        var exclude = false
-//        
-//        for rule in rules {
-//            
-//            /*
-//            if rule.includesFile(withName: name, ext: ext) {
-//                include = true
-//            }
-//            
-//            if rule.excludesFile(withName: name, ext: ext) {
-//                exclude = true
-//            }
-// */
-//        }
-//        
-//        return (include && !exclude)
-//    }
-    
     func imageForPath(_ path: String) -> NSImage {
         let image = NSWorkspace.shared().icon(forFile: path)
         image.size = CGSize(width: image.size.width/2, height: image.size.height/2)

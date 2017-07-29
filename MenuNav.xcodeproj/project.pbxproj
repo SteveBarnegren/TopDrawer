@@ -11,7 +11,6 @@
 		0978BEC11EB393110023AC66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BEC01EB393110023AC66 /* ViewController.swift */; };
 		0978BEC31EB393110023AC66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0978BEC21EB393110023AC66 /* Assets.xcassets */; };
 		0978BEC61EB393110023AC66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0978BEC41EB393110023AC66 /* Main.storyboard */; };
-		0978BED11EB393110023AC66 /* MenuNavTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BED01EB393110023AC66 /* MenuNavTests.swift */; };
 		29FFD854BC8674F6F2B2DC7F /* Pods_MenuNavTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480C88363C8F497977E2ABE1 /* Pods_MenuNavTests.framework */; };
 		674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
 		679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
@@ -24,6 +23,16 @@
 		67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E1D1EB4F21D00D2A8CA /* Settings.swift */; };
 		67AE4A5F1F2C84B300E9D1FE /* FileRuleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A5E1F2C84B300E9D1FE /* FileRuleFormatter.swift */; };
 		67AE4A621F2CA28300E9D1FE /* FileRuleConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A611F2CA28300E9D1FE /* FileRuleConstructor.swift */; };
+		67AE4A661F2CD53400E9D1FE /* FileRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A651F2CD53400E9D1FE /* FileRuleTests.swift */; };
+		67AE4A671F2CD92100E9D1FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BEBE1EB393110023AC66 /* AppDelegate.swift */; };
+		67AE4A681F2CD92700E9D1FE /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */; };
+		67AE4A691F2CD92C00E9D1FE /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */; };
+		67AE4A6A1F2CD93300E9D1FE /* FileRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD51EB79ADE00224C24 /* FileRule.swift */; };
+		67AE4A6B1F2CD93600E9D1FE /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
+		67AE4A6C1F2CD93B00E9D1FE /* FileRuleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A5E1F2C84B300E9D1FE /* FileRuleFormatter.swift */; };
+		67AE4A6D1F2CD93D00E9D1FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BEC01EB393110023AC66 /* ViewController.swift */; };
+		67AE4A6E1F2CD94200E9D1FE /* EditRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD31EB77D0800224C24 /* EditRuleViewController.swift */; };
+		67AE4A6F1F2CD94500E9D1FE /* FileRuleConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A611F2CA28300E9D1FE /* FileRuleConstructor.swift */; };
 		67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */; };
 		67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */; };
 		67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */; };
@@ -50,7 +59,6 @@
 		0978BEC51EB393110023AC66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0978BEC71EB393110023AC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0978BECC1EB393110023AC66 /* MenuNavTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuNavTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0978BED01EB393110023AC66 /* MenuNavTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavTests.swift; sourceTree = "<group>"; };
 		0978BED21EB393110023AC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D1F7D33AD80C55EA1FDA055 /* Pods_MenuNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MenuNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2CB3F412642EAF9E03D2F4 /* Pods-MenuNavTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNavTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNavTests/Pods-MenuNavTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,6 +72,7 @@
 		67A02E1D1EB4F21D00D2A8CA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		67AE4A5E1F2C84B300E9D1FE /* FileRuleFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRuleFormatter.swift; sourceTree = "<group>"; };
 		67AE4A611F2CA28300E9D1FE /* FileRuleConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRuleConstructor.swift; sourceTree = "<group>"; };
+		67AE4A651F2CD53400E9D1FE /* FileRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRuleTests.swift; sourceTree = "<group>"; };
 		67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStructureBuilder.swift; sourceTree = "<group>"; };
 		67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRepresentable.swift; sourceTree = "<group>"; };
 		67FAAAD31EB77D0800224C24 /* EditRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRuleViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +140,7 @@
 		0978BECF1EB393110023AC66 /* MenuNavTests */ = {
 			isa = PBXGroup;
 			children = (
-				0978BED01EB393110023AC66 /* MenuNavTests.swift */,
+				67AE4A651F2CD53400E9D1FE /* FileRuleTests.swift */,
 				0978BED21EB393110023AC66 /* Info.plist */,
 			);
 			path = MenuNavTests;
@@ -438,11 +447,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67AE4A671F2CD92100E9D1FE /* AppDelegate.swift in Sources */,
+				67AE4A6B1F2CD93600E9D1FE /* FileSystemObject.swift in Sources */,
+				67AE4A6E1F2CD94200E9D1FE /* EditRuleViewController.swift in Sources */,
 				67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
+				67AE4A6A1F2CD93300E9D1FE /* FileRule.swift in Sources */,
+				67AE4A691F2CD92C00E9D1FE /* NSImage+Extensions.swift in Sources */,
+				67AE4A6F1F2CD94500E9D1FE /* FileRuleConstructor.swift in Sources */,
 				6793709F1F27B890003E6A9A /* Array+Extensions.swift in Sources */,
+				67AE4A6D1F2CD93D00E9D1FE /* ViewController.swift in Sources */,
 				67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */,
+				67AE4A661F2CD53400E9D1FE /* FileRuleTests.swift in Sources */,
+				67AE4A6C1F2CD93B00E9D1FE /* FileRuleFormatter.swift in Sources */,
+				67AE4A681F2CD92700E9D1FE /* StringRepresentable.swift in Sources */,
 				679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */,
-				0978BED11EB393110023AC66 /* MenuNavTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
