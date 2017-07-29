@@ -16,7 +16,7 @@ class ViewController: NSViewController {
     @IBOutlet weak private var openAtLoginCheckbox: NSButton!
     @IBOutlet weak private var onlyShowFoldersWithMatchingFoldersCheckbox: NSButton!
     @IBOutlet weak private var shortenPathsWherePossibleCheckbox: NSButton!
-    @IBOutlet weak private var tableView: NSTableView!
+    @IBOutlet weak fileprivate var tableView: NSTableView!
 
     // MARK: - NSViewController
     
@@ -89,17 +89,12 @@ class ViewController: NSViewController {
     @IBAction func addFileTypeButtonPressed(sender: NSButton){
         print("Add file type button pressed")
                 
-        let input = TextInputViewController.create{
-            text in
-            
-            //Settings.addFileType(ext: text)
-            self.tableView.reloadData()
-            self.rebuild()
-        }
+        let editor = EditRuleViewController.create(existingRule: nil)
+        editor.delegate = self
         
-        addChildViewController(input)
-        view.addSubview(input.view)
-        input.view.pinToSuperviewEdges()
+        addChildViewController(editor)
+        view.addSubview(editor.view)
+        editor.view.pinToSuperviewEdges()
     }
     
     @IBAction func deleteFileTypeButtonPressed(sender: NSButton){
@@ -135,7 +130,6 @@ class ViewController: NSViewController {
         shortenPathsWherePossibleCheckbox.state = Settings.shortenPathsWherePossible ? NSOnState : NSOffState
     }
 
-    
     // MARK: - Rebuild
     
     func rebuild() {
@@ -157,10 +151,10 @@ extension ViewController : NSTableViewDataSource {
             fatalError("Unable to create table cell")
         }
         
-        let fileType = Settings.fileRules[row]
+        let rule = Settings.fileRules[row]
         
-        cell.textField?.stringValue = fileType.displayName
-        cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType.ext ?? "" )
+        cell.textField?.stringValue = rule.displayName
+        //cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType.ext ?? "" )
         
         return cell
     }
@@ -169,3 +163,17 @@ extension ViewController : NSTableViewDataSource {
 extension ViewController : NSTableViewDelegate {
 }
 
+// MARK: - EditRuleViewControllerDelegate
+
+extension ViewController: EditRuleViewControllerDelegate {
+    func editRuleViewController(_ editRuleViewController: EditRuleViewController, didUpdateRule rule: FileRule) {
+        print("Updated rule")
+        
+        Settings.add(rule: rule)
+        self.tableView.reloadData()
+        self.rebuild()
+        
+        editRuleViewController.view.removeFromSuperview()
+        editRuleViewController.removeFromParentViewController()
+    }
+}

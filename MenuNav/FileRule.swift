@@ -10,188 +10,270 @@ import Foundation
 
 public struct FileRule {
     
-    let name: String?
-    let ext: String?
-    let exclude: Bool
+    // MARK: - Types
     
-    init(name: String?, ext: String?, exclude: Bool) {
-        
-        var name = name
-        var ext = ext
-
-        if let n = name, n.length == 0 {
-            name = nil
-        }
-        
-        if let e = ext, e.length == 0 {
-            ext = nil
-        }
-        
-        if name == nil && ext == nil {
-            fatalError("FileType must have non nil name or ext")
-        }
-        
-        self.name = name
-        self.ext = ext
-        self.exclude = exclude
+    enum Target {
+        case files(name: String?, ext: String?)
+        case folders(name: String)
     }
     
-    func includesFile(withName name: String, ext: String) -> Bool {
+    enum Filter: Int {
+        case include
+        case exclude
+    }
+    
+    // MARK: - Properties
+    
+    var target: Target
+    var filter: Filter
+    
+    // MARK: - Init
+    
+    init() {
         
-        if self.exclude {
+        self.target = .files(name: nil, ext: nil)
+        self.filter = .include
+    }
+    
+    init(target: Target, filter: Filter) {
+    
+        self.target = target
+        self.filter = filter
+    }
+    
+    // MARK: - Matching
+    
+    func includes(directory: Directory) -> Bool {
+    
+        switch filter {
+        case .include:
+            return matches(directory: directory)
+        case .exclude:
             return false
         }
-        
-        return matchesFile(withName: name, ext: ext)
     }
     
-    func excludesFile(withName name: String, ext: String) -> Bool {
+    func includes(file: File) -> Bool {
         
-        if self.exclude {
-            return matchesFile(withName: name, ext: ext)
+        switch filter {
+        case .include:
+            return matches(file: file)
+        case .exclude:
+            return false
         }
-        
-        return false
     }
     
-    var displayName: String{
+    func excludes(directory: Directory) -> Bool {
         
-        let name = self.name ?? "*"
-        let ext = self.ext ?? "*"
-        let fileName = name + "." + ext
-        
-        if exclude {
-            return fileName + " (!)"
+        switch filter {
+        case .include:
+            return false
+        case .exclude:
+            return matches(directory: directory)
         }
-        else{
-            return fileName
+    }
+    
+    func excludes(file: File) -> Bool {
+        
+        switch filter {
+        case .include:
+            return false
+        case .exclude:
+            return matches(file: file)
         }
     }
     
     // MARK: - Matching
     
-    private func matchesFile(withName name: String, ext: String) -> Bool {
+    private func matches(directory: Directory) -> Bool {
         
-        switch (self.name, self.ext) {
-        case (.some, nil):
-            if self.name == name {
-                return true
-            }
-        case (nil, .some):
-            if self.ext == ext {
-                return true
-            }
-
-        case (.some, .some):
-            if self.name == name && self.ext == ext {
-                return true
-            }
+        switch target {
+        case .files(_,_):
+            return false
+        case .folders(name: let name):
+            return name == directory.name
+        }
+    }
+    
+    private func matches(file: File) -> Bool {
+        
+        switch target {
+        
+        // Match file name and extension
+        case let .files(.some(name), .some(ext)):
+            return name == file.name && ext == file.ext
             
-        case (nil, nil):
-            return true
-        }
-        
-        return false
-    }
-    
-    /*
-    
-    // MARK: - String Representation
-    
-    init?(stringRepresentation: String) {
-        
-        var stringRepresentation = stringRepresentation
-        
-        if stringRepresentation.length == 0 {
-            return nil
-        }
-        
-        // is excluding?
-        if stringRepresentation.characters.first! == "." {
-            exclude = true
+        // Match file name only
+        case let .files(.some(name), .none):
+            return name == file.name
             
-            let index = stringRepresentation.index(stringRepresentation.startIndex, offsetBy: 1)
-            stringRepresentation = stringRepresentation.substring(from: index)
+        // Match extension only
+        case let .files(.none, .some(ext)):
+            return ext == file.ext
+            
+        // Match folders
+        case .folders(_):
+            return false
+            
+        // Default (This shouldn't be called)
+        default:
+            return false
         }
-        else{
-            exclude = false
+    }
+    
+    // MARK: - Display Name
+    
+    var itemName: String? {
+        
+        switch target {
+        case let .files(name, _):
+            return name
+        case let .folders(name):
+            return name
         }
+    }
+    
+    var itemExtension: String? {
         
-        // Get name and extension
-        
-        let components = stringRepresentation.components(separatedBy: ".")
-        
-        if components.count != 2 {
+        switch target {
+        case let .files(_, ext):
+            return ext
+        case .folders(_):
             return nil
         }
-        
-        var n = components.first
-        var e = components.last
-        
-        if n == "*" {
-            n = nil
-        }
+    }
+    
+    var displayName: String {
+        return "Rule Display Name"
+    }
 
-        if e == "*" {
-            e = nil
-        }
-        
-        name = n
-        ext = e
-        
-        if name == nil && ext == nil {
-            return nil
-        }
-    }
-    
-    func stringRepresentation() -> String {
-        
-        let name = self.name ?? "*"
-        let ext = self.ext ?? "*"
-        let fileName = name + "." + ext
-        
-        if exclude {
-            return "." + fileName
-        }
-        else{
-            return fileName
-        }
-    }
-    */
-    
 }
 
 // MARK: - DictionaryRepresentable
 
+extension FileRule.Filter: StringRepresentable {
+    
+    private struct StringValues {
+        static let include = "Include"
+        static let exclude = "Exclude"
+    }
+    
+    init?(stringRepresentation: String) {
+        
+        switch stringRepresentation {
+        case StringValues.include:
+            self = .include
+        case StringValues.exclude:
+            self = .exclude
+        default:
+            return nil
+        }
+    }
+    
+    var stringRepresentation: String {
+        
+        switch self {
+        case .include:
+            return StringValues.include
+        case .exclude:
+            return StringValues.exclude
+        }
+    }
+}
+
+extension FileRule.Target: DictionaryRepresentable {
+    
+    private struct Keys {
+        static let targetType = "TargetType"
+        static let targetTypeFiles = "TargetTypeFile"
+        static let targetTypeFolders = "TargetTypeFolder"
+        static let targetName = "TargetName"
+        static let targetExtension = "TargetExtension"
+    }
+
+    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+        
+        guard let type = dictionary[Keys.targetType] as? String else {
+            return nil
+        }
+        
+        let name = dictionary[Keys.targetName] as? String
+        let ext = dictionary[Keys.targetExtension] as? String
+        
+        switch type {
+        case Keys.targetTypeFolders:
+            
+            guard let folderName = name else {
+                return nil
+            }
+            
+            self = .folders(name: folderName)
+            
+        case Keys.targetTypeFiles:
+            
+            if name == nil && ext == nil {
+                return nil
+            }
+            
+            self = .files(name: name, ext: ext)
+        
+        default:
+            return nil
+        }
+    }
+    
+    var dictionaryRepresentation: Dictionary<String, Any> {
+        
+        var dictionary = Dictionary<String, Any>()
+        
+        switch self {
+        case let .files(name, ext):
+            dictionary[Keys.targetType] = Keys.targetTypeFiles
+            dictionary[Keys.targetName] = name
+            dictionary[Keys.targetExtension] = ext
+        case let .folders(name):
+            dictionary[Keys.targetType] = Keys.targetTypeFolders
+            dictionary[Keys.targetName] = name
+        }
+    
+        return dictionary
+    }
+}
+
 extension FileRule: DictionaryRepresentable {
     
-    struct FileRuleDictionaryKeys {
-        static let FileName = "FileName"
-        static let FileExtension = "FileExtension"
-        static let exclude = "Exclude"
+    struct Keys {
+        static let filter = "Filter"
+        static let target = "Target"
     }
     
     init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
         
-        self.init(name: dictionary[FileRuleDictionaryKeys.FileName] as? String,
-                  ext: dictionary[FileRuleDictionaryKeys.FileExtension] as? String,
-                  exclude: dictionary[FileRuleDictionaryKeys.exclude] as? Bool ?? false)
+        guard
+            let targetDict = dictionary[Keys.target] as? Dictionary<String, Any>,
+            let target = Target(dictionaryRepresentation: targetDict)
+            else {
+                print("Unable to create file rule target from dictionary: \(dictionary)")
+                return nil
+        }
         
+        guard
+            let filterString = dictionary[Keys.filter] as? String,
+            let filter = Filter(stringRepresentation: filterString)
+            else {
+                print("File rule unable to create file rule filter from dictionary: \(dictionary)")
+                return nil
+        }
+        
+        self.init(target: target, filter: filter)
     }
     
-    func dictionaryRepresentation() -> Dictionary<String, Any> {
+    var dictionaryRepresentation: Dictionary<String, Any> {
         
         var dictionary = Dictionary<String, Any>()
         
-        if let fileName = name {
-            dictionary[FileRuleDictionaryKeys.FileName] = fileName
-        }
-        
-        if let ext = ext {
-            dictionary[FileRuleDictionaryKeys.FileExtension] = ext
-        }
-        
-        dictionary[FileRuleDictionaryKeys.exclude] = exclude
+        dictionary[Keys.filter] = filter.stringRepresentation
+        dictionary[Keys.target] = target.dictionaryRepresentation
         
         return dictionary
     }

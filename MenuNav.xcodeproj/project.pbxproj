@@ -22,9 +22,12 @@
 		67A02E1B1EB4079B00D2A8CA /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A02E1A1EB4079B00D2A8CA /* App.storyboard */; };
 		67A02E1E1EB4F21D00D2A8CA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E1D1EB4F21D00D2A8CA /* Settings.swift */; };
 		67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E1D1EB4F21D00D2A8CA /* Settings.swift */; };
+		67AE4A5F1F2C84B300E9D1FE /* FileRuleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A5E1F2C84B300E9D1FE /* FileRuleFormatter.swift */; };
+		67AE4A621F2CA28300E9D1FE /* FileRuleConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A611F2CA28300E9D1FE /* FileRuleConstructor.swift */; };
 		67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */; };
 		67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */; };
-		67FAAAD41EB77D0800224C24 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD31EB77D0800224C24 /* TextInputViewController.swift */; };
+		67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */; };
+		67FAAAD41EB77D0800224C24 /* EditRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD31EB77D0800224C24 /* EditRuleViewController.swift */; };
 		67FAAAD61EB79ADE00224C24 /* FileRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD51EB79ADE00224C24 /* FileRule.swift */; };
 		EDCEB08F82E917D13DEF915D /* Pods_MenuNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1F7D33AD80C55EA1FDA055 /* Pods_MenuNav.framework */; };
 /* End PBXBuildFile section */
@@ -59,8 +62,11 @@
 		67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+Extensions.swift"; sourceTree = "<group>"; };
 		67A02E1A1EB4079B00D2A8CA /* App.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = App.storyboard; sourceTree = "<group>"; };
 		67A02E1D1EB4F21D00D2A8CA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		67AE4A5E1F2C84B300E9D1FE /* FileRuleFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRuleFormatter.swift; sourceTree = "<group>"; };
+		67AE4A611F2CA28300E9D1FE /* FileRuleConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRuleConstructor.swift; sourceTree = "<group>"; };
 		67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStructureBuilder.swift; sourceTree = "<group>"; };
-		67FAAAD31EB77D0800224C24 /* TextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
+		67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRepresentable.swift; sourceTree = "<group>"; };
+		67FAAAD31EB77D0800224C24 /* EditRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRuleViewController.swift; sourceTree = "<group>"; };
 		67FAAAD51EB79ADE00224C24 /* FileRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRule.swift; sourceTree = "<group>"; };
 		AB12359BFC8B335D00E0DEAC /* Pods-MenuNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNav.release.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNav/Pods-MenuNav.release.xcconfig"; sourceTree = "<group>"; };
 		B81A077AF79BAA7A75A6EA01 /* Pods-MenuNavTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNavTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNavTests/Pods-MenuNavTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				679370961F27A999003E6A9A /* DictionaryRepresentable.swift */,
+				67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */,
 			);
 			name = Protocols;
 			path = MenuNav/Protocols;
@@ -155,6 +162,15 @@
 				67A02E1D1EB4F21D00D2A8CA /* Settings.swift */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		67AE4A601F2CA25B00E9D1FE /* Edit Rule */ = {
+			isa = PBXGroup;
+			children = (
+				67FAAAD31EB77D0800224C24 /* EditRuleViewController.swift */,
+				67AE4A611F2CA28300E9D1FE /* FileRuleConstructor.swift */,
+			);
+			name = "Edit Rule";
 			sourceTree = "<group>";
 		};
 		67B436181EB3DC9F003E5886 /* FileSystem */ = {
@@ -179,9 +195,10 @@
 		67FAAAD21EB724CD00224C24 /* AppPanel */ = {
 			isa = PBXGroup;
 			children = (
+				67AE4A5E1F2C84B300E9D1FE /* FileRuleFormatter.swift */,
 				67A02E1A1EB4079B00D2A8CA /* App.storyboard */,
 				0978BEC01EB393110023AC66 /* ViewController.swift */,
-				67FAAAD31EB77D0800224C24 /* TextInputViewController.swift */,
+				67AE4A601F2CA25B00E9D1FE /* Edit Rule */,
 			);
 			name = AppPanel;
 			sourceTree = "<group>";
@@ -407,9 +424,12 @@
 				67A02E1E1EB4F21D00D2A8CA /* Settings.swift in Sources */,
 				67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
 				67A02E191EB4001A00D2A8CA /* NSImage+Extensions.swift in Sources */,
+				67AE4A621F2CA28300E9D1FE /* FileRuleConstructor.swift in Sources */,
 				674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */,
-				67FAAAD41EB77D0800224C24 /* TextInputViewController.swift in Sources */,
+				67FAAAD41EB77D0800224C24 /* EditRuleViewController.swift in Sources */,
+				67AE4A5F1F2C84B300E9D1FE /* FileRuleFormatter.swift in Sources */,
 				0978BEBF1EB393110023AC66 /* AppDelegate.swift in Sources */,
+				67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */,
 				679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,5 +11,5 @@ import Foundation
 protocol DictionaryRepresentable {
 
     init?(dictionaryRepresentation: Dictionary<String, Any>)
-    func dictionaryRepresentation() -> Dictionary<String, Any>
+    var dictionaryRepresentation: Dictionary<String, Any> {get}
 }

@@ -84,7 +84,7 @@ class Settings {
             
         }
         set {
-            userDefaults.set(newValue.map{ $0.dictionaryRepresentation() }, forKey: #function)
+            userDefaults.set(newValue.map{ $0.dictionaryRepresentation }, forKey: #function)
             userDefaults.synchronize()
         }
     }

@@ -219,6 +219,7 @@ class FileStructureBuilder {
         
         for rule in rules {
             
+            /*
             if rule.includesFile(withName: name, ext: ext) {
                 include = true
             }
@@ -226,6 +227,7 @@ class FileStructureBuilder {
             if rule.excludesFile(withName: name, ext: ext) {
                 exclude = true
             }
+ */
         }
         
         return (include && !exclude)
