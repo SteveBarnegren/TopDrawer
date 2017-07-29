@@ -153,7 +153,8 @@ extension ViewController : NSTableViewDataSource {
         
         let rule = Settings.fileRules[row]
         
-        cell.textField?.stringValue = rule.displayName
+        let formatter = FileRuleFormatter()
+        cell.textField?.stringValue = formatter.string(fromRule: rule) ?? "Unable to create description"
         //cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType.ext ?? "" )
         
         return cell

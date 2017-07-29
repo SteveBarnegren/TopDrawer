@@ -142,11 +142,6 @@ public struct FileRule {
             return nil
         }
     }
-    
-    var displayName: String {
-        return "Rule Display Name"
-    }
-    
 }
 
 // MARK: - Equatable

@@ -262,9 +262,4 @@ class FileRuleTests: XCTestCase {
             XCTAssertFalse(rule.excludes(directory: folder))
         }
     }
-
-
-    // MARK: - Test Directory matching
-
-   
 }
