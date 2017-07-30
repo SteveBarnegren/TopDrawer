@@ -22,17 +22,31 @@ extension FileManager: FileReader {}
 
 class FileStructureBuilder {
     
+    // MARK: - Types
+    
+    struct Options : OptionSet {
+        let rawValue: Int
+        
+        static let removeEmptyFolders = Options(rawValue: 1 << 0)
+        static let shortenPaths = Options(rawValue: 1 << 1)
+    }
+    
     // MARK: - Init
     
-    init(fileReader: FileReader, rules: [FileRule]) {
+    init(fileReader: FileReader,
+         rules: [FileRule],
+         options: Options) {
+        
         self.rules = rules
         self.fileReader = fileReader
+        self.options = options
     }
 
     // MARK: - Properties
     
     private let rules: [FileRule]
     private let fileReader: FileReader
+    private let options: Options
     
     // MARK: - Build Directory Structure
     
@@ -44,12 +58,12 @@ class FileStructureBuilder {
         }
         
         // Only show folders with matching files?
-        if Settings.onlyShowFoldersWithMatchingFiles {
+        if options.contains(.removeEmptyFolders) {
             rootDirectory = directoryByRemovingDeadPaths(inDirectory: rootDirectory)
         }
         
         // Shorten paths?
-        if Settings.shortenPathsWherePossible {
+        if options.contains(.shortenPaths) {
             rootDirectory = directoryByShorteningPaths(inDirectory: rootDirectory)
         }
         

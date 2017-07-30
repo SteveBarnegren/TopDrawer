@@ -14,6 +14,7 @@ protocol FileSystemObject {
     var name: String {get}
     var menuName: String {get}
     var image: NSImage? {get}
+    var debugDescription: String {get}
 }
 
 struct Directory: FileSystemObject {
@@ -22,6 +23,10 @@ struct Directory: FileSystemObject {
     var contents = [FileSystemObject]()
     var path: String
     var image: NSImage?
+    
+    var debugDescription: String {
+        return name
+    }
     
     var menuName: String {
         return name
@@ -44,6 +49,25 @@ struct Directory: FileSystemObject {
         contents.append(object)
     }
     
+    func printHeirarchy() {
+        printHeirarchyRecursive(indent: 0)
+    }
+    
+    private func printHeirarchyRecursive(indent: Int) {
+        
+        let spaces = (0..<indent).reduce(""){ (result, _) in result + "  "}
+        print("\(spaces) - [\(debugDescription)]")
+        
+        for object in contents {
+            
+            if let innerDir = object as? Directory {
+                innerDir.printHeirarchyRecursive(indent: indent + 1)
+            }
+            else{
+                print("\(spaces) - \(object.debugDescription)")
+            }
+        }
+    }
 }
 
 struct File: FileSystemObject {
@@ -52,6 +76,10 @@ struct File: FileSystemObject {
     let ext: String
     var path: String
     var image: NSImage?
+    
+    var debugDescription: String {
+        return name + "." + ext
+    }
     
     var menuName: String {
         

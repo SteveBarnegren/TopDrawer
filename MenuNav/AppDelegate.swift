@@ -52,8 +52,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         isRebuilding = true
         
         // Get the file structure
+        var options = FileStructureBuilder.Options()
+        
+        if Settings.onlyShowFoldersWithMatchingFiles {
+            options.update(with: .removeEmptyFolders)
+        }
+        
+        if Settings.shortenPathsWherePossible {
+            options.update(with: .shortenPaths)
+        }
+        
         let builder = FileStructureBuilder(fileReader: FileManager.default,
-                                           rules: Settings.fileRules)
+                                           rules: Settings.fileRules,
+                                           options: options)
         
         guard let path = Settings.path else {
             showSetupMenu()

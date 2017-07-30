@@ -234,7 +234,6 @@ extension NSTextField {
         let text = stringValue
         return text == "" ? nil : text
     }
-    
 }
 
 
