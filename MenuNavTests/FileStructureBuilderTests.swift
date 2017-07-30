@@ -72,7 +72,7 @@ class MockFileReader: FileReader {
     
     let rootFileObject: MockFileObject
     
-    init(rootObject: MockFileObject) {
+    init(_ rootObject: MockFileObject) {
         self.rootFileObject = rootObject
     }
     
@@ -172,36 +172,61 @@ class Tests: XCTestCase {
 
     func testIncludesOnlyMatchingFiles() {
         
-        let root = MockFileObject.folder( "Root",
-                                          [
-                                            .file("cat.png"),
-                                            .file("document.pdf"),
-                                            .folder("TestFolder", [
-                                                .file("dog.png"),
-                                                .file("report.pdf"),
-                                                ]),
-                                            ])
-        
-        let fileReader = MockFileReader(rootObject: root)
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .file("cat.png"),
+                .file("document.pdf"),
+                .folder("TestFolder", [
+                    .file("dog.png"),
+                    .file("report.pdf"),
+                    ]),
+                ])
+        )
         
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            rules: includePngRules,
                                            options: [])
         let directory = builder.buildFileSystemStructure(atPath: "Root")!
         
-        //fileReader.rootFileObject.printHeirarchy()
-        directory.printHeirarchy()
-        
         XCTAssertTrue(directory.containsObject(atPath: "cat.png"))
         XCTAssertTrue(directory.containsObject(atPath: "TestFolder/dog.png"))
         
         XCTAssertFalse(directory.containsObject(atPath: "document.pdf"))
         XCTAssertFalse(directory.containsObject(atPath: "TestFolder/report.pdf"))
-
     }
     
-    
-    
+    func testExcludeRulesOverrideIncludeRules() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .file("cat.png"),
+                .file("dog.png"),
+                .file("bird.png"),
+                .folder("TestFolder", [
+                    .file("cat.png"),
+                    .file("dog.png"),
+                    .file("bird.png"),
+                    ]),
+                ])
+        )
+        
+        let rules = [
+            FileRule(target: .files(name: nil, ext: "png"), filter: .include),
+            FileRule(target: .files(name: "dog", ext: nil), filter: .exclude),
+            ]
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           rules: rules,
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "cat.png"))
+        XCTAssertTrue(directory.containsObject(atPath: "bird.png"))
+        XCTAssertTrue(directory.containsObject(atPath: "TestFolder/cat.png"))
+        XCTAssertTrue(directory.containsObject(atPath: "TestFolder/bird.png"))
 
-  
+        XCTAssertFalse(directory.containsObject(atPath: "dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "TestFolder/dog.png"))
+    }
+
 }
