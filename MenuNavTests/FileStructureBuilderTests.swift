@@ -195,6 +195,34 @@ class Tests: XCTestCase {
         XCTAssertFalse(directory.containsObject(atPath: "TestFolder/report.pdf"))
     }
     
+    func testIncludesOnlyMatchingDirectories() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("IncludeFolder", [
+                    .file("dog.png"),
+                    ]),
+                .folder("ExcludeFolder", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        let rules = [
+            FileRule(target: .files(name: nil, ext: "png"), filter: .include),
+            FileRule(target: .folders(name: "ExcludeFolder"), filter: .exclude)
+        ]
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           rules: rules,
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "IncludeFolder/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "ExcludeFolder/dogt.png"))
+    }
+
+    
     func testExcludeRulesOverrideIncludeRules() {
         
         let fileReader = MockFileReader(

@@ -72,7 +72,9 @@ class FileStructureBuilder {
     
     private func fileSystemObject(atPath path: String) -> FileSystemObject? {
         
-        let itemName = path.components(separatedBy: "/").last!
+        let pathComponents = path.components(separatedBy: "/")
+        let itemName = pathComponents.last!
+        let isBaseDirectory = pathComponents.count == 1
         
         // Filter hidden files
         if itemName.characters.count > 0, itemName.characters.first == "." {
@@ -96,6 +98,11 @@ class FileStructureBuilder {
             let name = path.components(separatedBy: "/").last!
             var directory = Directory(name: name,
                                       path: path)
+            
+            if !isBaseDirectory && shouldInclude(directory: directory) == false {
+                return nil
+            }
+            
             directory.image = imageForPath(path)
             
             guard let contents = try? fileReader.contentsOfDirectory(atPath: path) else {
@@ -244,6 +251,25 @@ class FileStructureBuilder {
         }
         
         return (include && !exclude)
+    }
+    
+    func shouldInclude(directory: Directory) -> Bool {
+        
+        var include = false
+        var exclude = false
+        
+        for rule in rules {
+            
+            if rule.includes(directory: directory) {
+                include = true
+            }
+            
+            if rule.excludes(directory: directory) {
+                exclude = true
+            }
+        }
+        
+        return !exclude
     }
     
     func imageForPath(_ path: String) -> NSImage {
