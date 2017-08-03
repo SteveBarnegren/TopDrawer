@@ -13,61 +13,68 @@ class FileRuleTests: XCTestCase {
     
     // MARK: - Test FileRule.Target Equatable
     
-    func testFileRuleTargetsAreEqualWhenTargetIsFoldersWithSameNames() {
+    func testFileRuleTargetsAreEqualWhenMatchingNames() {
         
-        let targetOne = FileRule.Target.folders(name: "TestName")
-        let targetTwo = FileRule.Target.folders(name: "TestName")
-        XCTAssertEqual(targetOne, targetTwo)
+        let target = FileRule.Target.matchingName("same")
+        let same = FileRule.Target.matchingName("same")
+        let different = FileRule.Target.matchingName("different")
+        
+        XCTAssertEqual(target, same)
+        XCTAssertNotEqual(target, different)
     }
     
-    func testFileRuleTargetsAreNotEqualWhenTargetIsFoldersWithDifferentNames() {
+    func testFileRuleTargetsAreEqualWhenMatchingExtensions() {
         
-        let targetOne = FileRule.Target.folders(name: "aName")
-        let targetTwo = FileRule.Target.folders(name: "aDifferentName")
-        XCTAssertNotEqual(targetOne, targetTwo)
+        let target = FileRule.Target.matchingExtension("same")
+        let same = FileRule.Target.matchingExtension("same")
+        let different = FileRule.Target.matchingExtension("different")
+        
+        XCTAssertEqual(target, same)
+        XCTAssertNotEqual(target, different)
     }
     
-    func testFileRuleTargetsAreEqualWhenTargetIsFilesWithMatchingNamesAndExtensions() {
+    func testFileRuleTargetsAreEqualWhenMatchingNamesAndExtensions() {
         
-        let targetOne = FileRule.Target.files(name: "TestName", ext: "TestExtension")
-        let targetTwo = FileRule.Target.files(name: "TestName", ext: "TestExtension")
-        XCTAssertEqual(targetOne, targetTwo)
+        let target = FileRule.Target.matchingNameAndExtension(name: "same", ext: "same")
+        let same = FileRule.Target.matchingNameAndExtension(name: "same", ext: "same")
+        let differentName = FileRule.Target.matchingNameAndExtension(name: "different", ext: "same")
+        let differentExtension = FileRule.Target.matchingNameAndExtension(name: "same", ext: "different")
+        
+        XCTAssertEqual(target, same)
+        XCTAssertNotEqual(target, differentName)
+        XCTAssertNotEqual(target, differentExtension)
     }
     
-    func testFileRuleTargetsAreNotEqualWhenTargetIsFilesWithMatchingNamesButDifferentExtensions() {
+    func testFileRuleTargetsAreNotEqualWhenDifferentCases() {
         
-        let targetOne = FileRule.Target.files(name: "TestName", ext: "anExtension")
-        let targetTwo = FileRule.Target.files(name: "TestName", ext: "aDifferentExtension")
-        XCTAssertNotEqual(targetOne, targetTwo)
-    }
-    
-    func testFileRuleTargetsAreNotEqualWhenTargetIsFilesWithDifferentNamesButSameExtensions() {
+        let name = FileRule.Target.matchingName("same")
+        let ext = FileRule.Target.matchingExtension("same")
+        let nameAndExt = FileRule.Target.matchingNameAndExtension(name: "same", ext: "same")
         
-        let targetOne = FileRule.Target.files(name: "aName", ext: "TestExtension")
-        let targetTwo = FileRule.Target.files(name: "aDifferentName", ext: "TestExtension")
-        XCTAssertNotEqual(targetOne, targetTwo)
+        XCTAssertNotEqual(name, ext)
+        XCTAssertNotEqual(name, nameAndExt)
     }
-    
+
     // MARK: - Test FileRule Equatable
     
     func testFileRulesAreEqualWhenTargetsAndFiltersAreTheSame() {
         
-        let ruleOne = FileRule(target: .folders(name: "FolderName"), filter: .include)
-        let ruleTwo = FileRule(target: .folders(name: "FolderName"), filter: .include)
+        let ruleOne = FileRule(target: .matchingName("name"), filter: .include)
+        let ruleTwo = FileRule(target: .matchingName("name"), filter: .include)
         XCTAssertEqual(ruleOne, ruleTwo)
     }
     
     func testFileRulesAreNotEqualWithSameTargetsButDifferentFilters() {
         
-        let ruleOne = FileRule(target: .folders(name: "FolderName"), filter: .include)
-        let ruleTwo = FileRule(target: .folders(name: "FolderName"), filter: .exclude)
+        let ruleOne = FileRule(target: .matchingName("name"), filter: .include)
+        let ruleTwo = FileRule(target: .matchingName("name"), filter: .exclude)
         XCTAssertNotEqual(ruleOne, ruleTwo)
     }
     
     func testFileRulesAreNotEqualWithDifferentTargetsButSameFilters() {
         
-        let ruleOne = FileRule(target: .folders(name: "FolderName"), filter: .include)
-        let ruleTwo = FileRule(target: .folders(name: "aDifferentName"), filter: .include)
+        let ruleOne = FileRule(target: .matchingName("name"), filter: .include)
+        let ruleTwo = FileRule(target: .matchingName("different"), filter: .include)
         XCTAssertNotEqual(ruleOne, ruleTwo)
     }
 
@@ -75,7 +82,7 @@ class FileRuleTests: XCTestCase {
     
     func testFileRuleTargetFilesWithNameToDictionaryRepresentationAndBackIsTheSame() {
         
-        let target = FileRule.Target.files(name: "TestName", ext: nil)
+        let target = FileRule.Target.matchingName("name")
         let dictionary = target.dictionaryRepresentation
         let fromDictionary = FileRule.Target(dictionaryRepresentation: dictionary)
         XCTAssertEqual(target, fromDictionary)
@@ -83,7 +90,7 @@ class FileRuleTests: XCTestCase {
     
     func testFileRuleTargetFilesWithExtensionToDictionaryRepresentationAndBackIsTheSame() {
         
-        let target = FileRule.Target.files(name: nil, ext: "TestExtension")
+        let target = FileRule.Target.matchingNameAndExtension(name: "name", ext: "ext")
         let dictionary = target.dictionaryRepresentation
         let fromDictionary = FileRule.Target(dictionaryRepresentation: dictionary)
         XCTAssertEqual(target, fromDictionary)
@@ -91,15 +98,7 @@ class FileRuleTests: XCTestCase {
     
     func testFileRuleTargetFilesWithNameAndExtensionToDictionaryRepresentationAndBackIsTheSame() {
         
-        let target = FileRule.Target.files(name: "TestName", ext: "TestExtension")
-        let dictionary = target.dictionaryRepresentation
-        let fromDictionary = FileRule.Target(dictionaryRepresentation: dictionary)
-        XCTAssertEqual(target, fromDictionary)
-    }
-    
-    func testFileRuleTargetFoldersToDictionaryRepresentationAndBackIsTheSame() {
-        
-        let target = FileRule.Target.folders(name: "TestName")
+        let target = FileRule.Target.matchingNameAndExtension(name: "name", ext: "ext")
         let dictionary = target.dictionaryRepresentation
         let fromDictionary = FileRule.Target(dictionaryRepresentation: dictionary)
         XCTAssertEqual(target, fromDictionary)
@@ -127,7 +126,7 @@ class FileRuleTests: XCTestCase {
     
     func testFileRuleToDictionaryAndBackIsTheSame() {
         
-        let rule = FileRule(target: .files(name: "TestName", ext: "TestExtension"),
+        let rule = FileRule(target: .matchingNameAndExtension(name: "name", ext: "ext"),
                             filter: .exclude)
         let dictionary = rule.dictionaryRepresentation
         let fromDictionary = FileRule(dictionaryRepresentation: dictionary)
@@ -150,7 +149,7 @@ class FileRuleTests: XCTestCase {
             File(name: "cat", ext: "pdf", path: "")
         ]
         
-        let rule = FileRule(target: .files(name: "hello", ext: nil),
+        let rule = FileRule(target: .matchingName("hello"),
                             filter: .include)
         
         for file in matchingFiles {
@@ -176,7 +175,7 @@ class FileRuleTests: XCTestCase {
             File(name: "cat", ext: "tiff", path: "")
         ]
         
-        let rule = FileRule(target: .files(name: nil, ext: "pdf"),
+        let rule = FileRule(target: .matchingExtension("pdf"),
                             filter: .include)
         
         for file in matchingFiles {
@@ -203,7 +202,7 @@ class FileRuleTests: XCTestCase {
             File(name: "dog", ext: "png", path: "")
         ]
         
-        let rule = FileRule(target: .files(name: "apple", ext: "png"),
+        let rule = FileRule(target: .matchingNameAndExtension(name: "apple", ext: "png"),
                             filter: .include)
         
         for file in matchingFiles {
@@ -212,54 +211,6 @@ class FileRuleTests: XCTestCase {
         
         for file in nonMatchingFiles {
             XCTAssertFalse(rule.includes(file: file))
-        }
-    }
-    
-    func testFileRuleIncludesFoldersWithMatchingNames() {
-        
-        let matchingFolders = [
-            Directory(name: "Apple", path: "")
-        ]
-        
-        let nonMatchingFolders = [
-            Directory(name: "apple", path: ""),
-            Directory(name: "Ball", path: ""),
-            Directory(name: "Cat", path: "")
-        ]
-        
-        let rule = FileRule(target: .folders(name: "Apple"),
-                            filter: .include)
-        
-        for folder in matchingFolders {
-            XCTAssertTrue(rule.includes(directory: folder))
-        }
-        
-        for folder in nonMatchingFolders {
-            XCTAssertFalse(rule.includes(directory: folder))
-        }
-    }
-    
-    func testFileRuleExcludesFoldersWithMatchingNames() {
-        
-        let matchingFolders = [
-            Directory(name: "Apple", path: "")
-        ]
-        
-        let nonMatchingFolders = [
-            Directory(name: "apple", path: ""),
-            Directory(name: "Ball", path: ""),
-            Directory(name: "Cat", path: "")
-        ]
-        
-        let rule = FileRule(target: .folders(name: "Apple"),
-                            filter: .exclude)
-        
-        for folder in matchingFolders {
-            XCTAssertTrue(rule.excludes(directory: folder))
-        }
-        
-        for folder in nonMatchingFolders {
-            XCTAssertFalse(rule.excludes(directory: folder))
         }
     }
 }

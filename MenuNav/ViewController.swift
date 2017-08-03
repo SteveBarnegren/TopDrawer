@@ -10,13 +10,16 @@ import Cocoa
 
 class ViewController: NSViewController {
     
+    // MARK: - Outlets
+    
     @IBOutlet weak private var textField: NSTextField!
     @IBOutlet weak private var button: NSButton!
     @IBOutlet weak var iconImageView: NSImageView!
-    @IBOutlet weak private var openAtLoginCheckbox: NSButton!
-    @IBOutlet weak private var onlyShowFoldersWithMatchingFoldersCheckbox: NSButton!
-    @IBOutlet weak private var shortenPathsWherePossibleCheckbox: NSButton!
-    @IBOutlet weak fileprivate var tableView: NSTableView!
+    @IBOutlet weak fileprivate var segmentedControl: NSSegmentedControl!
+    
+    @IBOutlet weak fileprivate var contentView: NSView!
+    fileprivate var contentViewController: NSViewController?
+    //let fileRulesViewController = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)
 
     // MARK: - NSViewController
     
@@ -26,15 +29,56 @@ class ViewController: NSViewController {
         // IconImageView
         iconImageView.image = NSImage(named: "AppIcon")
         
-        // TableView
-        tableView.delegate = self
-        tableView.dataSource = self
         
         // Update UI
         updatePathLabel()
-        updateOpenAtLoginCheckbox()
-        updateOnlyShowFoldersWithMatchingFilesCheckbox()
-        updateShortenPathsWherePossibleCheckbox()
+        //updateOpenAtLoginCheckbox()
+        //updateOnlyShowFoldersWithMatchingFilesCheckbox()
+        //updateShortenPathsWherePossibleCheckbox()
+        
+        // Show file rules content
+        let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
+        show(contentViewController: fileRules)
+    }
+    
+    // MARK: - Content view
+    
+    func showFileRules() {
+        print("Show file rules")
+        
+        if contentViewController is FileRulesViewController {
+            return
+        }
+        
+        let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
+        show(contentViewController: fileRules)
+        self.segmentedControl.selectedSegment = 0
+    }
+    
+    func showFolderRules() {
+        print("Show folder rules")
+        self.segmentedControl.selectedSegment = 1
+        
+        let folderRules = FolderRulesViewController.init(nibName: "FolderRulesViewController", bundle: nil)!
+        self .show(contentViewController: folderRules)
+    }
+    
+    func showSettings() {
+        print("Show settings")
+        self.segmentedControl.selectedSegment = 2
+    }
+    
+    func show(contentViewController newViewController: NSViewController) {
+        
+        if let existing = contentViewController {
+            existing.removeFromParentViewController()
+            existing.view.removeFromSuperview()
+        }
+        
+        addChildViewController(newViewController);
+        contentView.addSubview(newViewController.view)
+        newViewController.view.pinToSuperviewEdges()
+        contentViewController = newViewController
     }
     
     // MARK: - Actions
@@ -64,32 +108,10 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func openAtLoginCheckboxPressed(sender: NSButton){
-        print("Open at login checkbox pressed")
-        
-        let isOn = (openAtLoginCheckbox.state == NSOnState)
-        Settings.openAtLogin = isOn
-    }
-    
-    @IBAction func onlyShowFoldersWithMatchingFilesCheckboxPressed(sender: NSButton){
-        
-        let isOn = (onlyShowFoldersWithMatchingFoldersCheckbox.state == NSOnState)
-        Settings.onlyShowFoldersWithMatchingFiles = isOn
-        rebuild()
-    }
-    
-    @IBAction func shortenPathsWherePossibleCheckboxPressed(sender: NSButton){
-        
-        let isOn = (shortenPathsWherePossibleCheckbox.state == NSOnState)
-        Settings.shortenPathsWherePossible = isOn
-        rebuild()
-    }
-
-    
-    @IBAction func addFileTypeButtonPressed(sender: NSButton){
+    @IBAction func addFileRuleButtonPressed(sender: NSButton){
         print("Add file type button pressed")
                 
-        let editor = EditRuleViewController.create(existingRule: nil)
+        let editor = EditFileRuleViewController.create(existingRule: nil)
         editor.delegate = self
         
         addChildViewController(editor)
@@ -97,15 +119,23 @@ class ViewController: NSViewController {
         editor.view.pinToSuperviewEdges()
     }
     
-    @IBAction func deleteFileTypeButtonPressed(sender: NSButton){
-        
-        tableView.selectedRowIndexes.forEach{
-            Settings.removeRule(atIndex: $0)
-        }
-        
-        tableView.reloadData()
+    @IBAction private func addFolderRuleButtonPressed(sender: NSButton){
+        print("Add folder rule button pressed")
     }
-
+    
+    @IBAction private func deleteFolderRuleButtonPressed(sender: NSButton){
+        print("Delete folder rule button pressed")
+    }
+    
+    @IBAction private func segmentedControlValueChanged(sender: NSSegmentedControl){
+        
+        switch segmentedControl.selectedSegment {
+        case 0: showFileRules()
+        case 1: showFolderRules()
+        case 2: showSettings()
+        default: fatalError("Unknown value")
+        }
+    }
     
     // MARK: - Update
     
@@ -115,21 +145,6 @@ class ViewController: NSViewController {
         textField.stringValue = text
     }
     
-    func updateOpenAtLoginCheckbox() {
-        
-        print("State: \(Settings.openAtLogin))")
-        
-        openAtLoginCheckbox.state = Settings.openAtLogin ? NSOnState : NSOffState
-    }
-    
-    func updateOnlyShowFoldersWithMatchingFilesCheckbox() {
-        onlyShowFoldersWithMatchingFoldersCheckbox.state = Settings.onlyShowFoldersWithMatchingFiles ? NSOnState : NSOffState
-    }
-    
-    func updateShortenPathsWherePossibleCheckbox() {
-        shortenPathsWherePossibleCheckbox.state = Settings.shortenPathsWherePossible ? NSOnState : NSOffState
-    }
-
     // MARK: - Rebuild
     
     func rebuild() {
@@ -137,44 +152,18 @@ class ViewController: NSViewController {
     }
 }
 
-extension ViewController : NSTableViewDataSource {
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return Settings.fileRules.count
-    }
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        let identifier = "FileExtensionCell"
-        
-        guard let cell = tableView.make(withIdentifier: identifier, owner: nil) as? NSTableCellView else {
-            fatalError("Unable to create table cell")
-        }
-        
-        let rule = Settings.fileRules[row]
-        
-        let formatter = FileRuleFormatter()
-        cell.textField?.stringValue = formatter.string(fromRule: rule) ?? "Unable to create description"
-        //cell.imageView?.image = NSWorkspace.shared().icon(forFileType: fileType.ext ?? "" )
-        
-        return cell
-    }
-}
-
-extension ViewController : NSTableViewDelegate {
-}
-
 // MARK: - EditRuleViewControllerDelegate
 
-extension ViewController: EditRuleViewControllerDelegate {
-    func editRuleViewController(_ editRuleViewController: EditRuleViewController, didUpdateRule rule: FileRule) {
+extension ViewController: EditFileRuleViewControllerDelegate {
+    func editFileRuleViewController(_ editFileRuleViewController: EditFileRuleViewController, didUpdateRule rule: FileRule) {
         print("Updated rule")
-        
+        /*
         Settings.add(rule: rule)
-        self.tableView.reloadData()
+        self.fileRulestableView.reloadData()
         self.rebuild()
         
-        editRuleViewController.view.removeFromSuperview()
-        editRuleViewController.removeFromParentViewController()
+        editFileRuleViewController.view.removeFromSuperview()
+        editFileRuleViewController.removeFromParentViewController()
+ */
     }
 }

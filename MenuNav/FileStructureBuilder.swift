@@ -99,9 +99,9 @@ class FileStructureBuilder {
             var directory = Directory(name: name,
                                       path: path)
             
-            if !isBaseDirectory && shouldInclude(directory: directory) == false {
-                return nil
-            }
+//            if !isBaseDirectory && shouldInclude(directory: directory) == false {
+//                return nil
+//            }
             
             directory.image = imageForPath(path)
             
@@ -251,25 +251,6 @@ class FileStructureBuilder {
         }
         
         return (include && !exclude)
-    }
-    
-    func shouldInclude(directory: Directory) -> Bool {
-        
-        var include = false
-        var exclude = false
-        
-        for rule in rules {
-            
-            if rule.includes(directory: directory) {
-                include = true
-            }
-            
-            if rule.excludes(directory: directory) {
-                exclude = true
-            }
-        }
-        
-        return !exclude
     }
     
     func imageForPath(_ path: String) -> NSImage {

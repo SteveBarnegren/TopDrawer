@@ -30,6 +30,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
+        //!!! Don't start the app
+        //return
+        /////////////////////////////////////
+        
         NSApp.activate(ignoringOtherApps: true)
         
         if let button = statusItem.button {

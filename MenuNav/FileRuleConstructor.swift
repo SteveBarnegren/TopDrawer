@@ -15,33 +15,27 @@ import Foundation
 
 class FileRuleConstructor {
     
-    enum TargetType {
-        case files
-        case folders
-    }
-    
     var itemName: String?
     var itemExtension: String?
     var filter: FileRule.Filter
-    var targetType: TargetType
     
     init() {
         
         filter = .include
-        targetType = .files
     }
     
     init(rule: FileRule) {
         
-        itemName = rule.itemName
-        itemExtension = rule.itemExtension
         filter = rule.filter
         
         switch rule.target {
-        case .files(_, _):
-            targetType = .files
-        case .folders(_):
-            targetType = .folders
+        case let .matchingName(name):
+            itemName = name
+        case let .matchingExtension(ext):
+            itemExtension = ext
+        case let .matchingNameAndExtension(name, ext):
+            itemName = name
+            itemExtension = ext
         }
     }
     
@@ -60,29 +54,18 @@ class FileRuleConstructor {
     var rule: FileRule? {
         
         var target: FileRule.Target
-        switch targetType {
-        case .files:
-            
-            if itemName == nil && itemExtension == nil {
-                return nil
-            }
-            else{
-                target = .files(name: itemName, ext: itemExtension)
-            }
-            
-        case .folders:
-            
-            if let name = itemName {
-                target = .folders(name: name)
-            }
-            else{
-                return nil
-            }
+        
+        switch (itemName, itemExtension) {
+        case let (.some(name), .some(ext)):
+            target = .matchingNameAndExtension(name: name, ext: ext)
+        case let (.some(name), nil):
+            target = .matchingName(name)
+        case let (nil, .some(ext)):
+            target = .matchingExtension(ext)
+        default:
+            return nil
         }
         
         return FileRule(target: target, filter: filter)
     }
-    
-    
-    
 }

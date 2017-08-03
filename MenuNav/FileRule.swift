@@ -13,8 +13,9 @@ public struct FileRule {
     // MARK: - Types
     
     enum Target {
-        case files(name: String?, ext: String?)
-        case folders(name: String)
+        case matchingName(String)
+        case matchingExtension(String)
+        case matchingNameAndExtension(name: String, ext: String)
     }
     
     enum Filter: Int {
@@ -29,12 +30,6 @@ public struct FileRule {
     
     // MARK: - Init
     
-    init() {
-        
-        self.target = .files(name: nil, ext: nil)
-        self.filter = .include
-    }
-    
     init(target: Target, filter: Filter) {
     
         self.target = target
@@ -43,16 +38,6 @@ public struct FileRule {
     
     // MARK: - Matching
     
-    func includes(directory: Directory) -> Bool {
-    
-        switch filter {
-        case .include:
-            return matches(directory: directory)
-        case .exclude:
-            return false
-        }
-    }
-    
     func includes(file: File) -> Bool {
         
         switch filter {
@@ -60,16 +45,6 @@ public struct FileRule {
             return matches(file: file)
         case .exclude:
             return false
-        }
-    }
-    
-    func excludes(directory: Directory) -> Bool {
-        
-        switch filter {
-        case .include:
-            return false
-        case .exclude:
-            return matches(directory: directory)
         }
     }
     
@@ -83,41 +58,21 @@ public struct FileRule {
         }
     }
     
-    // MARK: - Matching
-    
-    private func matches(directory: Directory) -> Bool {
-        
-        switch target {
-        case .files(_,_):
-            return false
-        case .folders(name: let name):
-            return name == directory.name
-        }
-    }
-    
     private func matches(file: File) -> Bool {
         
         switch target {
         
         // Match file name and extension
-        case let .files(.some(name), .some(ext)):
+        case let .matchingNameAndExtension(name, ext):
             return name == file.name && ext == file.ext
             
         // Match file name only
-        case let .files(.some(name), .none):
+        case let .matchingName(name):
             return name == file.name
             
         // Match extension only
-        case let .files(.none, .some(ext)):
+        case let .matchingExtension(ext):
             return ext == file.ext
-            
-        // Match folders
-        case .folders(_):
-            return false
-            
-        // Default (This shouldn't be called)
-        default:
-            return false
         }
     }
     
@@ -126,9 +81,11 @@ public struct FileRule {
     var itemName: String? {
         
         switch target {
-        case let .files(name, _):
+        case let .matchingName(name):
             return name
-        case let .folders(name):
+        case .matchingExtension(_):
+            return nil
+        case let .matchingNameAndExtension(name, _):
             return name
         }
     }
@@ -136,10 +93,12 @@ public struct FileRule {
     var itemExtension: String? {
         
         switch target {
-        case let .files(_, ext):
-            return ext
-        case .folders(_):
+        case .matchingName(_):
             return nil
+        case let .matchingExtension(ext):
+            return ext
+        case let .matchingNameAndExtension(_, ext):
+            return ext
         }
     }
 }
@@ -150,10 +109,12 @@ extension FileRule.Target: Equatable {
     public static func ==(lhs: FileRule.Target, rhs: FileRule.Target) -> Bool {
         
         switch (lhs, rhs) {
-        case let (.files(n1, e1), .files(n2, e2)):
-            return n1 == n2 && e1 == e2
-        case let (.folders(n1), .folders(n2)):
+        case let (.matchingName(n1), .matchingName(n2)):
             return n1 == n2
+        case let (.matchingExtension(e1), .matchingExtension(e2)):
+            return e1 == e2
+        case let (.matchingNameAndExtension(n1, e1), .matchingNameAndExtension(n2, e2)):
+            return n1 == n2 && e1 == e2
         default:
             return false
         }
@@ -203,40 +164,53 @@ extension FileRule.Filter: StringRepresentable {
 extension FileRule.Target: DictionaryRepresentable {
     
     private struct Keys {
-        static let targetType = "TargetType"
-        static let targetTypeFiles = "TargetTypeFile"
-        static let targetTypeFolders = "TargetTypeFolder"
-        static let targetName = "TargetName"
-        static let targetExtension = "TargetExtension"
+        static let TargetType = "TargetType"
+        struct TargetTypes {
+            static let MatchingName = "MatchingName"
+            static let MatchingExtension = "MatchingExtension"
+            static let MatchingNameAndExtension = "MatchingNameAndExtension"
+        }
+        static let TargetName = "TargetName"
+        static let TargetExtension = "TargetExtension"
     }
 
     init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
         
-        guard let type = dictionary[Keys.targetType] as? String else {
+        guard let type = dictionary[Keys.TargetType] as? String else {
             return nil
         }
         
-        let name = dictionary[Keys.targetName] as? String
-        let ext = dictionary[Keys.targetExtension] as? String
+        let name = dictionary[Keys.TargetName] as? String
+        let ext = dictionary[Keys.TargetExtension] as? String
+        
+        var result: FileRule.Target?
         
         switch type {
-        case Keys.targetTypeFolders:
+        case Keys.TargetTypes.MatchingName:
             
-            guard let folderName = name else {
-                return nil
+            if let name = name {
+                result = .matchingName(name)
             }
             
-            self = .folders(name: folderName)
+        case Keys.TargetTypes.MatchingExtension:
             
-        case Keys.targetTypeFiles:
-            
-            if name == nil && ext == nil {
-                return nil
+            if let ext = ext {
+                result = .matchingExtension(ext)
             }
+           
+        case Keys.TargetTypes.MatchingNameAndExtension:
             
-            self = .files(name: name, ext: ext)
-        
+            if let name = name, let ext = ext {
+                result = .matchingNameAndExtension(name: name, ext: ext)
+            }
         default:
+            break
+        }
+        
+        if let result = result {
+            self = result
+        }
+        else{
             return nil
         }
     }
@@ -246,13 +220,16 @@ extension FileRule.Target: DictionaryRepresentable {
         var dictionary = Dictionary<String, Any>()
         
         switch self {
-        case let .files(name, ext):
-            dictionary[Keys.targetType] = Keys.targetTypeFiles
-            dictionary[Keys.targetName] = name
-            dictionary[Keys.targetExtension] = ext
-        case let .folders(name):
-            dictionary[Keys.targetType] = Keys.targetTypeFolders
-            dictionary[Keys.targetName] = name
+        case let .matchingName(name):
+            dictionary[Keys.TargetType] = Keys.TargetTypes.MatchingName
+            dictionary[Keys.TargetName] = name
+        case let .matchingExtension(ext):
+            dictionary[Keys.TargetType] = Keys.TargetTypes.MatchingExtension
+            dictionary[Keys.TargetExtension] = ext
+        case let .matchingNameAndExtension(name, ext):
+            dictionary[Keys.TargetType] = Keys.TargetTypes.MatchingNameAndExtension
+            dictionary[Keys.TargetName] = name
+            dictionary[Keys.TargetExtension] = ext
         }
     
         return dictionary

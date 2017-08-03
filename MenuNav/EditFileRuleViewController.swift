@@ -9,18 +9,18 @@
 import Cocoa
 import SBAutoLayout
 
-protocol EditRuleViewControllerDelegate: class {
-    func editRuleViewController(_ editRuleViewController: EditRuleViewController, didUpdateRule rule: FileRule)
+protocol EditFileRuleViewControllerDelegate: class {
+    func editFileRuleViewController(_ editFileRuleViewController: EditFileRuleViewController, didUpdateRule rule: FileRule)
 }
 
-class EditRuleViewController: NSViewController {
+class EditFileRuleViewController: NSViewController {
 
     // MARK: - Internal
     
-    static func create(existingRule: FileRule?) -> EditRuleViewController {
+    static func create(existingRule: FileRule?) -> EditFileRuleViewController {
         
         let storyboard = NSStoryboard(name: "App", bundle: nil)
-        let viewController = storyboard.instantiateController(withIdentifier: "EditRuleViewController") as! EditRuleViewController
+        let viewController = storyboard.instantiateController(withIdentifier: "EditFileRuleViewController") as! EditFileRuleViewController
         
         if let rule = existingRule {
             viewController.ruleConstructor = FileRuleConstructor(rule: rule)
@@ -34,7 +34,6 @@ class EditRuleViewController: NSViewController {
     
     // MARK: - Outlets
     @IBOutlet weak fileprivate var filterSegmentedControl: NSSegmentedControl!
-    @IBOutlet weak fileprivate var targetSegmentedControl: NSSegmentedControl!
     @IBOutlet weak fileprivate var nameTextField: NSTextField!
     @IBOutlet weak fileprivate var extensionTextField: NSTextField!
     @IBOutlet weak fileprivate var readoutLabel: NSTextField!
@@ -43,7 +42,7 @@ class EditRuleViewController: NSViewController {
     // MARK: - Properties
     fileprivate var ruleConstructor: FileRuleConstructor!
 
-    weak var delegate: EditRuleViewControllerDelegate?
+    weak var delegate: EditFileRuleViewControllerDelegate?
     
     // MARK: - NSViewController
     
@@ -55,13 +54,16 @@ class EditRuleViewController: NSViewController {
         view.layer?.backgroundColor = NSColor.white.cgColor
         
         
-        // Text Fields
+        // Name text field
+        nameTextField.placeholderString = "Name"
         nameTextField.delegate = self
+        
+        // Extension text field
+        extensionTextField.placeholderString = "Extension"
         extensionTextField.delegate = self
         
         // Update UI
         updateFilterSegmentedControl()
-        updateTargetSegmentedControl()
         updateNameTextField()
         updateExtensionTextField()
         updateSubmitButton()
@@ -82,42 +84,12 @@ class EditRuleViewController: NSViewController {
         }
     }
     
-    private func updateTargetSegmentedControl() {
-        
-        switch ruleConstructor.targetType {
-        case .files:
-            targetSegmentedControl.setSelected(true, forSegment: 0)
-            targetSegmentedControl.setSelected(false, forSegment: 1)
-        case .folders:
-            targetSegmentedControl.setSelected(false, forSegment: 0)
-            targetSegmentedControl.setSelected(true, forSegment: 1)
-        }
-    }
-    
     private func updateNameTextField() {
-        
-        switch ruleConstructor.targetType {
-        case .files:
-            nameTextField.placeholderString = "File Name"
-        case .folders:
-            nameTextField.placeholderString = "Folder Name"
-        }
-        
         nameTextField.stringValue = ruleConstructor.itemName ?? ""
     }
     
     private func updateExtensionTextField() {
-        
-        switch ruleConstructor.targetType {
-        case .files:
-            extensionTextField.placeholderString = "Extension"
-            extensionTextField.stringValue = ruleConstructor.itemExtension ?? ""
-            extensionTextField.isHidden = false
-        case .folders:
-            extensionTextField.placeholderString = "Folder Name"
-            extensionTextField.stringValue = ruleConstructor.itemExtension ?? ""
-            extensionTextField.isHidden = true
-        }
+        extensionTextField.stringValue = ruleConstructor.itemExtension ?? ""
     }
     
     fileprivate func updateReadoutLabel() {
@@ -149,15 +121,6 @@ class EditRuleViewController: NSViewController {
         // Target
         ruleConstructor.itemName = nameTextField.stringValueNilIfEmpty
         ruleConstructor.itemExtension = extensionTextField.stringValueNilIfEmpty
-        
-        switch targetSegmentedControl.selectedSegment {
-        case 0:
-            ruleConstructor.targetType = .files
-        case 1:
-            ruleConstructor.targetType = .folders
-        default:
-            fatalError()
-        }
     }
     
     // MARK: - Actions
@@ -195,12 +158,12 @@ class EditRuleViewController: NSViewController {
             return
         }
         
-        delegate?.editRuleViewController(self, didUpdateRule: rule)
+        delegate?.editFileRuleViewController(self, didUpdateRule: rule)
     }
 }
 
 // MARK: - NSTextFieldDelegate
-extension EditRuleViewController: NSTextFieldDelegate {
+extension EditFileRuleViewController: NSTextFieldDelegate {
     
     override func controlTextDidChange(_ obj: Notification) {
     

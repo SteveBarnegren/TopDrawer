@@ -11,14 +11,11 @@ import Foundation
 struct FileRuleFormatter {
     
     func string(fromRule rule: FileRule) -> String? {
-        
+                
         let filter = filterDescription(fromRule: rule)
-        let target = targetDescription(fromRule: rule)
-        guard let nameAndExtension = nameAndExtensionDescription(fromRule: rule) else {
-            return nil
-        }
+        let nameAndExtension = nameAndExtensionDescription(fromRule: rule)
         
-        return filter + " " + target + " " + nameAndExtension
+        return filter + " files " + nameAndExtension
     }
     
     // MARK: - Component Descriptions
@@ -33,27 +30,15 @@ struct FileRuleFormatter {
         }
     }
     
-    private func targetDescription(fromRule rule: FileRule) -> String {
+    private func nameAndExtensionDescription(fromRule rule: FileRule) -> String {
         
         switch rule.target {
-        case .files(_, _):
-            return "files"
-        case .folders(_):
-            return "folders"
-        }
-    }
-    
-    private func nameAndExtensionDescription(fromRule rule: FileRule) -> String? {
-        
-        switch (rule.itemName, rule.itemExtension) {
-        case let (.some(name), .some(ext)):
-            return "named \(name).\(ext)"
-        case let (.some(name), nil):
+        case let .matchingName(name):
             return "with name \(name)"
-        case let (nil, .some(ext)):
+        case let .matchingExtension(ext):
             return "with extension \(ext)"
-        case (nil, nil):
-            return nil
+        case let .matchingNameAndExtension(name, ext):
+            return "named \(name).\(ext)"
         }
     }
 }
