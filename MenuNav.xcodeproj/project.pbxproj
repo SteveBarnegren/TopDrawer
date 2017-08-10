@@ -12,6 +12,9 @@
 		0978BEC31EB393110023AC66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0978BEC21EB393110023AC66 /* Assets.xcassets */; };
 		0978BEC61EB393110023AC66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0978BEC41EB393110023AC66 /* Main.storyboard */; };
 		29FFD854BC8674F6F2B2DC7F /* Pods_MenuNavTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480C88363C8F497977E2ABE1 /* Pods_MenuNavTests.framework */; };
+		6748CE0A1F3B9E29002941D4 /* FolderRuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* FolderRuleCollectionViewItem.swift */; };
+		6748CE0B1F3B9E29002941D4 /* FolderRuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6748CE091F3B9E29002941D4 /* FolderRuleCollectionViewItem.xib */; };
+		6748CE0D1F3BAB4D002941D4 /* FolderConditionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */; };
 		674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
 		679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
 		679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
@@ -40,6 +43,8 @@
 		67AE4A781F311D0D00E9D1FE /* FileRulesTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A761F311D0D00E9D1FE /* FileRulesTableController.swift */; };
 		67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */; };
 		67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */; };
+		67B77EFF1F3A0E9A000830EF /* EmptyTableActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B77EFE1F3A0E9A000830EF /* EmptyTableActionView.swift */; };
+		67B77F011F3A0F46000830EF /* NSTextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */; };
 		67C5300A1F33800D00D3B5FD /* FileRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530081F33800D00D3B5FD /* FileRulesViewController.swift */; };
 		67C5300B1F33800D00D3B5FD /* FileRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530081F33800D00D3B5FD /* FileRulesViewController.swift */; };
 		67C5300C1F33800D00D3B5FD /* FileRulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C530091F33800D00D3B5FD /* FileRulesViewController.xib */; };
@@ -85,6 +90,9 @@
 		3E2CB3F412642EAF9E03D2F4 /* Pods-MenuNavTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNavTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNavTests/Pods-MenuNavTests.release.xcconfig"; sourceTree = "<group>"; };
 		480C88363C8F497977E2ABE1 /* Pods_MenuNavTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MenuNavTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E11CAD15A51A6877066995D /* Pods-MenuNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNav.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNav/Pods-MenuNav.debug.xcconfig"; sourceTree = "<group>"; };
+		6748CE081F3B9E29002941D4 /* FolderRuleCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderRuleCollectionViewItem.swift; sourceTree = "<group>"; };
+		6748CE091F3B9E29002941D4 /* FolderRuleCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FolderRuleCollectionViewItem.xib; sourceTree = "<group>"; };
+		6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderConditionFormatter.swift; sourceTree = "<group>"; };
 		674F95171F27A07C000A5A4E /* FileSystemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemObject.swift; sourceTree = "<group>"; };
 		679370961F27A999003E6A9A /* DictionaryRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryRepresentable.swift; sourceTree = "<group>"; };
 		6793709D1F27B890003E6A9A /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -98,6 +106,8 @@
 		67AE4A721F30FD2C00E9D1FE /* FolderRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderRule.swift; sourceTree = "<group>"; };
 		67AE4A761F311D0D00E9D1FE /* FileRulesTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRulesTableController.swift; sourceTree = "<group>"; };
 		67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStructureBuilder.swift; sourceTree = "<group>"; };
+		67B77EFE1F3A0E9A000830EF /* EmptyTableActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTableActionView.swift; sourceTree = "<group>"; };
+		67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextField+Extensions.swift"; sourceTree = "<group>"; };
 		67C530081F33800D00D3B5FD /* FileRulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRulesViewController.swift; sourceTree = "<group>"; };
 		67C530091F33800D00D3B5FD /* FileRulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileRulesViewController.xib; sourceTree = "<group>"; };
 		67C5300F1F3383E200D3B5FD /* FolderRulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderRulesViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				0978BEBE1EB393110023AC66 /* AppDelegate.swift */,
+				67B77EFE1F3A0E9A000830EF /* EmptyTableActionView.swift */,
 				679370951F27A93B003E6A9A /* Protocols */,
 				67B4361C1EB3E88C003E5886 /* Utils */,
 				67A02E1C1EB4F1FB00D2A8CA /* Settings */,
@@ -186,6 +197,16 @@
 				480C88363C8F497977E2ABE1 /* Pods_MenuNavTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6773F2CB1F3A168300AFE89A /* Edit Folder Rules */ = {
+			isa = PBXGroup;
+			children = (
+				67C5301B1F338A9400D3B5FD /* EditFolderRuleViewController.swift */,
+				67C5301C1F338A9400D3B5FD /* EditFolderRuleViewController.xib */,
+				67C530241F339D1700D3B5FD /* EditFolderConditionView.swift */,
+			);
+			name = "Edit Folder Rules";
 			sourceTree = "<group>";
 		};
 		679370951F27A93B003E6A9A /* Protocols */ = {
@@ -239,6 +260,7 @@
 			children = (
 				6793709D1F27B890003E6A9A /* Array+Extensions.swift */,
 				67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */,
+				67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -255,6 +277,7 @@
 			children = (
 				67AE4A721F30FD2C00E9D1FE /* FolderRule.swift */,
 				67C530211F33980100D3B5FD /* FolderRuleBuilder.swift */,
+				6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */,
 			);
 			name = "Folder Rule";
 			sourceTree = "<group>";
@@ -274,9 +297,9 @@
 			children = (
 				67C5300F1F3383E200D3B5FD /* FolderRulesViewController.swift */,
 				67C530101F3383E200D3B5FD /* FolderRulesViewController.xib */,
-				67C5301B1F338A9400D3B5FD /* EditFolderRuleViewController.swift */,
-				67C5301C1F338A9400D3B5FD /* EditFolderRuleViewController.xib */,
-				67C530241F339D1700D3B5FD /* EditFolderConditionView.swift */,
+				6748CE081F3B9E29002941D4 /* FolderRuleCollectionViewItem.swift */,
+				6748CE091F3B9E29002941D4 /* FolderRuleCollectionViewItem.xib */,
+				6773F2CB1F3A168300AFE89A /* Edit Folder Rules */,
 			);
 			name = "Folder Rules";
 			sourceTree = "<group>";
@@ -403,6 +426,7 @@
 				0978BEC61EB393110023AC66 /* Main.storyboard in Resources */,
 				67C5300C1F33800D00D3B5FD /* FileRulesViewController.xib in Resources */,
 				67A02E1B1EB4079B00D2A8CA /* App.storyboard in Resources */,
+				6748CE0B1F3B9E29002941D4 /* FolderRuleCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,9 +556,13 @@
 				67AE4A731F30FD2C00E9D1FE /* FolderRule.swift in Sources */,
 				67AE4A5F1F2C84B300E9D1FE /* FileRuleFormatter.swift in Sources */,
 				67C530111F3383E200D3B5FD /* FolderRulesViewController.swift in Sources */,
+				6748CE0D1F3BAB4D002941D4 /* FolderConditionFormatter.swift in Sources */,
+				67B77EFF1F3A0E9A000830EF /* EmptyTableActionView.swift in Sources */,
 				0978BEBF1EB393110023AC66 /* AppDelegate.swift in Sources */,
 				67C5300A1F33800D00D3B5FD /* FileRulesViewController.swift in Sources */,
 				67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */,
+				6748CE0A1F3B9E29002941D4 /* FolderRuleCollectionViewItem.swift in Sources */,
+				67B77F011F3A0F46000830EF /* NSTextField+Extensions.swift in Sources */,
 				679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

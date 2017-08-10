@@ -9,20 +9,40 @@
 import Cocoa
 import SBAutoLayout
 
+protocol EditFolderConditionViewDelegate: class {
+    func editFolderConditionViewWantsDeletion(conditionView: EditFolderConditionView)
+    func editFolderConditionViewValueChanged(conditionView: EditFolderConditionView)
+}
+
 class EditFolderConditionView: NSView {
     
     // MARK: - Preperties
     
-    var views = [NSView]()
-    var node: DecisionNode<FolderRule.Condition>!
-    var viewsAndNodes = Dictionary<NSView, DecisionNode<FolderRule.Condition>>()
+    weak var delegate: EditFolderConditionViewDelegate?
+    private var views = [NSView]()
+    private var node: DecisionNode<FolderRule.Condition>!
+    fileprivate var viewsAndNodes = Dictionary<NSView, DecisionNode<FolderRule.Condition>>()
     
-    let stackView: NSStackView = {
+    private let stackView: NSStackView = {
         let sv = NSStackView(frame: .zero)
         sv.alignment = .left
         sv.orientation = .horizontal
         return sv
     }()
+    
+    private lazy var deleteButton: NSButton = {
+        let button = NSButton(title: "D", image: NSImage(), target: self, action: #selector(deleteButtonPressed))
+        return button
+    }()
+    
+    private lazy var validityIndicator: NSTextField = {
+        let textField = NSTextField.createWithLabelStyle()
+        return textField
+    }()
+    
+    var hasValidCondition: Bool {
+        return makeCondition() != nil
+    }
     
     // MARK: - Init
     
@@ -39,7 +59,7 @@ class EditFolderConditionView: NSView {
     
     // MARK: - Configure
     
-    func reconfigure() {
+    private func reconfigure() {
         configure(withNode: node)
     }
     
@@ -62,7 +82,7 @@ class EditFolderConditionView: NSView {
             viewsAndNodes[aView] = node
         }
         
-        // Add new controls
+        // Recusively add controls
         func addControl(forNode node: DecisionNode<FolderRule.Condition>) {
             
             switch node.nodeType {
@@ -82,19 +102,22 @@ class EditFolderConditionView: NSView {
                 textField.placeholderString = placeholder
                 textField.stringValue = node.textValue ?? ""
                 addViewToStackView(textField, fromNode: node)
-                
-            case let .textValues(_, placeholders, _):
-                
-                for placeholder in placeholders{
-                    let textField = self.makeTextField()
-                    textField.placeholderString = placeholder
-                    textField.stringValue = node.textValue ?? ""
-                    addViewToStackView(textField, fromNode: node)
-                }
             }
         }
         
         addControl(forNode: node)
+        
+        // Ad the validitiy indicator
+        if validityIndicator.superview != nil {
+            validityIndicator.removeFromSuperview()
+        }
+        stackView.addArrangedSubview(validityIndicator)
+        
+        // Add the delete button
+        if deleteButton.superview != nil {
+            deleteButton.removeFromSuperview()
+        }
+        stackView.addArrangedSubview(deleteButton)
     }
     
     // MARK: - Make Views
@@ -111,6 +134,7 @@ class EditFolderConditionView: NSView {
     private func makeTextField() -> NSTextField {
         
         let textField = NSTextField(frame: .zero)
+        textField.delegate = self
         return textField
     }
     
@@ -132,11 +156,50 @@ class EditFolderConditionView: NSView {
         }
         node.selectedIndex = index
         reconfigure()
+        updateValidityIndicator()
         
+        delegate?.editFolderConditionViewValueChanged(conditionView: self)
     }
     
+    @objc private func deleteButtonPressed() {
+        Swift.print("Delete button pressed")
+        
+        delegate?.editFolderConditionViewWantsDeletion(conditionView: self)
+    }
     
+    // MARK: - Update UI
+    
+    fileprivate func updateValidityIndicator() {
+        
+        if hasValidCondition {
+            validityIndicator.stringValue = "Y"
+        }
+        else{
+            validityIndicator.stringValue = "N"
+        }
+    }
+    
+    // MARK: - Condition
+    
+    func makeCondition() -> FolderRule.Condition? {
+        return node.make()
+    }
     
 }
 
-
+// MARK: - NSTextFieldDelegate
+extension EditFolderConditionView: NSTextFieldDelegate {
+    
+    override func controlTextDidChange(_ obj: Notification) {
+        
+        guard let textField = obj.object as? NSTextField else {
+            fatalError("Couldn't obtain text field from delegate callback")
+        }
+        
+        let node = viewsAndNodes[textField]
+        node?.textValue = textField.stringValueOptional
+        updateValidityIndicator()
+        
+        delegate?.editFolderConditionViewValueChanged(conditionView: self)
+    }
+}

@@ -25,21 +25,21 @@
                 </windowController>
                 <customObject id="DuH-RZ-Lp8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-228" y="124"/>
+            <point key="canvasLocation" x="-483" y="146"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cmg-TG-pqA">
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="Arv-Nj-IMh" customClass="ViewController" customModule="MenuNav" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="cf1-ga-p4k">
-                        <rect key="frame" x="0.0" y="0.0" width="415" height="460"/>
+                    <view key="view" misplaced="YES" id="cf1-ga-p4k">
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="460"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ot-s0-Cy6">
-                                <rect key="frame" x="20" y="316" width="375" height="124"/>
+                                <rect key="frame" x="20" y="316" width="600" height="124"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GhN-E0-7Ld">
-                                        <rect key="frame" x="152.5" y="54" width="70" height="70"/>
+                                        <rect key="frame" x="265" y="54" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="6TS-Re-bp8"/>
                                             <constraint firstAttribute="width" secondItem="GhN-E0-7Ld" secondAttribute="height" multiplier="1:1" id="vwu-yG-qom"/>
@@ -47,7 +47,7 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Ffg-yA-FbP"/>
                                     </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZd-ra-UMi">
-                                        <rect key="frame" x="169" y="29" width="37" height="17"/>
+                                        <rect key="frame" x="281.5" y="29" width="37" height="17"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Label" id="F2N-sm-Zm9">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -55,7 +55,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gSr-TE-ehb">
-                                        <rect key="frame" x="128.5" y="-7" width="118" height="32"/>
+                                        <rect key="frame" x="241" y="-7" width="118" height="32"/>
                                         <buttonCell key="cell" type="push" title="Choose Path" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R2d-Mf-pz9">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -66,7 +66,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="zX6-BV-GKk"/>
+                                    <constraint firstAttribute="width" constant="600" id="zX6-BV-GKk"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -80,7 +80,7 @@
                                 </customSpacing>
                             </stackView>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uah-XU-0ba">
-                                <rect key="frame" x="68" y="273" width="278" height="24"/>
+                                <rect key="frame" x="180.5" y="273" width="278" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="JdZ-Rf-9FL">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -94,7 +94,7 @@
                                 </connections>
                             </segmentedControl>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="FJY-hQ-lAU">
-                                <rect key="frame" x="20" y="20" width="375" height="247"/>
+                                <rect key="frame" x="20" y="20" width="600" height="247"/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -119,7 +119,7 @@
                 </viewController>
                 <customObject id="P7g-lk-mRR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="299.5" y="119"/>
+            <point key="canvasLocation" x="195" y="139"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="PrZ-OS-TCP">
@@ -132,7 +132,7 @@
                 </viewController>
                 <customObject id="DVd-1K-4wi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="541"/>
+            <point key="canvasLocation" x="308" y="748"/>
         </scene>
         <!--Edit File Rule View Controller-->
         <scene sceneID="wEH-ZH-j5U">
@@ -383,7 +383,7 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69P-u2-fRP">
-                                        <rect key="frame" x="167.5" y="37" width="144" height="22"/>
+                                        <rect key="frame" x="0.0" y="37" width="479" height="22"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qua-8l-csb">
                                                 <rect key="frame" x="-2" y="2.5" width="44" height="17"/>
@@ -394,7 +394,7 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9I-mj-mJX">
-                                                <rect key="frame" x="48" y="0.0" width="96" height="22"/>
+                                                <rect key="frame" x="48" y="0.0" width="431" height="22"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sWE-am-nLY">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -447,7 +447,7 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
                 </viewController>
                 <customObject id="Os4-1N-kJ6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="139"/>
+            <point key="canvasLocation" x="963" y="139"/>
         </scene>
     </scenes>
     <resources>
