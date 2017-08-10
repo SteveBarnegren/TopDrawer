@@ -114,9 +114,9 @@ extension RulesViewController: NSCollectionViewDataSource, NSCollectionViewDeleg
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         
-        let item = collectionView.makeItem(withIdentifier: "FolderRuleCollectionViewItem", for: indexPath)
+        let item = collectionView.makeItem(withIdentifier: "RuleCollectionViewItem", for: indexPath)
         
-        guard let collectionViewItem = item as? FolderRuleCollectionViewItem else {
+        guard let collectionViewItem = item as? RuleCollectionViewItem else {
             fatalError("Unable to create collection view item")
         }
         
@@ -130,9 +130,9 @@ extension RulesViewController: NSCollectionViewDataSource, NSCollectionViewDeleg
     }
 }
 
-extension RulesViewController: FolderRuleCollectionViewItemDelegate {
+extension RulesViewController: RuleCollectionViewItemDelegate {
     
-    func folderRuleCollectionViewItemEditPressed(item: FolderRuleCollectionViewItem) {
+    func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem) {
         
         let indexPath = collectionView.indexPath(for: item)!
         print("Item selected at row: \(indexPath.item)")

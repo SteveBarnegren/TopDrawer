@@ -9,16 +9,16 @@
 import Cocoa
 import SBAutoLayout
 
-protocol FolderRuleCollectionViewItemDelegate: class {
-    func folderRuleCollectionViewItemEditPressed(item: FolderRuleCollectionViewItem)
+protocol RuleCollectionViewItemDelegate: class {
+    func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem)
 }
 
-class FolderRuleCollectionViewItem: NSCollectionViewItem {
+class RuleCollectionViewItem: NSCollectionViewItem {
     
     // MARK: - Properties
     
     @IBOutlet weak fileprivate var conditionsStackView: NSStackView!
-    weak var delegate: FolderRuleCollectionViewItemDelegate?
+    weak var delegate: RuleCollectionViewItemDelegate?
 
     let conditionFormatter = FolderConditionFormatter()
     
@@ -58,7 +58,7 @@ class FolderRuleCollectionViewItem: NSCollectionViewItem {
     
     @IBAction private func editButtonPressed(sender: NSButton){
         print("Edit button pressed")
-        delegate?.folderRuleCollectionViewItemEditPressed(item: self)
+        delegate?.ruleCollectionViewItemEditPressed(item: self)
     }
     
 }
