@@ -102,13 +102,11 @@ class Settings {
     
     // MARK: - Folder Rules
     
-    private static let folderRulesKey = "FolderRulesKey"
-    
     static var folderRules: [FolderRule] {
         
         get {
             
-            if let array = userDefaults.object(forKey: folderRulesKey) as? [Dictionary<String, Any>] {
+            if let array = userDefaults.object(forKey: FolderRule.storageKey) as? [Dictionary<String, Any>] {
                 return array.flatMap{ FolderRule(dictionaryRepresentation: $0) }
             }
             else{
@@ -116,7 +114,7 @@ class Settings {
             }
         }
         set {
-            userDefaults.set(newValue.map{ $0.dictionaryRepresentation }, forKey: folderRulesKey)
+            userDefaults.set(newValue.map{ $0.dictionaryRepresentation }, forKey: FolderRule.storageKey)
             userDefaults.synchronize()
         }
     }
@@ -131,5 +129,4 @@ class Settings {
         rules[index] = folderRule
         folderRules = rules 
     }
-    
 }

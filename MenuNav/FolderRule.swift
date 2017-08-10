@@ -8,7 +8,9 @@
 
 import Foundation
 
-public struct FolderRule {
+public struct FolderRule: Rule {
+    
+    static let storageKey = "FolderRules"
     
     // MARK: - Condition
     
@@ -59,6 +61,10 @@ public struct FolderRule {
     
     let conditions: [Condition]
     let matchType: MatchType
+    
+    var numberOfConditions: Int {
+        return conditions.count
+    }
     
     // MARK: - Init
     

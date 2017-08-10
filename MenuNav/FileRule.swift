@@ -45,7 +45,7 @@ struct FileRule {
     
     // MARK: - Properties
     
-    private let conditions: [Condition]
+    fileprivate let conditions: [Condition]
     
     // MARK: - Init
     
@@ -87,7 +87,7 @@ extension FileRule.Condition: DictionaryRepresentable {
             return nil
         }
         
-        let result: FileRule.Condition?
+        var result: FileRule.Condition?
 
         switch caseType {
         case Keys.Case.Name:
@@ -110,7 +110,8 @@ extension FileRule.Condition: DictionaryRepresentable {
                 let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
                 result = .fullName(stringMatcher)
             }
-            
+        default:
+            break
         }
         
         if let result = result {
@@ -140,6 +141,31 @@ extension FileRule.Condition: DictionaryRepresentable {
 
         }
         
+        return dictionary
+    }
+}
+
+extension FileRule: DictionaryRepresentable {
+    
+    struct Keys {
+        static let Conditions = "Conditions"
+    }
+    
+    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+        
+        guard let conditionsArray = dictionary[Keys.Conditions] as? Array<Dictionary<String, Any>> else {
+            return nil
+        }
+
+        let conditions = conditionsArray.flatMap{ Condition(dictionaryRepresentation: $0) }
+        self.init(conditions: conditions)
+    }
+    
+    var dictionaryRepresentation: Dictionary<String, Any> {
+     
+        var dictionary = Dictionary<String, Any>()
+        let conditionsArray = conditions.map{ $0.dictionaryRepresentation }
+        dictionary[Keys.Conditions] = conditionsArray
         return dictionary
     }
 }

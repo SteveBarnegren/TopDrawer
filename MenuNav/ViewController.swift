@@ -37,8 +37,8 @@ class ViewController: NSViewController {
         //updateShortenPathsWherePossibleCheckbox()
         
         // Show file rules content
-        let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
-        show(contentViewController: fileRules)
+        //let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
+       // show(contentViewController: fileRules)
     }
     
     // MARK: - Content view
@@ -46,20 +46,20 @@ class ViewController: NSViewController {
     func showFileRules() {
         print("Show file rules")
         
-        if contentViewController is FileRulesViewController {
-            return
-        }
-        
-        let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
-        show(contentViewController: fileRules)
-        self.segmentedControl.selectedSegment = 0
+//        if contentViewController is FileRulesViewController {
+//            return
+//        }
+//        
+//        let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
+//        show(contentViewController: fileRules)
+//        self.segmentedControl.selectedSegment = 0
     }
     
     func showFolderRules() {
         print("Show folder rules")
         self.segmentedControl.selectedSegment = 1
         
-        let folderRules = RulesViewController.init(nibName: "RulesViewController", bundle: nil)!
+        let folderRules = RulesViewController<FolderRule>.init(nibName: "RulesViewController", bundle: nil)!
         self .show(contentViewController: folderRules)
     }
     
@@ -111,12 +111,12 @@ class ViewController: NSViewController {
     @IBAction func addFileRuleButtonPressed(sender: NSButton){
         print("Add file type button pressed")
                 
-        let editor = EditFileRuleViewController.create(existingRule: nil)
-        editor.delegate = self
-        
-        addChildViewController(editor)
-        view.addSubview(editor.view)
-        editor.view.pinToSuperviewEdges()
+//        let editor = EditFileRuleViewController.create(existingRule: nil)
+//        editor.delegate = self
+//        
+//        addChildViewController(editor)
+//        view.addSubview(editor.view)
+//        editor.view.pinToSuperviewEdges()
     }
     
     @IBAction private func addFolderRuleButtonPressed(sender: NSButton){
@@ -149,21 +149,5 @@ class ViewController: NSViewController {
     
     func rebuild() {
         (NSApp.delegate as? AppDelegate)?.rebuild()
-    }
-}
-
-// MARK: - EditRuleViewControllerDelegate
-
-extension ViewController: EditFileRuleViewControllerDelegate {
-    func editFileRuleViewController(_ editFileRuleViewController: EditFileRuleViewController, didUpdateRule rule: FileRule) {
-        print("Updated rule")
-        /*
-        Settings.add(rule: rule)
-        self.fileRulestableView.reloadData()
-        self.rebuild()
-        
-        editFileRuleViewController.view.removeFromSuperview()
-        editFileRuleViewController.removeFromParentViewController()
- */
     }
 }

@@ -244,10 +244,6 @@ class FileStructureBuilder {
             if rule.includes(file: file) {
                 include = true
             }
-
-            if rule.excludes(file: file) {
-                exclude = true
-            }
         }
         
         return (include && !exclude)

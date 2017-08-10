@@ -1,5 +1,5 @@
 //
-//  FolderRulesViewController.swift
+//  RulesViewController.swift
 //  MenuNav
 //
 //  Created by Steve Barnegren on 03/08/2017.
@@ -9,7 +9,7 @@
 import Cocoa
 import SBAutoLayout
 
-class RulesViewController: NSViewController {
+class RulesViewController<T: Rule>: NSViewController {
     
     // MARK: - Types
     
@@ -23,7 +23,9 @@ class RulesViewController: NSViewController {
     
     @IBOutlet weak fileprivate var collectionView: NSCollectionView!
     
+    let dataSource = RulesCollectionDataSource()
     var state = State.normal
+    let ruleLoader = T.ruleLoader
     
     // MARK: - UIViewController
 
@@ -32,9 +34,10 @@ class RulesViewController: NSViewController {
         
         view.wantsLayer = true
         
-        // Setup collection view
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        // Setup datasource
+        dataSource.provider = self
+        collectionView.dataSource = dataSource
+        collectionView.delegate = dataSource
         
         let flowLayout = NSCollectionViewFlowLayout()
         //flowLayout.itemSize = NSSize(width: 160, height: 140)
@@ -63,7 +66,7 @@ class RulesViewController: NSViewController {
         state = .newRule
         
         let editRule = EditRuleViewController(existingRule: nil)
-        editRule.delegate = self
+        //editRule.delegate = self
         
         // Reaching in to the parent here is terrible, will have to come up with a better solution
         parentViewController.addChildViewController(editRule)
@@ -72,14 +75,14 @@ class RulesViewController: NSViewController {
     }
     
     func editRule(atIndex index: Int) {
-        
+        /*
         guard let parentViewController = parent else {
             fatalError("Expected parent view controller")
         }
         
         state = .editingRule(index: index)
         
-        let rule = Settings.folderRules[index]
+        let rule = ruleLoader.rules[index]
         let editRule = EditRuleViewController(existingRule: rule)
         editRule.delegate = self
         
@@ -87,32 +90,33 @@ class RulesViewController: NSViewController {
         parentViewController.addChildViewController(editRule)
         parentViewController.view.addSubview(editRule.view)
         editRule.view.pinToSuperviewEdges()
+ */
     }
 }
 
 private let conditionLabelHeight = CGFloat(20)
 private let conditionLabelSpacing = CGFloat(2)
 
-extension RulesViewController: NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+extension RulesViewController: RulesCollectionDataSourceProvider {
     
-    func numberOfSections(in collectionView: NSCollectionView) -> Int {
+    func numberOfSections() -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Settings.folderRules.count
+    func numberOfItems(inSection section: Int) -> Int {
+        return ruleLoader.numberOfRules
     }
     
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+    func sizeForItem(atIndexPath indexPath: IndexPath) -> CGSize {
         
-        let rule = Settings.folderRules[indexPath.item]
+        let rule = ruleLoader.rules[indexPath.item]
         let numConditions = CGFloat(rule.conditions.count)
         let height = (numConditions * conditionLabelHeight) + ((numConditions-1) * conditionLabelSpacing)
         return CGSize(width: collectionView.bounds.size.width,
                       height: height)
     }
     
-    func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+    func itemForObject(atIndexPath indexPath: IndexPath) -> NSCollectionViewItem {
         
         let item = collectionView.makeItem(withIdentifier: "RuleCollectionViewItem", for: indexPath)
         
@@ -120,8 +124,8 @@ extension RulesViewController: NSCollectionViewDataSource, NSCollectionViewDeleg
             fatalError("Unable to create collection view item")
         }
         
-        let rule = Settings.folderRules[indexPath.item]
-        collectionViewItem.configure(withRule: rule,
+        let rule = ruleLoader.rules[indexPath.item]
+        collectionViewItem.configure(withRule: rule as! FolderRule,
                                      conditionHeight: conditionLabelHeight,
                                      conditionSpacing: conditionLabelSpacing)
         collectionViewItem.delegate = self
@@ -141,6 +145,7 @@ extension RulesViewController: RuleCollectionViewItemDelegate {
     }
 }
 
+/*
 extension RulesViewController: EditRuleViewControllerDelegate {
     
     func editRuleViewControllerDidEditRule(_ rule: FolderRule) {
@@ -158,3 +163,40 @@ extension RulesViewController: EditRuleViewControllerDelegate {
         collectionView.reloadData()
     }
 }
+ */
+
+// MARK: - RulesViewControllerDataSource
+
+// Generic types cannot implement ObjC protocols, so RulesCollectionDataSource is a non-generic bridge to implement collection view datasource
+
+protocol RulesCollectionDataSourceProvider: class {
+    
+    func numberOfSections() -> Int
+    func numberOfItems(inSection section: Int) -> Int
+    func sizeForItem(atIndexPath indexPath: IndexPath) -> CGSize
+    func itemForObject(atIndexPath indexPath: IndexPath) -> NSCollectionViewItem
+}
+
+class RulesCollectionDataSource: NSObject, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+    
+    weak var provider: RulesCollectionDataSourceProvider!
+    
+    func numberOfSections(in collectionView: NSCollectionView) -> Int {
+        return provider.numberOfSections()
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        return provider.numberOfItems(inSection: section)
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+   
+        return provider.sizeForItem(atIndexPath: indexPath)
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        
+        return provider.itemForObject(atIndexPath: indexPath)
+    }
+}
+
