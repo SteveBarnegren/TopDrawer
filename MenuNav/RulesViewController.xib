@@ -7,7 +7,7 @@
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="FolderRulesViewController" customModule="MenuNav" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="RulesViewController" customModule="MenuNav" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="BUh-Xe-WPS" id="TQO-Kh-mNs"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>

@@ -59,7 +59,7 @@ class ViewController: NSViewController {
         print("Show folder rules")
         self.segmentedControl.selectedSegment = 1
         
-        let folderRules = FolderRulesViewController.init(nibName: "FolderRulesViewController", bundle: nil)!
+        let folderRules = RulesViewController.init(nibName: "RulesViewController", bundle: nil)!
         self .show(contentViewController: folderRules)
     }
     

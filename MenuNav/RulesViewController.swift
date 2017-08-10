@@ -9,7 +9,7 @@
 import Cocoa
 import SBAutoLayout
 
-class FolderRulesViewController: NSViewController {
+class RulesViewController: NSViewController {
     
     // MARK: - Types
     
@@ -93,7 +93,7 @@ class FolderRulesViewController: NSViewController {
 private let conditionLabelHeight = CGFloat(20)
 private let conditionLabelSpacing = CGFloat(2)
 
-extension FolderRulesViewController: NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+extension RulesViewController: NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
         return 1
@@ -130,7 +130,7 @@ extension FolderRulesViewController: NSCollectionViewDataSource, NSCollectionVie
     }
 }
 
-extension FolderRulesViewController: FolderRuleCollectionViewItemDelegate {
+extension RulesViewController: FolderRuleCollectionViewItemDelegate {
     
     func folderRuleCollectionViewItemEditPressed(item: FolderRuleCollectionViewItem) {
         
@@ -141,7 +141,7 @@ extension FolderRulesViewController: FolderRuleCollectionViewItemDelegate {
     }
 }
 
-extension FolderRulesViewController: EditFolderRuleViewControllerDelegate {
+extension RulesViewController: EditFolderRuleViewControllerDelegate {
     
     func editFolderRuleViewControllerDidEditRule(_ rule: FolderRule) {
         
