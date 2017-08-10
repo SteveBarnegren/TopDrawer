@@ -8,209 +8,115 @@
 
 import Foundation
 
-public struct FileRule {
+struct FileRule {
     
     // MARK: - Types
     
-    enum Target {
-        case matchingName(String)
-        case matchingExtension(String)
-        case matchingNameAndExtension(name: String, ext: String)
-    }
-    
-    enum Filter: Int {
-        case include
-        case exclude
+    enum Condition {
+        case name(StringMatcher)
+        case ext(StringMatcher)
+        case fullName(StringMatcher)
+        
+        func matches(file: File) -> Bool {
+            
+            switch self {
+            case let .name(stringMatcher):
+                return stringMatcher.matches(string: file.name)
+            case let .ext(stringMatcher):
+                return stringMatcher.matches(string: file.ext)
+            case let .fullName(stringMatcher):
+                return stringMatcher.matches(string: file.fullName)
+            }
+        }
+        
+        static func ==(lhs: Condition, rhs: Condition) -> Bool {
+            switch (lhs, rhs) {
+            case let (.name(sm1), .name(sm2)):
+                return sm1 == sm2
+            case let (.ext(sm1), .ext(sm2)):
+                return sm1 == sm2
+            case let (.fullName(sm1), .fullName(sm2)):
+                return sm1 == sm2
+            default:
+                return false
+            }
+        }
     }
     
     // MARK: - Properties
     
-    var target: Target
-    var filter: Filter
+    private let conditions: [Condition]
     
     // MARK: - Init
     
-    init(target: Target, filter: Filter) {
-    
-        self.target = target
-        self.filter = filter
+    init(conditions: [Condition]) {
+        self.conditions = conditions
     }
     
     // MARK: - Matching
     
     func includes(file: File) -> Bool {
         
-        switch filter {
-        case .include:
-            return matches(file: file)
-        case .exclude:
-            return false
+        for condition in conditions {
+            if !condition.matches(file: file) {
+                return false
+            }
         }
-    }
-    
-    func excludes(file: File) -> Bool {
         
-        switch filter {
-        case .include:
-            return false
-        case .exclude:
-            return matches(file: file)
-        }
-    }
-    
-    private func matches(file: File) -> Bool {
-        
-        switch target {
-        
-        // Match file name and extension
-        case let .matchingNameAndExtension(name, ext):
-            return name == file.name && ext == file.ext
-            
-        // Match file name only
-        case let .matchingName(name):
-            return name == file.name
-            
-        // Match extension only
-        case let .matchingExtension(ext):
-            return ext == file.ext
-        }
-    }
-    
-    // MARK: - Display Name
-    
-    var itemName: String? {
-        
-        switch target {
-        case let .matchingName(name):
-            return name
-        case .matchingExtension(_):
-            return nil
-        case let .matchingNameAndExtension(name, _):
-            return name
-        }
-    }
-    
-    var itemExtension: String? {
-        
-        switch target {
-        case .matchingName(_):
-            return nil
-        case let .matchingExtension(ext):
-            return ext
-        case let .matchingNameAndExtension(_, ext):
-            return ext
-        }
-    }
-}
-
-// MARK: - Equatable
-
-extension FileRule.Target: Equatable {
-    public static func ==(lhs: FileRule.Target, rhs: FileRule.Target) -> Bool {
-        
-        switch (lhs, rhs) {
-        case let (.matchingName(n1), .matchingName(n2)):
-            return n1 == n2
-        case let (.matchingExtension(e1), .matchingExtension(e2)):
-            return e1 == e2
-        case let (.matchingNameAndExtension(n1, e1), .matchingNameAndExtension(n2, e2)):
-            return n1 == n2 && e1 == e2
-        default:
-            return false
-        }
-    }
-}
-
-extension FileRule: Equatable {
-    public static func ==(lhs: FileRule, rhs: FileRule) -> Bool {
-        
-        return( lhs.filter == rhs.filter &&
-            lhs.target == rhs.target )
+        return true
     }
 }
 
 // MARK: - DictionaryRepresentable
 
-extension FileRule.Filter: StringRepresentable {
+extension FileRule.Condition: DictionaryRepresentable {
     
-    private struct StringValues {
-        static let include = "Include"
-        static let exclude = "Exclude"
-    }
-    
-    init?(stringRepresentation: String) {
-        
-        switch stringRepresentation {
-        case StringValues.include:
-            self = .include
-        case StringValues.exclude:
-            self = .exclude
-        default:
-            return nil
+    struct Keys {
+        static let CaseKey = "Case"
+        struct Case {
+            static let Name = "Name"
+            static let Ext = "Ext"
+            static let FullName = "FullName"
         }
+        static let AssociatedValue = "AssociatedValue"
     }
     
-    var stringRepresentation: String {
-        
-        switch self {
-        case .include:
-            return StringValues.include
-        case .exclude:
-            return StringValues.exclude
-        }
-    }
-}
-
-extension FileRule.Target: DictionaryRepresentable {
-    
-    private struct Keys {
-        static let TargetType = "TargetType"
-        struct TargetTypes {
-            static let MatchingName = "MatchingName"
-            static let MatchingExtension = "MatchingExtension"
-            static let MatchingNameAndExtension = "MatchingNameAndExtension"
-        }
-        static let TargetName = "TargetName"
-        static let TargetExtension = "TargetExtension"
-    }
-
     init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
         
-        guard let type = dictionary[Keys.TargetType] as? String else {
+        guard let caseType = dictionary[Keys.CaseKey] as? String else {
             return nil
         }
         
-        let name = dictionary[Keys.TargetName] as? String
-        let ext = dictionary[Keys.TargetExtension] as? String
-        
-        var result: FileRule.Target?
-        
-        switch type {
-        case Keys.TargetTypes.MatchingName:
+        let result: FileRule.Condition?
+
+        switch caseType {
+        case Keys.Case.Name:
             
-            if let name = name {
-                result = .matchingName(name)
+            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+                let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
+                result = .name(stringMatcher)
             }
             
-        case Keys.TargetTypes.MatchingExtension:
+        case Keys.Case.Ext:
             
-            if let ext = ext {
-                result = .matchingExtension(ext)
+            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+                let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
+                result = .ext(stringMatcher)
             }
-           
-        case Keys.TargetTypes.MatchingNameAndExtension:
+
+        case Keys.Case.FullName:
             
-            if let name = name, let ext = ext {
-                result = .matchingNameAndExtension(name: name, ext: ext)
+            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+                let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
+                result = .fullName(stringMatcher)
             }
-        default:
-            break
+            
         }
         
         if let result = result {
             self = result
         }
-        else{
+        else {
             return nil
         }
     }
@@ -220,57 +126,21 @@ extension FileRule.Target: DictionaryRepresentable {
         var dictionary = Dictionary<String, Any>()
         
         switch self {
-        case let .matchingName(name):
-            dictionary[Keys.TargetType] = Keys.TargetTypes.MatchingName
-            dictionary[Keys.TargetName] = name
-        case let .matchingExtension(ext):
-            dictionary[Keys.TargetType] = Keys.TargetTypes.MatchingExtension
-            dictionary[Keys.TargetExtension] = ext
-        case let .matchingNameAndExtension(name, ext):
-            dictionary[Keys.TargetType] = Keys.TargetTypes.MatchingNameAndExtension
-            dictionary[Keys.TargetName] = name
-            dictionary[Keys.TargetExtension] = ext
+        case let .name(stringMatcher):
+            dictionary[Keys.CaseKey] = Keys.Case.Name
+            dictionary[Keys.AssociatedValue] = stringMatcher.dictionaryRepresentation
+            
+        case let .ext(stringMatcher):
+            dictionary[Keys.CaseKey] = Keys.Case.Ext
+            dictionary[Keys.AssociatedValue] = stringMatcher.dictionaryRepresentation
+
+        case let .fullName(stringMatcher):
+            dictionary[Keys.CaseKey] = Keys.Case.FullName
+            dictionary[Keys.AssociatedValue] = stringMatcher.dictionaryRepresentation
+
         }
-    
+        
         return dictionary
     }
 }
 
-extension FileRule: DictionaryRepresentable {
-    
-    struct Keys {
-        static let filter = "Filter"
-        static let target = "Target"
-    }
-    
-    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
-        
-        guard
-            let targetDict = dictionary[Keys.target] as? Dictionary<String, Any>,
-            let target = Target(dictionaryRepresentation: targetDict)
-            else {
-                print("Unable to create file rule target from dictionary: \(dictionary)")
-                return nil
-        }
-        
-        guard
-            let filterString = dictionary[Keys.filter] as? String,
-            let filter = Filter(stringRepresentation: filterString)
-            else {
-                print("File rule unable to create file rule filter from dictionary: \(dictionary)")
-                return nil
-        }
-        
-        self.init(target: target, filter: filter)
-    }
-    
-    var dictionaryRepresentation: Dictionary<String, Any> {
-        
-        var dictionary = Dictionary<String, Any>()
-        
-        dictionary[Keys.filter] = filter.stringRepresentation
-        dictionary[Keys.target] = target.dictionaryRepresentation
-        
-        return dictionary
-    }
-}

@@ -92,6 +92,16 @@ struct File: FileSystemObject {
         
     }
     
+    var fullName: String {
+        
+        if ext.characters.count > 0 {
+            return "\(name).\(ext)"
+        }
+        else{
+            return name
+        }
+    }
+    
     init(name: String, ext: String, path: String) {
         self.name = name
         self.ext = ext
