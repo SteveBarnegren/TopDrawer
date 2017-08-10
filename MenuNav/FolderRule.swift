@@ -50,17 +50,9 @@ public struct FolderRule: Rule {
         }
     }
     
-    // MARK: - MatchType
-    
-    enum MatchType {
-        case any
-        case all
-    }
-    
     // MARK: - Properties
     
     let conditions: [Condition]
-    let matchType: MatchType
     
     var numberOfConditions: Int {
         return conditions.count
@@ -68,38 +60,28 @@ public struct FolderRule: Rule {
     
     // MARK: - Init
     
-    init(conditions: [Condition], matchType: MatchType) {
+    init(conditions: [Condition]) {
         self.conditions = conditions
-        self.matchType = matchType
     }
     
     // MARK: - Matching
     
     func excludes(directory: Directory) -> Bool {
         
-        switch matchType {
-        case .any:
-            
-            for condition in conditions {
-                if condition.matches(directory: directory) {
-                    return true
-                }
+        for condition in conditions {
+            if !condition.matches(directory: directory) {
+                return false
             }
-            return false
-            
-        case .all:
-            
-            for condition in conditions {
-                if !condition.matches(directory: directory) {
-                    return false
-                }
-            }
-            return true
         }
+        return true
+    }
+    
+    // MARK: - Make Decision Tree
+    
+    static func makeDecisionTree() -> DecisionNode<FolderRule.Condition> {
+        return folderConditionDecisionTree()
     }
 }
-
-
 
 extension FolderRule.Condition: DictionaryRepresentable {
     
@@ -214,7 +196,7 @@ extension FolderRule: DictionaryRepresentable {
             return nil;
         }
         
-        self.init(conditions: conditions, matchType: .all)
+        self.init(conditions: conditions)
     }
     
     var dictionaryRepresentation: Dictionary<String, Any> {

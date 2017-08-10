@@ -8,11 +8,11 @@
 
 import Cocoa
 
-protocol EditRuleViewControllerDelegate: class {
-    func editRuleViewControllerDidEditRule(_ rule: FolderRule)
-}
+//protocol EditRuleViewControllerDelegate: class {
+//    func editRuleViewControllerDidEditRule<T: Rule>(_ rule: T)
+//}
 
-class EditRuleViewController: NSViewController {
+class EditRuleViewController<T: Rule>: NSViewController {
     
     // MARK: - Types
     
@@ -27,9 +27,11 @@ class EditRuleViewController: NSViewController {
     @IBOutlet weak fileprivate var scrollView: NSScrollView!
     @IBOutlet weak fileprivate var finishButton: NSButton!
     
-    fileprivate var existingRule: FolderRule?
-    fileprivate var conditionViews = [ConditionEditorView]()
-    weak var delegate: EditRuleViewControllerDelegate?
+    fileprivate var existingRule: T?
+    fileprivate var conditionViews = [ConditionEditorView<T.Condition>]()
+    //weak var delegate: EditRuleViewControllerDelegate?
+    
+    var didEditRuleHandler: (T) -> () = {_ in}
     
     private var state: State {
         
@@ -57,7 +59,7 @@ class EditRuleViewController: NSViewController {
     
     // MARK: - Init
     
-    init(existingRule: FolderRule?) {
+    init(existingRule: T?) {
         super.init(nibName: "EditRuleViewController", bundle: nil)!
         
         self.existingRule = existingRule
@@ -147,27 +149,30 @@ class EditRuleViewController: NSViewController {
         addConditionView(fromCondition: nil)
     }
     
-    func addConditionView(fromCondition: FolderRule.Condition?) {
+    func addConditionView(fromCondition: T.Condition?) {
         
         print("Add condition view")
         
-        let tree = folderConditionDecisionTree()
+        let tree = T.makeDecisionTree()
         if let condition = fromCondition {
             tree.matchTree(toElement: condition)
         }
         
-        let conditionView = ConditionEditorView(frame: .zero)
+        let conditionView = ConditionEditorView<T.Condition>(frame: .zero)
         scrollView.documentView?.addSubview(conditionView)
         conditionView.configure(withNode: tree)
-        conditionView.delegate = self
+        //conditionView.delegate = self
         conditionViews.append(conditionView)
         layoutConditionViews()
+        
+        conditionView.valueChangedHandler = condtionViewValueChanged
+        conditionView.wantsDeletionHandler = condtionViewWantsDeletion
         
         view.needsLayout = true
         updateForCurrentState()
     }
     
-    func removeConditionView(_ conditionView: ConditionEditorView) {
+    func removeConditionView(_ conditionView: ConditionEditorView<T.Condition>) {
         
         conditionViews.filter{ $0 === conditionView }
             .forEach{ $0.removeFromSuperview() }
@@ -189,8 +194,10 @@ class EditRuleViewController: NSViewController {
         print("Finish button pressed")
         
         let conditions = conditionViews.map{ $0.makeCondition()! }
-        let rule = FolderRule(conditions: conditions, matchType: .all)
-        delegate?.editRuleViewControllerDidEditRule(rule)
+        let rule = T(conditions: conditions)
+       // delegate?.editRuleViewControllerDidEditRule(rule)
+        
+        didEditRuleHandler(rule)
         
         dismiss()
     }
@@ -207,17 +214,28 @@ class EditRuleViewController: NSViewController {
         view.removeFromSuperview()
     }
     
-}
-
-extension EditRuleViewController: ConditionEditorViewDelegate {
+    // MARK: - ConditionViewHandlers
     
-    func conditionEditorViewWantsDeletion(conditionView: ConditionEditorView) {
-        print("VC: delete condition")
-        
+    func condtionViewValueChanged(_ conditionView: ConditionEditorView<T.Condition>) {
+        print("VC: Condition value changed")
+        updateForCurrentState()
+    }
+    
+    func condtionViewWantsDeletion(_ conditionView: ConditionEditorView<T.Condition>) {
+        print("VC: Condition wants deletion")
         removeConditionView(conditionView)
     }
     
-    func conditionEditorViewValueChanged(conditionView: ConditionEditorView) {
-        updateForCurrentState()
-    }
 }
+
+//extension EditRuleViewController: ConditionEditorViewDelegate {
+//    
+//    func conditionEditorViewWantsDeletion<T>(conditionView: ConditionEditorView<T>) where T : DecisionTreeElement {
+//        print("VC: condition wants deletion")
+//        removeConditionView(conditionView)
+//    }
+//    
+//    func conditionEditorViewValueChanged<T>(conditionView: ConditionEditorView<T>) where T : DecisionTreeElement {
+//        updateForCurrentState()
+//    }
+//}

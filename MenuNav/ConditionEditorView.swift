@@ -9,19 +9,23 @@
 import Cocoa
 import SBAutoLayout
 
-protocol ConditionEditorViewDelegate: class {
-    func conditionEditorViewWantsDeletion(conditionView: ConditionEditorView)
-    func conditionEditorViewValueChanged(conditionView: ConditionEditorView)
-}
+//protocol ConditionEditorViewDelegate: class {
+//    associatedtype T: DecisionTreeElement
+//    func conditionEditorViewWantsDeletion(conditionView: ConditionEditorView<T>)
+//    func conditionEditorViewValueChanged(conditionView: ConditionEditorView<T>)
+//}
 
-class ConditionEditorView: NSView {
+class ConditionEditorView<T: DecisionTreeElement>: NSView {
     
     // MARK: - Preperties
     
-    weak var delegate: ConditionEditorViewDelegate?
+    private let nonGenericType = ConditionEditorViewNonGenericType()
     private var views = [NSView]()
-    private var node: DecisionNode<FolderRule.Condition>!
-    fileprivate var viewsAndNodes = Dictionary<NSView, DecisionNode<FolderRule.Condition>>()
+    private var node: DecisionNode<T>!
+    fileprivate var viewsAndNodes = Dictionary<NSView, DecisionNode<T>>()
+    
+    var wantsDeletionHandler: (ConditionEditorView<T>) -> () = {_ in}
+    var valueChangedHandler: (ConditionEditorView<T>) -> () = {_ in}
     
     private let stackView: NSStackView = {
         let sv = NSStackView(frame: .zero)
@@ -49,6 +53,8 @@ class ConditionEditorView: NSView {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         
+        nonGenericType.delegate = self
+        
         addSubview(stackView)
         stackView.pinToSuperviewEdges()
     }
@@ -63,7 +69,7 @@ class ConditionEditorView: NSView {
         configure(withNode: node)
     }
     
-    func configure(withNode node: DecisionNode<FolderRule.Condition>) {
+    func configure(withNode node: DecisionNode<T>) {
         
         self.node = node
         
@@ -76,14 +82,14 @@ class ConditionEditorView: NSView {
         viewsAndNodes.removeAll()
         
         // Add new views
-        func addViewToStackView(_ aView: NSView, fromNode node: DecisionNode<FolderRule.Condition>) {
+        func addViewToStackView(_ aView: NSView, fromNode node: DecisionNode<T>) {
             stackView.addArrangedSubview(aView)
             views.append(aView)
             viewsAndNodes[aView] = node
         }
         
         // Recusively add controls
-        func addControl(forNode node: DecisionNode<FolderRule.Condition>) {
+        func addControl(forNode node: DecisionNode<T>) {
             
             switch node.nodeType {
             case let .list(_, itemNodes):
@@ -134,7 +140,7 @@ class ConditionEditorView: NSView {
     private func makeTextField() -> NSTextField {
         
         let textField = NSTextField(frame: .zero)
-        textField.delegate = self
+        textField.delegate = nonGenericType
         return textField
     }
     
@@ -158,13 +164,17 @@ class ConditionEditorView: NSView {
         reconfigure()
         updateValidityIndicator()
         
-        delegate?.conditionEditorViewValueChanged(conditionView: self)
+        valueChangedHandler(self)
+        
+        //delegate?.conditionEditorViewValueChanged(conditionView: self)
     }
     
     @objc private func deleteButtonPressed() {
         Swift.print("Delete button pressed")
         
-        delegate?.conditionEditorViewWantsDeletion(conditionView: self)
+        wantsDeletionHandler(self)
+        
+        //delegate?.conditionEditorViewWantsDeletion(conditionView: self)
     }
     
     // MARK: - Update UI
@@ -181,18 +191,17 @@ class ConditionEditorView: NSView {
     
     // MARK: - Condition
     
-    func makeCondition() -> FolderRule.Condition? {
+    func makeCondition() -> T? {
         return node.make()
     }
     
 }
 
-// MARK: - NSTextFieldDelegate
-extension ConditionEditorView: NSTextFieldDelegate {
+extension ConditionEditorView: ConditionEditorViewNonGenericTypeDelegate {
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(notification: Notification) {
         
-        guard let textField = obj.object as? NSTextField else {
+        guard let textField = notification.object as? NSTextField else {
             fatalError("Couldn't obtain text field from delegate callback")
         }
         
@@ -200,6 +209,22 @@ extension ConditionEditorView: NSTextFieldDelegate {
         node?.textValue = textField.stringValueOptional
         updateValidityIndicator()
         
-        delegate?.conditionEditorViewValueChanged(conditionView: self)
+        valueChangedHandler(self)
+        //delegate?.conditionEditorViewValueChanged(conditionView: self)
+    }
+}
+
+// MARK: - ConditionEditorViewObjCBridge
+
+protocol ConditionEditorViewNonGenericTypeDelegate: class {
+    func controlTextDidChange(notification: Notification)
+}
+
+class ConditionEditorViewNonGenericType: NSObject, NSTextFieldDelegate {
+    
+    weak var delegate: ConditionEditorViewNonGenericTypeDelegate?
+    
+    override func controlTextDidChange(_ obj: Notification) {
+        delegate?.controlTextDidChange(notification: obj)
     }
 }

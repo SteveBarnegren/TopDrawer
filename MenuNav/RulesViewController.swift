@@ -65,8 +65,9 @@ class RulesViewController<T: Rule>: NSViewController {
         
         state = .newRule
         
-        let editRule = EditRuleViewController(existingRule: nil)
+        let editRule = EditRuleViewController<T>(existingRule: nil)
         //editRule.delegate = self
+        editRule.didEditRuleHandler = didEditRuleHandler
         
         // Reaching in to the parent here is terrible, will have to come up with a better solution
         parentViewController.addChildViewController(editRule)
@@ -91,6 +92,25 @@ class RulesViewController<T: Rule>: NSViewController {
         parentViewController.view.addSubview(editRule.view)
         editRule.view.pinToSuperviewEdges()
  */
+    }
+    
+    // MARK: - Edit Rule Handler
+    
+    func didEditRuleHandler(rule: T) {
+        
+        let ruleLoader = T.ruleLoader
+        
+        switch state {
+        case .newRule:
+            ruleLoader.add(rule: rule)
+        case let .editingRule(index):
+            ruleLoader.update(rule: rule, atIndex: index)
+        default:
+            break
+        }
+        
+        state = .normal
+        collectionView.reloadData()
     }
 }
 

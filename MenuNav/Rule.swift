@@ -12,13 +12,17 @@ import Foundation
 
 protocol Rule: DictionaryRepresentable {
     
-    associatedtype Condition
+    associatedtype Condition: DecisionTreeElement
     
     static var storageKey: String {get}
+    
+    init(conditions: [Condition])
     
     var numberOfConditions: Int {get}
     
     var conditions: [Condition] {get}
+    
+    static func makeDecisionTree() -> DecisionNode<Condition>
     
 }
 
@@ -53,7 +57,7 @@ class RuleLoader<T: Rule> {
         }
         set {
             let key = T.storageKey
-            let array = newValue.flatMap{ $0.dictionaryRepresentation }
+            let array = newValue.map{ $0.dictionaryRepresentation }
             userDefaults.set(array, forKey: key)
             userDefaults.synchronize()
         }
