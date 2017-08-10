@@ -48,7 +48,7 @@ class FolderConditionFormatter {
         }
     }
     
-    private func makeString(fromContentsMatcher contentsMatcher: FolderRule.ContentsMatcher) -> String {
+    private func makeString(fromContentsMatcher contentsMatcher: FolderContentsMatcher) -> String {
         
         switch contentsMatcher {
         case let .filesWithExtension(ext):

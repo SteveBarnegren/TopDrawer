@@ -15,6 +15,12 @@
 		6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */; };
 		6748CE0B1F3B9E29002941D4 /* RuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */; };
 		6748CE0D1F3BAB4D002941D4 /* FolderConditionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */; };
+		6748CE131F3CBFFE002941D4 /* StringMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE121F3CBFFE002941D4 /* StringMatcher.swift */; };
+		6748CE141F3CBFFE002941D4 /* StringMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE121F3CBFFE002941D4 /* StringMatcher.swift */; };
+		6748CE161F3CC083002941D4 /* PathMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE151F3CC083002941D4 /* PathMatcher.swift */; };
+		6748CE171F3CC083002941D4 /* PathMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE151F3CC083002941D4 /* PathMatcher.swift */; };
+		6748CE191F3CC135002941D4 /* FolderContentsMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE181F3CC135002941D4 /* FolderContentsMatcher.swift */; };
+		6748CE1A1F3CC135002941D4 /* FolderContentsMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE181F3CC135002941D4 /* FolderContentsMatcher.swift */; };
 		674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
 		679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
 		679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
@@ -93,6 +99,9 @@
 		6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleCollectionViewItem.xib; sourceTree = "<group>"; };
 		6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderConditionFormatter.swift; sourceTree = "<group>"; };
+		6748CE121F3CBFFE002941D4 /* StringMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringMatcher.swift; sourceTree = "<group>"; };
+		6748CE151F3CC083002941D4 /* PathMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathMatcher.swift; sourceTree = "<group>"; };
+		6748CE181F3CC135002941D4 /* FolderContentsMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderContentsMatcher.swift; sourceTree = "<group>"; };
 		674F95171F27A07C000A5A4E /* FileSystemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemObject.swift; sourceTree = "<group>"; };
 		679370961F27A999003E6A9A /* DictionaryRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryRepresentable.swift; sourceTree = "<group>"; };
 		6793709D1F27B890003E6A9A /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -175,6 +184,7 @@
 				67FAAAD21EB724CD00224C24 /* AppPanel */,
 				0978BEC21EB393110023AC66 /* Assets.xcassets */,
 				0978BEC41EB393110023AC66 /* Main.storyboard */,
+				6748CE0E1F3CBF64002941D4 /* TO REMOVE */,
 				0978BEC71EB393110023AC66 /* Info.plist */,
 			);
 			path = MenuNav;
@@ -197,6 +207,43 @@
 				480C88363C8F497977E2ABE1 /* Pods_MenuNavTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6748CE0E1F3CBF64002941D4 /* TO REMOVE */ = {
+			isa = PBXGroup;
+			children = (
+				67C530011F337F6500D3B5FD /* File Rules */,
+				67AE4A601F2CA25B00E9D1FE /* Edit File Rule */,
+			);
+			name = "TO REMOVE";
+			sourceTree = "<group>";
+		};
+		6748CE0F1F3CBFBA002941D4 /* Folder Rule */ = {
+			isa = PBXGroup;
+			children = (
+				67AE4A721F30FD2C00E9D1FE /* FolderRule.swift */,
+				67C530211F33980100D3B5FD /* FolderRuleBuilder.swift */,
+				6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */,
+			);
+			name = "Folder Rule";
+			sourceTree = "<group>";
+		};
+		6748CE101F3CBFD1002941D4 /* File Rule */ = {
+			isa = PBXGroup;
+			children = (
+				67FAAAD51EB79ADE00224C24 /* FileRule.swift */,
+			);
+			name = "File Rule";
+			sourceTree = "<group>";
+		};
+		6748CE111F3CBFEC002941D4 /* Matchers */ = {
+			isa = PBXGroup;
+			children = (
+				6748CE151F3CC083002941D4 /* PathMatcher.swift */,
+				6748CE121F3CBFFE002941D4 /* StringMatcher.swift */,
+				6748CE181F3CC135002941D4 /* FolderContentsMatcher.swift */,
+			);
+			name = Matchers;
 			sourceTree = "<group>";
 		};
 		6773F2CB1F3A168300AFE89A /* Edit Rules */ = {
@@ -240,8 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				0978BEC01EB393110023AC66 /* ViewController.swift */,
-				67C5300E1F3383BE00D3B5FD /* Rules */,
-				6773F2CB1F3A168300AFE89A /* Edit Rules */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -249,8 +294,7 @@
 		67B436181EB3DC9F003E5886 /* FileSystem */ = {
 			isa = PBXGroup;
 			children = (
-				67C530001F3375D100D3B5FD /* Folder Rule */,
-				67FAAAD51EB79ADE00224C24 /* FileRule.swift */,
+				67C530001F3375D100D3B5FD /* Rules */,
 				674F95171F27A07C000A5A4E /* FileSystemObject.swift */,
 				67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */,
 			);
@@ -267,21 +311,14 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		67C52FFC1F31267900D3B5FD /* Edit Folder Rule */ = {
+		67C530001F3375D100D3B5FD /* Rules */ = {
 			isa = PBXGroup;
 			children = (
+				6748CE111F3CBFEC002941D4 /* Matchers */,
+				6748CE101F3CBFD1002941D4 /* File Rule */,
+				6748CE0F1F3CBFBA002941D4 /* Folder Rule */,
 			);
-			name = "Edit Folder Rule";
-			sourceTree = "<group>";
-		};
-		67C530001F3375D100D3B5FD /* Folder Rule */ = {
-			isa = PBXGroup;
-			children = (
-				67AE4A721F30FD2C00E9D1FE /* FolderRule.swift */,
-				67C530211F33980100D3B5FD /* FolderRuleBuilder.swift */,
-				6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */,
-			);
-			name = "Folder Rule";
+			name = Rules;
 			sourceTree = "<group>";
 		};
 		67C530011F337F6500D3B5FD /* File Rules */ = {
@@ -311,9 +348,8 @@
 				67A02E1A1EB4079B00D2A8CA /* App.storyboard */,
 				67AE4A5E1F2C84B300E9D1FE /* FileRuleFormatter.swift */,
 				67AE4A751F311C4D00E9D1FE /* Main */,
-				67C530011F337F6500D3B5FD /* File Rules */,
-				67AE4A601F2CA25B00E9D1FE /* Edit File Rule */,
-				67C52FFC1F31267900D3B5FD /* Edit Folder Rule */,
+				67C5300E1F3383BE00D3B5FD /* Rules */,
+				6773F2CB1F3A168300AFE89A /* Edit Rules */,
 			);
 			name = AppPanel;
 			sourceTree = "<group>";
@@ -545,6 +581,7 @@
 				6793709E1F27B890003E6A9A /* Array+Extensions.swift in Sources */,
 				0978BEC11EB393110023AC66 /* ViewController.swift in Sources */,
 				67C530221F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */,
+				6748CE161F3CC083002941D4 /* PathMatcher.swift in Sources */,
 				67A02E1E1EB4F21D00D2A8CA /* Settings.swift in Sources */,
 				67C5301D1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */,
 				67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
@@ -564,6 +601,8 @@
 				6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */,
 				67B77F011F3A0F46000830EF /* NSTextField+Extensions.swift in Sources */,
 				679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */,
+				6748CE191F3CC135002941D4 /* FolderContentsMatcher.swift in Sources */,
+				6748CE131F3CBFFE002941D4 /* StringMatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,14 +622,17 @@
 				67AE4A6F1F2CD94500E9D1FE /* FileRuleConstructor.swift in Sources */,
 				67AE4A781F311D0D00E9D1FE /* FileRulesTableController.swift in Sources */,
 				6793709F1F27B890003E6A9A /* Array+Extensions.swift in Sources */,
+				6748CE141F3CBFFE002941D4 /* StringMatcher.swift in Sources */,
 				67C530231F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */,
 				67AE4A711F2CE3BA00E9D1FE /* FileStructureBuilderTests.swift in Sources */,
 				67C530261F339D1700D3B5FD /* ConditionEditorView.swift in Sources */,
 				67AE4A6D1F2CD93D00E9D1FE /* ViewController.swift in Sources */,
+				6748CE1A1F3CC135002941D4 /* FolderContentsMatcher.swift in Sources */,
 				67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */,
 				67AE4A661F2CD53400E9D1FE /* FileRuleTests.swift in Sources */,
 				67AE4A6C1F2CD93B00E9D1FE /* FileRuleFormatter.swift in Sources */,
 				67AE4A681F2CD92700E9D1FE /* StringRepresentable.swift in Sources */,
+				6748CE171F3CC083002941D4 /* PathMatcher.swift in Sources */,
 				679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */,
 				67AE4A741F30FD2C00E9D1FE /* FolderRule.swift in Sources */,
 			);

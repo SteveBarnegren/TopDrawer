@@ -8,26 +8,6 @@
 
 import Foundation
 
-class FolderConditionBulder {
-    
-    enum ConditonType {
-        case name
-        case path
-        case contains
-    }
-}
-
-class FolderRuleBuilder {
-    
-    var matchType = FolderRule.MatchType.all
-    
-    
-    
-    
-}
-
-// Do we need the stuff above here???? ^^^^^^^
-
 protocol DecisionTreeElement: Equatable {
     /** Returns the input required to reconstruct the value from a decision tree */
     func decisionTreeInput() -> String
@@ -221,7 +201,7 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
 
 // MARK: - FolderRule Condition
 
-extension FolderRule.ContentsMatcher {
+extension FolderContentsMatcher {
     
     var inputString: String {
         switch self {
