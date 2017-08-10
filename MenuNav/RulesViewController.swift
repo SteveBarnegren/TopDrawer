@@ -62,7 +62,7 @@ class RulesViewController: NSViewController {
         
         state = .newRule
         
-        let editRule = EditFolderRuleViewController(existingRule: nil)
+        let editRule = EditRuleViewController(existingRule: nil)
         editRule.delegate = self
         
         // Reaching in to the parent here is terrible, will have to come up with a better solution
@@ -80,7 +80,7 @@ class RulesViewController: NSViewController {
         state = .editingRule(index: index)
         
         let rule = Settings.folderRules[index]
-        let editRule = EditFolderRuleViewController(existingRule: rule)
+        let editRule = EditRuleViewController(existingRule: rule)
         editRule.delegate = self
         
         // Reaching in to the parent here is terrible, will have to come up with a better solution
@@ -141,9 +141,9 @@ extension RulesViewController: RuleCollectionViewItemDelegate {
     }
 }
 
-extension RulesViewController: EditFolderRuleViewControllerDelegate {
+extension RulesViewController: EditRuleViewControllerDelegate {
     
-    func editFolderRuleViewControllerDidEditRule(_ rule: FolderRule) {
+    func editRuleViewControllerDidEditRule(_ rule: FolderRule) {
         
         switch state {
         case .newRule:

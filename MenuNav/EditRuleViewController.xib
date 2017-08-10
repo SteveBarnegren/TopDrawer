@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="EditFolderRuleViewController" customModule="MenuNav" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="EditRuleViewController" customModule="MenuNav" customModuleProvider="target">
             <connections>
                 <outlet property="finishButton" destination="GRh-7N-mPU" id="ng5-xH-qwa"/>
                 <outlet property="scrollView" destination="gGh-Ns-iCg" id="9zf-CG-3YA"/>

@@ -53,10 +53,10 @@
 		67C530121F3383E200D3B5FD /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5300F1F3383E200D3B5FD /* RulesViewController.swift */; };
 		67C530131F3383E200D3B5FD /* RulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C530101F3383E200D3B5FD /* RulesViewController.xib */; };
 		67C530141F3383E200D3B5FD /* RulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C530101F3383E200D3B5FD /* RulesViewController.xib */; };
-		67C5301D1F338A9400D3B5FD /* EditFolderRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5301B1F338A9400D3B5FD /* EditFolderRuleViewController.swift */; };
-		67C5301E1F338A9400D3B5FD /* EditFolderRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5301B1F338A9400D3B5FD /* EditFolderRuleViewController.swift */; };
-		67C5301F1F338A9400D3B5FD /* EditFolderRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C5301C1F338A9400D3B5FD /* EditFolderRuleViewController.xib */; };
-		67C530201F338A9400D3B5FD /* EditFolderRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C5301C1F338A9400D3B5FD /* EditFolderRuleViewController.xib */; };
+		67C5301D1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5301B1F338A9400D3B5FD /* EditRuleViewController.swift */; };
+		67C5301E1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5301B1F338A9400D3B5FD /* EditRuleViewController.swift */; };
+		67C5301F1F338A9400D3B5FD /* EditRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */; };
+		67C530201F338A9400D3B5FD /* EditRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */; };
 		67C530221F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530211F33980100D3B5FD /* FolderRuleBuilder.swift */; };
 		67C530231F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530211F33980100D3B5FD /* FolderRuleBuilder.swift */; };
 		67C530251F339D1700D3B5FD /* EditFolderConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530241F339D1700D3B5FD /* EditFolderConditionView.swift */; };
@@ -112,8 +112,8 @@
 		67C530091F33800D00D3B5FD /* FileRulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileRulesViewController.xib; sourceTree = "<group>"; };
 		67C5300F1F3383E200D3B5FD /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		67C530101F3383E200D3B5FD /* RulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RulesViewController.xib; sourceTree = "<group>"; };
-		67C5301B1F338A9400D3B5FD /* EditFolderRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFolderRuleViewController.swift; sourceTree = "<group>"; };
-		67C5301C1F338A9400D3B5FD /* EditFolderRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditFolderRuleViewController.xib; sourceTree = "<group>"; };
+		67C5301B1F338A9400D3B5FD /* EditRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRuleViewController.swift; sourceTree = "<group>"; };
+		67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditRuleViewController.xib; sourceTree = "<group>"; };
 		67C530211F33980100D3B5FD /* FolderRuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderRuleBuilder.swift; sourceTree = "<group>"; };
 		67C530241F339D1700D3B5FD /* EditFolderConditionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFolderConditionView.swift; sourceTree = "<group>"; };
 		67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRepresentable.swift; sourceTree = "<group>"; };
@@ -199,14 +199,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6773F2CB1F3A168300AFE89A /* Edit Folder Rules */ = {
+		6773F2CB1F3A168300AFE89A /* Edit Rules */ = {
 			isa = PBXGroup;
 			children = (
-				67C5301B1F338A9400D3B5FD /* EditFolderRuleViewController.swift */,
-				67C5301C1F338A9400D3B5FD /* EditFolderRuleViewController.xib */,
+				67C5301B1F338A9400D3B5FD /* EditRuleViewController.swift */,
+				67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */,
 				67C530241F339D1700D3B5FD /* EditFolderConditionView.swift */,
 			);
-			name = "Edit Folder Rules";
+			name = "Edit Rules";
 			sourceTree = "<group>";
 		};
 		679370951F27A93B003E6A9A /* Protocols */ = {
@@ -240,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				0978BEC01EB393110023AC66 /* ViewController.swift */,
+				67C5300E1F3383BE00D3B5FD /* Rules */,
+				6773F2CB1F3A168300AFE89A /* Edit Rules */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -292,16 +294,15 @@
 			name = "File Rules";
 			sourceTree = "<group>";
 		};
-		67C5300E1F3383BE00D3B5FD /* Folder Rules */ = {
+		67C5300E1F3383BE00D3B5FD /* Rules */ = {
 			isa = PBXGroup;
 			children = (
 				67C5300F1F3383E200D3B5FD /* RulesViewController.swift */,
 				67C530101F3383E200D3B5FD /* RulesViewController.xib */,
 				6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */,
 				6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */,
-				6773F2CB1F3A168300AFE89A /* Edit Folder Rules */,
 			);
-			name = "Folder Rules";
+			name = Rules;
 			sourceTree = "<group>";
 		};
 		67FAAAD21EB724CD00224C24 /* AppPanel */ = {
@@ -311,7 +312,6 @@
 				67AE4A5E1F2C84B300E9D1FE /* FileRuleFormatter.swift */,
 				67AE4A751F311C4D00E9D1FE /* Main */,
 				67C530011F337F6500D3B5FD /* File Rules */,
-				67C5300E1F3383BE00D3B5FD /* Folder Rules */,
 				67AE4A601F2CA25B00E9D1FE /* Edit File Rule */,
 				67C52FFC1F31267900D3B5FD /* Edit Folder Rule */,
 			);
@@ -422,7 +422,7 @@
 			files = (
 				67C530131F3383E200D3B5FD /* RulesViewController.xib in Resources */,
 				0978BEC31EB393110023AC66 /* Assets.xcassets in Resources */,
-				67C5301F1F338A9400D3B5FD /* EditFolderRuleViewController.xib in Resources */,
+				67C5301F1F338A9400D3B5FD /* EditRuleViewController.xib in Resources */,
 				0978BEC61EB393110023AC66 /* Main.storyboard in Resources */,
 				67C5300C1F33800D00D3B5FD /* FileRulesViewController.xib in Resources */,
 				67A02E1B1EB4079B00D2A8CA /* App.storyboard in Resources */,
@@ -436,7 +436,7 @@
 			files = (
 				67C530141F3383E200D3B5FD /* RulesViewController.xib in Resources */,
 				67C5300D1F33800D00D3B5FD /* FileRulesViewController.xib in Resources */,
-				67C530201F338A9400D3B5FD /* EditFolderRuleViewController.xib in Resources */,
+				67C530201F338A9400D3B5FD /* EditRuleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +546,7 @@
 				0978BEC11EB393110023AC66 /* ViewController.swift in Sources */,
 				67C530221F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */,
 				67A02E1E1EB4F21D00D2A8CA /* Settings.swift in Sources */,
-				67C5301D1F338A9400D3B5FD /* EditFolderRuleViewController.swift in Sources */,
+				67C5301D1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */,
 				67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
 				67AE4A771F311D0D00E9D1FE /* FileRulesTableController.swift in Sources */,
 				67A02E191EB4001A00D2A8CA /* NSImage+Extensions.swift in Sources */,
@@ -573,7 +573,7 @@
 			files = (
 				67AE4A671F2CD92100E9D1FE /* AppDelegate.swift in Sources */,
 				67AE4A6B1F2CD93600E9D1FE /* FileSystemObject.swift in Sources */,
-				67C5301E1F338A9400D3B5FD /* EditFolderRuleViewController.swift in Sources */,
+				67C5301E1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */,
 				67AE4A6E1F2CD94200E9D1FE /* EditFileRuleViewController.swift in Sources */,
 				67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
 				67C530121F3383E200D3B5FD /* RulesViewController.swift in Sources */,

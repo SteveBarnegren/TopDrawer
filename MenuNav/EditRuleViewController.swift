@@ -8,11 +8,11 @@
 
 import Cocoa
 
-protocol EditFolderRuleViewControllerDelegate: class {
-    func editFolderRuleViewControllerDidEditRule(_ rule: FolderRule)
+protocol EditRuleViewControllerDelegate: class {
+    func editRuleViewControllerDidEditRule(_ rule: FolderRule)
 }
 
-class EditFolderRuleViewController: NSViewController {
+class EditRuleViewController: NSViewController {
     
     // MARK: - Types
     
@@ -29,7 +29,7 @@ class EditFolderRuleViewController: NSViewController {
     
     fileprivate var existingRule: FolderRule?
     fileprivate var conditionViews = [EditFolderConditionView]()
-    weak var delegate: EditFolderRuleViewControllerDelegate?
+    weak var delegate: EditRuleViewControllerDelegate?
     
     private var state: State {
         
@@ -58,7 +58,7 @@ class EditFolderRuleViewController: NSViewController {
     // MARK: - Init
     
     init(existingRule: FolderRule?) {
-        super.init(nibName: "EditFolderRuleViewController", bundle: nil)!
+        super.init(nibName: "EditRuleViewController", bundle: nil)!
         
         self.existingRule = existingRule
         
@@ -190,7 +190,7 @@ class EditFolderRuleViewController: NSViewController {
         
         let conditions = conditionViews.map{ $0.makeCondition()! }
         let rule = FolderRule(conditions: conditions, matchType: .all)
-        delegate?.editFolderRuleViewControllerDidEditRule(rule)
+        delegate?.editRuleViewControllerDidEditRule(rule)
         
         dismiss()
     }
@@ -209,7 +209,7 @@ class EditFolderRuleViewController: NSViewController {
     
 }
 
-extension EditFolderRuleViewController: EditFolderConditionViewDelegate {
+extension EditRuleViewController: EditFolderConditionViewDelegate {
     
     func editFolderConditionViewWantsDeletion(conditionView: EditFolderConditionView) {
         print("VC: delete condition")
