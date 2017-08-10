@@ -28,7 +28,7 @@ class EditRuleViewController: NSViewController {
     @IBOutlet weak fileprivate var finishButton: NSButton!
     
     fileprivate var existingRule: FolderRule?
-    fileprivate var conditionViews = [EditFolderConditionView]()
+    fileprivate var conditionViews = [ConditionEditorView]()
     weak var delegate: EditRuleViewControllerDelegate?
     
     private var state: State {
@@ -156,7 +156,7 @@ class EditRuleViewController: NSViewController {
             tree.matchTree(toElement: condition)
         }
         
-        let conditionView = EditFolderConditionView(frame: .zero)
+        let conditionView = ConditionEditorView(frame: .zero)
         scrollView.documentView?.addSubview(conditionView)
         conditionView.configure(withNode: tree)
         conditionView.delegate = self
@@ -167,7 +167,7 @@ class EditRuleViewController: NSViewController {
         updateForCurrentState()
     }
     
-    func removeConditionView(_ conditionView: EditFolderConditionView) {
+    func removeConditionView(_ conditionView: ConditionEditorView) {
         
         conditionViews.filter{ $0 === conditionView }
             .forEach{ $0.removeFromSuperview() }
@@ -209,15 +209,15 @@ class EditRuleViewController: NSViewController {
     
 }
 
-extension EditRuleViewController: EditFolderConditionViewDelegate {
+extension EditRuleViewController: ConditionEditorViewDelegate {
     
-    func editFolderConditionViewWantsDeletion(conditionView: EditFolderConditionView) {
+    func conditionEditorViewWantsDeletion(conditionView: ConditionEditorView) {
         print("VC: delete condition")
         
         removeConditionView(conditionView)
     }
     
-    func editFolderConditionViewValueChanged(conditionView: EditFolderConditionView) {
+    func conditionEditorViewValueChanged(conditionView: ConditionEditorView) {
         updateForCurrentState()
     }
 }

@@ -9,16 +9,16 @@
 import Cocoa
 import SBAutoLayout
 
-protocol EditFolderConditionViewDelegate: class {
-    func editFolderConditionViewWantsDeletion(conditionView: EditFolderConditionView)
-    func editFolderConditionViewValueChanged(conditionView: EditFolderConditionView)
+protocol ConditionEditorViewDelegate: class {
+    func conditionEditorViewWantsDeletion(conditionView: ConditionEditorView)
+    func conditionEditorViewValueChanged(conditionView: ConditionEditorView)
 }
 
-class EditFolderConditionView: NSView {
+class ConditionEditorView: NSView {
     
     // MARK: - Preperties
     
-    weak var delegate: EditFolderConditionViewDelegate?
+    weak var delegate: ConditionEditorViewDelegate?
     private var views = [NSView]()
     private var node: DecisionNode<FolderRule.Condition>!
     fileprivate var viewsAndNodes = Dictionary<NSView, DecisionNode<FolderRule.Condition>>()
@@ -158,13 +158,13 @@ class EditFolderConditionView: NSView {
         reconfigure()
         updateValidityIndicator()
         
-        delegate?.editFolderConditionViewValueChanged(conditionView: self)
+        delegate?.conditionEditorViewValueChanged(conditionView: self)
     }
     
     @objc private func deleteButtonPressed() {
         Swift.print("Delete button pressed")
         
-        delegate?.editFolderConditionViewWantsDeletion(conditionView: self)
+        delegate?.conditionEditorViewWantsDeletion(conditionView: self)
     }
     
     // MARK: - Update UI
@@ -188,7 +188,7 @@ class EditFolderConditionView: NSView {
 }
 
 // MARK: - NSTextFieldDelegate
-extension EditFolderConditionView: NSTextFieldDelegate {
+extension ConditionEditorView: NSTextFieldDelegate {
     
     override func controlTextDidChange(_ obj: Notification) {
         
@@ -200,6 +200,6 @@ extension EditFolderConditionView: NSTextFieldDelegate {
         node?.textValue = textField.stringValueOptional
         updateValidityIndicator()
         
-        delegate?.editFolderConditionViewValueChanged(conditionView: self)
+        delegate?.conditionEditorViewValueChanged(conditionView: self)
     }
 }
