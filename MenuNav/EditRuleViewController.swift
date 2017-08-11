@@ -24,6 +24,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
     
     // MARK: - Properties
     
+    @IBOutlet weak fileprivate var titleLabel: NSTextField!
     @IBOutlet weak fileprivate var scrollView: NSScrollView!
     @IBOutlet weak fileprivate var finishButton: NSButton!
     
@@ -48,25 +49,26 @@ class EditRuleViewController<T: Rule>: NSViewController {
         return .validConditions
     }
     
-    private lazy var promptView: TablePromptView = {
-    
-        let prompt = TablePromptView(title: "Add a condition",
-                                     message: "Add a condition to exlude a folder",
-                                     handler: self.addConditionView)
-        return prompt
-    }()
-    
+    private var promptView: TablePromptView!
     
     // MARK: - Init
     
-    init(existingRule: T?) {
+    init(existingRule: T?, viewModel: RulesViewModel) {
         super.init(nibName: "EditRuleViewController", bundle: nil)!
         
         self.existingRule = existingRule
         
         // Prompt view
+        promptView = TablePromptView(title: viewModel.addConditionPromptTitle,
+                                     message: viewModel.addCondtionPromptMessage,
+                                     buttonTitle: viewModel.addConditionPromptButtonTitle,
+                                     handler: self.addConditionView)
+
         view.addSubview(promptView)
         promptView.pinToSuperviewEdges()
+        
+        // Title Label
+        titleLabel.stringValue = viewModel.editRuleTitle
         
         // Update UI
         updateForCurrentState()

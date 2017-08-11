@@ -26,6 +26,18 @@ class RulesViewController<T: Rule>: NSViewController {
     let dataSource = RulesCollectionDataSource()
     var state = State.normal
     let ruleLoader = T.ruleLoader
+    let viewModel: RulesViewModel
+    
+    // MARK: - Init
+    
+    init(viewModel: RulesViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: "RulesViewController", bundle: nil)!
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UIViewController
 
@@ -68,8 +80,7 @@ class RulesViewController<T: Rule>: NSViewController {
         
         state = .newRule
         
-        let editRule = EditRuleViewController<T>(existingRule: nil)
-        //editRule.delegate = self
+        let editRule = EditRuleViewController<T>(existingRule: nil, viewModel: viewModel)
         editRule.didEditRuleHandler = didEditRuleHandler
         
         // Reaching in to the parent here is terrible, will have to come up with a better solution
@@ -79,7 +90,7 @@ class RulesViewController<T: Rule>: NSViewController {
     }
     
     func editRule(atIndex index: Int) {
-        /*
+        
         guard let parentViewController = parent else {
             fatalError("Expected parent view controller")
         }
@@ -87,25 +98,14 @@ class RulesViewController<T: Rule>: NSViewController {
         state = .editingRule(index: index)
         
         let rule = ruleLoader.rules[index]
-        let editRule = EditRuleViewController(existingRule: rule)
-        editRule.delegate = self
+        let editRule = EditRuleViewController(existingRule: rule, viewModel: viewModel)
+        editRule.didEditRuleHandler = didEditRuleHandler
         
         // Reaching in to the parent here is terrible, will have to come up with a better solution
         parentViewController.addChildViewController(editRule)
         parentViewController.view.addSubview(editRule.view)
         editRule.view.pinToSuperviewEdges()
- */
     }
-    
-    // MARK: - Collection Item delegation
-    
-//    func ruleItemEditButtonPressed(item: RuleCollectionViewItem<T>) {
-//        
-//        let indexPath = collectionView.indexPath(for: item)!
-//        print("Item selected at row: \(indexPath.item)")
-//        
-//        editRule(atIndex: indexPath.item)
-//    }
     
     // MARK: - Edit Rule Delegation
     
@@ -162,7 +162,6 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
                                      conditionHeight: conditionLabelHeight,
                                      conditionSpacing: conditionLabelSpacing)
         collectionViewItem.delegate = self
-        //collectionViewItem.editPressedHandler = ruleItemEditButtonPressed
         
         return collectionViewItem
     }
@@ -178,8 +177,16 @@ extension RulesViewController: RuleCollectionViewItemDelegate {
         
         editRule(atIndex: indexPath.item)
     }
+    
+    func ruleCollectionViewItemDeletePressed(item: RuleCollectionViewItem) {
+        
+        let indexPath = collectionView.indexPath(for: item)!
+        print("Item selected at row: \(indexPath.item)")
+        
+        ruleLoader.deleteRule(atIndex: indexPath.item)
+        collectionView.reloadData()
+    }
 }
- 
 
 /*
 extension RulesViewController: EditRuleViewControllerDelegate {

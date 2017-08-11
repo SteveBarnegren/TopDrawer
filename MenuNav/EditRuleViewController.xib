@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="finishButton" destination="GRh-7N-mPU" id="ng5-xH-qwa"/>
                 <outlet property="scrollView" destination="gGh-Ns-iCg" id="9zf-CG-3YA"/>
+                <outlet property="titleLabel" destination="uVV-r4-fee" id="WmK-OL-s3K"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>

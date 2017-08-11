@@ -34,17 +34,20 @@ class FileStructureBuilder {
     // MARK: - Init
     
     init(fileReader: FileReader,
-         rules: [FileRule],
+         fileRules: [FileRule],
+         folderRules: [FolderRule],
          options: Options) {
         
-        self.rules = rules
+        self.fileRules = fileRules
+        self.folderRules = folderRules
         self.fileReader = fileReader
         self.options = options
     }
 
     // MARK: - Properties
     
-    private let rules: [FileRule]
+    private let fileRules: [FileRule]
+    private let folderRules: [FolderRule]
     private let fileReader: FileReader
     private let options: Options
     
@@ -99,9 +102,9 @@ class FileStructureBuilder {
             var directory = Directory(name: name,
                                       path: path)
             
-//            if !isBaseDirectory && shouldInclude(directory: directory) == false {
-//                return nil
-//            }
+            if !isBaseDirectory && shouldExclude(directory: directory) {
+                return nil
+            }
             
             directory.image = imageForPath(path)
             
@@ -223,7 +226,7 @@ class FileStructureBuilder {
     
     // MARK: - Helpers
     
-    func doesDirectoryContainAcceptedFiles(_ directory: Directory) -> Bool {
+    private func doesDirectoryContainAcceptedFiles(_ directory: Directory) -> Bool {
         
         for file in directory.containedFiles {
             if shouldInclude(file: file) {
@@ -234,19 +237,28 @@ class FileStructureBuilder {
         return false
     }
     
-    func shouldInclude(file: File) -> Bool {
-        
-        var include = false
-        var exclude = false
+    private func shouldInclude(file: File) -> Bool {
 
-        for rule in rules {
+        for rule in fileRules {
             
             if rule.includes(file: file) {
-                include = true
+                return true
             }
         }
         
-        return (include && !exclude)
+        return false
+    }
+    
+    private func shouldExclude(directory: Directory) -> Bool {
+        
+        for rule in folderRules {
+            
+            if rule.excludes(directory: directory) {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func imageForPath(_ path: String) -> NSImage {
@@ -254,5 +266,5 @@ class FileStructureBuilder {
         image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
         return image
     }
-
+    
 }

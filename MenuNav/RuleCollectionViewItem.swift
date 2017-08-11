@@ -11,6 +11,7 @@ import SBAutoLayout
 
 protocol RuleCollectionViewItemDelegate: class {
     func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem)
+    func ruleCollectionViewItemDeletePressed(item: RuleCollectionViewItem)
 }
 
 class RuleCollectionViewItem: NSCollectionViewItem {
@@ -19,10 +20,9 @@ class RuleCollectionViewItem: NSCollectionViewItem {
     
     @IBOutlet weak fileprivate var conditionsStackView: NSStackView!
     @IBOutlet weak fileprivate var editButton: NSButton!
-    
+    @IBOutlet weak fileprivate var deleteButton: NSButton!
+
     weak var delegate: RuleCollectionViewItemDelegate?
-    
-    //var editPressedHandler: (RuleCollectionViewItem) -> () = {_ in}
     
     // MARK: - Configure
     
@@ -63,8 +63,12 @@ class RuleCollectionViewItem: NSCollectionViewItem {
     
     @IBAction private func editButtonPressed(sender: NSButton){
         print("Edit button pressed")
-        //editPressedHandler(self)
         delegate?.ruleCollectionViewItemEditPressed(item: self)
+    }
+    
+    @IBAction private func deleteButtonPressed(sender: NSButton){
+        print("Delete button pressed")
+        delegate?.ruleCollectionViewItemDeletePressed(item: self)
     }
     
 }

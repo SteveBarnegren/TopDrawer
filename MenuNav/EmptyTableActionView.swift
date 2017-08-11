@@ -39,7 +39,7 @@ class TablePromptView: NSView {
     
     // MARK: - Init
     
-    init(title: String, message: String, handler: @escaping () -> ()) {
+    init(title: String, message: String, buttonTitle: String, handler: @escaping () -> ()) {
         
         self.handler = handler
         
@@ -54,6 +54,9 @@ class TablePromptView: NSView {
         
         // Message label
         messageLabel.stringValue = message
+        
+        // Action Button
+        actionButton.title = buttonTitle
     }
     
     required init?(coder: NSCoder) {

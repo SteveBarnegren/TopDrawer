@@ -88,4 +88,10 @@ class RuleLoader<T: Rule> {
         copy[index] = rule
         rules = copy
     }
+    
+    func deleteRule(atIndex index: Int) {
+        var copy = rules
+        copy.remove(at: index)
+        rules = copy
+    }
 }

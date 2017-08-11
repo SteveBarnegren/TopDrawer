@@ -45,7 +45,12 @@ class ViewController: NSViewController {
         
         self.segmentedControl.selectedSegment = 0
         
-        let fileRules = RulesViewController<FileRule>.init(nibName: "RulesViewController", bundle: nil)!
+        let viewModel = RulesViewModel(editRuleTitle: "Add File Rule",
+                                       addConditionPromptTitle: "Add a conditon",
+                                       addCondtionPromptMessage: "Add a condition to include files",
+                                       addConditionPromptButtonTitle: "Add a Condition")
+        
+        let fileRules = RulesViewController<FileRule>(viewModel: viewModel)
         self .show(contentViewController: fileRules)
     }
     
@@ -53,8 +58,13 @@ class ViewController: NSViewController {
         print("Show folder rules")
         self.segmentedControl.selectedSegment = 1
         
-        let folderRules = RulesViewController<FolderRule>.init(nibName: "RulesViewController", bundle: nil)!
-        self .show(contentViewController: folderRules)
+        let viewModel = RulesViewModel(editRuleTitle: "Add Folder Rule",
+                                       addConditionPromptTitle: "Add a condtion",
+                                       addCondtionPromptMessage: "Add condtions to exclude a folder, even if it contains matching files",
+                                       addConditionPromptButtonTitle: "Add a Condition")
+        
+        let folderRules = RulesViewController<FileRule>(viewModel: viewModel)
+        self.show(contentViewController: folderRules)
     }
     
     func showSettings() {
