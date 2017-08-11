@@ -46,6 +46,15 @@ struct FileRule: Rule {
     }
 }
 
+// MARK: - Equatable
+
+extension FileRule: Equatable {
+    
+    static func ==(lhs: FileRule, rhs: FileRule) -> Bool {
+        return lhs.conditions == rhs.conditions
+    }
+}
+
 // MARK: - DictionaryRepresentable
 extension FileRule: DictionaryRepresentable {
     

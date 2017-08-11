@@ -10,47 +10,11 @@ import XCTest
 
 class FolderContentsMatcherTests: XCTestCase {
     
-    // MARK: - Helpers
-    
-    func makeDirectory(withFileNames fileNames: [String]) -> Directory {
-        return makeDirectory(fileNames: fileNames, folderNames: [])
-    }
-
-    func makeDirectory(withFolderNames folderNames: [String]) -> Directory {
-        return makeDirectory(fileNames: [], folderNames: folderNames)
-    }
-    
-    func makeDirectory(fileNames: [String], folderNames: [String]) -> Directory {
-        
-        var directory = Directory(name: "dir", path: "root/dir")
-        
-        let files = fileNames.map{ (string: String) -> File in
-            
-            let components = string.components(separatedBy: ".")
-            assert(components.count == 2, "Expected a name and extension")
-            let path = "root/dir/\(string)"
-            return File(name: components[0], ext: components[1], path: path)
-        }
-        
-        let folders = folderNames.map{ (string: String) -> Directory in
-            let path = "root/dir/\(string)"
-            return Directory(name: string, path: path)
-        }
-        
-        var contents = [FileSystemObject]()
-        contents.append(contentsOf: files.map{ $0 as FileSystemObject })
-        contents.append(contentsOf: folders.map{ $0 as FileSystemObject })
-        directory.contents = contents
-        
-        return directory
-    }
-    
-    
     // MARK: - Test Matching
     
     func testMatchesFilesWithExtension() {
         
-        let folder = makeDirectory(withFileNames: ["dog.png"])
+        let folder = TestDirectoryBuilder.makeDirectory(withFileNames: ["dog.png"])
         let matcher = FolderContentsMatcher.filesWithExtension("png")
         
         XCTAssertTrue(matcher.matches(directory: folder))
@@ -58,7 +22,7 @@ class FolderContentsMatcherTests: XCTestCase {
     
     func testFailsToMatchFilesWithExtension() {
         
-        let folder = makeDirectory(withFileNames: ["dog.gif"])
+        let folder = TestDirectoryBuilder.makeDirectory(withFileNames: ["dog.gif"])
         let matcher = FolderContentsMatcher.filesWithExtension("png")
         
         XCTAssertFalse(matcher.matches(directory: folder))
@@ -66,7 +30,7 @@ class FolderContentsMatcherTests: XCTestCase {
     
     func testMatchesFilesWithNameAndExtension() {
         
-        let folder = makeDirectory(withFileNames: ["dog.png"])
+        let folder = TestDirectoryBuilder.makeDirectory(withFileNames: ["dog.png"])
         let matcher = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "png")
         
         XCTAssertTrue(matcher.matches(directory: folder))
@@ -74,7 +38,7 @@ class FolderContentsMatcherTests: XCTestCase {
     
     func testFailsToMatchFilesWithNameAndExtension() {
         
-        let folder = makeDirectory(withFileNames: ["dog.gif", "cat.png"])
+        let folder = TestDirectoryBuilder.makeDirectory(withFileNames: ["dog.gif", "cat.png"])
         let matcher = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "png")
         
         XCTAssertFalse(matcher.matches(directory: folder))
@@ -82,7 +46,7 @@ class FolderContentsMatcherTests: XCTestCase {
     
     func testMatchesFoldersWithName() {
         
-        let folder = makeDirectory(withFolderNames: ["animals"])
+        let folder = TestDirectoryBuilder.makeDirectory(withFolderNames: ["animals"])
         let matcher = FolderContentsMatcher.foldersWithName("animals")
         
         XCTAssertTrue(matcher.matches(directory: folder))
@@ -90,7 +54,7 @@ class FolderContentsMatcherTests: XCTestCase {
     
     func testFailsToMatchFoldersWithName() {
         
-        let folder = makeDirectory(withFolderNames: ["no animals here"])
+        let folder = TestDirectoryBuilder.makeDirectory(withFolderNames: ["no animals here"])
         let matcher = FolderContentsMatcher.foldersWithName("animals")
         
         XCTAssertFalse(matcher.matches(directory: folder))
