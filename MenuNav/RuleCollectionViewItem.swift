@@ -9,22 +9,24 @@
 import Cocoa
 import SBAutoLayout
 
-protocol RuleCollectionViewItemDelegate: class {
-    func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem)
-}
+//protocol RuleCollectionViewItemDelegate: class {
+//    func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem)
+//}
 
-class RuleCollectionViewItem: NSCollectionViewItem {
+class RuleCollectionViewItem<T: Rule>: NSCollectionViewItem {
     
     // MARK: - Properties
     
     @IBOutlet weak fileprivate var conditionsStackView: NSStackView!
-    weak var delegate: RuleCollectionViewItemDelegate?
+    @IBOutlet weak fileprivate var editButton: NSButton!
 
     let conditionFormatter = FolderConditionFormatter()
     
+    var editPressedHandler: (RuleCollectionViewItem<T>) -> () = {_ in}
+    
     // MARK: - Configure
     
-    func configure(withRule rule: FolderRule,
+    func configure(withRule rule: T,
                    conditionHeight: CGFloat,
                    conditionSpacing: CGFloat) {
         
@@ -36,7 +38,7 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         rule.conditions.forEach{
 
             let label = NSTextField.createWithLabelStyle()
-            label.stringValue = conditionFormatter.string(fromCondition: $0)
+            label.stringValue = $0.displayDiscription
             conditionsStackView.addArrangedSubview(label)
             //label.pinHeight(conditionHeight)
         }
@@ -52,13 +54,16 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = NSColor.orange.cgColor
+        
+        editButton.target = self
+        editButton.action = #selector(editButtonPressed(sender:))
     }
     
     // MARK: - Actions
     
     @IBAction private func editButtonPressed(sender: NSButton){
         print("Edit button pressed")
-        delegate?.ruleCollectionViewItemEditPressed(item: self)
+        editPressedHandler(self)
     }
     
 }

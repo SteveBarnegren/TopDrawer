@@ -69,7 +69,7 @@ class Settings {
     }
     
     // MARK: - File Types
-        
+    /*
     static var fileRules: [FileRule] {
         
         get {
@@ -129,4 +129,5 @@ class Settings {
         rules[index] = folderRule
         folderRules = rules 
     }
+ */
 }

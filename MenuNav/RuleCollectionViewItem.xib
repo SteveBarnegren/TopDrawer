@@ -10,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="RuleCollectionViewItem" customModule="MenuNav" customModuleProvider="target">
             <connections>
                 <outlet property="conditionsStackView" destination="757-kX-KSv" id="DM5-Qm-R00"/>
+                <outlet property="editButton" destination="0iA-Cn-Ay6" id="qKr-aT-WWa"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -47,9 +48,6 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <connections>
-                                <action selector="editButtonPressedWithSender:" target="-2" id="5BL-Ld-fzC"/>
-                            </connections>
                         </button>
                     </subviews>
                     <visibilityPriorities>

@@ -94,7 +94,17 @@ class RulesViewController<T: Rule>: NSViewController {
  */
     }
     
-    // MARK: - Edit Rule Handler
+    // MARK: - Collection Item delegation
+    
+    func ruleItemEditButtonPressed(item: RuleCollectionViewItem<T>) {
+        
+        let indexPath = collectionView.indexPath(for: item)!
+        print("Item selected at row: \(indexPath.item)")
+        
+        editRule(atIndex: indexPath.item)
+    }
+    
+    // MARK: - Edit Rule Delegation
     
     func didEditRuleHandler(rule: T) {
         
@@ -140,20 +150,22 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
         
         let item = collectionView.makeItem(withIdentifier: "RuleCollectionViewItem", for: indexPath)
         
-        guard let collectionViewItem = item as? RuleCollectionViewItem else {
+        guard let collectionViewItem = item as? RuleCollectionViewItem<T> else {
             fatalError("Unable to create collection view item")
         }
         
         let rule = ruleLoader.rules[indexPath.item]
-        collectionViewItem.configure(withRule: rule as! FolderRule,
+        collectionViewItem.configure(withRule: rule,
                                      conditionHeight: conditionLabelHeight,
                                      conditionSpacing: conditionLabelSpacing)
-        collectionViewItem.delegate = self
+        //collectionViewItem.delegate = self
+        collectionViewItem.editPressedHandler = ruleItemEditButtonPressed
         
         return collectionViewItem
     }
 }
 
+/*
 extension RulesViewController: RuleCollectionViewItemDelegate {
     
     func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem) {
@@ -164,6 +176,7 @@ extension RulesViewController: RuleCollectionViewItemDelegate {
         editRule(atIndex: indexPath.item)
     }
 }
+ */
 
 /*
 extension RulesViewController: EditRuleViewControllerDelegate {

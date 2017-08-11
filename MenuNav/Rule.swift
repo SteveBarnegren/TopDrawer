@@ -8,11 +8,17 @@
 
 import Foundation
 
+// MARK: - ConditionProtocol
+
+protocol CondtionProtocol {
+    var displayDiscription: String {get}
+}
+
 // MARK: - Rule
 
 protocol Rule: DictionaryRepresentable {
     
-    associatedtype Condition: DecisionTreeElement
+    associatedtype Condition: CondtionProtocol, DecisionTreeElement
     
     static var storageKey: String {get}
     
@@ -25,6 +31,16 @@ protocol Rule: DictionaryRepresentable {
     static func makeDecisionTree() -> DecisionNode<Condition>
     
 }
+
+// MARK: - FormatterSupplier
+
+protocol FormatterProvider {
+    
+    associatedtype T
+    
+    func string(from: T) -> String
+}
+
 
 // MARK: - Rule Loader
 

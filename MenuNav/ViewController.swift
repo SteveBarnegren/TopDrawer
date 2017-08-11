@@ -19,7 +19,6 @@ class ViewController: NSViewController {
     
     @IBOutlet weak fileprivate var contentView: NSView!
     fileprivate var contentViewController: NSViewController?
-    //let fileRulesViewController = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)
 
     // MARK: - NSViewController
     
@@ -32,9 +31,7 @@ class ViewController: NSViewController {
         
         // Update UI
         updatePathLabel()
-        //updateOpenAtLoginCheckbox()
-        //updateOnlyShowFoldersWithMatchingFilesCheckbox()
-        //updateShortenPathsWherePossibleCheckbox()
+    
         
         // Show file rules content
         //let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
@@ -46,13 +43,10 @@ class ViewController: NSViewController {
     func showFileRules() {
         print("Show file rules")
         
-//        if contentViewController is FileRulesViewController {
-//            return
-//        }
-//        
-//        let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
-//        show(contentViewController: fileRules)
-//        self.segmentedControl.selectedSegment = 0
+        self.segmentedControl.selectedSegment = 0
+        
+        let fileRules = RulesViewController<FileRule>.init(nibName: "RulesViewController", bundle: nil)!
+        self .show(contentViewController: fileRules)
     }
     
     func showFolderRules() {
