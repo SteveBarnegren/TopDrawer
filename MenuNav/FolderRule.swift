@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct FolderRule: Rule {
+struct FolderRule: Rule {
     
     static let storageKey = "FolderRules"
        
@@ -42,6 +42,15 @@ public struct FolderRule: Rule {
     
     static func makeDecisionTree() -> DecisionNode<FolderCondition> {
         return folderConditionDecisionTree()
+    }
+}
+
+// MARK: - Equtable
+
+extension FolderRule: Equatable {
+    
+    static func ==(lhs: FolderRule, rhs: FolderRule) -> Bool {
+        return lhs.conditions == rhs.conditions
     }
 }
 

@@ -41,6 +41,8 @@
 		6748CE3C1F3DCAC7002941D4 /* FolderContentsMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE3B1F3DCAC7002941D4 /* FolderContentsMatcherTests.swift */; };
 		6748CE3F1F3DDDDA002941D4 /* TestDirectoryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE3E1F3DDDDA002941D4 /* TestDirectoryBuilder.swift */; };
 		6748CE411F3DE1A3002941D4 /* FileConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE401F3DE1A3002941D4 /* FileConditionTests.swift */; };
+		6748CE441F3DE7F9002941D4 /* FolderRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE431F3DE7F9002941D4 /* FolderRuleTests.swift */; };
+		6748CE461F3DE8B4002941D4 /* FolderConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE451F3DE8B4002941D4 /* FolderConditionTests.swift */; };
 		674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
 		679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
 		679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
@@ -121,6 +123,8 @@
 		6748CE3B1F3DCAC7002941D4 /* FolderContentsMatcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderContentsMatcherTests.swift; sourceTree = "<group>"; };
 		6748CE3E1F3DDDDA002941D4 /* TestDirectoryBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDirectoryBuilder.swift; sourceTree = "<group>"; };
 		6748CE401F3DE1A3002941D4 /* FileConditionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileConditionTests.swift; sourceTree = "<group>"; };
+		6748CE431F3DE7F9002941D4 /* FolderRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderRuleTests.swift; sourceTree = "<group>"; };
+		6748CE451F3DE8B4002941D4 /* FolderConditionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderConditionTests.swift; sourceTree = "<group>"; };
 		674F95171F27A07C000A5A4E /* FileSystemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemObject.swift; sourceTree = "<group>"; };
 		679370961F27A999003E6A9A /* DictionaryRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryRepresentable.swift; sourceTree = "<group>"; };
 		6793709D1F27B890003E6A9A /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				6748CE361F3DC980002941D4 /* Utils */,
 				6748CE331F3DC353002941D4 /* Matchers */,
 				6748CE3D1F3DDCD7002941D4 /* File Rules */,
+				6748CE421F3DE7DD002941D4 /* Folder Rules */,
 				67AE4A701F2CE3BA00E9D1FE /* FileStructureBuilderTests.swift */,
 				0978BED21EB393110023AC66 /* Info.plist */,
 			);
@@ -296,6 +301,15 @@
 				6748CE401F3DE1A3002941D4 /* FileConditionTests.swift */,
 			);
 			name = "File Rules";
+			sourceTree = "<group>";
+		};
+		6748CE421F3DE7DD002941D4 /* Folder Rules */ = {
+			isa = PBXGroup;
+			children = (
+				6748CE431F3DE7F9002941D4 /* FolderRuleTests.swift */,
+				6748CE451F3DE8B4002941D4 /* FolderConditionTests.swift */,
+			);
+			name = "Folder Rules";
 			sourceTree = "<group>";
 		};
 		6773F2CB1F3A168300AFE89A /* Edit Rules */ = {
@@ -646,9 +660,11 @@
 				67AE4A6B1F2CD93600E9D1FE /* FileSystemObject.swift in Sources */,
 				6748CE2C1F3DC19A002941D4 /* NSTextField+Extensions.swift in Sources */,
 				67C5301E1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */,
+				6748CE461F3DE8B4002941D4 /* FolderConditionTests.swift in Sources */,
 				6748CE1D1F3CCC0C002941D4 /* Rule.swift in Sources */,
 				6748CE381F3DC990002941D4 /* DictionaryRepresentable+Testing.swift in Sources */,
 				67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
+				6748CE441F3DE7F9002941D4 /* FolderRuleTests.swift in Sources */,
 				6748CE2B1F3DC191002941D4 /* ConditionPromptView.swift in Sources */,
 				6748CE241F3D9EB9002941D4 /* FileCondition.swift in Sources */,
 				67C530121F3383E200D3B5FD /* RulesViewController.swift in Sources */,
