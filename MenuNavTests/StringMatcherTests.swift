@@ -145,10 +145,10 @@ class StringMatcherTests: XCTestCase {
         let containing = StringMatcher.containing("Dog")
         let notContaining = StringMatcher.notContaining("Dog")
         
-        XCTAssertTrue(matching == StringMatcher(dictionaryRepresentation: matching.dictionaryRepresentation)!)
-        XCTAssertTrue(notMatching == StringMatcher(dictionaryRepresentation: notMatching.dictionaryRepresentation)!)
-        XCTAssertTrue(containing == StringMatcher(dictionaryRepresentation: containing.dictionaryRepresentation)!)
-        XCTAssertTrue(notContaining == StringMatcher(dictionaryRepresentation: notContaining.dictionaryRepresentation)!)
+        XCTAssertTrue(matching == matching.convertedToDictionaryAndBack)
+        XCTAssertTrue(notMatching == notMatching.convertedToDictionaryAndBack)
+        XCTAssertTrue(containing == containing.convertedToDictionaryAndBack)
+        XCTAssertTrue(notContaining == notContaining.convertedToDictionaryAndBack)
     }
    
 }
