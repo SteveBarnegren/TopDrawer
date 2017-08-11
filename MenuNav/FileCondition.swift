@@ -30,7 +30,29 @@ enum FileCondition {
 
 extension FileCondition: CondtionProtocol {
     var displayDiscription: String {
-        return "File condition description"
+        
+        switch self {
+        case let .name(stringMatcher):
+            return "Name " + makeString(fromStringMatcher: stringMatcher)
+        case let .ext(stringMatcher):
+            return "Extension " + makeString(fromStringMatcher: stringMatcher)
+        case let .fullName(stringMatcher):
+            return "Full name " + makeString(fromStringMatcher: stringMatcher)
+        }
+    }
+    
+    private func makeString(fromStringMatcher stringMatcher: StringMatcher) -> String {
+        
+        switch stringMatcher {
+        case let .matching(string):
+            return "is \(string)"
+        case let .notMatching(string):
+            return "is not \(string)"
+        case let .containing(string):
+            return "contains \(string)"
+        case let .notContaining(string):
+            return "doesn't contain \(string)"
+        }
     }
 }
 
