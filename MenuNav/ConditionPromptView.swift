@@ -9,7 +9,7 @@
 import Cocoa
 import SBAutoLayout
 
-class TablePromptView: NSView {
+class ConditionPromptView: NSView {
     
     // MARK: - Properties
     

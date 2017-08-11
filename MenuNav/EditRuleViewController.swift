@@ -49,7 +49,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
         return .validConditions
     }
     
-    private var promptView: TablePromptView!
+    private var promptView: ConditionPromptView!
     
     // MARK: - Init
     
@@ -59,11 +59,11 @@ class EditRuleViewController<T: Rule>: NSViewController {
         self.existingRule = existingRule
         
         // Prompt view
-        promptView = TablePromptView(title: viewModel.addConditionPromptTitle,
-                                     message: viewModel.addCondtionPromptMessage,
-                                     buttonTitle: viewModel.addConditionPromptButtonTitle,
-                                     handler: self.addConditionView)
-
+        promptView = ConditionPromptView(title: viewModel.addConditionPromptTitle,
+                                         message: viewModel.addCondtionPromptMessage,
+                                         buttonTitle: viewModel.addConditionPromptButtonTitle,
+                                         handler: self.addConditionView)
+        
         view.addSubview(promptView)
         promptView.pinToSuperviewEdges()
         
@@ -80,7 +80,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
     }
     
     // MARK: - NSViewController
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -95,13 +95,13 @@ class EditRuleViewController<T: Rule>: NSViewController {
                 addConditionView(fromCondition: $0)
             }
         }
-
+        
         
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-   }
+    }
     
     override func viewDidLayout() {
         super.viewDidLayout()
@@ -197,7 +197,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
         
         let conditions = conditionViews.map{ $0.makeCondition()! }
         let rule = T(conditions: conditions)
-       // delegate?.editRuleViewControllerDidEditRule(rule)
+        // delegate?.editRuleViewControllerDidEditRule(rule)
         
         didEditRuleHandler(rule)
         
@@ -231,12 +231,12 @@ class EditRuleViewController<T: Rule>: NSViewController {
 }
 
 //extension EditRuleViewController: ConditionEditorViewDelegate {
-//    
+//
 //    func conditionEditorViewWantsDeletion<T>(conditionView: ConditionEditorView<T>) where T : DecisionTreeElement {
 //        print("VC: condition wants deletion")
 //        removeConditionView(conditionView)
 //    }
-//    
+//
 //    func conditionEditorViewValueChanged<T>(conditionView: ConditionEditorView<T>) where T : DecisionTreeElement {
 //        updateForCurrentState()
 //    }
