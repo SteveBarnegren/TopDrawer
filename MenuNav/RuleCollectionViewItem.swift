@@ -9,24 +9,24 @@
 import Cocoa
 import SBAutoLayout
 
-//protocol RuleCollectionViewItemDelegate: class {
-//    func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem)
-//}
+protocol RuleCollectionViewItemDelegate: class {
+    func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem)
+}
 
-class RuleCollectionViewItem<T: Rule>: NSCollectionViewItem {
+class RuleCollectionViewItem: NSCollectionViewItem {
     
     // MARK: - Properties
     
     @IBOutlet weak fileprivate var conditionsStackView: NSStackView!
     @IBOutlet weak fileprivate var editButton: NSButton!
-
-    let conditionFormatter = FolderConditionFormatter()
     
-    var editPressedHandler: (RuleCollectionViewItem<T>) -> () = {_ in}
+    weak var delegate: RuleCollectionViewItemDelegate?
+    
+    //var editPressedHandler: (RuleCollectionViewItem) -> () = {_ in}
     
     // MARK: - Configure
     
-    func configure(withRule rule: T,
+    func configure<T: Rule>(withRule rule: T,
                    conditionHeight: CGFloat,
                    conditionSpacing: CGFloat) {
         
@@ -63,7 +63,8 @@ class RuleCollectionViewItem<T: Rule>: NSCollectionViewItem {
     
     @IBAction private func editButtonPressed(sender: NSButton){
         print("Edit button pressed")
-        editPressedHandler(self)
+        //editPressedHandler(self)
+        delegate?.ruleCollectionViewItemEditPressed(item: self)
     }
     
 }

@@ -34,6 +34,8 @@ class RulesViewController<T: Rule>: NSViewController {
         
         view.wantsLayer = true
         
+        //collectionView.register(RuleCollectionViewItem<T>.self, forItemWithIdentifier: "RuleCollectionViewItem")
+        
         // Setup datasource
         dataSource.provider = self
         collectionView.dataSource = dataSource
@@ -45,6 +47,7 @@ class RulesViewController<T: Rule>: NSViewController {
         flowLayout.minimumInteritemSpacing = 2
         flowLayout.minimumLineSpacing = 2
         collectionView.collectionViewLayout = flowLayout
+        
     }
 
     // MARK: - Actions
@@ -96,13 +99,13 @@ class RulesViewController<T: Rule>: NSViewController {
     
     // MARK: - Collection Item delegation
     
-    func ruleItemEditButtonPressed(item: RuleCollectionViewItem<T>) {
-        
-        let indexPath = collectionView.indexPath(for: item)!
-        print("Item selected at row: \(indexPath.item)")
-        
-        editRule(atIndex: indexPath.item)
-    }
+//    func ruleItemEditButtonPressed(item: RuleCollectionViewItem<T>) {
+//        
+//        let indexPath = collectionView.indexPath(for: item)!
+//        print("Item selected at row: \(indexPath.item)")
+//        
+//        editRule(atIndex: indexPath.item)
+//    }
     
     // MARK: - Edit Rule Delegation
     
@@ -150,7 +153,7 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
         
         let item = collectionView.makeItem(withIdentifier: "RuleCollectionViewItem", for: indexPath)
         
-        guard let collectionViewItem = item as? RuleCollectionViewItem<T> else {
+        guard let collectionViewItem = item as? RuleCollectionViewItem else {
             fatalError("Unable to create collection view item")
         }
         
@@ -158,14 +161,14 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
         collectionViewItem.configure(withRule: rule,
                                      conditionHeight: conditionLabelHeight,
                                      conditionSpacing: conditionLabelSpacing)
-        //collectionViewItem.delegate = self
-        collectionViewItem.editPressedHandler = ruleItemEditButtonPressed
+        collectionViewItem.delegate = self
+        //collectionViewItem.editPressedHandler = ruleItemEditButtonPressed
         
         return collectionViewItem
     }
 }
 
-/*
+
 extension RulesViewController: RuleCollectionViewItemDelegate {
     
     func ruleCollectionViewItemEditPressed(item: RuleCollectionViewItem) {
@@ -176,7 +179,7 @@ extension RulesViewController: RuleCollectionViewItemDelegate {
         editRule(atIndex: indexPath.item)
     }
 }
- */
+ 
 
 /*
 extension RulesViewController: EditRuleViewControllerDelegate {
