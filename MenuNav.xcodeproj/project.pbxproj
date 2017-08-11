@@ -35,6 +35,7 @@
 		6748CE2D1F3DC1AE002941D4 /* FolderConditionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */; };
 		6748CE2E1F3DC1BC002941D4 /* RulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE291F3DBCC4002941D4 /* RulesViewModel.swift */; };
 		6748CE2F1F3DC1C2002941D4 /* RuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */; };
+		6748CE321F3DC34E002941D4 /* StringMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE311F3DC34E002941D4 /* StringMatcherTests.swift */; };
 		674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
 		679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
 		679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
@@ -109,6 +110,7 @@
 		6748CE221F3D9EB9002941D4 /* FileCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCondition.swift; sourceTree = "<group>"; };
 		6748CE251F3D9FAB002941D4 /* FolderCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderCondition.swift; sourceTree = "<group>"; };
 		6748CE291F3DBCC4002941D4 /* RulesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewModel.swift; sourceTree = "<group>"; };
+		6748CE311F3DC34E002941D4 /* StringMatcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringMatcherTests.swift; sourceTree = "<group>"; };
 		674F95171F27A07C000A5A4E /* FileSystemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemObject.swift; sourceTree = "<group>"; };
 		679370961F27A999003E6A9A /* DictionaryRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryRepresentable.swift; sourceTree = "<group>"; };
 		6793709D1F27B890003E6A9A /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		0978BECF1EB393110023AC66 /* MenuNavTests */ = {
 			isa = PBXGroup;
 			children = (
+				6748CE331F3DC353002941D4 /* Matchers */,
 				67AE4A651F2CD53400E9D1FE /* FileRuleTests.swift */,
 				67AE4A701F2CE3BA00E9D1FE /* FileStructureBuilderTests.swift */,
 				0978BED21EB393110023AC66 /* Info.plist */,
@@ -254,6 +257,14 @@
 				67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */,
 			);
 			name = "File Structure Builder";
+			sourceTree = "<group>";
+		};
+		6748CE331F3DC353002941D4 /* Matchers */ = {
+			isa = PBXGroup;
+			children = (
+				6748CE311F3DC34E002941D4 /* StringMatcherTests.swift */,
+			);
+			name = Matchers;
 			sourceTree = "<group>";
 		};
 		6773F2CB1F3A168300AFE89A /* Edit Rules */ = {
@@ -627,6 +638,7 @@
 				67AE4A661F2CD53400E9D1FE /* FileRuleTests.swift in Sources */,
 				67AE4A681F2CD92700E9D1FE /* StringRepresentable.swift in Sources */,
 				6748CE171F3CC083002941D4 /* PathMatcher.swift in Sources */,
+				6748CE321F3DC34E002941D4 /* StringMatcherTests.swift in Sources */,
 				679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */,
 				67AE4A741F30FD2C00E9D1FE /* FolderRule.swift in Sources */,
 			);
