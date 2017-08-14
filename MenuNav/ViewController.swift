@@ -63,7 +63,7 @@ class ViewController: NSViewController {
                                        addCondtionPromptMessage: "Add condtions to exclude a folder, even if it contains matching files",
                                        addConditionPromptButtonTitle: "Add a Condition")
         
-        let folderRules = RulesViewController<FileRule>(viewModel: viewModel)
+        let folderRules = RulesViewController<FolderRule>(viewModel: viewModel)
         self.show(contentViewController: folderRules)
     }
     
