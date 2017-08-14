@@ -199,18 +199,6 @@ class Tests: XCTestCase {
     // MARK: - File Rules: Name
     
     func testStructureIncludesFilesWithName() {
-        /*
-        let fileReader = MockFileReader(
-            .folder( "Root", [
-                .file("cat.png"),
-                .file("dog.png"),
-                .folder("TestFolder", [
-                    .file("cat.png"),
-                    .file("dog.png"),
-                    ]),
-                ])
-        )
- */
         
         let fileReader = MockFileReader(
             .folder( "Root", [
@@ -219,7 +207,7 @@ class Tests: XCTestCase {
             ])
         )
         
-        let condition = FileRule.Condition.name(.matching("dog"))
+        let condition = FileCondition.name(.matching("dog"))
         let rule = FileRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -241,7 +229,7 @@ class Tests: XCTestCase {
             ])
         )
         
-        let condition = FileRule.Condition.name(.notMatching("dog"))
+        let condition = FileCondition.name(.notMatching("dog"))
         let rule = FileRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -263,7 +251,7 @@ class Tests: XCTestCase {
             ])
         )
         
-        let condition = FileRule.Condition.name(.containing("dog"))
+        let condition = FileCondition.name(.containing("dog"))
         let rule = FileRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -285,7 +273,7 @@ class Tests: XCTestCase {
                 ])
         )
         
-        let condition = FileRule.Condition.name(.notContaining("dog"))
+        let condition = FileCondition.name(.notContaining("dog"))
         let rule = FileRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -309,7 +297,7 @@ class Tests: XCTestCase {
                 ])
         )
         
-        let condition = FileRule.Condition.ext(.matching("png"))
+        let condition = FileCondition.ext(.matching("png"))
         let rule = FileRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -331,7 +319,7 @@ class Tests: XCTestCase {
                 ])
         )
         
-        let condition = FileRule.Condition.ext(.notMatching("png"))
+        let condition = FileCondition.ext(.notMatching("png"))
         let rule = FileRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -355,7 +343,7 @@ class Tests: XCTestCase {
                 ])
         )
         
-        let condition = FileRule.Condition.fullName(.matching("dog.png"))
+        let condition = FileCondition.fullName(.matching("dog.png"))
         let rule = FileRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -377,7 +365,7 @@ class Tests: XCTestCase {
                 ])
         )
         
-        let condition = FileRule.Condition.fullName(.notMatching("dog.png"))
+        let condition = FileCondition.fullName(.notMatching("dog.png"))
         let rule = FileRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -390,7 +378,210 @@ class Tests: XCTestCase {
         XCTAssertTrue(directory.containsObject(atPath: "cat.gif"))
     }
     
+    // MARK: - Folder Rules: Name
     
+    func dogPngFileRules() -> [FileRule] {
+        let condition = FileCondition.fullName(.matching("dog.png"))
+        let rule = FileRule(conditions: [condition])
+        return [rule]
+    }
+    
+    func testStructureExcludesFoldersWithName() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("Include Me", [
+                    .file("dog.png"),
+                    ]),
+                .folder("Exclude Me", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        
+        let condition = FolderCondition.name(.matching("Exclude Me"))
+        let rule = FolderRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: dogPngFileRules(),
+                                           folderRules: [rule],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
+    }
+    
+    func testStructureExcludesFoldersWithNameIsNot() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("Include Me", [
+                    .file("dog.png"),
+                    ]),
+                .folder("Exclude Me", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        
+        let condition = FolderCondition.name(.notMatching("Include Me"))
+        let rule = FolderRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: dogPngFileRules(),
+                                           folderRules: [rule],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
+    }
+    
+    func testStructureExcludesFoldersWithNameContaining() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("-- Include Me --", [
+                    .file("dog.png"),
+                    ]),
+                .folder("-- Exclude Me --", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        
+        let condition = FolderCondition.name(.containing("Exclude Me"))
+        let rule = FolderRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: dogPngFileRules(),
+                                           folderRules: [rule],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "-- Include Me --/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "-- Exclude Me --/dog.png"))
+    }
+    
+    func testStructureExcludesFoldersWithNameNotContaining() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("-- Include Me --", [
+                    .file("dog.png"),
+                    ]),
+                .folder("-- Exclude Me --", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        
+        let condition = FolderCondition.name(.notContaining("Include Me"))
+        let rule = FolderRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: dogPngFileRules(),
+                                           folderRules: [rule],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "-- Include Me --/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "-- Exclude Me --/dog.png"))
+    }
+    
+    // MARK: - Folder Rules: Path
+
+    func testStructureExcludesFoldersWithPath() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("Include Me", [
+                    .file("dog.png"),
+                    ]),
+                .folder("Exclude Me", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        
+        let condition = FolderCondition.path(.matching("Root/Exclude Me"))
+        let rule = FolderRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: dogPngFileRules(),
+                                           folderRules: [rule],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
+    }
+    
+    func testStructureExcludesFoldersWithPathIsNot() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("Include Me", [
+                    .file("dog.png"),
+                    ]),
+                .folder("Exclude Me", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        
+        let condition = FolderCondition.path(.notMatching("Root/Include Me"))
+        let rule = FolderRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: dogPngFileRules(),
+                                           folderRules: [rule],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
+    }
+    
+    // MARK: - Folder Rules: Contains
+    
+    func testStructureExcludesFoldersWithContainsFilesWithExtension() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("Include Me", [
+                    .file("dog.png"),
+                    ]),
+                .folder("Exclude Me", [
+                    .file("dog.png"),
+                    .file("cat.gif"),
+                    ]),
+                ])
+        )
+        
+        let condition = FolderCondition.contains(.filesWithExtension("gif"))
+        let rule = FolderRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: dogPngFileRules(),
+                                           folderRules: [rule],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
+        
+    }
+
+
+
 
 
 
