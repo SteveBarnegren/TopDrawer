@@ -122,6 +122,18 @@ class FileConditionTests: XCTestCase {
         let condition = FileCondition.fullName(.matching("dog.png"))
         XCTAssertEqual(condition.decisionTreeInput(), "dog.png")
     }
+    
+    func testFileConditionWithParentContainsDecisionTreeInput() {
+        
+        let condition = FileCondition.parentContains(.filesWithExtension("png"))
+        XCTAssertEqual(condition.decisionTreeInput(), "png")
+    }
+    
+    func testFileConditionWithParentDoesntContainDecisionTreeInput() {
+        
+        let condition = FileCondition.parentDoesntContain(.filesWithExtension("png"))
+        XCTAssertEqual(condition.decisionTreeInput(), "png")
+    }
 
     // MARK: - Test DictionaryRepresentable
     

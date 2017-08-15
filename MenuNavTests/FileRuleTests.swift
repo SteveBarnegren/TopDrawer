@@ -127,6 +127,18 @@ class FileRuleTests: XCTestCase {
             condition = FileCondition.parentContains(.filesWithFullName("report.pdf"))
             XCTAssertTrue(makeRule() == makeRule())
         }()
+        
+        // Parent doesn't contain files with extension
+        let _ = {
+            condition = FileCondition.parentDoesntContain(.filesWithExtension("png"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Parent doesnt' contain files with full name
+        let _ = {
+            condition = FileCondition.parentDoesntContain(.filesWithFullName("report.pdf"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
     }
     
     // MARK: - Test Dictionary Representable
@@ -206,6 +218,20 @@ class FileRuleTests: XCTestCase {
         // Parent Contains files with full name
         let _ = {
             let condition = makeCondition(FileCondition.parentContains(.filesWithFullName("report.pdf")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Parent doesn't contain files with extension
+        let _ = {
+            let condition = makeCondition(FileCondition.parentDoesntContain(.filesWithExtension("png")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Parent doesn't contain files with full name
+        let _ = {
+            let condition = makeCondition(FileCondition.parentDoesntContain(.filesWithFullName("report.pdf")))
             let rule = FileRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()

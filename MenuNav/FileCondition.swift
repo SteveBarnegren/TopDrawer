@@ -13,6 +13,7 @@ enum FileCondition {
     case ext(StringMatcher)
     case fullName(StringMatcher)
     case parentContains(FolderContentsMatcher)
+    case parentDoesntContain(FolderContentsMatcher)
 
     func matches(file: File) -> Bool {
         
@@ -26,6 +27,9 @@ enum FileCondition {
         case let .parentContains(contentsMatcher):
             guard let parent = file.parent else { return false }
             return contentsMatcher.matches(directory: parent)
+        case let .parentDoesntContain(contentsMatcher):
+            guard let parent = file.parent else { return false }
+            return !contentsMatcher.matches(directory: parent)
         }
     }
 }
@@ -44,6 +48,8 @@ extension FileCondition: CondtionProtocol {
             return "Full name " + makeString(fromStringMatcher: stringMatcher)
         case let .parentContains(contentsMatcher):
             return "Parent folder contains " + makeString(fromContentsMatcher: contentsMatcher)
+        case let .parentDoesntContain(contentsMatcher):
+            return "Parent folder doesn't contain " + makeString(fromContentsMatcher: contentsMatcher)
         }
     }
     
@@ -88,6 +94,8 @@ extension FileCondition: Equatable {
             return sm1 == sm2
         case let (.parentContains(cm1), .parentContains(cm2)):
             return cm1 == cm2
+        case let (.parentDoesntContain(cm1), .parentDoesntContain(cm2)):
+            return cm1 == cm2
         default:
             return false
         }
@@ -109,6 +117,8 @@ extension FileCondition: DecisionTreeElement {
             return stringMatcher.inputString
         case let .parentContains(contentsMatcher):
             return contentsMatcher.inputString
+        case let .parentDoesntContain(contentsMatcher):
+            return contentsMatcher.inputString
         }
     }
 }
@@ -124,6 +134,7 @@ extension FileCondition: DictionaryRepresentable {
             static let Ext = "Ext"
             static let FullName = "FullName"
             static let ParentContains = "ParentContains"
+            static let ParentDoesntContain = "ParentDoesntContain"
         }
         static let AssociatedValue = "AssociatedValue"
     }
@@ -164,6 +175,13 @@ extension FileCondition: DictionaryRepresentable {
                 let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: contentsMatcherDictionary) {
                 result = .parentContains(contentsMatcher)
             }
+            
+        case Keys.Case.ParentDoesntContain:
+            
+            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+                let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: contentsMatcherDictionary) {
+                result = .parentDoesntContain(contentsMatcher)
+            }
 
         default:
             break
@@ -196,6 +214,10 @@ extension FileCondition: DictionaryRepresentable {
         
         case let .parentContains(contentsMatcher):
             dictionary[Keys.CaseKey] = Keys.Case.ParentContains
+            dictionary[Keys.AssociatedValue] = contentsMatcher.dictionaryRepresentation
+            
+        case let .parentDoesntContain(contentsMatcher):
+            dictionary[Keys.CaseKey] = Keys.Case.ParentDoesntContain
             dictionary[Keys.AssociatedValue] = contentsMatcher.dictionaryRepresentation
         }
         

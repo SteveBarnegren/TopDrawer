@@ -102,6 +102,16 @@ func fileConditionDecisionTree() -> DecisionNode<FileRule.Condition> {
                 DecisionNode(.textValue("is", placeholder: "eg. report.pdf"){ .fullName(.matching($0)) }),
                 DecisionNode(.textValue("is not", placeholder: "eg. report.pdf"){ .fullName(.notMatching($0)) }),
                 ])),
+            DecisionNode(.list("Parent Folder", [
+                DecisionNode(.list("contains", [
+                    DecisionNode(.textValue("files with extension", placeholder: "eg. pdf"){ .parentContains(.filesWithExtension($0)) }),
+                    DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf"){ .parentContains(.filesWithFullName($0)) }),
+                    ])),
+                DecisionNode(.list("doesn't contain", [
+                    DecisionNode(.textValue("files with extension", placeholder: "eg. pdf"){ .parentDoesntContain(.filesWithExtension($0)) }),
+                    DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf"){ .parentDoesntContain(.filesWithFullName($0)) }),
+                    ])),
+                ])),
             ]))
 }
 
