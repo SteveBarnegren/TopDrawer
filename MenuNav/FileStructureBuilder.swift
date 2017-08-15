@@ -102,15 +102,20 @@ class FileStructureBuilder {
             var directory = Directory(name: name,
                                       path: path)
             
+            guard let contents = try? fileReader.contentsOfDirectory(atPath: path) else {
+                return directory
+            }
+            
+            let extendedAttributes = Directory.ExtendedDictionaryAttributes()
+            extendedAttributes.containedFileNames = contents.filter{ $0.contains(".") }
+            extendedAttributes.containedFolderNames = contents.filter{ $0.contains(".") == false }
+            directory.extendedAttributes = extendedAttributes
+            
             if !isBaseDirectory && shouldExclude(directory: directory) {
                 return nil
             }
             
             directory.image = imageForPath(path)
-            
-            guard let contents = try? fileReader.contentsOfDirectory(atPath: path) else {
-                return directory
-            }
             
             contents.map{ "\(path)" + "/" + $0 }
                 .flatMap{ fileSystemObject(atPath: $0) }

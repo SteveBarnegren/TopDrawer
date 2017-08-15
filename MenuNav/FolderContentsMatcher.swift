@@ -17,11 +17,45 @@ enum FolderContentsMatcher {
         
         switch self {
         case let .filesWithExtension(ext):
-            return directory.contents.flatMap{ $0 as? File }.contains{ $0.ext == ext }
+            
+            guard let extendedAttributes = directory.extendedAttributes else {
+                return false
+            }
+            
+            for fileName in extendedAttributes.containedFileNames {
+                let components = fileName.components(separatedBy: ".")
+                
+                if components.count < 2 {
+                    continue
+                }
+                
+                if components.last! == ext {
+                    return true
+                }
+            }
+            
+            return false
+            
         case let .filesWithNameAndExtension(name, ext):
-            return directory.contents.flatMap{ $0 as? File }.contains{ $0.name == name && $0.ext == ext }
+            
+            let extendedAttributes = directory.extendedAttributes!
+            
+            for fileName in extendedAttributes.containedFileNames {
+                let components = fileName.components(separatedBy: ".")
+                
+                if components.count != 2 {
+                    continue
+                }
+                
+                if components[0] == name && components[1] == ext {
+                    return true
+                }
+            }
+            
+            return false
+            
         case let .foldersWithName(name):
-            return directory.contents.flatMap{ $0 as? Directory }.contains{ $0.name == name }
+            return directory.extendedAttributes!.containedFolderNames.contains{ $0 == name }
         }
     }
     

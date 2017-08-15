@@ -9,20 +9,30 @@
 import Foundation
 import AppKit
 
-protocol FileSystemObject {
+protocol FileSystemObject: class {
+    
     var path: String {get set}
     var name: String {get}
     var menuName: String {get}
     var image: NSImage? {get}
     var debugDescription: String {get}
+    
+    weak var parent: Directory? {get set}
 }
 
-struct Directory: FileSystemObject {
+class Directory: FileSystemObject {
+    
+    class ExtendedDictionaryAttributes {
+        var containedFileNames = [String]()
+        var containedFolderNames = [String]()
+    }
+    var extendedAttributes: ExtendedDictionaryAttributes?
     
     var name: String
     var contents = [FileSystemObject]()
     var path: String
     var image: NSImage?
+    weak var parent: Directory?
     
     var debugDescription: String {
         return name
@@ -45,7 +55,7 @@ struct Directory: FileSystemObject {
         self.path = path
     }
     
-    mutating func add(object: FileSystemObject){
+    func add(object: FileSystemObject){
         contents.append(object)
     }
     
@@ -70,12 +80,13 @@ struct Directory: FileSystemObject {
     }
 }
 
-struct File: FileSystemObject {
+class File: FileSystemObject {
     
     let name: String
     let ext: String
     var path: String
     var image: NSImage?
+    weak var parent: Directory?
     
     var debugDescription: String {
         return name + "." + ext

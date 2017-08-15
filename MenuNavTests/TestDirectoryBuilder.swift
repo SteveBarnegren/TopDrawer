@@ -42,6 +42,11 @@ class TestDirectoryBuilder {
         contents.append(contentsOf: folders.map{ $0 as FileSystemObject })
         directory.contents = contents
         
+        var extendedAttributes = Directory.ExtendedDictionaryAttributes()
+        extendedAttributes.containedFileNames = fileNames
+        extendedAttributes.containedFolderNames = folderNames
+        directory.extendedAttributes = extendedAttributes
+        
         return directory
     }
 }
