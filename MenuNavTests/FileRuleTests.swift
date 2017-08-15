@@ -79,11 +79,76 @@ class FileRuleTests: XCTestCase {
     
     func testFileRuleToDictionaryAndBackAreTheSame() {
         
-        let condtion1 = FileCondition.ext(.matching("png"))
-        let condtion2 = FileCondition.name(.notContaining("dog"))
-        let rule = FileRule(conditions: [condtion1, condtion2])
+        var allConditions = [FileCondition]()
         
-        XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        func makeCondition(_ condition: FileCondition) -> FileCondition {
+            allConditions.append(condition)
+            return condition
+        }
+        
+        // Name is
+        let _ = {
+            let condition = makeCondition(FileCondition.name(.matching("dog")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Name is not
+        let _ = {
+            let condition = makeCondition(FileCondition.name(.notMatching("dog")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Name contains
+        let _ = {
+            let condition = makeCondition(FileCondition.name(.containing("dog")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Name does not contain
+        let _ = {
+            let condition = makeCondition(FileCondition.name(.notContaining("dog")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Extension is
+        let _ = {
+            let condition = makeCondition(FileCondition.ext(.matching("png")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Extension is not
+        let _ = {
+            let condition = makeCondition(FileCondition.ext(.notMatching("png")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Full name is
+        let _ = {
+            let condition = makeCondition(FileCondition.fullName(.matching("report.pdf")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Full name is not
+        let _ = {
+            let condition = makeCondition(FileCondition.fullName(.notMatching("report.pdf")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+
+        // All conditions
+        if allConditions.count < 2 {
+            fatalError("All conditions is not being popuplated")
+        }
+        
+        let allConditionsRule = FileRule(conditions: allConditions)
+        XCTAssertTrue(allConditionsRule == allConditionsRule.convertedToDictionaryAndBack)
     }
     
 }

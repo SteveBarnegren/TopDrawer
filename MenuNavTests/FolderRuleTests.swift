@@ -73,10 +73,104 @@ class FolderRuleTests: XCTestCase {
     
     func testFolderRuleToDictionaryAndBackIsTheSame() {
         
-        let condition1 = FolderCondition.name(.matching("birds"))
-        let condition2 = FolderCondition.path(.matching("photos/birds"))
-        let rule = FolderRule(conditions: [condition1, condition2])
+        var allConditions = [FolderCondition]()
+        
+        func makeCondition(_ condition: FolderCondition) -> FolderCondition {
+            allConditions.append(condition)
+            return condition
+        }
 
-        XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        // Name is
+        let _ = {
+            let condition = makeCondition(FolderCondition.name(.matching("birds")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Name is not
+        let _ = {
+            let condition = makeCondition(FolderCondition.name(.notMatching("birds")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Name containing
+        let _ = {
+            let condition = makeCondition(FolderCondition.name(.containing("birds")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Name not containing
+        let _ = {
+            let condition = makeCondition(FolderCondition.name(.notContaining("birds")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Path is
+        let _ = {
+            let condition = makeCondition(FolderCondition.path(.matching("birds")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Path is not
+        let _ = {
+            let condition = makeCondition(FolderCondition.path(.notMatching("birds")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Contains files with extension
+        let _ = {
+            let condition = makeCondition(FolderCondition.contains(.filesWithExtension("png")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Contains files with full name
+        let _ = {
+            let condition = makeCondition(FolderCondition.contains(.filesWithFullName("report.pdf")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Contains folder with name
+        let _ = {
+            let condition = makeCondition(FolderCondition.contains(.foldersWithName("birds")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Doesn't contain files with extension
+        let _ = {
+            let condition = makeCondition(FolderCondition.doesntContain(.filesWithExtension("png")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Doesn't contain files with full name
+        let _ = {
+            let condition = makeCondition(FolderCondition.doesntContain(.filesWithFullName("report.pdf")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Doesn't contain folders with name
+        let _ = {
+            let condition = makeCondition(FolderCondition.doesntContain(.foldersWithName("birds")))
+            let rule = FolderRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+
+        // All Conditions
+        if allConditions.count < 2 {
+            fatalError("All conditions array is not being populated")
+        }
+        let allConditionsRule = FolderRule(conditions: allConditions)
+        XCTAssertTrue(allConditionsRule == allConditionsRule.convertedToDictionaryAndBack)
     }
+    
+    
 }
