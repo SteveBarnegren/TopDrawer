@@ -69,7 +69,7 @@ class FileStructureBuilder {
     private let folderRules: [FolderRule]
     private let fileReader: FileReader
     private let options: Options
-    private var visitedPaths = [String]()
+    private var visitedFolderPaths = Set<String>()
     
     // MARK: - Build Directory Structure
     
@@ -111,11 +111,6 @@ class FileStructureBuilder {
             path = fileReader.resolveAlias(atPath: path)
         }
         
-        if visitedPaths.contains(path) {
-            return nil
-        }
-        visitedPaths.append(path)
-        
         let pathComponents = path.components(separatedBy: "/")
         let itemName = pathComponents.last!
         let isBaseDirectory = pathComponents.count == 1
@@ -138,6 +133,11 @@ class FileStructureBuilder {
         }
 
         if isDirectory.boolValue && !isPackage {
+            
+            if visitedFolderPaths.contains(path) {
+                return nil
+            }
+            visitedFolderPaths.insert(path)
             
             let name = path.components(separatedBy: "/").last!
             var directory = Directory(name: name,

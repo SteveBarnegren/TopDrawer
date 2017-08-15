@@ -22,11 +22,85 @@ protocol FileSystemObject: class {
     weak var parent: Directory? {get set}
 }
 
+class ResultCache<InputType: Hashable, ResultType> {
+    
+    var cache = Dictionary<InputType, ResultType>()
+    let calculationHandler: (InputType) -> ResultType
+    
+    init(calculationHandler: @escaping (InputType) -> ResultType) {
+        self.calculationHandler = calculationHandler
+    }
+    
+    func calculateResult(input: InputType) -> ResultType {
+        
+        if let storedValue = cache[input] {
+            return storedValue
+        }
+        else {
+            let calculatedValue = calculationHandler(input)
+            cache[input] = calculatedValue
+            return calculatedValue
+        }
+    }
+}
+
 class Directory: FileSystemObject {
     
     class ExtendedDictionaryAttributes {
         var containedFileNames = [String]()
         var containedFolderNames = [String]()
+        
+        var containsFilesWithFullNameResultCache: ResultCache<String, Bool>!
+        var containsFilesWithExtensionResultCache: ResultCache<String, Bool>!
+        var containsFoldersWithNameResultCache: ResultCache<String, Bool>!
+
+        init() {
+            
+            // Contains files with full name cache
+            containsFilesWithFullNameResultCache = ResultCache<String, Bool>{
+                for fileName in self.containedFileNames {
+                    if fileName == $0 {
+                        return true
+                    }
+                }
+                return false
+            }
+            
+            // Contains files with extension cache
+            containsFilesWithExtensionResultCache = ResultCache<String, Bool>{
+                for fileName in self.containedFileNames {
+                    
+                    let components = fileName.components(separatedBy: ".")
+                    
+                    if components.count == 2 && components.last! == $0 {
+                        return true
+                    }
+                }
+                return false
+            }
+            
+            // Contains folders with name cache
+            containsFoldersWithNameResultCache = ResultCache<String, Bool>{
+                for folderName in self.containedFolderNames {
+                    if folderName == $0 {
+                        return true
+                    }
+                }
+                return false
+            }
+        }
+        
+        func containsFiles(withFullName name: String) -> Bool {
+            return containsFilesWithFullNameResultCache.calculateResult(input: name)
+        }
+        
+        func containsFiles(withExtension ext: String) -> Bool {
+            return containsFilesWithExtensionResultCache.calculateResult(input: ext)
+        }
+        
+        func containsFolders(withName name: String) -> Bool {
+            return containsFoldersWithNameResultCache.calculateResult(input: name)
+        }
     }
     var extendedAttributes: ExtendedDictionaryAttributes?
     

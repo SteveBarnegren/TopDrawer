@@ -23,7 +23,7 @@ struct FileRule: Rule {
     // MARK: - Init
     
     init(conditions: [Condition]) {
-        self.conditions = conditions
+        self.conditions = conditions.sorted(by: { $0.0.perfomanceValue < $0.1.perfomanceValue })
     }
     
     // MARK: - Matching

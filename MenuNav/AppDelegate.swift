@@ -42,6 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
+        //return
+        
         NSApp.activate(ignoringOtherApps: true)
         
         if let button = statusItem.button {

@@ -18,10 +18,14 @@ enum FolderContentsMatcher {
         switch self {
         case let .filesWithExtension(ext):
             
+           
+            
+            return directory.extendedAttributes!.containsFiles(withExtension: ext)
+            
+            /*
             guard let extendedAttributes = directory.extendedAttributes else {
                 return false
             }
-            
             for fileName in extendedAttributes.containedFileNames {
                 let components = fileName.components(separatedBy: ".")
                 
@@ -33,13 +37,17 @@ enum FolderContentsMatcher {
                     return true
                 }
             }
+
             
             return false
+  */
             
         case let .filesWithFullName(name):
-            return directory.extendedAttributes!.containedFileNames.contains{ $0 == name }
+            return directory.extendedAttributes!.containsFiles(withFullName: name)
+            //return directory.extendedAttributes!.containedFileNames.contains{ $0 == name }
         case let .foldersWithName(name):
-            return directory.extendedAttributes!.containedFolderNames.contains{ $0 == name }
+            return directory.extendedAttributes!.containsFolders(withName: name)
+           // return directory.extendedAttributes!.containedFolderNames.contains{ $0 == name }
         }
     }
     

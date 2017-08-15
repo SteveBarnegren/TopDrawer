@@ -32,6 +32,17 @@ enum FileCondition {
             return !contentsMatcher.matches(directory: parent)
         }
     }
+    
+    var perfomanceValue: Int {
+        
+        switch self {
+        case .fullName(_): return 0
+        case .name(_): return 1
+        case .ext(_): return 2
+        case .parentContains(_): return 3
+        case .parentDoesntContain(_): return 4
+        }
+    }
 }
 
 // MARK: - ConditionProtocol
