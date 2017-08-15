@@ -31,7 +31,7 @@ class FolderContentsMatcherTests: XCTestCase {
     func testMatchesFilesWithNameAndExtension() {
         
         let folder = TestDirectoryBuilder.makeDirectory(withFileNames: ["dog.png"])
-        let matcher = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "png")
+        let matcher = FolderContentsMatcher.filesWithFullName("dog.png")
         
         XCTAssertTrue(matcher.matches(directory: folder))
     }
@@ -39,7 +39,7 @@ class FolderContentsMatcherTests: XCTestCase {
     func testFailsToMatchFilesWithNameAndExtension() {
         
         let folder = TestDirectoryBuilder.makeDirectory(withFileNames: ["dog.gif", "cat.png"])
-        let matcher = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "png")
+        let matcher = FolderContentsMatcher.filesWithFullName("dog.png")
         
         XCTAssertFalse(matcher.matches(directory: folder))
     }
@@ -80,17 +80,17 @@ class FolderContentsMatcherTests: XCTestCase {
     
     func testFolderContentsMatchersAreEqualWithFullNameCaseAndSameString() {
         
-        let firstMatcher = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "png")
-        let secondMatcher = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "png")
+        let firstMatcher = FolderContentsMatcher.filesWithFullName("dog.png")
+        let secondMatcher = FolderContentsMatcher.filesWithFullName("dog.png")
         
         XCTAssertTrue(firstMatcher == secondMatcher)
     }
     
     func testFolderContentsMatchersAreNotEqualWithFullNameCaseAndDifferentString() {
         
-        let firstMatcher = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "png")
-        let differentNameMatcher = FolderContentsMatcher.filesWithNameAndExtension(name: "cat", ext: "png")
-        let differentExtMatcher = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "pdf")
+        let firstMatcher = FolderContentsMatcher.filesWithFullName("dog.png")
+        let differentNameMatcher = FolderContentsMatcher.filesWithFullName("cat.png")
+        let differentExtMatcher = FolderContentsMatcher.filesWithFullName("dog.pdf")
         
         XCTAssertFalse(firstMatcher == differentNameMatcher)
         XCTAssertFalse(firstMatcher == differentExtMatcher)
@@ -117,7 +117,7 @@ class FolderContentsMatcherTests: XCTestCase {
     func testFolderContentsMatcherToDictionaryAndBackIsSame() {
         
         let filesWithExtension = FolderContentsMatcher.filesWithExtension("pdf")
-        let filesWithNameAndExtension = FolderContentsMatcher.filesWithNameAndExtension(name: "dog", ext: "png")
+        let filesWithNameAndExtension = FolderContentsMatcher.filesWithFullName("dog.png")
         let foldersWithName = FolderContentsMatcher.foldersWithName("animals")
         
         XCTAssertTrue(filesWithExtension == filesWithExtension.convertedToDictionaryAndBack)

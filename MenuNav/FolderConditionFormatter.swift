@@ -53,8 +53,8 @@ class FolderConditionFormatter {
         switch contentsMatcher {
         case let .filesWithExtension(ext):
             return "files with extension \(ext)"
-        case let .filesWithNameAndExtension(name, ext):
-            return "file \(name).\(ext)"
+        case let .filesWithFullName(name):
+            return "file \(name)"
         case let .foldersWithName(name):
             return "folder with name \(name)"
         }

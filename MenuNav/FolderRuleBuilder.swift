@@ -16,8 +16,8 @@ extension FolderContentsMatcher {
         switch self {
         case let .filesWithExtension(s):
             return s
-        case let .filesWithNameAndExtension(name, ext):
-            return "\(name).\(ext)"
+        case let .filesWithFullName(s):
+            return s
         case let .foldersWithName(s):
             return s
         }

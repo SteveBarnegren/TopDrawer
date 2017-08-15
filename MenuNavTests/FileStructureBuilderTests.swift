@@ -593,7 +593,7 @@ class Tests: XCTestCase {
                 ])
         )
         
-        let condition = FolderCondition.contains(.filesWithNameAndExtension(name: "cat", ext: "gif"))
+        let condition = FolderCondition.contains(.filesWithFullName("cat.gif"))
         let rule = FolderRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,
@@ -676,7 +676,7 @@ class Tests: XCTestCase {
                 ])
         )
         
-        let condition = FolderCondition.doesntContain(.filesWithNameAndExtension(name: "cat", ext: "gif"))
+        let condition = FolderCondition.doesntContain(.filesWithFullName("cat.gif"))
         let rule = FolderRule(conditions: [condition])
         
         let builder = FileStructureBuilder(fileReader: fileReader,

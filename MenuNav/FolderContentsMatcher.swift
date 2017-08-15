@@ -10,7 +10,7 @@ import Foundation
 
 enum FolderContentsMatcher {
     case filesWithExtension(String)
-    case filesWithNameAndExtension(name: String, ext: String)
+    case filesWithFullName(String)
     case foldersWithName(String)
     
     func matches(directory: Directory) -> Bool {
@@ -36,24 +36,8 @@ enum FolderContentsMatcher {
             
             return false
             
-        case let .filesWithNameAndExtension(name, ext):
-            
-            let extendedAttributes = directory.extendedAttributes!
-            
-            for fileName in extendedAttributes.containedFileNames {
-                let components = fileName.components(separatedBy: ".")
-                
-                if components.count != 2 {
-                    continue
-                }
-                
-                if components[0] == name && components[1] == ext {
-                    return true
-                }
-            }
-            
-            return false
-            
+        case let .filesWithFullName(name):
+            return directory.extendedAttributes!.containedFileNames.contains{ $0 == name }
         case let .foldersWithName(name):
             return directory.extendedAttributes!.containedFolderNames.contains{ $0 == name }
         }
@@ -64,8 +48,8 @@ enum FolderContentsMatcher {
         switch (lhs, rhs) {
         case let (.filesWithExtension(e1), .filesWithExtension(e2)):
             return e1 == e2
-        case let (.filesWithNameAndExtension(n1, e1), .filesWithNameAndExtension(n2, e2)):
-            return n1 == n2 && e1 == e2
+        case let (.filesWithFullName(n1), .filesWithFullName(n2)):
+            return n1 == n2
         case let (.foldersWithName(n1), .foldersWithName(n2)):
             return n1 == n2
         default:
@@ -82,7 +66,7 @@ extension FolderContentsMatcher: DictionaryRepresentable {
         static let CaseKey = "CaseKey"
         struct Case {
             static let FilesWithExtension = "FilesWithExtension"
-            static let FilesWithNameAndExtension = "FilesWithNameAndExtension"
+            static let FilesWithFullName = "FilesWithFullName"
             static let FoldersWithName = "FoldersWithName"
         }
         static let Name = "Name"
@@ -104,11 +88,10 @@ extension FolderContentsMatcher: DictionaryRepresentable {
                 result = .filesWithExtension(ext)
             }
             
-        case Keys.Case.FilesWithNameAndExtension:
+        case Keys.Case.FilesWithFullName:
             
-            if let name = dictionary[Keys.Name] as? String,
-                let ext = dictionary[Keys.Extension] as? String {
-                result = .filesWithNameAndExtension(name: name, ext: ext)
+            if let name = dictionary[Keys.Name] as? String {
+                result = .filesWithFullName(name)
             }
             
         case Keys.Case.FoldersWithName:
@@ -137,10 +120,9 @@ extension FolderContentsMatcher: DictionaryRepresentable {
         case let .filesWithExtension(ext):
             dictionary[Keys.CaseKey] = Keys.Case.FilesWithExtension
             dictionary[Keys.Extension] = ext
-        case let .filesWithNameAndExtension(name, ext):
-            dictionary[Keys.CaseKey] = Keys.Case.FilesWithNameAndExtension
+        case let .filesWithFullName(name):
+            dictionary[Keys.CaseKey] = Keys.Case.FilesWithFullName
             dictionary[Keys.Name] = name
-            dictionary[Keys.Extension] = ext
         case let .foldersWithName(name):
             dictionary[Keys.CaseKey] = Keys.Case.FoldersWithName
             dictionary[Keys.Name] = name

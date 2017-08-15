@@ -143,15 +143,7 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
     let contains = DecisionNode<FolderRule.Condition>(.list("Contains", [
         DecisionNode(.list("files", [
             DecisionNode(.textValue("with extension", placeholder: "Extension"){ .contains(.filesWithExtension($0)) }),
-            DecisionNode(.textValue("with full name", placeholder: "Full name (eg. report.pdf)"){
-                
-                if let inputs = fileNameAndExtensionFromInput($0) {
-                    return .contains(.filesWithNameAndExtension(name: inputs.0, ext: inputs.1))
-                }
-                else{
-                    return nil
-                }
-                }),
+            DecisionNode(.textValue("with full name", placeholder: "Full name (eg. report.pdf)"){ .contains(.filesWithFullName($0)) }),
             ])),
         DecisionNode(.list("folders", [
             DecisionNode(.textValue("with name", placeholder: "Extension"){ .contains(.foldersWithName($0)) }),
@@ -161,16 +153,7 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
     let doesntContain = DecisionNode<FolderRule.Condition>(.list("Doesn't contain", [
         DecisionNode(.list("files", [
             DecisionNode(.textValue("with extension", placeholder: "Extension"){ .doesntContain(.filesWithExtension($0)) }),
-            DecisionNode(.textValue("with full name", placeholder: "Full name (eg. report.pdf)"){
-                
-                if let inputs = fileNameAndExtensionFromInput($0) {
-                    return .doesntContain(.filesWithNameAndExtension(name: inputs.0, ext: inputs.1))
-                }
-                else{
-                    return nil
-                }
-                }),
-            
+            DecisionNode(.textValue("with full name", placeholder: "Full name (eg. report.pdf)"){ .doesntContain(.filesWithFullName($0)) }),
             ])),
         DecisionNode(.list("folders", [
             DecisionNode(.textValue("with name", placeholder: "Extension"){ .doesntContain(.foldersWithName($0)) }),
