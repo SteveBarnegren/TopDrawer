@@ -12,7 +12,8 @@ enum FileCondition {
     case name(StringMatcher)
     case ext(StringMatcher)
     case fullName(StringMatcher)
-    
+    case parentContains(FolderContentsMatcher)
+
     func matches(file: File) -> Bool {
         
         switch self {
@@ -22,6 +23,9 @@ enum FileCondition {
             return stringMatcher.matches(string: file.ext)
         case let .fullName(stringMatcher):
             return stringMatcher.matches(string: file.fullName)
+        case let .parentContains(contentsMatcher):
+            guard let parent = file.parent else { return false }
+            return contentsMatcher.matches(directory: parent)
         }
     }
 }
@@ -38,6 +42,8 @@ extension FileCondition: CondtionProtocol {
             return "Extension " + makeString(fromStringMatcher: stringMatcher)
         case let .fullName(stringMatcher):
             return "Full name " + makeString(fromStringMatcher: stringMatcher)
+        case let .parentContains(contentsMatcher):
+            return "Parent folder contains " + makeString(fromContentsMatcher: contentsMatcher)
         }
     }
     
@@ -52,6 +58,18 @@ extension FileCondition: CondtionProtocol {
             return "contains \(string)"
         case let .notContaining(string):
             return "doesn't contain \(string)"
+        }
+    }
+    
+    private func makeString(fromContentsMatcher contentsMatcher: FolderContentsMatcher) -> String {
+        
+        switch contentsMatcher {
+        case let .filesWithExtension(string):
+            return "files with extension \(string)"
+        case let .filesWithFullName(string):
+            return "file with full name \(string)"
+        case let .foldersWithName(string):
+            return "folder with name \(string)"
         }
     }
 }
@@ -87,6 +105,8 @@ extension FileCondition: DecisionTreeElement {
             return stringMatcher.inputString
         case let .fullName(stringMatcher):
             return stringMatcher.inputString
+        case let .parentContains(contentsMatcher):
+            return contentsMatcher.inputString
         }
     }
 }
@@ -101,6 +121,7 @@ extension FileCondition: DictionaryRepresentable {
             static let Name = "Name"
             static let Ext = "Ext"
             static let FullName = "FullName"
+            static let ParentContains = "ParentContains"
         }
         static let AssociatedValue = "AssociatedValue"
     }
@@ -134,6 +155,14 @@ extension FileCondition: DictionaryRepresentable {
                 let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
                 result = .fullName(stringMatcher)
             }
+            
+        case Keys.Case.ParentContains:
+            
+            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+                let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: stringMatcherDictionary) {
+                result = .parentContains(contentsMatcher)
+            }
+
         default:
             break
         }
@@ -162,7 +191,10 @@ extension FileCondition: DictionaryRepresentable {
         case let .fullName(stringMatcher):
             dictionary[Keys.CaseKey] = Keys.Case.FullName
             dictionary[Keys.AssociatedValue] = stringMatcher.dictionaryRepresentation
-            
+        
+        case let .parentContains(contentsMatcher):
+            dictionary[Keys.CaseKey] = Keys.Case.ParentContains
+            dictionary[Keys.AssociatedValue] = contentsMatcher.dictionaryRepresentation
         }
         
         return dictionary

@@ -378,6 +378,62 @@ class Tests: XCTestCase {
         XCTAssertTrue(directory.containsObject(atPath: "cat.gif"))
     }
     
+    // MARK: - File Rules: Parent Contains
+    
+    func testStructureIncludesFilesWithParentContainsFilesWithExtension() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("ContainsGif", [
+                    .file("cat.gif"),
+                    .file("dog.png"),
+                    ]),
+                .folder("DoesntContainGif", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        let condition = FileCondition.parentContains(.filesWithExtension("gif"))
+        let rule = FileRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: [rule],
+                                           folderRules: [],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "ContainsGif/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "DoesntContainGif/dog.png"))
+    }
+    
+    func testStructureIncludesFilesWithParentContainsFilesWithFullName() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("ContainsGif", [
+                    .file("cat.gif"),
+                    .file("dog.png"),
+                    ]),
+                .folder("DoesntContainGif", [
+                    .file("dog.png"),
+                    ]),
+                ])
+        )
+        
+        let condition = FileCondition.parentContains(.filesWithFullName("cat.gif"))
+        let rule = FileRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: [rule],
+                                           folderRules: [],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "ContainsGif/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "DoesntContainGif/dog.png"))
+    }
+    
     // MARK: - Folder Rules: Name
     
     func dogPngFileRules() -> [FileRule] {

@@ -56,7 +56,7 @@ class FileStructureBuilder {
     func buildFileSystemStructure(atPath path: String) -> Directory? {
         
         // Get File Structure
-        guard var rootDirectory = fileSystemObject(atPath: path) as? Directory else {
+        guard var rootDirectory = fileSystemObject(atPath: path, withParent: nil) as? Directory else {
             return nil
         }
         
@@ -73,7 +73,7 @@ class FileStructureBuilder {
         return rootDirectory
     }
     
-    private func fileSystemObject(atPath path: String) -> FileSystemObject? {
+    private func fileSystemObject(atPath path: String, withParent parent: Directory?) -> FileSystemObject? {
         
         let pathComponents = path.components(separatedBy: "/")
         let itemName = pathComponents.last!
@@ -118,7 +118,7 @@ class FileStructureBuilder {
             directory.image = imageForPath(path)
             
             contents.map{ "\(path)" + "/" + $0 }
-                .flatMap{ fileSystemObject(atPath: $0) }
+                .flatMap{ fileSystemObject(atPath: $0, withParent: directory) }
                 .forEach{
                     directory.add(object: $0)
             }
@@ -145,6 +145,7 @@ class FileStructureBuilder {
             var file = File(name: name,
                             ext: ext,
                             path: path)
+            file.parent = parent
 
             guard shouldInclude(file: file) else {
                 return nil
