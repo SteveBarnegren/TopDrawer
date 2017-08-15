@@ -62,17 +62,71 @@ class FileRuleTests: XCTestCase {
     
     func testFileRulesWithSameConditionsAreEqual() {
         
+        var condition: FileCondition?
+        
         func makeRule() -> FileRule {
-            
-            let condtion1 = FileCondition.ext(.matching("png"))
-            let condtion2 = FileCondition.name(.notContaining("dog"))
-            return FileRule(conditions: [condtion1, condtion2])
+            return FileRule(conditions: [condition!])
         }
         
-        let firstRule = makeRule()
-        let secondRule = makeRule()
+        // Name is
+        let _ = {
+           condition = FileCondition.name(.matching("dog"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
         
-        XCTAssertTrue(firstRule == secondRule)
+        // Name is not
+        let _ = {
+            condition = FileCondition.name(.notMatching("dog"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Name contains
+        let _ = {
+            condition = FileCondition.name(.containing("dog"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Name doesnt contain
+        let _ = {
+            condition = FileCondition.name(.notContaining("dog"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Extension is
+        let _ = {
+            condition = FileCondition.ext(.matching("png"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Extension is not
+        let _ = {
+            condition = FileCondition.ext(.notMatching("png"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Full name is
+        let _ = {
+            condition = FileCondition.fullName(.matching("Report.pdf"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Full name is not
+        let _ = {
+            condition = FileCondition.fullName(.notMatching("Report.pdf"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Parent contains files with extension
+        let _ = {
+            condition = FileCondition.parentContains(.filesWithExtension("png"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
+        
+        // Parent contains files with full name
+        let _ = {
+            condition = FileCondition.parentContains(.filesWithFullName("report.pdf"))
+            XCTAssertTrue(makeRule() == makeRule())
+        }()
     }
     
     // MARK: - Test Dictionary Representable
@@ -138,6 +192,20 @@ class FileRuleTests: XCTestCase {
         // Full name is not
         let _ = {
             let condition = makeCondition(FileCondition.fullName(.notMatching("report.pdf")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Parent Contains files with extension
+        let _ = {
+            let condition = makeCondition(FileCondition.parentContains(.filesWithExtension("png")))
+            let rule = FileRule(conditions: [condition])
+            XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
+        }()
+        
+        // Parent Contains files with full name
+        let _ = {
+            let condition = makeCondition(FileCondition.parentContains(.filesWithFullName("report.pdf")))
             let rule = FileRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()

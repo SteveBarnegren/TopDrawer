@@ -86,6 +86,8 @@ extension FileCondition: Equatable {
             return sm1 == sm2
         case let (.fullName(sm1), .fullName(sm2)):
             return sm1 == sm2
+        case let (.parentContains(cm1), .parentContains(cm2)):
+            return cm1 == cm2
         default:
             return false
         }
@@ -158,8 +160,8 @@ extension FileCondition: DictionaryRepresentable {
             
         case Keys.Case.ParentContains:
             
-            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
-                let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: stringMatcherDictionary) {
+            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+                let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: contentsMatcherDictionary) {
                 result = .parentContains(contentsMatcher)
             }
 
