@@ -17,6 +17,8 @@ protocol FileSystemObject: class {
     var image: NSImage? {get}
     var debugDescription: String {get}
     
+    func removeExtendedAttributes()
+    
     weak var parent: Directory? {get set}
 }
 
@@ -78,6 +80,13 @@ class Directory: FileSystemObject {
             }
         }
     }
+    
+    func removeExtendedAttributes() {
+        extendedAttributes = nil
+        contents.forEach{
+            $0.removeExtendedAttributes()
+        }
+    }
 }
 
 class File: FileSystemObject {
@@ -117,5 +126,9 @@ class File: FileSystemObject {
         self.name = name
         self.ext = ext
         self.path = path
+    }
+    
+    func removeExtendedAttributes() {
+        // Do nothing, Files don't have extended attributes (yet!)
     }
 }

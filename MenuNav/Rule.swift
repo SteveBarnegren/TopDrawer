@@ -29,7 +29,6 @@ protocol Rule: DictionaryRepresentable {
     var conditions: [Condition] {get}
     
     static func makeDecisionTree() -> DecisionNode<Condition>
-    
 }
 
 // MARK: - FormatterSupplier

@@ -78,15 +78,13 @@ class FileStructureBuilder {
             return nil
         }
         
-        // Only show folders with matching files?
-//        if options.contains(.removeEmptyFolders) {
-//            rootDirectory = directoryByRemovingDeadPaths(inDirectory: rootDirectory)
-//        }
-        
         // Shorten paths?
         if options.contains(.shortenPaths) {
             rootDirectory = directoryByShorteningPaths(inDirectory: rootDirectory)
         }
+        
+        // Remove extended attributes, only required for parsing, so we can remove them to keep the memory footprint low
+        rootDirectory.removeExtendedAttributes()
         
         return rootDirectory
     }
