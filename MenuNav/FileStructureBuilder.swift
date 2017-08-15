@@ -14,9 +14,27 @@ import AppKit
 protocol FileReader: class {
     func fileExists(atPath path: String, isDirectory: UnsafeMutablePointer<ObjCBool>?) -> Bool
     func contentsOfDirectory(atPath path: String) throws -> [String]
+    func resolveAlias(atPath path: String) -> String
 }
 
-extension FileManager: FileReader {}
+extension FileManager: FileReader {
+
+    func resolveAlias(atPath path: String) -> String {
+        
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let resourceValues = try url.resourceValues(forKeys: [.isAliasFileKey])
+            if resourceValues.isAliasFile! {
+                let original = try URL(resolvingAliasFileAt: url)
+                return original.path
+            }
+        } catch  {
+            print(error)
+        }
+        return path
+    }
+}
 
 // MARK: - ****** FileStructureBuilder ******
 
@@ -26,9 +44,8 @@ class FileStructureBuilder {
     
     struct Options : OptionSet {
         let rawValue: Int
-        
-        static let removeEmptyFolders = Options(rawValue: 1 << 0)
-        static let shortenPaths = Options(rawValue: 1 << 1)
+        static let shortenPaths = Options(rawValue: 1 << 0)
+        static let followAliases = Options(rawValue: 1 << 1)
     }
     
     // MARK: - Init
@@ -50,6 +67,7 @@ class FileStructureBuilder {
     private let folderRules: [FolderRule]
     private let fileReader: FileReader
     private let options: Options
+    private var visitedPaths = [String]()
     
     // MARK: - Build Directory Structure
     
@@ -61,9 +79,9 @@ class FileStructureBuilder {
         }
         
         // Only show folders with matching files?
-        if options.contains(.removeEmptyFolders) {
-            rootDirectory = directoryByRemovingDeadPaths(inDirectory: rootDirectory)
-        }
+//        if options.contains(.removeEmptyFolders) {
+//            rootDirectory = directoryByRemovingDeadPaths(inDirectory: rootDirectory)
+//        }
         
         // Shorten paths?
         if options.contains(.shortenPaths) {
@@ -75,9 +93,15 @@ class FileStructureBuilder {
     
     private func fileSystemObject(atPath path: String, withParent parent: Directory?) -> FileSystemObject? {
         
-        guard let path = resolveFinderAlias(atPath: path) else {
+        var path = path
+        if options.contains(.followAliases) {
+            path = fileReader.resolveAlias(atPath: path)
+        }
+        
+        if visitedPaths.contains(path) {
             return nil
         }
+        visitedPaths.append(path)
         
         let pathComponents = path.components(separatedBy: "/")
         let itemName = pathComponents.last!
@@ -127,7 +151,7 @@ class FileStructureBuilder {
                     directory.add(object: $0)
             }
             
-            return directory
+            return directory.contents.count > 0 ? directory : nil
         }
         else{
             
@@ -275,22 +299,6 @@ class FileStructureBuilder {
         let image = NSWorkspace.shared().icon(forFile: path)
         image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
         return image
-    }
-    
-    func resolveFinderAlias(atPath path: String) -> String? {
-        
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            let resourceValues = try url.resourceValues(forKeys: [.isAliasFileKey])
-            if resourceValues.isAliasFile! {
-                let original = try URL(resolvingAliasFileAt: url)
-                return original.path
-            }
-        } catch  {
-            print(error)
-        }
-        return path
     }
     
 }

@@ -44,9 +44,9 @@ class Settings {
         }
     }
     
-    // MARK: - Only show folders with matching files
+    // MARK: - Shorten paths
     
-    static var onlyShowFoldersWithMatchingFiles: Bool {
+    static var shortenPaths: Bool {
         get{
             return userDefaults.bool(forKey: #function)
         }
@@ -56,78 +56,15 @@ class Settings {
         }
     }
     
-    // MARK: - Shorten paths where possible
+    // MARK: - Follow Aliases
     
-    static var shortenPathsWherePossible: Bool {
-        get{
+    static var followAliases: Bool {
+        get {
             return userDefaults.bool(forKey: #function)
         }
-        set{
+        set {
             userDefaults.setValue(newValue, forKey: #function)
             userDefaults.synchronize()
         }
     }
-    
-    // MARK: - File Types
-    /*
-    static var fileRules: [FileRule] {
-        
-        get {
-            let types = userDefaults.object(forKey: #function) as? [Dictionary<String, Any>]
-            
-            if let types = types {
-                return types.flatMap{ FileRule(dictionaryRepresentation: $0) }
-            }
-            else{
-                return []
-            }
-            
-        }
-        set {
-            userDefaults.set(newValue.map{ $0.dictionaryRepresentation }, forKey: #function)
-            userDefaults.synchronize()
-        }
-    }
-    
-    static func add(rule: FileRule) {
-        fileRules = fileRules.appending(rule)
-    }
-    
-    static func removeRule(atIndex index: Int) {
-        
-        var rules = fileRules
-        rules.remove(at: index)
-        fileRules = rules
-    }
-    
-    // MARK: - Folder Rules
-    
-    static var folderRules: [FolderRule] {
-        
-        get {
-            
-            if let array = userDefaults.object(forKey: FolderRule.storageKey) as? [Dictionary<String, Any>] {
-                return array.flatMap{ FolderRule(dictionaryRepresentation: $0) }
-            }
-            else{
-                return []
-            }
-        }
-        set {
-            userDefaults.set(newValue.map{ $0.dictionaryRepresentation }, forKey: FolderRule.storageKey)
-            userDefaults.synchronize()
-        }
-    }
-    
-    static func add(folderRule: FolderRule) {
-        folderRules = folderRules.appending(folderRule)
-    }
-    
-    static func update(folderRule: FolderRule, atIndex index: Int) {
-        
-        var rules = folderRules
-        rules[index] = folderRule
-        folderRules = rules 
-    }
- */
 }

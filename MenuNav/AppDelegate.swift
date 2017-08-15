@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         //!!! Don't start the app
-        //return
+        return
         /////////////////////////////////////
         
         NSApp.activate(ignoringOtherApps: true)
@@ -58,16 +58,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Get the file structure
         var options = FileStructureBuilder.Options()
         
-        if Settings.onlyShowFoldersWithMatchingFiles {
-            options.update(with: .removeEmptyFolders)
-        }
-        
-        if Settings.shortenPathsWherePossible {
+        if Settings.shortenPaths {
             options.update(with: .shortenPaths)
         }
         
+        if Settings.followAliases {
+            options.update(with: .followAliases)
+        }
+        
         let builder = FileStructureBuilder(fileReader: FileManager.default,
-                                           rules: Settings.fileRules,
+                                           fileRules: FileRule.ruleLoader.rules,
+                                           folderRules: FolderRule.ruleLoader.rules,
                                            options: options)
         
         guard let path = Settings.path else {

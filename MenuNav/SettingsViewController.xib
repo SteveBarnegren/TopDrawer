@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SettingsViewController" customModule="MenuNav" customModuleProvider="target">
+            <connections>
+                <outlet property="followAliasesButton" destination="seM-3e-0Ze" id="RwN-2t-fLp"/>
+                <outlet property="shortenPathsButton" destination="a2T-3t-TJ5" id="the-Qz-plx"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="690" height="448"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khV-8C-uUI">
+                    <rect key="frame" x="20" y="206" width="650" height="36"/>
+                    <subviews>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="a2T-3t-TJ5">
+                            <rect key="frame" x="227" y="20" width="196" height="18"/>
+                            <buttonCell key="cell" type="check" title="Shorten path where possible" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Zj-ZT-vK5">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="shortenPathsButtonPressedWithSender:" target="-2" id="RcU-MT-sjt"/>
+                            </connections>
+                        </button>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="seM-3e-0Ze">
+                            <rect key="frame" x="272" y="-2" width="106" height="18"/>
+                            <buttonCell key="cell" type="check" title="Follow aliases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ybq-Ed-QD7">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="followAliasesButtonPressedWithSender:" target="-2" id="pv2-Sp-Z4C"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="khV-8C-uUI" secondAttribute="trailing" constant="20" id="IHs-Pw-6Oo"/>
+                <constraint firstItem="khV-8C-uUI" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="TOp-oa-c12"/>
+                <constraint firstItem="khV-8C-uUI" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="YJP-4g-ykw"/>
+            </constraints>
+            <point key="canvasLocation" x="45" y="124"/>
+        </customView>
+    </objects>
+</document>

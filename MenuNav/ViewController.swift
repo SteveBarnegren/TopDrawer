@@ -28,14 +28,11 @@ class ViewController: NSViewController {
         // IconImageView
         iconImageView.image = NSImage(named: "AppIcon")
         
-        
         // Update UI
         updatePathLabel()
     
-        
         // Show file rules content
-        //let fileRules = FileRulesViewController.init(nibName: "FileRulesViewController", bundle: nil)!
-       // show(contentViewController: fileRules)
+        showFileRules()
     }
     
     // MARK: - Content view
@@ -70,6 +67,9 @@ class ViewController: NSViewController {
     func showSettings() {
         print("Show settings")
         self.segmentedControl.selectedSegment = 2
+        
+        let settings = SettingsViewController(nibName: "SettingsViewController", bundle: nil)!
+        self.show(contentViewController: settings)
     }
     
     func show(contentViewController newViewController: NSViewController) {

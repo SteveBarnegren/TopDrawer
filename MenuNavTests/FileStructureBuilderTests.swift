@@ -12,6 +12,7 @@ import XCTest
 
 enum MockFileObject {
     case file(String)
+    case alias(String, path: String)
     indirect case folder(String, [MockFileObject])
     
     var name: String {
@@ -19,6 +20,8 @@ enum MockFileObject {
         case let .file(name):
             return name
         case let .folder(name, _):
+            return name
+        case let .alias(name, _):
             return name
         }
     }
@@ -45,6 +48,9 @@ enum MockFileObject {
             return contents.first(where: {
                 $0.name == nextObjectName
             })?.getObject(atPath: remainingPath)
+        
+        case .alias(_, _):
+            return nil
         }
     }
     
@@ -64,6 +70,8 @@ enum MockFileObject {
             contents.forEach{
                 $0.printHeirarchyRecursive(indent: indent + 1)
             }
+        case let .alias(name, path):
+            print("\(spaces) - (Alias)\(name) -> \(path)")
         }
     }
 }
@@ -87,6 +95,8 @@ class MockFileReader: FileReader {
             isDirectory?.pointee = false
         case .folder(_, _):
             isDirectory?.pointee = true
+        case .alias(_, _):
+            isDirectory?.pointee = false
         }
     
         return true
@@ -101,6 +111,7 @@ class MockFileReader: FileReader {
         }
         
         switch object {
+        case .alias(_, _): fallthrough
         case .file(_):
             fatalError("Expected Object to be directory")
         case let .folder(_, contents):
@@ -128,13 +139,25 @@ class MockFileReader: FileReader {
         // Search the root object
         return rootFileObject.getObject(atPath: path)
     }
+    
+    func resolveAlias(atPath path: String) -> String {
+        
+        let object = getObject(atPath: path)!
+        
+        if case let MockFileObject.alias(_, path: aliasPath) = object {
+            return aliasPath
+        }
+        else{
+            return path
+        }
+    }
 }
 
 // MARK: - Directory Extensions
 
 extension Directory {
     
-    func containsObject(atPath path: String) -> Bool {
+       func containsObject(atPath path: String) -> Bool {
         
         let components = path.components(separatedBy: "/")
         
@@ -168,6 +191,8 @@ extension Directory {
 
 class Tests: XCTestCase {
     
+    // MARK: - Matching
+    
     func testIncludesOnlyMatchingFiles() {
         
         let fileReader = MockFileReader(
@@ -195,6 +220,74 @@ class Tests: XCTestCase {
         XCTAssertFalse(directory.containsObject(atPath: "document.pdf"))
         XCTAssertFalse(directory.containsObject(atPath: "TestFolder/report.pdf"))
     }
+    
+    // MARK: - Aliases
+    
+    func testFollowAliasesOptionFollowsAliases() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder( "A Folder", [
+                    .file("cow.png"),
+                    .alias("Photos", path: "Root/Exclude/Alias Folder"),
+                    .folder("TestFolder", [
+                        .file("parrot.png"),
+                        .file("report.pdf"),
+                        ]),
+                    ]),
+                .folder( "Exclude", [
+                    .folder( "Alias Folder", [
+                        .file("dog.png"),
+                        ]),
+                    ]),
+                ])
+        )
+        
+        let pngCondition = FileRule.Condition.ext(.matching("png"))
+        let fileRule = FileRule(conditions: [pngCondition])
+        
+        let excudeAliasCondition = FolderCondition.name(.matching("Exclude"))
+        let folderRule = FolderRule(conditions: [excudeAliasCondition])
+        
+        let withAliasBuilder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: [fileRule],
+                                           folderRules: [folderRule],
+                                           options: [.followAliases])
+        let withAliasDirectory = withAliasBuilder.buildFileSystemStructure(atPath: "Root")!
+        XCTAssertTrue(withAliasDirectory.containsObject(atPath: "A Folder/Alias Folder/dog.png"))
+        
+        let noAliasBuilder = FileStructureBuilder(fileReader: fileReader,
+                                                    fileRules: [fileRule],
+                                                    folderRules: [folderRule],
+                                                    options: [])
+        let noAliasDirectory = noAliasBuilder.buildFileSystemStructure(atPath: "Root")!
+        noAliasDirectory.printHeirarchy()
+        XCTAssertFalse(noAliasDirectory.containsObject(atPath: "A Folder/Alias Folder/dog.png"))
+    }
+    
+    func testFollowAliasesOptionDoesntAllowRecursion() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .file("cow.png"),
+                .folder( "A Folder", [
+                    .file("dog.png"),
+                    .alias("Photos", path: "Root/A Folder"),
+                    ]),
+                ])
+        )
+        
+        let pngCondition = FileRule.Condition.ext(.matching("png"))
+        let fileRule = FileRule(conditions: [pngCondition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                                    fileRules: [fileRule],
+                                                    folderRules: [],
+                                                    options: [.followAliases])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        XCTAssertFalse(directory.containsObject(atPath: "A Folder/A Folder/dog.png"))
+    }
+
     
     // MARK: - File Rules: Name
     
