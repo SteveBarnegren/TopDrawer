@@ -75,6 +75,10 @@ class FileStructureBuilder {
     
     private func fileSystemObject(atPath path: String, withParent parent: Directory?) -> FileSystemObject? {
         
+        guard let path = resolveFinderAlias(atPath: path) else {
+            return nil
+        }
+        
         let pathComponents = path.components(separatedBy: "/")
         let itemName = pathComponents.last!
         let isBaseDirectory = pathComponents.count == 1
@@ -271,6 +275,22 @@ class FileStructureBuilder {
         let image = NSWorkspace.shared().icon(forFile: path)
         image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
         return image
+    }
+    
+    func resolveFinderAlias(atPath path: String) -> String? {
+        
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let resourceValues = try url.resourceValues(forKeys: [.isAliasFileKey])
+            if resourceValues.isAliasFile! {
+                let original = try URL(resolvingAliasFileAt: url)
+                return original.path
+            }
+        } catch  {
+            print(error)
+        }
+        return path
     }
     
 }
