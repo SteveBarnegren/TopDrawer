@@ -63,6 +63,8 @@ class FileStructureBuilder {
 
     // MARK: - Properties
     
+    var isCancelledHandler: () -> (Bool) = { return false }
+    
     private let fileRules: [FileRule]
     private let folderRules: [FolderRule]
     private let fileReader: FileReader
@@ -78,18 +80,31 @@ class FileStructureBuilder {
             return nil
         }
         
+        // Check for cancelation
+        if isCancelledHandler() == true { return nil }
+        
         // Shorten paths?
         if options.contains(.shortenPaths) {
             rootDirectory = directoryByShorteningPaths(inDirectory: rootDirectory)
         }
         
+        // Check for cancelation
+        if isCancelledHandler() == true { return nil }
+        
         // Remove extended attributes, only required for parsing, so we can remove them to keep the memory footprint low
         rootDirectory.removeExtendedAttributes()
+        
+        // Check for cancelation
+        if isCancelledHandler() == true { return nil }
         
         return rootDirectory
     }
     
     private func fileSystemObject(atPath path: String, withParent parent: Directory?) -> FileSystemObject? {
+        
+        if isCancelledHandler() == true {
+            return nil
+        }
         
         var path = path
         if options.contains(.followAliases) {

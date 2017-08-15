@@ -20,13 +20,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         didSet{
             if isRebuilding == true {
                 showRebuldingMenu()
-                print("Started Rebuilding menu")
             }
             else{
-                print("Finished Rebuilding menu")
+                print("STOP")
             }
         }
     }
+    
+    var needsRebuild = false {
+        didSet{
+            if needsRebuild && !isRebuilding {
+                buildMenuIfNeeded()
+            }
+            else if needsRebuild && isRebuilding {
+                workItem!.cancel()
+            }
+        }
+    }
+    
+    var workItem: DispatchWorkItem?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
@@ -38,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // Build menu
-        buildMenu()
+        needsRebuild = true
     }
     
     func statusBarButtonPressed() {
@@ -47,8 +59,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Build menu
     
+    func buildMenuIfNeeded() {
+        if needsRebuild {
+            needsRebuild = false
+            buildMenu()
+        }
+    }
+    
     func buildMenu() {
         
+        print("Rebuilding menu")
+        self.workItem = nil
         isRebuilding = true
         
         // Get the file structure
@@ -72,6 +93,59 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
+        workItem = DispatchWorkItem { [weak self] in
+            
+            builder.isCancelledHandler = {
+                if let item = self?.workItem, item.isCancelled {
+                    print("Cancelled building menu")
+                    return true
+                }
+                else{
+                    return false
+                }
+            }
+            
+            guard let rootDirectory = builder.buildFileSystemStructure(atPath: path) else {
+                
+                guard let item = self?.workItem else {
+                    return
+                }
+                
+                if item.isCancelled {
+                    self?.isRebuilding = false
+                    self!.buildMenuIfNeeded()
+                    return
+                }
+                
+                DispatchQueue.main.async(execute: {
+                    print("Finished Building menu")
+                    self?.isRebuilding = false
+                    self!.showSetupMenu()
+                })
+                return
+            }
+            
+            guard let item = self?.workItem else {
+                self?.isRebuilding = false
+                return
+            }
+            
+            if item.isCancelled {
+                self?.isRebuilding = false
+                self!.buildMenuIfNeeded()
+                return
+            }
+            
+            DispatchQueue.main.async(execute: {
+                print("Finished Building menu")
+                self?.isRebuilding = false
+                self?.showFileStructureMenu(withRootDirectory: rootDirectory)
+            })
+        }
+        
+        DispatchQueue.global().async(execute: workItem!)
+        
+        /*
         DispatchQueue.global().async {
             
             guard let rootDirectory = builder.buildFileSystemStructure(atPath: path) else {
@@ -86,6 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.showFileStructureMenu(withRootDirectory: rootDirectory)
             })
         }
+ */
         
     }
     
@@ -111,7 +186,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Add rebuild item
         statusItem.menu?.addItem(NSMenuItem.separator())
-        let rebuildItem = NSMenuItem(title: "Rebuild", action: #selector(rebuild), keyEquivalent: "")
+        let rebuildItem = NSMenuItem(title: "Rebuild", action: #selector(rebuildItemPressed), keyEquivalent: "")
         rebuildItem.target = self
         statusItem.menu?.addItem(rebuildItem)
         
@@ -125,9 +200,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func showRebuldingMenu() {
-        
-        isRebuilding = false
-        
+                
         // Add rebuilding item
         let rebuildingItem = NSMenuItem(title: "Rebuilding... (please wait)", action: nil, keyEquivalent: "")
         let menu = NSMenu()
@@ -156,11 +229,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared().openFile(path)
     }
     
-    func rebuild() {
-        print("Rebuild menu")
-        buildMenu()
-    }
-    
     func openSettings() {
         print("Open settings")
         
@@ -169,6 +237,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         appWindowController?.showWindow(self)
         appWindowController?.window?.level = Int(CGWindowLevelForKey(.floatingWindow))
         appWindowController?.window?.makeKeyAndOrderFront(self)
+    }
+    
+    func rebuildItemPressed() {
+        needsRebuild = true
     }
     
     func quit() {

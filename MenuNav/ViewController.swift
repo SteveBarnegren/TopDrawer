@@ -152,6 +152,6 @@ class ViewController: NSViewController {
     // MARK: - Rebuild
     
     func rebuild() {
-        (NSApp.delegate as? AppDelegate)?.rebuild()
+        (NSApp.delegate as? AppDelegate)?.needsRebuild = true
     }
 }

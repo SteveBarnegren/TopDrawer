@@ -32,11 +32,21 @@ class SettingsViewController: NSViewController {
     @IBAction private func followAliasesButtonPressed(sender: NSButton){
         let isOn = followAliasesButton.state == NSOnState
         Settings.followAliases = isOn
+        rebuild()
     }
     
     @IBAction private func shortenPathsButtonPressed(sender: NSButton){
         let isOn = shortenPathsButton.state == NSOnState
         Settings.shortenPaths = isOn
+        rebuild()
+    }
+    
+    // MARK: - Rebuild
+    
+    func rebuild() {
+        if let appDelegate = NSApp.delegate as? AppDelegate {
+            appDelegate.needsRebuild = true
+        }
     }
     
 }
