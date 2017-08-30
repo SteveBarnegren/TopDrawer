@@ -22,7 +22,7 @@ class TestDirectoryBuilder {
     
     static func makeDirectory(fileNames: [String], folderNames: [String]) -> Directory {
         
-        var directory = Directory(name: "dir", path: "root/dir")
+        let directory = Directory(name: "dir", path: "root/dir")
         
         let files = fileNames.map{ (string: String) -> File in
             
@@ -42,7 +42,7 @@ class TestDirectoryBuilder {
         contents.append(contentsOf: folders.map{ $0 as FileSystemObject })
         directory.contents = contents
         
-        var extendedAttributes = Directory.ExtendedDictionaryAttributes()
+        let extendedAttributes = Directory.ExtendedDictionaryAttributes()
         extendedAttributes.containedFileNames = fileNames
         extendedAttributes.containedFolderNames = folderNames
         directory.extendedAttributes = extendedAttributes

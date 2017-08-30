@@ -107,7 +107,7 @@ class FileStructureBuilder {
         }
         
         var path = path
-        var visibleName = path.components(separatedBy: "/").last!
+        let visibleName = path.components(separatedBy: "/").last!
         if options.contains(.followAliases) {
             path = fileReader.resolveAlias(atPath: path)
         }
@@ -183,7 +183,7 @@ class FileStructureBuilder {
                 ext = nameWithExtension.pathExtension
             }
             
-            var file = File(name: name,
+            let file = File(name: name,
                             ext: ext,
                             path: path)
             file.parent = parent
@@ -215,7 +215,7 @@ class FileStructureBuilder {
             }
         }
         
-        var newDirectory = directory
+        let newDirectory = directory
         newDirectory.contents = newContents
         
         return newDirectory
@@ -255,7 +255,7 @@ class FileStructureBuilder {
             if innerDir.containedFiles.count == 0 && innerDir.containedDirectories.count == 1 {
                 
                 for innerDirDir in innerDir.containedDirectories {
-                    var newDir = directoryByShorteningPaths(inDirectory: innerDirDir)
+                    let newDir = directoryByShorteningPaths(inDirectory: innerDirDir)
                     newDir.name = innerDir.name
                     newContents.append(newDir)
                 }
@@ -265,7 +265,7 @@ class FileStructureBuilder {
             }
         }
         
-        var newDirectory = directory
+        let newDirectory = directory
         newDirectory.contents = newContents
         return newDirectory
         

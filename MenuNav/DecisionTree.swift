@@ -55,7 +55,7 @@ class DecisionNode<T: DecisionTreeElement> {
         }
     }
     
-    func matchTree(toElement element: T) -> Bool {
+    @discardableResult func matchTree(toElement element: T) -> Bool {
         
         print("node: \(self.nodeType)")
         
