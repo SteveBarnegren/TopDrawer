@@ -107,6 +107,7 @@ class FileStructureBuilder {
         }
         
         var path = path
+        var visibleName = path.components(separatedBy: "/").last!
         if options.contains(.followAliases) {
             path = fileReader.resolveAlias(atPath: path)
         }
@@ -139,8 +140,7 @@ class FileStructureBuilder {
             }
             visitedFolderPaths.insert(path)
             
-            let name = path.components(separatedBy: "/").last!
-            var directory = Directory(name: name,
+            let directory = Directory(name: visibleName,
                                       path: path)
             
             guard let contents = try? fileReader.contentsOfDirectory(atPath: path) else {

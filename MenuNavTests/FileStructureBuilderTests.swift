@@ -249,20 +249,31 @@ class Tests: XCTestCase {
         let excudeAliasCondition = FolderCondition.name(.matching("Exclude"))
         let folderRule = FolderRule(conditions: [excudeAliasCondition])
         
+        // Build with alias option
         let withAliasBuilder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [fileRule],
                                            folderRules: [folderRule],
                                            options: [.followAliases])
         let withAliasDirectory = withAliasBuilder.buildFileSystemStructure(atPath: "Root")!
-        XCTAssertTrue(withAliasDirectory.containsObject(atPath: "A Folder/Alias Folder/dog.png"))
+        XCTAssertTrue(withAliasDirectory.containsObject(atPath: "A Folder/Photos/dog.png"))
         
+        // Build without alias option
         let noAliasBuilder = FileStructureBuilder(fileReader: fileReader,
                                                     fileRules: [fileRule],
                                                     folderRules: [folderRule],
                                                     options: [])
         let noAliasDirectory = noAliasBuilder.buildFileSystemStructure(atPath: "Root")!
         noAliasDirectory.printHeirarchy()
-        XCTAssertFalse(noAliasDirectory.containsObject(atPath: "A Folder/Alias Folder/dog.png"))
+        XCTAssertFalse(noAliasDirectory.containsObject(atPath: "A Folder/Photos/dog.png"))
+    }
+    
+    func testAliasesUseOriginName() {
+        
+        
+        
+        
+        
+        
     }
     
     func testFollowAliasesOptionDoesntAllowRecursion() {
