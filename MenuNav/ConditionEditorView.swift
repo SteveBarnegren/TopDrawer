@@ -108,12 +108,18 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
                 textField.placeholderString = placeholder
                 textField.stringValue = node.textValue ?? ""
                 addViewToStackView(textField, fromNode: node)
+                
+            case let .pathValue(_, placeholder, _):
+                
+                let pathView = self.makePathInputView()
+                pathView.placeholder = placeholder
+                addViewToStackView(pathView, fromNode: node)
             }
         }
         
         addControl(forNode: node)
         
-        // Ad the validitiy indicator
+        // Add the validitiy indicator
         if validityIndicator.superview != nil {
             validityIndicator.removeFromSuperview()
         }
@@ -143,6 +149,18 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         textField.delegate = nonGenericType
         return textField
     }
+    
+    private func makePathInputView() -> PathConditionInputView {
+        
+        let input = PathConditionInputView(frame: .zero)
+
+        input.valueChangedHandler = { [weak self, input] in
+            self?.nodeViewChanged(input)
+        }
+        
+        return input
+    }
+
     
     // MARK: - Actions
     
@@ -195,6 +213,27 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         return node.make()
     }
     
+    // MARK: - Node updates
+    
+    func nodeViewChanged(_ nodeView: NSView) {
+        
+        let node = viewsAndNodes[nodeView]
+        
+        if let textField = nodeView as? NSTextField {
+            node?.textValue = textField.stringValueOptional
+        }
+        else if let pathInputView = nodeView as? PathConditionInputView {
+            node?.textValue = pathInputView.path
+        }
+        else{
+            fatalError("Unknown node view type")
+        }
+        
+        updateValidityIndicator()
+        
+        valueChangedHandler(self)
+    }
+    
 }
 
 extension ConditionEditorView: ConditionEditorViewNonGenericTypeDelegate {
@@ -205,12 +244,7 @@ extension ConditionEditorView: ConditionEditorViewNonGenericTypeDelegate {
             fatalError("Couldn't obtain text field from delegate callback")
         }
         
-        let node = viewsAndNodes[textField]
-        node?.textValue = textField.stringValueOptional
-        updateValidityIndicator()
-        
-        valueChangedHandler(self)
-        //delegate?.conditionEditorViewValueChanged(conditionView: self)
+        nodeViewChanged(textField)
     }
 }
 

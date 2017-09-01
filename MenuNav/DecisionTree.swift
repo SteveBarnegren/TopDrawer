@@ -18,6 +18,7 @@ protocol DecisionTreeElement: Equatable {
 enum DecisionNodeType<T: DecisionTreeElement> {
     case list(String, [DecisionNode<T>])
     case textValue(String, placeholder: String, make: (String) -> (T?))
+    case pathValue(String, placeholder: String, make: (String) -> (T?))
 }
 
 class DecisionNode<T: DecisionTreeElement> {
@@ -36,6 +37,8 @@ class DecisionNode<T: DecisionTreeElement> {
             return name
         case let .textValue(name, _, _):
             return name
+        case let .pathValue(name, _, _):
+            return name
         }
     }
     
@@ -52,6 +55,15 @@ class DecisionNode<T: DecisionTreeElement> {
             else{
                 return nil
             }
+            
+        case let .pathValue(_, _, makeWithPath):
+            if let text = textValue {
+                return makeWithPath(text)
+            }
+            else{
+                return nil
+            }
+            
         }
     }
     
@@ -73,6 +85,13 @@ class DecisionNode<T: DecisionTreeElement> {
             return false
             
         case let .textValue(_, _, handler):
+            if let value = handler(input), value == element {
+                textValue = input
+                return true
+            }
+            return false
+            
+        case let .pathValue(_, _, handler):
             if let value = handler(input), value == element {
                 textValue = input
                 return true
@@ -146,7 +165,7 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
         ]))
     
     let path = DecisionNode<FolderRule.Condition>(.list("Path", [
-        DecisionNode(.textValue("is", placeholder: "Path"){ .path(.matching($0)) }),
+        DecisionNode(.pathValue("is", placeholder: "Path"){ .path(.matching($0)) }),
         DecisionNode(.textValue("is not", placeholder: "Path"){ .path(.notMatching($0)) }),
         ]))
     
