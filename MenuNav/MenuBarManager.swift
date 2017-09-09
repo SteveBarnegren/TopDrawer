@@ -16,30 +16,6 @@ class MenuBarManager {
     var appWindowController: NSWindowController?
     let statusItem = NSStatusBar.system().statusItem(withLength: -2)
     
-    var isRebuilding = false {
-        didSet{
-            if isRebuilding == true {
-                showRebuldingMenu()
-            }
-            else{
-                print("STOP")
-            }
-        }
-    }
-    
-    var needsRebuild = false {
-        didSet{
-            if needsRebuild && !isRebuilding {
-                buildMenuIfNeeded()
-            }
-            else if needsRebuild && isRebuilding {
-                workItem!.cancel()
-            }
-        }
-    }
-    
-    var workItem: DispatchWorkItem?
-    
     // MARK: - Start
     
     func start()  {
@@ -50,7 +26,9 @@ class MenuBarManager {
         }
         
         // Build menu
-        needsRebuild = true
+        showRebuldingMenu()
+        RebuildManager.shared.addListener(self)
+        RebuildManager.shared.needsRebuild = true
         
         // Auto open settings
         if autoOpenSettings {
@@ -58,101 +36,11 @@ class MenuBarManager {
         }
     }
     
-    // MARK: - Build menu
-    
-    func buildMenuIfNeeded() {
-        if needsRebuild {
-            needsRebuild = false
-            buildMenu()
-        }
-    }
-    
-    func buildMenu() {
-        
-        print("Rebuilding menu")
-        self.workItem = nil
-        isRebuilding = true
-        
-        // Get the file structure
-        var options = FileStructureBuilder.Options()
-        
-        if Settings.shortenPaths {
-            options.update(with: .shortenPaths)
-        }
-        
-        if Settings.followAliases {
-            options.update(with: .followAliases)
-        }
-        
-        let builder = FileStructureBuilder(fileReader: FileManager.default,
-                                           fileRules: FileRule.ruleLoader.rules,
-                                           folderRules: FolderRule.ruleLoader.rules,
-                                           options: options)
-        
-        guard let path = Settings.path else {
-            showSetupMenu()
-            return
-        }
-        
-        workItem = DispatchWorkItem { [weak self] in
-            
-            builder.isCancelledHandler = {
-                if let item = self?.workItem, item.isCancelled {
-                    print("Cancelled building menu")
-                    return true
-                }
-                else{
-                    return false
-                }
-            }
-            
-            guard let rootDirectory = builder.buildFileSystemStructure(atPath: path) else {
-                
-                guard let item = self?.workItem else {
-                    return
-                }
-                
-                if item.isCancelled {
-                    self?.isRebuilding = false
-                    self!.buildMenuIfNeeded()
-                    return
-                }
-                
-                DispatchQueue.main.async(execute: {
-                    print("Finished Building menu")
-                    self?.isRebuilding = false
-                    self!.showSetupMenu()
-                })
-                return
-            }
-            
-            guard let item = self?.workItem else {
-                self?.isRebuilding = false
-                return
-            }
-            
-            if item.isCancelled {
-                self?.isRebuilding = false
-                self!.buildMenuIfNeeded()
-                return
-            }
-            
-            DispatchQueue.main.async(execute: {
-                print("Finished Building menu")
-                self?.isRebuilding = false
-                self?.showFileStructureMenu(withRootDirectory: rootDirectory)
-            })
-        }
-        
-        DispatchQueue.global().async(execute: workItem!)
-        
-    }
+
     
     // MARK: - Show Menu States
     
     func showSetupMenu() {
-        
-        isRebuilding = false
         
         // Add setup item
         let setupItem = NSMenuItem(title: "Setup (No root dir set)", action: #selector(openSettings), keyEquivalent: "")
@@ -165,9 +53,7 @@ class MenuBarManager {
     }
     
     func showFileStructureMenu(withRootDirectory rootDirectory: Directory) {
-        
-        isRebuilding = false
-        
+                
         statusItem.menu = rootDirectory.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
         
         // Add rebuild item
@@ -230,13 +116,28 @@ class MenuBarManager {
     }
     
     @objc func rebuildItemPressed() {
-        needsRebuild = true
+        RebuildManager.shared.needsRebuild = true
     }
     
     @objc func quit() {
         NSApp.terminate(self)
     }
 
+}
+
+// MARK: - RebuildManagerListener
+extension MenuBarManager: RebuildManagerListener {
+    
+    func rebuildManagerDidFailRebuildDueToNoRootPathSet() {
+        showSetupMenu()
+    }
+    
+    func rebuildManagerDidRebuild(directory: Directory) {
+        showFileStructureMenu(withRootDirectory: directory)
+    }
+    
+    func rebuildManagerDidChangeState(state: RebuildManager.State) {
+    }
 }
 
 extension Directory {

@@ -18,6 +18,11 @@
 		671941EB1F63FE46003AB65A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941E91F63FE46003AB65A /* Colors.swift */; };
 		671942001F6492B1003AB65A /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941FF1F6492B1003AB65A /* MenuBarManager.swift */; };
 		671942011F6492B1003AB65A /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941FF1F6492B1003AB65A /* MenuBarManager.swift */; };
+		671942031F6495F6003AB65A /* RebuildManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942021F6495F6003AB65A /* RebuildManager.swift */; };
+		671942041F6495F6003AB65A /* RebuildManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942021F6495F6003AB65A /* RebuildManager.swift */; };
+		671942061F649A37003AB65A /* WeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942051F649A37003AB65A /* WeakArray.swift */; };
+		671942071F649A37003AB65A /* WeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942051F649A37003AB65A /* WeakArray.swift */; };
+		671942091F649D10003AB65A /* WeakArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942081F649D10003AB65A /* WeakArrayTests.swift */; };
 		6724F5051F5699F500BFF4B5 /* PathConditionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */; };
 		6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */; };
 		6748CE0B1F3B9E29002941D4 /* RuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */; };
@@ -121,6 +126,9 @@
 		671941E61F63FB14003AB65A /* NSView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Extensions.swift"; sourceTree = "<group>"; };
 		671941E91F63FE46003AB65A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		671941FF1F6492B1003AB65A /* MenuBarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarManager.swift; sourceTree = "<group>"; };
+		671942021F6495F6003AB65A /* RebuildManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RebuildManager.swift; sourceTree = "<group>"; };
+		671942051F649A37003AB65A /* WeakArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakArray.swift; sourceTree = "<group>"; };
+		671942081F649D10003AB65A /* WeakArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakArrayTests.swift; sourceTree = "<group>"; };
 		6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathConditionInputView.swift; sourceTree = "<group>"; };
 		6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -213,6 +221,7 @@
 				0978BEBE1EB393110023AC66 /* AppDelegate.swift */,
 				671941FF1F6492B1003AB65A /* MenuBarManager.swift */,
 				67B77EFE1F3A0E9A000830EF /* ConditionPromptView.swift */,
+				671942021F6495F6003AB65A /* RebuildManager.swift */,
 				679370951F27A93B003E6A9A /* Protocols */,
 				67B4361C1EB3E88C003E5886 /* Utils */,
 				67A02E1C1EB4F1FB00D2A8CA /* Settings */,
@@ -309,6 +318,7 @@
 			children = (
 				6748CE371F3DC990002941D4 /* DictionaryRepresentable+Testing.swift */,
 				6748CE3E1F3DDDDA002941D4 /* TestDirectoryBuilder.swift */,
+				671942081F649D10003AB65A /* WeakArrayTests.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -395,6 +405,7 @@
 				67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */,
 				671941E61F63FB14003AB65A /* NSView+Extensions.swift */,
 				671941E91F63FE46003AB65A /* Colors.swift */,
+				671942051F649A37003AB65A /* WeakArray.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -665,6 +676,7 @@
 				67C530221F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */,
 				6724F5051F5699F500BFF4B5 /* PathConditionInputView.swift in Sources */,
 				6748CE161F3CC083002941D4 /* PathMatcher.swift in Sources */,
+				671942031F6495F6003AB65A /* RebuildManager.swift in Sources */,
 				67A02E1E1EB4F21D00D2A8CA /* Settings.swift in Sources */,
 				67C5301D1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */,
 				67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
@@ -682,6 +694,7 @@
 				6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */,
 				67B77F011F3A0F46000830EF /* NSTextField+Extensions.swift in Sources */,
 				6748CE261F3D9FAB002941D4 /* FolderCondition.swift in Sources */,
+				671942061F649A37003AB65A /* WeakArray.swift in Sources */,
 				6748CE2A1F3DBCC4002941D4 /* RulesViewModel.swift in Sources */,
 				676B80C61F4323DF00D2C88F /* SettingsViewController.swift in Sources */,
 				679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */,
@@ -703,6 +716,7 @@
 				676B80C71F4323DF00D2C88F /* SettingsViewController.swift in Sources */,
 				671942011F6492B1003AB65A /* MenuBarManager.swift in Sources */,
 				6748CE1D1F3CCC0C002941D4 /* Rule.swift in Sources */,
+				671942041F6495F6003AB65A /* RebuildManager.swift in Sources */,
 				6748CE381F3DC990002941D4 /* DictionaryRepresentable+Testing.swift in Sources */,
 				67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
 				6748CE441F3DE7F9002941D4 /* FolderRuleTests.swift in Sources */,
@@ -727,10 +741,12 @@
 				6748CE2F1F3DC1C2002941D4 /* RuleCollectionViewItem.swift in Sources */,
 				6748CE1A1F3CC135002941D4 /* FolderContentsMatcher.swift in Sources */,
 				67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */,
+				671942071F649A37003AB65A /* WeakArray.swift in Sources */,
 				6748CE2E1F3DC1BC002941D4 /* RulesViewModel.swift in Sources */,
 				67AE4A661F2CD53400E9D1FE /* FileRuleTests.swift in Sources */,
 				67AE4A681F2CD92700E9D1FE /* StringRepresentable.swift in Sources */,
 				6748CE171F3CC083002941D4 /* PathMatcher.swift in Sources */,
+				671942091F649D10003AB65A /* WeakArrayTests.swift in Sources */,
 				6748CE3F1F3DDDDA002941D4 /* TestDirectoryBuilder.swift in Sources */,
 				67E6CFD41F59399800C0DCE8 /* PathConditionInputView.swift in Sources */,
 				6748CE321F3DC34E002941D4 /* StringMatcherTests.swift in Sources */,

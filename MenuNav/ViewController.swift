@@ -154,6 +154,6 @@ class ViewController: NSViewController {
     // MARK: - Rebuild
     
     func rebuild() {
-        MenuBarManager.shared.needsRebuild = true
+        RebuildManager.shared.needsRebuild = true
     }
 }
