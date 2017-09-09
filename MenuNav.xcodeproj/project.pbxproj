@@ -16,6 +16,8 @@
 		671941E81F63FB1A003AB65A /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941E61F63FB14003AB65A /* NSView+Extensions.swift */; };
 		671941EA1F63FE46003AB65A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941E91F63FE46003AB65A /* Colors.swift */; };
 		671941EB1F63FE46003AB65A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941E91F63FE46003AB65A /* Colors.swift */; };
+		671942001F6492B1003AB65A /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941FF1F6492B1003AB65A /* MenuBarManager.swift */; };
+		671942011F6492B1003AB65A /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941FF1F6492B1003AB65A /* MenuBarManager.swift */; };
 		6724F5051F5699F500BFF4B5 /* PathConditionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */; };
 		6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */; };
 		6748CE0B1F3B9E29002941D4 /* RuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */; };
@@ -118,6 +120,7 @@
 		4E11CAD15A51A6877066995D /* Pods-MenuNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNav.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNav/Pods-MenuNav.debug.xcconfig"; sourceTree = "<group>"; };
 		671941E61F63FB14003AB65A /* NSView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Extensions.swift"; sourceTree = "<group>"; };
 		671941E91F63FE46003AB65A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		671941FF1F6492B1003AB65A /* MenuBarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarManager.swift; sourceTree = "<group>"; };
 		6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathConditionInputView.swift; sourceTree = "<group>"; };
 		6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				0978BEBE1EB393110023AC66 /* AppDelegate.swift */,
+				671941FF1F6492B1003AB65A /* MenuBarManager.swift */,
 				67B77EFE1F3A0E9A000830EF /* ConditionPromptView.swift */,
 				679370951F27A93B003E6A9A /* Protocols */,
 				67B4361C1EB3E88C003E5886 /* Utils */,
@@ -672,6 +676,7 @@
 				6748CE0D1F3BAB4D002941D4 /* FolderConditionFormatter.swift in Sources */,
 				671941E71F63FB14003AB65A /* NSView+Extensions.swift in Sources */,
 				67B77EFF1F3A0E9A000830EF /* ConditionPromptView.swift in Sources */,
+				671942001F6492B1003AB65A /* MenuBarManager.swift in Sources */,
 				0978BEBF1EB393110023AC66 /* AppDelegate.swift in Sources */,
 				67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */,
 				6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */,
@@ -696,6 +701,7 @@
 				67C5301E1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */,
 				6748CE461F3DE8B4002941D4 /* FolderConditionTests.swift in Sources */,
 				676B80C71F4323DF00D2C88F /* SettingsViewController.swift in Sources */,
+				671942011F6492B1003AB65A /* MenuBarManager.swift in Sources */,
 				6748CE1D1F3CCC0C002941D4 /* Rule.swift in Sources */,
 				6748CE381F3DC990002941D4 /* DictionaryRepresentable+Testing.swift in Sources */,
 				67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,

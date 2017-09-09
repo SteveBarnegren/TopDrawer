@@ -44,9 +44,7 @@ class SettingsViewController: NSViewController {
     // MARK: - Rebuild
     
     func rebuild() {
-        if let appDelegate = NSApp.delegate as? AppDelegate {
-            appDelegate.needsRebuild = true
-        }
+        MenuBarManager.shared.needsRebuild = true
     }
     
 }
