@@ -10,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="RulesViewController" customModule="MenuNav" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="BUh-Xe-WPS" id="TQO-Kh-mNs"/>
+                <outlet property="explanationLabel" destination="2sp-SH-sct" id="Loo-CK-sPm"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -58,13 +59,13 @@
                     </customSpacing>
                 </stackView>
                 <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9Q-WZ-uao">
-                    <rect key="frame" x="0.0" y="28" width="480" height="244"/>
+                    <rect key="frame" x="0.0" y="28" width="480" height="222"/>
                     <clipView key="contentView" drawsBackground="NO" id="g33-Dn-x10">
-                        <rect key="frame" x="1" y="1" width="478" height="242"/>
+                        <rect key="frame" x="1" y="1" width="478" height="220"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView id="BUh-Xe-WPS">
-                                <rect key="frame" x="0.0" y="0.0" width="478" height="242"/>
+                                <rect key="frame" x="0.0" y="0.0" width="478" height="220"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="C24-qX-5b6">
                                     <size key="itemSize" width="50" height="50"/>
@@ -79,18 +80,29 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="y3z-0d-Vqi">
-                        <rect key="frame" x="234" y="1" width="15" height="143"/>
+                        <rect key="frame" x="463" y="1" width="16" height="201"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sp-SH-sct">
+                    <rect key="frame" x="-2" y="258" width="484" height="14"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Explanation" id="OVA-Mf-D4L">
+                        <font key="font" metaFont="system" size="11"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="2sp-SH-sct" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="4wT-MF-qdg"/>
                 <constraint firstItem="Aln-AT-QCb" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="7TA-fC-HYK"/>
                 <constraint firstAttribute="bottom" secondItem="Aln-AT-QCb" secondAttribute="bottom" id="IXh-xP-9HM"/>
                 <constraint firstItem="T9Q-WZ-uao" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="JiW-yf-ivh"/>
                 <constraint firstItem="Aln-AT-QCb" firstAttribute="top" secondItem="T9Q-WZ-uao" secondAttribute="bottom" constant="8" id="O8D-MS-w0b"/>
                 <constraint firstAttribute="trailing" secondItem="T9Q-WZ-uao" secondAttribute="trailing" id="TUJ-cL-5yB"/>
-                <constraint firstItem="T9Q-WZ-uao" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="qRp-uT-cmN"/>
+                <constraint firstAttribute="trailing" secondItem="2sp-SH-sct" secondAttribute="trailing" id="ozG-y2-qqT"/>
+                <constraint firstItem="T9Q-WZ-uao" firstAttribute="top" secondItem="2sp-SH-sct" secondAttribute="bottom" constant="8" id="qLE-Bv-MD7"/>
+                <constraint firstItem="2sp-SH-sct" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="zqj-Z9-VUT"/>
             </constraints>
         </customView>
     </objects>

@@ -22,6 +22,7 @@ class RulesViewController<T: Rule>: NSViewController {
     // MARK: - Properties
     
     @IBOutlet weak fileprivate var collectionView: NSCollectionView!
+    @IBOutlet weak fileprivate var explanationLabel: NSTextField!
     
     let dataSource = RulesCollectionDataSource()
     var state = State.normal
@@ -53,6 +54,7 @@ class RulesViewController<T: Rule>: NSViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = dataSource
         
+        // Collection view layout
         let flowLayout = NSCollectionViewFlowLayout()
         //flowLayout.itemSize = NSSize(width: 160, height: 140)
         flowLayout.sectionInset = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -60,6 +62,9 @@ class RulesViewController<T: Rule>: NSViewController {
         flowLayout.minimumLineSpacing = 2
         collectionView.collectionViewLayout = flowLayout
         
+        // Explanation Label
+        explanationLabel.textColor = Colors.lightTextColor
+        explanationLabel.stringValue = viewModel.overviewExplanation
     }
 
     // MARK: - Actions
