@@ -46,7 +46,8 @@ class ViewController: NSViewController {
                                        addConditionPromptTitle: "Add a conditon",
                                        addCondtionPromptMessage: "Add a condition to include files",
                                        addConditionPromptButtonTitle: "Add a Condition",
-                                       overviewExplanation: "Show files matching any of the following sets of rules:")
+                                       overviewExplanation: "Show files matching any of the following sets of rules:",
+                                       editorExplanation: "Show files matching all of the following conditions:")
         
         let fileRules = RulesViewController<FileRule>(viewModel: viewModel)
         self .show(contentViewController: fileRules)
@@ -60,7 +61,8 @@ class ViewController: NSViewController {
                                        addConditionPromptTitle: "Add a condtion",
                                        addCondtionPromptMessage: "Add condtions to exclude a folder, even if it contains matching files",
                                        addConditionPromptButtonTitle: "Add a Condition",
-                                       overviewExplanation: "Exclude folders matching any of the following sets of rules:")
+                                       overviewExplanation: "Exclude folders matching any of the following sets of rules:",
+                                       editorExplanation: "Exclude folders matching all of the following conditions:")
         
         let folderRules = RulesViewController<FolderRule>(viewModel: viewModel)
         self.show(contentViewController: folderRules)

@@ -27,7 +27,8 @@ class EditRuleViewController<T: Rule>: NSViewController {
     @IBOutlet weak fileprivate var titleLabel: NSTextField!
     @IBOutlet weak fileprivate var scrollView: NSScrollView!
     @IBOutlet weak fileprivate var finishButton: NSButton!
-    
+    @IBOutlet weak fileprivate var explantionLabel: NSTextField!
+
     fileprivate var existingRule: T?
     fileprivate var conditionViews = [ConditionEditorView<T.Condition>]()
     //weak var delegate: EditRuleViewControllerDelegate?
@@ -69,6 +70,9 @@ class EditRuleViewController<T: Rule>: NSViewController {
         
         // Title Label
         titleLabel.stringValue = viewModel.editRuleTitle
+        
+        // Explanation Label
+        explantionLabel.stringValue = viewModel.editorExplanation
         
         // Update UI
         updateForCurrentState()

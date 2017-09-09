@@ -15,4 +15,5 @@ struct RulesViewModel {
     let addCondtionPromptMessage: String
     let addConditionPromptButtonTitle: String
     let overviewExplanation: String
+    let editorExplanation: String
 }

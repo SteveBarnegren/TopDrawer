@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="EditRuleViewController" customModule="MenuNav" customModuleProvider="target">
             <connections>
+                <outlet property="explantionLabel" destination="2gv-aX-SLf" id="XeO-Up-KPT"/>
                 <outlet property="finishButton" destination="GRh-7N-mPU" id="ng5-xH-qwa"/>
                 <outlet property="scrollView" destination="gGh-Ns-iCg" id="9zf-CG-3YA"/>
                 <outlet property="titleLabel" destination="uVV-r4-fee" id="WmK-OL-s3K"/>
@@ -29,23 +30,23 @@
                     </textFieldCell>
                 </textField>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="gGh-Ns-iCg">
-                    <rect key="frame" x="20" y="49" width="440" height="170"/>
+                    <rect key="frame" x="20" y="49" width="440" height="156"/>
                     <clipView key="contentView" id="ivp-7k-Ofz">
-                        <rect key="frame" x="1" y="1" width="438" height="168"/>
+                        <rect key="frame" x="1" y="1" width="438" height="154"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hoh-hF-Rlt">
-                                <rect key="frame" x="0.0" y="0.0" width="423" height="153"/>
+                                <rect key="frame" x="0.0" y="0.0" width="423" height="139"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </subviews>
                     </clipView>
                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="WbO-f9-UJN">
-                        <rect key="frame" x="1" y="153" width="438" height="16"/>
+                        <rect key="frame" x="1" y="139" width="438" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="2jb-an-mAM">
-                        <rect key="frame" x="423" y="1" width="16" height="168"/>
+                        <rect key="frame" x="423" y="1" width="16" height="154"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
@@ -87,12 +88,22 @@
                         <action selector="closeButtonPressedWithSender:" target="-2" id="gwP-rU-Iiv"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gv-aX-SLf">
+                    <rect key="frame" x="-2" y="213" width="484" height="14"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Explanation" id="tJq-fY-obj">
+                        <font key="font" metaFont="system" size="11"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="2gv-aX-SLf" firstAttribute="top" secondItem="uVV-r4-fee" secondAttribute="bottom" constant="8" id="3lE-lo-hR9"/>
                 <constraint firstItem="Bd3-da-hGq" firstAttribute="trailing" secondItem="gGh-Ns-iCg" secondAttribute="trailing" id="4ls-Zs-dal"/>
-                <constraint firstItem="gGh-Ns-iCg" firstAttribute="top" secondItem="uVV-r4-fee" secondAttribute="bottom" constant="16" id="5AI-Ms-N92"/>
                 <constraint firstAttribute="trailing" secondItem="uVV-r4-fee" secondAttribute="trailing" constant="20" id="680-yV-R1T"/>
                 <constraint firstItem="uVV-r4-fee" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="9eq-nw-iKL"/>
+                <constraint firstAttribute="trailing" secondItem="2gv-aX-SLf" secondAttribute="trailing" id="E8b-lF-lfM"/>
+                <constraint firstItem="2gv-aX-SLf" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="GBi-Iz-Egv"/>
                 <constraint firstAttribute="bottom" secondItem="GRh-7N-mPU" secondAttribute="bottom" constant="20" id="LNC-Jr-f1a"/>
                 <constraint firstAttribute="trailing" secondItem="Jf9-x0-YfU" secondAttribute="trailing" constant="20" id="OBY-cK-rH3"/>
                 <constraint firstItem="GRh-7N-mPU" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="VbZ-M6-d8v"/>
@@ -102,6 +113,7 @@
                 <constraint firstItem="gGh-Ns-iCg" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="jvW-vJ-tOU"/>
                 <constraint firstAttribute="trailing" secondItem="gGh-Ns-iCg" secondAttribute="trailing" constant="20" id="nSl-3N-t9M"/>
                 <constraint firstItem="uVV-r4-fee" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="uLE-NB-QVb"/>
+                <constraint firstItem="gGh-Ns-iCg" firstAttribute="top" secondItem="2gv-aX-SLf" secondAttribute="bottom" constant="8" id="x3N-Pn-hNc"/>
             </constraints>
         </customView>
     </objects>
