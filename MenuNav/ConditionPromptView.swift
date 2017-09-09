@@ -16,17 +16,12 @@ class ConditionPromptView: NSView {
     private let handler: () -> ()
     
     private lazy var stackView: NSStackView = {
-        let stackView = NSStackView(views: [self.titleLabel, self.messageLabel, self.actionButton])
+        let stackView = NSStackView(views: [self.promptLabel, self.actionButton])
         stackView.orientation = .vertical
         return stackView
     }()
     
-    private lazy var titleLabel: NSTextField = {
-        let label = NSTextField.createWithLabelStyle()
-        return label
-    }()
-    
-    private lazy var messageLabel: NSTextField = {
+    private lazy var promptLabel: NSTextField = {
         let label = NSTextField.createWithLabelStyle()
         return label
     }()
@@ -39,7 +34,7 @@ class ConditionPromptView: NSView {
     
     // MARK: - Init
     
-    init(title: String, message: String, buttonTitle: String, handler: @escaping () -> ()) {
+    init(prompt: String, buttonTitle: String, handler: @escaping () -> ()) {
         
         self.handler = handler
         
@@ -49,11 +44,8 @@ class ConditionPromptView: NSView {
         addSubview(stackView)
         stackView.pinToSuperviewCenter()
         
-        // Title label
-        titleLabel.stringValue = title
-        
         // Message label
-        messageLabel.stringValue = message
+        promptLabel.stringValue = prompt
         
         // Action Button
         actionButton.title = buttonTitle

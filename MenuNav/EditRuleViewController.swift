@@ -60,8 +60,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
         self.existingRule = existingRule
         
         // Prompt view
-        promptView = ConditionPromptView(title: viewModel.addConditionPromptTitle,
-                                         message: viewModel.addCondtionPromptMessage,
+        promptView = ConditionPromptView(prompt: viewModel.addConditionPrompt,
                                          buttonTitle: viewModel.addConditionPromptButtonTitle,
                                          handler: self.addConditionView)
         

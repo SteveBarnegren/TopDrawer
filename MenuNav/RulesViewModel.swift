@@ -11,8 +11,7 @@ import Foundation
 struct RulesViewModel {
     
     let editRuleTitle: String
-    let addConditionPromptTitle: String
-    let addCondtionPromptMessage: String
+    let addConditionPrompt: String
     let addConditionPromptButtonTitle: String
     let overviewExplanation: String
     let editorExplanation: String

@@ -43,8 +43,7 @@ class ViewController: NSViewController {
         self.segmentedControl.selectedSegment = 0
         
         let viewModel = RulesViewModel(editRuleTitle: "Add File Rule",
-                                       addConditionPromptTitle: "Add a conditon",
-                                       addCondtionPromptMessage: "Add a condition to include files",
+                                       addConditionPrompt: "Add a condition to include files",
                                        addConditionPromptButtonTitle: "Add a Condition",
                                        overviewExplanation: "Show files matching any of the following sets of rules:",
                                        editorExplanation: "Show files matching all of the following conditions:")
@@ -58,8 +57,7 @@ class ViewController: NSViewController {
         self.segmentedControl.selectedSegment = 1
         
         let viewModel = RulesViewModel(editRuleTitle: "Add Folder Rule",
-                                       addConditionPromptTitle: "Add a condtion",
-                                       addCondtionPromptMessage: "Add condtions to exclude a folder, even if it contains matching files",
+                                       addConditionPrompt: "Add condtions to exclude a folder, even if it contains matching files",
                                        addConditionPromptButtonTitle: "Add a Condition",
                                        overviewExplanation: "Exclude folders matching any of the following sets of rules:",
                                        editorExplanation: "Exclude folders matching all of the following conditions:")
