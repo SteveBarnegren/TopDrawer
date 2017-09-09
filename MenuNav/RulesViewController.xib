@@ -4,7 +4,6 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="RulesViewController" customModule="MenuNav" customModuleProvider="target">
@@ -20,44 +19,6 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aln-AT-QCb">
-                    <rect key="frame" x="216" y="0.0" width="48" height="20"/>
-                    <subviews>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mmh-uw-wcC">
-                            <rect key="frame" x="0.0" y="-1" width="20" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="20" id="igg-8s-YuA"/>
-                                <constraint firstAttribute="height" constant="20" id="sbh-ZZ-WwJ"/>
-                            </constraints>
-                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pqK-GO-Tz0">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="addRuleButtonPressedWithSender:" target="-2" id="vy3-c2-nI3"/>
-                            </connections>
-                        </button>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8pd-dQ-D9K">
-                            <rect key="frame" x="28" y="-1" width="20" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="Aed-fi-CTw"/>
-                                <constraint firstAttribute="width" constant="20" id="VQz-E6-tlc"/>
-                            </constraints>
-                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6OJ-gL-pNy">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                    </subviews>
-                    <visibilityPriorities>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                    </visibilityPriorities>
-                    <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                    </customSpacing>
-                </stackView>
                 <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9Q-WZ-uao">
                     <rect key="frame" x="0.0" y="28" width="480" height="222"/>
                     <clipView key="contentView" drawsBackground="NO" id="g33-Dn-x10">
@@ -80,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="y3z-0d-Vqi">
-                        <rect key="frame" x="463" y="1" width="16" height="201"/>
+                        <rect key="frame" x="463" y="1" width="16" height="199"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
@@ -92,14 +53,28 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mmh-uw-wcC">
+                    <rect key="frame" x="460" y="-1" width="20" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="igg-8s-YuA"/>
+                        <constraint firstAttribute="height" constant="20" id="sbh-ZZ-WwJ"/>
+                    </constraints>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pqK-GO-Tz0">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="addRuleButtonPressedWithSender:" target="-2" id="vy3-c2-nI3"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Mmh-uw-wcC" secondAttribute="bottom" id="1JI-q2-V9Z"/>
                 <constraint firstItem="2sp-SH-sct" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="4wT-MF-qdg"/>
-                <constraint firstItem="Aln-AT-QCb" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="7TA-fC-HYK"/>
-                <constraint firstAttribute="bottom" secondItem="Aln-AT-QCb" secondAttribute="bottom" id="IXh-xP-9HM"/>
                 <constraint firstItem="T9Q-WZ-uao" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="JiW-yf-ivh"/>
-                <constraint firstItem="Aln-AT-QCb" firstAttribute="top" secondItem="T9Q-WZ-uao" secondAttribute="bottom" constant="8" id="O8D-MS-w0b"/>
+                <constraint firstAttribute="trailing" secondItem="Mmh-uw-wcC" secondAttribute="trailing" id="L87-JV-hnW"/>
                 <constraint firstAttribute="trailing" secondItem="T9Q-WZ-uao" secondAttribute="trailing" id="TUJ-cL-5yB"/>
+                <constraint firstItem="Mmh-uw-wcC" firstAttribute="top" secondItem="T9Q-WZ-uao" secondAttribute="bottom" constant="8" id="fKM-oH-auU"/>
                 <constraint firstAttribute="trailing" secondItem="2sp-SH-sct" secondAttribute="trailing" id="ozG-y2-qqT"/>
                 <constraint firstItem="T9Q-WZ-uao" firstAttribute="top" secondItem="2sp-SH-sct" secondAttribute="bottom" constant="8" id="qLE-Bv-MD7"/>
                 <constraint firstItem="2sp-SH-sct" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="zqj-Z9-VUT"/>
@@ -108,6 +83,5 @@
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
     </resources>
 </document>
