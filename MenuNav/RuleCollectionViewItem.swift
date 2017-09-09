@@ -55,15 +55,21 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         // Background Color
         view.backgroundColor = NSColor.white
         
+        
         // Edit button
         editButton.target = self
         editButton.action = #selector(editButtonPressed(sender:))
+        //editButton.image?.isTemplate = true
+        
+        // Delete Button
+        //deleteButton.image?.isTemplate = true
         
         // Bottom Separator line
         let separatorLine = NSView(frame: .zero)
         separatorLine.backgroundColor = Colors.cellSeparatorLine
         view.addSubview(separatorLine)
         separatorLine.pinToSuperviewAsBottomStrip(height: 1)
+        
     }
     
     // MARK: - Actions

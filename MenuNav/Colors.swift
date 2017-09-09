@@ -11,7 +11,7 @@ import AppKit
 
 class Colors {
     
-    static var cellSeparatorLine: NSColor {
-        return NSColor(deviceWhite: 0.8, alpha: 1)
-    }
+    static let cellSeparatorLine = NSColor(deviceWhite: 0.8, alpha: 1)
+    static let nearlyBlackColor = NSColor(deviceWhite: 0.05, alpha: 1)
+    
 }
