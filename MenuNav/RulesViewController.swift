@@ -142,11 +142,13 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
     
     func sizeForItem(atIndexPath indexPath: IndexPath) -> CGSize {
         
+        let verticalMargins = CGFloat(3)
+        
         let rule = ruleLoader.rules[indexPath.item]
         let numConditions = CGFloat(rule.conditions.count)
         let height = (numConditions * conditionLabelHeight) + ((numConditions-1) * conditionLabelSpacing)
         return CGSize(width: collectionView.bounds.size.width,
-                      height: height)
+                      height: height + (verticalMargins*2))
     }
     
     func itemForObject(atIndexPath indexPath: IndexPath) -> NSCollectionViewItem {

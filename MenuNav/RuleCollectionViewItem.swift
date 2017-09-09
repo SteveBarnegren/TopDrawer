@@ -52,11 +52,18 @@ class RuleCollectionViewItem: NSCollectionViewItem {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = NSColor.orange.cgColor
+        // Background Color
+        view.backgroundColor = NSColor.white
         
+        // Edit button
         editButton.target = self
         editButton.action = #selector(editButtonPressed(sender:))
+        
+        // Bottom Separator line
+        let separatorLine = NSView(frame: .zero)
+        separatorLine.backgroundColor = Colors.cellSeparatorLine
+        view.addSubview(separatorLine)
+        separatorLine.pinToSuperviewAsBottomStrip(height: 1)
     }
     
     // MARK: - Actions

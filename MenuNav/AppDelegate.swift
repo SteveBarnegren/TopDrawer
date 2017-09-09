@@ -9,6 +9,8 @@
 import Cocoa
 import SBSwiftUtils
 
+let autoOpenSettings = true
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -53,6 +55,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Build menu
         needsRebuild = true
+        
+        // Auto open settings
+        if autoOpenSettings {
+            self.openSettings()
+        }
     }
     
     func statusBarButtonPressed() {
