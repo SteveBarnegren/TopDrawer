@@ -58,12 +58,6 @@ class MenuBarManager {
         }
     }
     
-    // MARK: - Actions
-    
-    @objc func statusBarButtonPressed() {
-        print("Status bar button pressed")
-    }
-    
     // MARK: - Build menu
     
     func buildMenuIfNeeded() {
@@ -152,24 +146,9 @@ class MenuBarManager {
         
         DispatchQueue.global().async(execute: workItem!)
         
-        /*
-         DispatchQueue.global().async {
-         
-         guard let rootDirectory = builder.buildFileSystemStructure(atPath: path) else {
-         
-         DispatchQueue.main.async(execute: {
-         self.showSetupMenu()
-         })
-         return
-         }
-         
-         DispatchQueue.main.async(execute: {
-         self.showFileStructureMenu(withRootDirectory: rootDirectory)
-         })
-         }
-         */
-        
     }
+    
+    // MARK: - Show Menu States
     
     func showSetupMenu() {
         
@@ -225,6 +204,10 @@ class MenuBarManager {
     
     // MARK: - Actions
     
+    @objc func statusBarButtonPressed() {
+        print("Status bar button pressed")
+    }
+    
     @objc func menuItemPressed(item: NSMenuItem) {
         print("Menu item pressed")
         
@@ -254,9 +237,7 @@ class MenuBarManager {
         NSApp.terminate(self)
     }
 
-    // MARK: - Convert Directory to NSMenu
-    
-   }
+}
 
 extension Directory {
     
