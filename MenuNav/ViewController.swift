@@ -110,7 +110,6 @@ class ViewController: NSViewController {
             let path = result.path
             Settings.shared.path.value = path
             self.updatePathLabel()
-            rebuild()
         }
     }
     
@@ -152,9 +151,4 @@ class ViewController: NSViewController {
         textField.stringValue = path.isEmpty ? "No path set" : path
     }
     
-    // MARK: - Rebuild
-    
-    func rebuild() {
-        RebuildManager.shared.needsRebuild = true
-    }
 }

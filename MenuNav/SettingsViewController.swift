@@ -40,19 +40,10 @@ class SettingsViewController: NSViewController {
     @IBAction private func followAliasesButtonPressed(sender: NSButton){
         let isOn = followAliasesButton.state == NSOnState
         Settings.shared.followAliases.value = isOn
-        rebuild()
     }
     
     @IBAction private func shortenPathsButtonPressed(sender: NSButton){
         let isOn = shortenPathsButton.state == NSOnState
         Settings.shared.shortenPaths.value = isOn
-        rebuild()
     }
-    
-    // MARK: - Rebuild
-    
-    func rebuild() {
-        RebuildManager.shared.needsRebuild = true
-    }
-    
 }

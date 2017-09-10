@@ -15,15 +15,34 @@ import IYLoginItem
 
 class Setting<T: KeyValueStorable> {
     
+    // MARK: - Types
+    
+    class Observer {
+        weak var object: AnyObject?
+        let selector: Selector
+        
+        init(object: AnyObject, selector: Selector) {
+            self.object = object
+            self.selector = selector
+        }
+    }
+    
+    // MARK: - Properties
+    
     let keyValueStore: KeyValueStore
     let key: String
     let defaultValue: T
+    var observers = [Observer]()
+    
+    // MARK: - Init
     
     init(keyValueStore: KeyValueStore, key: String, defaultValue: T) {
         self.keyValueStore = keyValueStore
         self.key = key
         self.defaultValue = defaultValue
     }
+    
+    // MARK: - Set / Get value
     
     var value: T {
         set {
@@ -37,6 +56,8 @@ class Setting<T: KeyValueStorable> {
             default:
                 fatalError("The swift compiler should be smart enough to realise that this switch is exaustive")
             }
+            
+            sendChangeEvent()
         }
         get {
             switch T.self {
@@ -49,6 +70,25 @@ class Setting<T: KeyValueStorable> {
             default:
                 fatalError("The swift compiler should be smart enough to realise that this switch is exaustive")
             }
+        }
+    }
+    
+    // MARK: - Manage Observers
+    
+    func add(changeObserver: AnyObject, selector: Selector) {
+        let observer = Observer(object: changeObserver, selector: selector)
+        observers.append(observer)
+    }
+    
+    func remove(changeObserver: Observer) {
+        observers = observers.filter{ $0.object !== changeObserver }
+    }
+    
+    private func sendChangeEvent() {
+        
+        observers = observers.filter{ $0.object != nil }
+        observers.forEach{
+            let _ = $0.object?.perform($0.selector)
         }
     }
 }

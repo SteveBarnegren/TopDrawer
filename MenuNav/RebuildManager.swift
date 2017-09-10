@@ -31,7 +31,7 @@ class RebuildManager {
     
     static let shared = RebuildManager()
     
-    var state = State.idle {
+    private var state = State.idle {
         didSet{
             switch state {
             case .idle:
@@ -56,22 +56,34 @@ class RebuildManager {
         }
     }
     
-    var workItem: DispatchWorkItem?
+    private var workItem: DispatchWorkItem?
     
-    let listeners = WeakArray<RebuildManagerListener>()
+    private let listeners = WeakArray<RebuildManagerListener>()
     
-    var refreshTimer: Timer?
+    private var refreshTimer: Timer?
+    private let settings: Settings
+    
+    // MARK: - Init
+    
+    init(settings: Settings = Settings.shared) {
+        self.settings = settings
+
+        // Observe settings
+        settings.path.add(changeObserver: self, selector: #selector(pathSettingChanged))
+        settings.followAliases.add(changeObserver: self, selector: #selector(followAliasesSettingChanged))
+        settings.shortenPaths.add(changeObserver: self, selector: #selector(shortenPathsSettingChanged))
+    }
     
     // MARK: - Build menu
     
-    func buildMenuIfNeeded() {
+    private func buildMenuIfNeeded() {
         if needsRebuild {
             needsRebuild = false
             buildMenu()
         }
     }
     
-    func buildMenu() {
+    private func buildMenu() {
         
         print("Rebuilding menu")
         self.workItem = nil
@@ -168,7 +180,7 @@ class RebuildManager {
         listeners.remove(listener)
     }
     
-    // MARK: - Refrash Timer
+    // MARK: - Refresh Timer
     
     private func stopRefreshTimer() {
         refreshTimer?.invalidate()
@@ -197,5 +209,18 @@ class RebuildManager {
     @objc private func refreshTimerFired() {
         needsRebuild = true
     }
-
+    
+    // MARK: - Settings Observers
+    
+    @objc private func followAliasesSettingChanged() {
+        needsRebuild = true
+    }
+    
+    @objc private func pathSettingChanged() {
+        needsRebuild = true
+    }
+    
+    @objc private func shortenPathsSettingChanged() {
+        needsRebuild = true
+    }
 }
