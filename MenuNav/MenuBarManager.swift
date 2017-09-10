@@ -10,12 +10,10 @@ import Foundation
 import AppKit
 
 class MenuBarManager {
-    
-    static let shared = MenuBarManager()
-    
+        
     var appWindowController: NSWindowController?
     let statusItem = NSStatusBar.system().statusItem(withLength: -2)
-    let rebuildManager = RebuildManager.shared
+    let rebuildManager = RebuildManager()
     
     // MARK: - Start
     
@@ -115,7 +113,7 @@ class MenuBarManager {
     }
     
     @objc func rebuildItemPressed() {
-        RebuildManager.shared.needsRebuild = true
+        rebuildManager.needsRebuild = true
     }
     
     @objc func quit() {

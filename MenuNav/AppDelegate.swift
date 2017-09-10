@@ -14,7 +14,7 @@ let autoOpenSettings = true
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let menuBarManager = MenuBarManager.shared
+    let menuBarManager = MenuBarManager()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         NSApp.activate(ignoringOtherApps: true)

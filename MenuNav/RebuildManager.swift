@@ -28,9 +28,7 @@ class RebuildManager {
     }
     
     // MARK: - Properties
-    
-    static let shared = RebuildManager()
-    
+        
     private var state = State.idle {
         didSet{
             switch state {
