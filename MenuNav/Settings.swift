@@ -67,4 +67,10 @@ class Settings {
             userDefaults.synchronize()
         }
     }
+    
+    // MARK: - Refrresh Interval
+    
+    static var refreshMinutes: Int {
+        return 1
+    }
 }

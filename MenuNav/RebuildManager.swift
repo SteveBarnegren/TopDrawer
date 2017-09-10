@@ -31,24 +31,27 @@ class RebuildManager {
     
     static let shared = RebuildManager()
     
-    var isRebuilding = false {
+    var state = State.idle {
         didSet{
-            if isRebuilding == true {
-                //showRebuldingMenu() //!
+            switch state {
+            case .idle:
+                startRefreshTimer()
+            case .rebuilding:
+                stopRefreshTimer()
             }
-            else{
-                print("STOP")
-            }
+            listeners.objects.forEach{ $0.rebuildManagerDidChangeState(state: state) }
         }
     }
     
     var needsRebuild = false {
         didSet{
-            if needsRebuild && !isRebuilding {
-                buildMenuIfNeeded()
-            }
-            else if needsRebuild && isRebuilding {
-                workItem!.cancel()
+            if needsRebuild {
+                switch state {
+                case .idle:
+                    buildMenuIfNeeded()
+                case .rebuilding:
+                    workItem!.cancel()
+                }
             }
         }
     }
@@ -56,6 +59,8 @@ class RebuildManager {
     var workItem: DispatchWorkItem?
     
     let listeners = WeakArray<RebuildManagerListener>()
+    
+    var refreshTimer: Timer?
     
     // MARK: - Build menu
     
@@ -70,7 +75,7 @@ class RebuildManager {
         
         print("Rebuilding menu")
         self.workItem = nil
-        isRebuilding = true
+        state = .rebuilding
         
         // Get the file structure
         var options = FileStructureBuilder.Options()
@@ -112,33 +117,33 @@ class RebuildManager {
                 }
                 
                 if item.isCancelled {
-                    self?.isRebuilding = false
-                    self!.buildMenuIfNeeded()
+                    self?.state = .idle
+                    self?.buildMenuIfNeeded()
                     return
                 }
                 
                 DispatchQueue.main.async(execute: {
                     print("Finished Building menu")
-                    self?.isRebuilding = false
+                    self?.state = .idle
                     self?.listeners.objects.forEach{ $0.rebuildManagerDidFailRebuildDueToNoRootPathSet() }
                 })
                 return
             }
             
             guard let item = self?.workItem else {
-                self?.isRebuilding = false
+                self?.state = .idle
                 return
             }
             
             if item.isCancelled {
-                self?.isRebuilding = false
-                self!.buildMenuIfNeeded()
+                self?.state = .idle
+                self?.buildMenuIfNeeded()
                 return
             }
             
             DispatchQueue.main.async(execute: {
                 print("Finished Building menu")
-                self?.isRebuilding = false
+                self?.state = .idle
                 self?.listeners.objects.forEach{
                     $0.rebuildManagerDidRebuild(directory: rootDirectory)
                 }
@@ -157,6 +162,36 @@ class RebuildManager {
     
     func removeListener(_ listener: RebuildManagerListener) {
         listeners.remove(listener)
+    }
+    
+    // MARK: - Refrash Timer
+    
+    private func stopRefreshTimer() {
+        refreshTimer?.invalidate()
+        refreshTimer = nil
+    }
+    
+    private func startRefreshTimer() {
+        
+        stopRefreshTimer()
+        
+        let seconds = TimeInterval(Settings.refreshMinutes * 60)
+        
+        refreshTimer = Timer(timeInterval: seconds,
+                             target: self,
+                             selector: #selector(refreshTimerFired),
+                             userInfo: nil,
+                             repeats: false)
+        
+        // Increased tolerance allows mac os to better manage power usage
+        refreshTimer?.tolerance = seconds * 0.2
+        
+        let runLoop = RunLoop.current
+        runLoop.add(refreshTimer!, forMode: .commonModes)
+    }
+    
+    @objc private func refreshTimerFired() {
+        needsRebuild = true
     }
 
 }

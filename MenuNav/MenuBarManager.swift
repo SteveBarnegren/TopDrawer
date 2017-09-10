@@ -15,6 +15,7 @@ class MenuBarManager {
     
     var appWindowController: NSWindowController?
     let statusItem = NSStatusBar.system().statusItem(withLength: -2)
+    let rebuildManager = RebuildManager.shared
     
     // MARK: - Start
     
@@ -27,16 +28,14 @@ class MenuBarManager {
         
         // Build menu
         showRebuldingMenu()
-        RebuildManager.shared.addListener(self)
-        RebuildManager.shared.needsRebuild = true
+        rebuildManager.addListener(self)
+        rebuildManager.needsRebuild = true
         
         // Auto open settings
         if autoOpenSettings {
             self.openSettings()
         }
     }
-    
-
     
     // MARK: - Show Menu States
     
@@ -53,7 +52,7 @@ class MenuBarManager {
     }
     
     func showFileStructureMenu(withRootDirectory rootDirectory: Directory) {
-                
+        
         statusItem.menu = rootDirectory.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
         
         // Add rebuild item
