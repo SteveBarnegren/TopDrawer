@@ -60,11 +60,15 @@ class RebuildManager {
     
     private var refreshTimer: Timer?
     private let settings: Settings
+    private let fileReader: FileReader
     
     // MARK: - Init
     
-    init(settings: Settings = Settings.shared) {
+    init(settings: Settings = Settings.shared,
+         fileReader: FileReader = FileManager.default) {
+        
         self.settings = settings
+        self.fileReader = fileReader
 
         // Observe settings
         settings.path.add(changeObserver: self, selector: #selector(pathSettingChanged))
@@ -98,7 +102,7 @@ class RebuildManager {
             options.update(with: .followAliases)
         }
         
-        let builder = FileStructureBuilder(fileReader: FileManager.default,
+        let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: FileRule.ruleLoader.rules,
                                            folderRules: FolderRule.ruleLoader.rules,
                                            options: options)

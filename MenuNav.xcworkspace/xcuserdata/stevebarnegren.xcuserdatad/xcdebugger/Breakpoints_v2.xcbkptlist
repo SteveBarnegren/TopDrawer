@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MenuNav/RebuildManager.swift"
-            timestampString = "526750281.485532"
+            timestampString = "526751647.861053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "buildMenu()"
             landmarkType = "7">
          </BreakpointContent>
