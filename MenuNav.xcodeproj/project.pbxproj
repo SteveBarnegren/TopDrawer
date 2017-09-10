@@ -23,6 +23,9 @@
 		671942061F649A37003AB65A /* WeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942051F649A37003AB65A /* WeakArray.swift */; };
 		671942071F649A37003AB65A /* WeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942051F649A37003AB65A /* WeakArray.swift */; };
 		671942091F649D10003AB65A /* WeakArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942081F649D10003AB65A /* WeakArrayTests.swift */; };
+		6719420B1F656DE4003AB65A /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719420A1F656DE4003AB65A /* UserPreferences.swift */; };
+		6719420C1F656DE4003AB65A /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719420A1F656DE4003AB65A /* UserPreferences.swift */; };
+		6719420F1F657E9B003AB65A /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719420E1F657E9B003AB65A /* SettingsTests.swift */; };
 		6724F5051F5699F500BFF4B5 /* PathConditionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */; };
 		6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */; };
 		6748CE0B1F3B9E29002941D4 /* RuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */; };
@@ -129,6 +132,8 @@
 		671942021F6495F6003AB65A /* RebuildManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RebuildManager.swift; sourceTree = "<group>"; };
 		671942051F649A37003AB65A /* WeakArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakArray.swift; sourceTree = "<group>"; };
 		671942081F649D10003AB65A /* WeakArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakArrayTests.swift; sourceTree = "<group>"; };
+		6719420A1F656DE4003AB65A /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		6719420E1F657E9B003AB65A /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathConditionInputView.swift; sourceTree = "<group>"; };
 		6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -222,6 +227,7 @@
 				671941FF1F6492B1003AB65A /* MenuBarManager.swift */,
 				67B77EFE1F3A0E9A000830EF /* ConditionPromptView.swift */,
 				671942021F6495F6003AB65A /* RebuildManager.swift */,
+				6719420A1F656DE4003AB65A /* UserPreferences.swift */,
 				679370951F27A93B003E6A9A /* Protocols */,
 				67B4361C1EB3E88C003E5886 /* Utils */,
 				67A02E1C1EB4F1FB00D2A8CA /* Settings */,
@@ -238,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				6748CE361F3DC980002941D4 /* Utils */,
+				6719420D1F657E84003AB65A /* Settings */,
 				6748CE331F3DC353002941D4 /* Matchers */,
 				6748CE3D1F3DDCD7002941D4 /* File Rules */,
 				6748CE421F3DE7DD002941D4 /* Folder Rules */,
@@ -254,6 +261,14 @@
 				480C88363C8F497977E2ABE1 /* Pods_MenuNavTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6719420D1F657E84003AB65A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6719420E1F657E9B003AB65A /* SettingsTests.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		6748CE0F1F3CBFBA002941D4 /* Folder Rule */ = {
@@ -682,6 +697,7 @@
 				67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
 				67A02E191EB4001A00D2A8CA /* NSImage+Extensions.swift in Sources */,
 				674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */,
+				6719420B1F656DE4003AB65A /* UserPreferences.swift in Sources */,
 				6748CE231F3D9EB9002941D4 /* FileCondition.swift in Sources */,
 				67AE4A731F30FD2C00E9D1FE /* FolderRule.swift in Sources */,
 				67C530111F3383E200D3B5FD /* RulesViewController.swift in Sources */,
@@ -725,6 +741,7 @@
 				67C530121F3383E200D3B5FD /* RulesViewController.swift in Sources */,
 				67AE4A6A1F2CD93300E9D1FE /* FileRule.swift in Sources */,
 				67AE4A691F2CD92C00E9D1FE /* NSImage+Extensions.swift in Sources */,
+				6719420C1F656DE4003AB65A /* UserPreferences.swift in Sources */,
 				6793709F1F27B890003E6A9A /* Array+Extensions.swift in Sources */,
 				6748CE351F3DC79C002941D4 /* PathMatcherTests.swift in Sources */,
 				671941E81F63FB1A003AB65A /* NSView+Extensions.swift in Sources */,
@@ -736,6 +753,7 @@
 				67C530261F339D1700D3B5FD /* ConditionEditorView.swift in Sources */,
 				671941EB1F63FE46003AB65A /* Colors.swift in Sources */,
 				6748CE211F3D0670002941D4 /* DecisionTree.swift in Sources */,
+				6719420F1F657E9B003AB65A /* SettingsTests.swift in Sources */,
 				6748CE411F3DE1A3002941D4 /* FileConditionTests.swift in Sources */,
 				67AE4A6D1F2CD93D00E9D1FE /* ViewController.swift in Sources */,
 				6748CE2F1F3DC1C2002941D4 /* RuleCollectionViewItem.swift in Sources */,

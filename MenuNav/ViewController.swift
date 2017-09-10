@@ -108,7 +108,7 @@ class ViewController: NSViewController {
             }
             
             let path = result.path
-            Settings.path = path
+            Settings.shared.path.value = path
             self.updatePathLabel()
             rebuild()
         }
@@ -147,8 +147,9 @@ class ViewController: NSViewController {
     
     func updatePathLabel() {
         
-        let text = Settings.path ?? "No path set"
-        textField.stringValue = text
+        let path = Settings.shared.path.value
+        
+        textField.stringValue = path.isEmpty ? "No path set" : path
     }
     
     // MARK: - Rebuild

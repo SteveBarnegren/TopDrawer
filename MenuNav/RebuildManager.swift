@@ -80,11 +80,11 @@ class RebuildManager {
         // Get the file structure
         var options = FileStructureBuilder.Options()
         
-        if Settings.shortenPaths {
+        if Settings.shared.shortenPaths.value {
             options.update(with: .shortenPaths)
         }
         
-        if Settings.followAliases {
+        if Settings.shared.followAliases.value {
             options.update(with: .followAliases)
         }
         
@@ -93,10 +93,14 @@ class RebuildManager {
                                            folderRules: FolderRule.ruleLoader.rules,
                                            options: options)
         
-        guard let path = Settings.path else {
+        let path = Settings.shared.path.value
+        
+        /*
+        guard let path = Settings.shared.path.value else {
             listeners.objects.forEach{ $0.rebuildManagerDidFailRebuildDueToNoRootPathSet() }
             return
         }
+ */
         
         workItem = DispatchWorkItem { [weak self] in
             
@@ -175,7 +179,7 @@ class RebuildManager {
         
         stopRefreshTimer()
         
-        let seconds = TimeInterval(Settings.refreshMinutes * 60)
+        let seconds = TimeInterval(Settings.shared.refreshMinutes.value * 60)
         
         refreshTimer = Timer(timeInterval: seconds,
                              target: self,

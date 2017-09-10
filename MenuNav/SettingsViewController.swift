@@ -14,6 +14,7 @@ class SettingsViewController: NSViewController {
     
     @IBOutlet weak fileprivate var followAliasesButton: NSButton!
     @IBOutlet weak fileprivate var shortenPathsButton: NSButton!
+    @IBOutlet weak fileprivate var refreshIntervalDropdown: NSPopUpButton!
     
     // MARK: - NSViewController
 
@@ -21,23 +22,30 @@ class SettingsViewController: NSViewController {
         super.viewDidLoad()
         
         // Follow aliases button
-        followAliasesButton.state = Settings.followAliases ? NSOnState : NSOffState
+        followAliasesButton.state = Settings.shared.followAliases.value ? NSOnState : NSOffState
         
         // Shorten Paths button
-        shortenPathsButton.state = Settings.shortenPaths ? NSOnState : NSOffState
+        shortenPathsButton.state = Settings.shared.shortenPaths.value ? NSOnState : NSOffState
+        
+        // Rebuild Interval Popup
+        refreshIntervalDropdown.removeAllItems()
+        let intervals = [5, 10, 15, 20, 30, 45, 60]
+        intervals.forEach{
+            refreshIntervalDropdown.addItem(withTitle: "\($0)")
+        }
     }
     
     // MARK: - Actions
     
     @IBAction private func followAliasesButtonPressed(sender: NSButton){
         let isOn = followAliasesButton.state == NSOnState
-        Settings.followAliases = isOn
+        Settings.shared.followAliases.value = isOn
         rebuild()
     }
     
     @IBAction private func shortenPathsButtonPressed(sender: NSButton){
         let isOn = shortenPathsButton.state == NSOnState
-        Settings.shortenPaths = isOn
+        Settings.shared.shortenPaths.value = isOn
         rebuild()
     }
     

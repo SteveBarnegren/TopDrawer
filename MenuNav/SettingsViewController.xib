@@ -10,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsViewController" customModule="MenuNav" customModuleProvider="target">
             <connections>
                 <outlet property="followAliasesButton" destination="seM-3e-0Ze" id="RwN-2t-fLp"/>
+                <outlet property="refreshIntervalDropdown" destination="5xe-yD-BbI" id="tKU-cO-jlm"/>
                 <outlet property="shortenPathsButton" destination="a2T-3t-TJ5" id="the-Qz-plx"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -20,29 +21,87 @@
             <rect key="frame" x="0.0" y="0.0" width="690" height="448"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khV-8C-uUI">
-                    <rect key="frame" x="20" y="206" width="650" height="36"/>
+                <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NgK-PV-sVN">
+                    <rect key="frame" x="0.0" y="185.5" width="690" height="77"/>
                     <subviews>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="a2T-3t-TJ5">
-                            <rect key="frame" x="227" y="20" width="196" height="18"/>
-                            <buttonCell key="cell" type="check" title="Shorten path where possible" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Zj-ZT-vK5">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="shortenPathsButtonPressedWithSender:" target="-2" id="RcU-MT-sjt"/>
-                            </connections>
-                        </button>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="seM-3e-0Ze">
-                            <rect key="frame" x="272" y="-2" width="106" height="18"/>
-                            <buttonCell key="cell" type="check" title="Follow aliases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ybq-Ed-QD7">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="followAliasesButtonPressedWithSender:" target="-2" id="pv2-Sp-Z4C"/>
-                            </connections>
-                        </button>
+                        <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khV-8C-uUI">
+                            <rect key="frame" x="245.5" y="41" width="199" height="36"/>
+                            <subviews>
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="a2T-3t-TJ5">
+                                    <rect key="frame" x="-2" y="20" width="203" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Shorten paths where possible" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Zj-ZT-vK5">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="shortenPathsButtonPressedWithSender:" target="-2" id="RcU-MT-sjt"/>
+                                    </connections>
+                                </button>
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="seM-3e-0Ze">
+                                    <rect key="frame" x="46.5" y="-2" width="106" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Follow aliases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ybq-Ed-QD7">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="followAliasesButtonPressedWithSender:" target="-2" id="pv2-Sp-Z4C"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iom-LK-8Um">
+                            <rect key="frame" x="236" y="0.0" width="218" height="21"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XB5-WR-sxs">
+                                    <rect key="frame" x="-2" y="2" width="86" height="17"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Rebuild every" id="v7k-2p-7eA">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5xe-yD-BbI">
+                                    <rect key="frame" x="88" y="-3" width="76" height="26"/>
+                                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nvp-72-4n3" id="G2n-Ni-Y98">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="Y1C-VK-5ix">
+                                            <items>
+                                                <menuItem title="Item 1" state="on" id="nvp-72-4n3"/>
+                                                <menuItem title="Item 2" id="9UK-qd-wZh"/>
+                                                <menuItem title="Item 3" id="edg-eY-oMO"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ag-mo-PcL">
+                                    <rect key="frame" x="167" y="2" width="53" height="17"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Minutes" id="Quj-iI-0ru">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
                     </subviews>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -55,9 +114,9 @@
                 </stackView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="khV-8C-uUI" secondAttribute="trailing" constant="20" id="IHs-Pw-6Oo"/>
-                <constraint firstItem="khV-8C-uUI" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="TOp-oa-c12"/>
-                <constraint firstItem="khV-8C-uUI" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="YJP-4g-ykw"/>
+                <constraint firstItem="NgK-PV-sVN" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="T1L-xm-Sne"/>
+                <constraint firstItem="NgK-PV-sVN" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="lx0-vL-jDP"/>
+                <constraint firstAttribute="trailing" secondItem="NgK-PV-sVN" secondAttribute="trailing" id="nsc-8Z-gkm"/>
             </constraints>
             <point key="canvasLocation" x="45" y="124"/>
         </customView>
