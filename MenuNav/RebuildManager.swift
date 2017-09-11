@@ -58,6 +58,7 @@ class RebuildManager {
     
     private let listeners = WeakArray<RebuildManagerListener>()
     
+    private let timerType: Timer.Type
     private var refreshTimer: Timer?
     private let settings: Settings
     private let fileReader: FileReader
@@ -68,16 +69,19 @@ class RebuildManager {
     convenience init() {
         self.init(settings: Settings.shared,
                   fileReader: FileManager.default,
-                  rulesKeyValueStore: UserPreferences())
+                  rulesKeyValueStore: UserPreferences(),
+                  timerType: NSTimerBasedTimer.self)
     }
     
     init(settings: Settings,
          fileReader: FileReader,
-         rulesKeyValueStore: KeyValueStore) {
+         rulesKeyValueStore: KeyValueStore,
+         timerType: Timer.Type) {
         
         self.settings = settings
         self.fileReader = fileReader
         self.rulesKeyValueStore = rulesKeyValueStore
+        self.timerType = timerType
 
         // Observe settings
         settings.path.add(changeObserver: self, selector: #selector(pathSettingChanged))
@@ -197,7 +201,7 @@ class RebuildManager {
     // MARK: - Refresh Timer
     
     private func stopRefreshTimer() {
-        refreshTimer?.invalidate()
+        refreshTimer?.stop()
         refreshTimer = nil
     }
     
@@ -207,17 +211,14 @@ class RebuildManager {
         
         let seconds = TimeInterval(settings.refreshMinutes.value * 60)
         
-        refreshTimer = Timer(timeInterval: seconds,
-                             target: self,
-                             selector: #selector(refreshTimerFired),
-                             userInfo: nil,
-                             repeats: false)
+        refreshTimer = timerType.init(interval: seconds
+            ,
+                                      target: self,
+                                      selector: #selector(refreshTimerFired),
+                                      repeats: false,
+                                      pctTolerance: 0.2)
         
-        // Increased tolerance allows mac os to better manage power usage
-        refreshTimer?.tolerance = seconds * 0.2
-        
-        let runLoop = RunLoop.current
-        runLoop.add(refreshTimer!, forMode: .commonModes)
+        refreshTimer?.start()
     }
     
     @objc private func refreshTimerFired() {

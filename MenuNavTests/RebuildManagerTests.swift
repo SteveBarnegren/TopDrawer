@@ -153,7 +153,8 @@ class RebuildManagerTests: XCTestCase {
         let mockSettings = makeMockSettings(path: "Root", shortenPaths: false, followAliases: false, refreshMinutes: 10)
         let rebuildManager = RebuildManager(settings: mockSettings,
                                             fileReader: makeMockFileReader(),
-                                            rulesKeyValueStore: makeMatchingRulesKeyValueStore())
+                                            rulesKeyValueStore: makeMatchingRulesKeyValueStore(),
+                                            timerType: MockTimerBenign.self)
         
         let mockListener = MockRebuildManagerListener()
         mockListener.didRebuildCallback = {
@@ -177,7 +178,8 @@ class RebuildManagerTests: XCTestCase {
         let mockSettings = makeMockSettings(path: nil, shortenPaths: false, followAliases: false, refreshMinutes: 10)
         let rebuildManager = RebuildManager(settings: mockSettings,
                                             fileReader: makeMockFileReader(),
-                                            rulesKeyValueStore: makeMatchingRulesKeyValueStore())
+                                            rulesKeyValueStore: makeMatchingRulesKeyValueStore(),
+                                            timerType: MockTimerBenign.self)
         
         let mockListener = MockRebuildManagerListener()
         mockListener.noPathSetCallback = {
