@@ -27,6 +27,8 @@
 		6719420C1F656DE4003AB65A /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719420A1F656DE4003AB65A /* UserPreferences.swift */; };
 		6719420F1F657E9B003AB65A /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719420E1F657E9B003AB65A /* SettingsTests.swift */; };
 		671942111F6593D9003AB65A /* RebuildManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942101F6593D9003AB65A /* RebuildManagerTests.swift */; };
+		671942141F659A45003AB65A /* RuleLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942131F659A45003AB65A /* RuleLoaderTests.swift */; };
+		671942171F659B2A003AB65A /* DictionaryKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942161F659B2A003AB65A /* DictionaryKeyValueStore.swift */; };
 		6724F5051F5699F500BFF4B5 /* PathConditionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */; };
 		6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */; };
 		6748CE0B1F3B9E29002941D4 /* RuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */; };
@@ -136,6 +138,8 @@
 		6719420A1F656DE4003AB65A /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		6719420E1F657E9B003AB65A /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		671942101F6593D9003AB65A /* RebuildManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RebuildManagerTests.swift; sourceTree = "<group>"; };
+		671942131F659A45003AB65A /* RuleLoaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleLoaderTests.swift; sourceTree = "<group>"; };
+		671942161F659B2A003AB65A /* DictionaryKeyValueStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryKeyValueStore.swift; sourceTree = "<group>"; };
 		6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathConditionInputView.swift; sourceTree = "<group>"; };
 		6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionViewItem.swift; sourceTree = "<group>"; };
 		6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 		0978BECF1EB393110023AC66 /* MenuNavTests */ = {
 			isa = PBXGroup;
 			children = (
+				671942151F659B0F003AB65A /* Supporting */,
+				671942121F659A1D003AB65A /* Rule Loader */,
 				6748CE361F3DC980002941D4 /* Utils */,
 				6719420D1F657E84003AB65A /* Settings */,
 				6748CE331F3DC353002941D4 /* Matchers */,
@@ -272,6 +278,22 @@
 				6719420E1F657E9B003AB65A /* SettingsTests.swift */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		671942121F659A1D003AB65A /* Rule Loader */ = {
+			isa = PBXGroup;
+			children = (
+				671942131F659A45003AB65A /* RuleLoaderTests.swift */,
+			);
+			name = "Rule Loader";
+			sourceTree = "<group>";
+		};
+		671942151F659B0F003AB65A /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				671942161F659B2A003AB65A /* DictionaryKeyValueStore.swift */,
+			);
+			name = Supporting;
 			sourceTree = "<group>";
 		};
 		6748CE0F1F3CBFBA002941D4 /* Folder Rule */ = {
@@ -738,6 +760,7 @@
 				671942041F6495F6003AB65A /* RebuildManager.swift in Sources */,
 				671942111F6593D9003AB65A /* RebuildManagerTests.swift in Sources */,
 				6748CE381F3DC990002941D4 /* DictionaryRepresentable+Testing.swift in Sources */,
+				671942171F659B2A003AB65A /* DictionaryKeyValueStore.swift in Sources */,
 				67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
 				6748CE441F3DE7F9002941D4 /* FolderRuleTests.swift in Sources */,
 				6748CE2B1F3DC191002941D4 /* ConditionPromptView.swift in Sources */,
@@ -758,6 +781,7 @@
 				671941EB1F63FE46003AB65A /* Colors.swift in Sources */,
 				6748CE211F3D0670002941D4 /* DecisionTree.swift in Sources */,
 				6719420F1F657E9B003AB65A /* SettingsTests.swift in Sources */,
+				671942141F659A45003AB65A /* RuleLoaderTests.swift in Sources */,
 				6748CE411F3DE1A3002941D4 /* FileConditionTests.swift in Sources */,
 				67AE4A6D1F2CD93D00E9D1FE /* ViewController.swift in Sources */,
 				6748CE2F1F3DC1C2002941D4 /* RuleCollectionViewItem.swift in Sources */,

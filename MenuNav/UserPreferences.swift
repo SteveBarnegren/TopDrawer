@@ -14,6 +14,9 @@ extension Bool: KeyValueStorable {}
 extension Int: KeyValueStorable {}
 
 protocol KeyValueStore {
+
+    func set(value: Any, forKey key: String)
+    func value(forKey key: String) -> Any?
     
     func set(bool: Bool, forKey key: String)
     func bool(forKey key: String) -> Bool?
@@ -29,6 +32,14 @@ protocol KeyValueStore {
 class UserPreferences: KeyValueStore {
     
     let userDefaults = UserDefaults.standard
+    
+    func set(value: Any, forKey key: String) {
+        userDefaults.set(value, forKey: key)
+    }
+    
+    func value(forKey key: String) -> Any? {
+        return userDefaults.value(forKey: key)
+    }
     
     func set(bool: Bool, forKey key: String) {
         userDefaults.set(bool, forKey: key)

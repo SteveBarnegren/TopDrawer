@@ -106,6 +106,7 @@ class FileStructureBuilder {
             return nil
         }
         
+        print("path: \(path)")
         var path = path
         let visibleName = path.components(separatedBy: "/").last!
         if options.contains(.followAliases) {

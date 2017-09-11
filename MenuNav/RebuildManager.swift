@@ -61,14 +61,23 @@ class RebuildManager {
     private var refreshTimer: Timer?
     private let settings: Settings
     private let fileReader: FileReader
+    private let rulesKeyValueStore: KeyValueStore
     
     // MARK: - Init
     
-    init(settings: Settings = Settings.shared,
-         fileReader: FileReader = FileManager.default) {
+    convenience init() {
+        self.init(settings: Settings.shared,
+                  fileReader: FileManager.default,
+                  rulesKeyValueStore: UserPreferences())
+    }
+    
+    init(settings: Settings,
+         fileReader: FileReader,
+         rulesKeyValueStore: KeyValueStore) {
         
         self.settings = settings
         self.fileReader = fileReader
+        self.rulesKeyValueStore = rulesKeyValueStore
 
         // Observe settings
         settings.path.add(changeObserver: self, selector: #selector(pathSettingChanged))
@@ -94,23 +103,26 @@ class RebuildManager {
         // Get the file structure
         var options = FileStructureBuilder.Options()
         
-        if Settings.shared.shortenPaths.value {
+        if settings.shortenPaths.value {
             options.update(with: .shortenPaths)
         }
         
-        if Settings.shared.followAliases.value {
+        if settings.followAliases.value {
             options.update(with: .followAliases)
         }
         
+        let fileRuleLoader = RuleLoader<FileRule>(keyValueStore: rulesKeyValueStore)
+        let folderRuleLoader = RuleLoader<FolderRule>(keyValueStore: rulesKeyValueStore)
+        
         let builder = FileStructureBuilder(fileReader: fileReader,
-                                           fileRules: FileRule.ruleLoader.rules,
-                                           folderRules: FolderRule.ruleLoader.rules,
+                                           fileRules: fileRuleLoader.rules,
+                                           folderRules: folderRuleLoader.rules,
                                            options: options)
         
-        let path = Settings.shared.path.value
+        let path = settings.path.value
         
         /*
-        guard let path = Settings.shared.path.value else {
+        guard let path = settings.path.value else {
             listeners.objects.forEach{ $0.rebuildManagerDidFailRebuildDueToNoRootPathSet() }
             return
         }
@@ -193,7 +205,7 @@ class RebuildManager {
         
         stopRefreshTimer()
         
-        let seconds = TimeInterval(Settings.shared.refreshMinutes.value * 60)
+        let seconds = TimeInterval(settings.refreshMinutes.value * 60)
         
         refreshTimer = Timer(timeInterval: seconds,
                              target: self,

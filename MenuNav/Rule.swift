@@ -43,20 +43,13 @@ protocol FormatterProvider {
 
 // MARK: - Rule Loader
 
-extension Rule {
-    
-    static var ruleLoader: RuleLoader<Self> {
-        return makeRuleLoader()
-    }
-    
-    static func makeRuleLoader<T>() -> RuleLoader<T> {
-        return RuleLoader()
-    }
-}
-
 class RuleLoader<T: Rule> {
     
-    let userDefaults = UserDefaults.standard
+    let keyValueStore: KeyValueStore
+    
+    init(keyValueStore: KeyValueStore) {
+        self.keyValueStore = keyValueStore
+    }
     
     var numberOfRules: Int {
         return rules.count
@@ -65,7 +58,8 @@ class RuleLoader<T: Rule> {
     var rules: [T] {
         get {
             let key = T.storageKey
-            guard let array = userDefaults.object(forKey: key) as? Array<Dictionary<String, Any>> else {
+            
+            guard let array = keyValueStore.value(forKey: key) as? Array<Dictionary<String, Any>> else {
                 return []
             }
             return array.flatMap{ T(dictionaryRepresentation: $0) }
@@ -73,8 +67,7 @@ class RuleLoader<T: Rule> {
         set {
             let key = T.storageKey
             let array = newValue.map{ $0.dictionaryRepresentation }
-            userDefaults.set(array, forKey: key)
-            userDefaults.synchronize()
+            keyValueStore.set(value: array, forKey: key)
         }
     }
     

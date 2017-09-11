@@ -26,7 +26,7 @@ class RulesViewController<T: Rule>: NSViewController {
     
     let dataSource = RulesCollectionDataSource()
     var state = State.normal
-    let ruleLoader = T.ruleLoader
+    let ruleLoader = RuleLoader<T>(keyValueStore: UserPreferences())
     let viewModel: RulesViewModel
     
     // MARK: - Init
@@ -116,7 +116,7 @@ class RulesViewController<T: Rule>: NSViewController {
     
     func didEditRuleHandler(rule: T) {
         
-        let ruleLoader = T.ruleLoader
+        let ruleLoader = RuleLoader<T>(keyValueStore: UserPreferences())
         
         switch state {
         case .newRule:
