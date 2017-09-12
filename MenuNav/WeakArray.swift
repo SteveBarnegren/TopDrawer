@@ -17,7 +17,7 @@ class WeakArray<T> {
         weak var object : AnyObject?
         
         init(object: T) {
-            self.object = object as? AnyObject
+            self.object = object as AnyObject
         }
     }
     
@@ -34,11 +34,7 @@ class WeakArray<T> {
     
     func remove(_ object: T) {
         
-        guard let anyObject = object as? AnyObject else {
-            return
-        }
-        
-        array = array.filter{ $0.object !== anyObject }
+        array = array.filter{ $0.object !== object as AnyObject }
     }
     
     // MARK: - Remove Deallocated Objects
