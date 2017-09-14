@@ -8,11 +8,11 @@ target 'MenuNav' do
 
   # SBSwiftUtils
   pod 'SBSwiftUtils'
-  #pod 'SBSwiftUtils', :path => ENV['SB_SWIFT_UTILS_ROOT']
+  #pod 'SBSwiftUtils', :path => ENV['SwiftUtils']
 
   # SBAutoLayout
   pod 'SBAutoLayout'
-  #pod 'SBAutoLayout', :path => ENV['SB_AUTOLAYOUT_ROOT']
+  #pod 'SBAutoLayout', :path => ENV['SBAutoLayout']
 
 
   target 'MenuNavTests' do

@@ -11,8 +11,9 @@ import Foundation
 #if os(OSX)
     import AppKit
     public typealias UIView = NSView
-    public typealias UILayoutPriority = NSLayoutPriority
-    public typealias UIEdgeInsets = EdgeInsets
+    public typealias UILayoutPriority = NSLayoutConstraint.Priority
+    public typealias UIEdgeInsets = NSEdgeInsets
+    public typealias NSLayoutAttribute = NSLayoutConstraint.Attribute
 #else
     import UIKit
 #endif
@@ -31,8 +32,7 @@ extension UIView {
                                                  toItem: nil,
                                                  attribute: .notAnAttribute,
                                                  multiplier: 1,
-                                                 constant: width)
-        
+                                                 constant: width)        
         if let priority = priority {
             constraint.priority = priority
         }
