@@ -26,7 +26,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         
         // IconImageView
-        iconImageView.image = NSImage(named: "AppIcon")
+        iconImageView.image = NSImage(named: NSImage.Name(rawValue: "AppIcon"))
         
         // Update UI
         updatePathLabel()
@@ -70,7 +70,7 @@ class ViewController: NSViewController {
         print("Show settings")
         self.segmentedControl.selectedSegment = 2
         
-        let settings = SettingsViewController(nibName: "SettingsViewController", bundle: nil)!
+        let settings = SettingsViewController(nibName: NSNib.Name(rawValue: "SettingsViewController"), bundle: nil)
         self.show(contentViewController: settings)
     }
     
@@ -101,7 +101,7 @@ class ViewController: NSViewController {
         openDialogue.canCreateDirectories = false
         openDialogue.allowedFileTypes = nil
         
-        if openDialogue.runModal() == NSModalResponseOK {
+        if openDialogue.runModal() == NSApplication.ModalResponse.OK {
             
             guard let result = openDialogue.url else {
                 return

@@ -22,10 +22,10 @@ class SettingsViewController: NSViewController {
         super.viewDidLoad()
         
         // Follow aliases button
-        followAliasesButton.state = Settings.shared.followAliases.value ? NSOnState : NSOffState
+        followAliasesButton.state = Settings.shared.followAliases.value ? .on : .off
         
         // Shorten Paths button
-        shortenPathsButton.state = Settings.shared.shortenPaths.value ? NSOnState : NSOffState
+        shortenPathsButton.state = Settings.shared.shortenPaths.value ? .on : .off
         
         // Rebuild Interval Popup
         refreshIntervalDropdown.removeAllItems()
@@ -38,12 +38,12 @@ class SettingsViewController: NSViewController {
     // MARK: - Actions
     
     @IBAction private func followAliasesButtonPressed(sender: NSButton){
-        let isOn = followAliasesButton.state == NSOnState
+        let isOn = followAliasesButton.state == .on
         Settings.shared.followAliases.value = isOn
     }
     
     @IBAction private func shortenPathsButtonPressed(sender: NSButton){
-        let isOn = shortenPathsButton.state == NSOnState
+        let isOn = shortenPathsButton.state == .off
         Settings.shared.shortenPaths.value = isOn
     }
 }

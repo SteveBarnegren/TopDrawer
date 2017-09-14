@@ -12,7 +12,7 @@ import AppKit
 class MenuBarManager {
         
     var appWindowController: NSWindowController?
-    let statusItem = NSStatusBar.system().statusItem(withLength: -2)
+    let statusItem = NSStatusBar.system.statusItem(withLength: -2)
     let rebuildManager = RebuildManager()
     
     // MARK: - Start
@@ -20,7 +20,7 @@ class MenuBarManager {
     func start()  {
         
         if let button = statusItem.button {
-            button.image = NSImage(named: "StatusBarButtonImage")
+            button.image = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
             button.action = #selector(statusBarButtonPressed)
         }
         
@@ -99,16 +99,16 @@ class MenuBarManager {
             return
         }
         
-        NSWorkspace.shared().openFile(path)
+        NSWorkspace.shared.openFile(path)
     }
     
     @objc func openSettings() {
         print("Open settings")
         
-        let storyboard = NSStoryboard(name: "App", bundle: nil)
+        let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "App"), bundle: nil)
         appWindowController = storyboard.instantiateInitialController() as? NSWindowController
         appWindowController?.showWindow(self)
-        appWindowController?.window?.level = Int(CGWindowLevelForKey(.floatingWindow))
+        appWindowController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
         appWindowController?.window?.makeKeyAndOrderFront(self)
     }
     

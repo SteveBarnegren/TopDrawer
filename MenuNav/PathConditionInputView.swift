@@ -31,8 +31,8 @@ class PathConditionInputView: NSView {
     private lazy var textField: NSTextField = {
         
         let textField = NSTextField(frame: .zero)
-        textField.setContentHuggingPriority(NSLayoutPriorityDefaultLow, for: .horizontal)
-        textField.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: .horizontal)
+        textField.setContentHuggingPriority(NSLayoutConstraint.Priority.defaultLow, for: .horizontal)
+        textField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.defaultLow, for: .horizontal)
         textField.delegate = self
         return textField
     }()
@@ -94,7 +94,7 @@ class PathConditionInputView: NSView {
         openDialogue.canCreateDirectories = false
         openDialogue.allowedFileTypes = nil
         
-        if openDialogue.runModal() == NSModalResponseOK {
+        if openDialogue.runModal() == NSApplication.ModalResponse.OK {
             
             guard let result = openDialogue.url else {
                 return

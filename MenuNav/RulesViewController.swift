@@ -33,7 +33,7 @@ class RulesViewController<T: Rule>: NSViewController {
     
     init(viewModel: RulesViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "RulesViewController", bundle: nil)!
+        super.init(nibName: NSNib.Name(rawValue: "RulesViewController"), bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -57,7 +57,7 @@ class RulesViewController<T: Rule>: NSViewController {
         // Collection view layout
         let flowLayout = NSCollectionViewFlowLayout()
         //flowLayout.itemSize = NSSize(width: 160, height: 140)
-        flowLayout.sectionInset = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.minimumInteritemSpacing = 2
         flowLayout.minimumLineSpacing = 2
         collectionView.collectionViewLayout = flowLayout
@@ -158,7 +158,7 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
     
     func itemForObject(atIndexPath indexPath: IndexPath) -> NSCollectionViewItem {
         
-        let item = collectionView.makeItem(withIdentifier: "RuleCollectionViewItem", for: indexPath)
+        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RuleCollectionViewItem"), for: indexPath)
         
         guard let collectionViewItem = item as? RuleCollectionViewItem else {
             fatalError("Unable to create collection view item")

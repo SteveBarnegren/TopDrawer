@@ -310,7 +310,7 @@ class FileStructureBuilder {
     }
     
     func imageForPath(_ path: String) -> NSImage {
-        let image = NSWorkspace.shared().icon(forFile: path)
+        let image = NSWorkspace.shared.icon(forFile: path)
         image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
         return image
     }
