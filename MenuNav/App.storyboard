@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="cnC-Q8-qNf">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="cnC-Q8-qNf">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
@@ -18,6 +18,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="1865" y="183" width="480" height="270"/>
                         <rect key="screenRect" x="1440" y="-278" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="cnC-Q8-qNf" id="yU6-n4-D8b"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="Arv-Nj-IMh" kind="relationship" relationship="window.shadowedContentViewController" id="Oic-mg-cpN"/>
@@ -46,7 +49,7 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Ffg-yA-FbP"/>
                                     </imageView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZd-ra-UMi">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zZd-ra-UMi">
                                         <rect key="frame" x="281.5" y="29" width="37" height="17"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Label" id="F2N-sm-Zm9">
                                             <font key="font" metaFont="system"/>
@@ -135,7 +138,7 @@
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHL-Pr-1jp">
                                 <rect key="frame" x="16" y="79" width="418" height="208"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DN7-rr-4FO">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DN7-rr-4FO">
                                         <rect key="frame" x="91" y="191" width="236" height="17"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Enter the file name and type to match" id="IP7-u3-ief">
                                             <font key="font" metaFont="system"/>
@@ -162,7 +165,7 @@
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pPN-U0-xh6">
                                                 <rect key="frame" x="25" y="30" width="255" height="22"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEi-O4-1Z7">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jEi-O4-1Z7">
                                                         <rect key="frame" x="-2" y="5" width="101" height="17"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Matching name:" id="xfE-dG-Wfs">
                                                             <font key="font" metaFont="system"/>
@@ -170,7 +173,7 @@
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgu-Sg-yBD">
+                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rgu-Sg-yBD">
                                                         <rect key="frame" x="105" y="0.0" width="150" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="150" id="DoF-v0-zbG"/>
@@ -194,7 +197,7 @@
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61M-uu-UcL">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="22"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClV-xH-56F">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ClV-xH-56F">
                                                         <rect key="frame" x="-2" y="5" width="126" height="17"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Matching extension:" id="cvk-rE-3E7">
                                                             <font key="font" metaFont="system"/>
@@ -202,7 +205,7 @@
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdO-Qq-jhc">
+                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CdO-Qq-jhc">
                                                         <rect key="frame" x="130" y="0.0" width="150" height="22"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="(Optional)" drawsBackground="YES" id="tyf-tK-mRs">
                                                             <font key="font" metaFont="system"/>
@@ -233,7 +236,7 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWg-rF-1o7">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GWg-rF-1o7">
                                         <rect key="frame" x="156.5" y="41" width="105" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Readout.readout" id="xad-wh-o1d">
                                             <font key="font" metaFont="system"/>
@@ -328,7 +331,7 @@
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yYu-jA-dZ9">
                                 <rect key="frame" x="20" y="46" width="479" height="208"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLv-am-D5s">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LLv-am-D5s">
                                         <rect key="frame" x="187.5" y="191" width="104" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Exclude Folders" id="eqa-xf-Zj8">
                                             <font key="font" metaFont="systemSemibold" size="13"/>
@@ -336,7 +339,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hv-Nv-Vj2">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5hv-Nv-Vj2">
                                         <rect key="frame" x="-2" y="120" width="483" height="51"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="Q9z-Lf-7NO">
                                             <font key="font" metaFont="system"/>
@@ -375,7 +378,7 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69P-u2-fRP">
                                         <rect key="frame" x="0.0" y="37" width="479" height="22"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qua-8l-csb">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qua-8l-csb">
                                                 <rect key="frame" x="-2" y="2.5" width="44" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Name:" id="19O-Cz-8ym">
                                                     <font key="font" metaFont="system"/>
@@ -383,7 +386,7 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9I-mj-mJX">
+                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z9I-mj-mJX">
                                                 <rect key="frame" x="48" y="0.0" width="431" height="22"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sWE-am-nLY">
                                                     <font key="font" metaFont="system"/>
@@ -401,7 +404,7 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cb2-YX-otK">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cb2-YX-otK">
                                         <rect key="frame" x="212" y="0.0" width="55" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Readout" id="aSc-fs-2f3">
                                             <font key="font" metaFont="system"/>

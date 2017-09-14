@@ -14,8 +14,9 @@ class SettingsViewController: NSViewController {
     
     @IBOutlet weak fileprivate var followAliasesButton: NSButton!
     @IBOutlet weak fileprivate var shortenPathsButton: NSButton!
+    @IBOutlet weak fileprivate var openAtLoginButton: NSButton!
     @IBOutlet weak fileprivate var refreshIntervalDropdown: NSPopUpButton!
-    
+
     // MARK: - NSViewController
 
     override func viewDidLoad() {
@@ -26,6 +27,9 @@ class SettingsViewController: NSViewController {
         
         // Shorten Paths button
         shortenPathsButton.state = Settings.shared.shortenPaths.value ? .on : .off
+        
+        // Open at login button
+        openAtLoginButton.state = Bundle.main.isLoginItem() ? .on : .off
         
         // Rebuild Interval Popup
         refreshIntervalDropdown.removeAllItems()
@@ -43,7 +47,17 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction private func shortenPathsButtonPressed(sender: NSButton){
-        let isOn = shortenPathsButton.state == .off
+        let isOn = shortenPathsButton.state == .on
         Settings.shared.shortenPaths.value = isOn
+    }
+    
+    @IBAction private func openAtLoginButtonPressed(sender: NSButton){
+        let isOn = openAtLoginButton.state == .on
+        
+        if isOn {
+            Bundle.main.addToLoginItems()
+        } else {
+            Bundle.main.removeFromLoginItems()
+        }
     }
 }
