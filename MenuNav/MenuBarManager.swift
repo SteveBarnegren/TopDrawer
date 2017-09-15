@@ -41,6 +41,7 @@ class MenuBarManager {
         
         // Add setup item
         let setupItem = NSMenuItem(title: "Setup (No root dir set)", action: #selector(openSettings), keyEquivalent: "")
+        setupItem.target = self
         let setupMenu = NSMenu()
         setupMenu.addItem(setupItem)
         statusItem.menu = setupMenu
@@ -82,6 +83,7 @@ class MenuBarManager {
     
     func addQuitItemToStatusMenu() {
         let quitItem = NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "")
+        quitItem.target = self
         statusItem.menu?.addItem(quitItem)
     }
     

@@ -8,8 +8,9 @@
 
 import Cocoa
 import SBSwiftUtils
+import AppKit
 
-let autoOpenSettings = true
+let autoOpenSettings = false
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,6 +18,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let menuBarManager = MenuBarManager()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+//        if let bundle = Bundle.main.bundleIdentifier {
+//            UserDefaults.standard.removePersistentDomain(forName: bundle)
+//        }
+//        return
+        
         NSApp.activate(ignoringOtherApps: true)
         menuBarManager.start()
     }
