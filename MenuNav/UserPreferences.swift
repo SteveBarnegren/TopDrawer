@@ -35,6 +35,7 @@ class UserPreferences: KeyValueStore {
     
     func set(value: Any, forKey key: String) {
         userDefaults.set(value, forKey: key)
+        userDefaults.synchronize()
     }
     
     func value(forKey key: String) -> Any? {
@@ -43,6 +44,7 @@ class UserPreferences: KeyValueStore {
     
     func set(bool: Bool, forKey key: String) {
         userDefaults.set(bool, forKey: key)
+        userDefaults.synchronize()
     }
     
     func bool(forKey key: String) -> Bool? {
@@ -51,6 +53,7 @@ class UserPreferences: KeyValueStore {
     
     func set(string: String, forKey key: String) {
         userDefaults.set(string, forKey: key)
+        userDefaults.synchronize()
     }
     
     func string(forKey key: String) -> String? {
@@ -59,6 +62,7 @@ class UserPreferences: KeyValueStore {
     
     func set(int: Int, forKey key: String) {
         userDefaults.set(int, forKey: key)
+        userDefaults.synchronize()
     }
     
     func int(forKey key: String) -> Int? {

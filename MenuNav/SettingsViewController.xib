@@ -94,6 +94,9 @@
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
+                                    <connections>
+                                        <action selector="refreshIntervalDropdownValueChangedWithSender:" target="-2" id="Hcx-Yc-0br"/>
+                                    </connections>
                                 </popUpButton>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3ag-mo-PcL">
                                     <rect key="frame" x="167" y="2" width="53" height="17"/>

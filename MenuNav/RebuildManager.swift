@@ -212,9 +212,11 @@ class RebuildManager {
         stopRefreshTimer()
         
         let seconds = TimeInterval(settings.refreshMinutes.value * 60)
+        guard seconds > 0 else {
+            return
+        }
         
-        refreshTimer = timerType.init(interval: seconds
-            ,
+        refreshTimer = timerType.init(interval: seconds,
                                       target: self,
                                       selector: #selector(refreshTimerFired),
                                       repeats: false,
