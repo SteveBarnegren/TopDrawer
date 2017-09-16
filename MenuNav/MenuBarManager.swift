@@ -13,7 +13,7 @@ class MenuBarManager {
         
     var appWindowController: NSWindowController?
     let statusItem = NSStatusBar.system.statusItem(withLength: -2)
-    let rebuildManager = RebuildManager()
+    let rebuildManager = RebuildManager.shared
     
     // MARK: - Start
     

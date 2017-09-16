@@ -129,6 +129,8 @@ class RulesViewController<T: Rule>: NSViewController {
         
         state = .normal
         collectionView.reloadData()
+        
+        RebuildManager.shared.needsRebuild = true
     }
 }
 
@@ -192,6 +194,8 @@ extension RulesViewController: RuleCollectionViewItemDelegate {
         
         ruleLoader.deleteRule(atIndex: indexPath.item)
         collectionView.reloadData()
+        
+        RebuildManager.shared.needsRebuild = true
     }
 }
 
