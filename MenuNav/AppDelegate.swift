@@ -19,15 +19,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-//        if let bundle = Bundle.main.bundleIdentifier {
-//            UserDefaults.standard.removePersistentDomain(forName: bundle)
-//        }
-//        return
+        //        if let bundle = Bundle.main.bundleIdentifier {
+        //            UserDefaults.standard.removePersistentDomain(forName: bundle)
+        //        }
+        //        return
+        
+        let userDefaults = UserDefaults.standard
+        if userDefaults.bool(forKey: "RUNNING_TESTS") == true {
+            return
+        }
         
         NSApp.activate(ignoringOtherApps: true)
         menuBarManager.start()
     }
-        
+    
 }
 
 
