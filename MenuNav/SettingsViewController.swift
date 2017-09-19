@@ -75,6 +75,9 @@ class SettingsViewController: NSViewController {
         
         let index = intervals.index(where: { $0.value == Settings.shared.refreshMinutes.value }) ?? intervals.count - 1
         refreshIntervalDropdown.selectItem(at: index)
+        
+        // Observe Rebuild Manager
+        RebuildManager.shared.addListener(self)
     }
     
     override func viewWillAppear() {
@@ -85,7 +88,7 @@ class SettingsViewController: NSViewController {
     
     // MARK: - Update UI
     
-    func updateTimeTakenLabel() {
+    fileprivate func updateTimeTakenLabel() {
         
         if let seconds = RebuildManager.shared.lastResults?.timeTaken {
             let intSeconds = max(Int(seconds), 1)
@@ -97,7 +100,7 @@ class SettingsViewController: NSViewController {
         }
     }
     
-    func updateLastRebuildTimeLabel() {
+    fileprivate func updateLastRebuildTimeLabel() {
         
         if let date = RebuildManager.shared.lastResults?.timeCompleted {
             let dateFormatter = DateFormatter()
@@ -139,5 +142,13 @@ class SettingsViewController: NSViewController {
         }
         
         Settings.shared.refreshMinutes.value = interval.value
+    }
+}
+
+extension SettingsViewController: RebuildManagerListener {
+    
+    func rebuildManagerDidRebuild(directory: Directory) {
+        updateTimeTakenLabel()
+        updateLastRebuildTimeLabel()
     }
 }

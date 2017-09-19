@@ -9,12 +9,13 @@
 import Foundation
 
 protocol RebuildManagerListener: class {
-    func rebuildManagerDidChangeState(state: RebuildManager.State)
+    func rebuildManagerDidChangeState(state: RebuildManager.State) // Optional
     func rebuildManagerDidRebuild(directory: Directory) // Optional
     func rebuildManagerDidFailRebuildDueToNoRootPathSet() // Optional
 }
 
 extension RebuildManagerListener {
+    func rebuildManagerDidChangeState(state: RebuildManager.State) {}
     func rebuildManagerDidRebuild(directory: Directory) {}
     func rebuildManagerDidFailRebuildDueToNoRootPathSet(){}
 }
