@@ -10,9 +10,11 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsViewController" customModule="MenuNav" customModuleProvider="target">
             <connections>
                 <outlet property="followAliasesButton" destination="seM-3e-0Ze" id="RwN-2t-fLp"/>
+                <outlet property="lastRebuildTimeLabel" destination="T9R-hb-82p" id="0N3-n1-k31"/>
                 <outlet property="openAtLoginButton" destination="gDg-0W-PE0" id="cLL-fM-L3S"/>
                 <outlet property="refreshIntervalDropdown" destination="5xe-yD-BbI" id="tKU-cO-jlm"/>
                 <outlet property="shortenPathsButton" destination="a2T-3t-TJ5" id="the-Qz-plx"/>
+                <outlet property="timeTakenLabel" destination="lhJ-I5-f0T" id="KOi-oc-3oY"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -128,11 +130,42 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xAH-Wx-96t">
+                    <rect key="frame" x="655" y="8" width="27" height="28"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T9R-hb-82p">
+                            <rect key="frame" x="-2" y="15" width="31" height="13"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="3ZW-5g-jPv">
+                                <font key="font" metaFont="system" size="10"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lhJ-I5-f0T">
+                            <rect key="frame" x="-2" y="0.0" width="31" height="13"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="k3S-vC-SZU">
+                                <font key="font" metaFont="system" size="10"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
             <constraints>
                 <constraint firstItem="NgK-PV-sVN" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="T1L-xm-Sne"/>
                 <constraint firstItem="NgK-PV-sVN" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="lx0-vL-jDP"/>
                 <constraint firstAttribute="trailing" secondItem="NgK-PV-sVN" secondAttribute="trailing" id="nsc-8Z-gkm"/>
+                <constraint firstAttribute="trailing" secondItem="xAH-Wx-96t" secondAttribute="trailing" constant="8" id="xnT-BY-G1y"/>
+                <constraint firstAttribute="bottom" secondItem="xAH-Wx-96t" secondAttribute="bottom" constant="8" id="zBf-8J-F3F"/>
             </constraints>
             <point key="canvasLocation" x="45" y="124"/>
         </customView>

@@ -24,9 +24,15 @@ class RebuildManager {
     static let shared = RebuildManager()
     
     // MARK: - Types
+    
     enum State {
         case idle
         case rebuilding
+    }
+    
+    struct RebuildResults {
+        let timeTaken: TimeInterval
+        let timeCompleted: Date
     }
     
     // MARK: - Properties
@@ -65,6 +71,9 @@ class RebuildManager {
     private let settings: Settings
     private let fileReader: FileReader
     private let rulesKeyValueStore: KeyValueStore
+    private var rebuildStartTime = CFAbsoluteTime(0)
+    
+    var lastResults: RebuildResults?
     
     // MARK: - Init
     
@@ -102,6 +111,8 @@ class RebuildManager {
     
     private func buildMenu() {
         
+        rebuildStartTime = CFAbsoluteTimeGetCurrent()
+        
         print("Rebuilding menu")
         self.workItem = nil
         state = .rebuilding
@@ -133,7 +144,6 @@ class RebuildManager {
             return
         }
  */
-        
         workItem = DispatchWorkItem { [weak self] in
             
             builder.isCancelledHandler = {
@@ -176,6 +186,9 @@ class RebuildManager {
                 self?.buildMenuIfNeeded()
                 return
             }
+            
+            self!.lastResults = RebuildResults(timeTaken: CFAbsoluteTimeGetCurrent() - self!.rebuildStartTime,
+                                              timeCompleted: Date())
             
             DispatchQueue.main.async(execute: {
                 print("Finished Building menu")

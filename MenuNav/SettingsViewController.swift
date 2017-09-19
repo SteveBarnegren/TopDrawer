@@ -39,7 +39,9 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak fileprivate var shortenPathsButton: NSButton!
     @IBOutlet weak fileprivate var openAtLoginButton: NSButton!
     @IBOutlet weak fileprivate var refreshIntervalDropdown: NSPopUpButton!
-        
+    @IBOutlet weak fileprivate var lastRebuildTimeLabel: NSTextField!
+    @IBOutlet weak fileprivate var timeTakenLabel: NSTextField!
+
         let intervals: [Interval] = [
             .minutes(5),
             .minutes(10),
@@ -73,6 +75,39 @@ class SettingsViewController: NSViewController {
         
         let index = intervals.index(where: { $0.value == Settings.shared.refreshMinutes.value }) ?? intervals.count - 1
         refreshIntervalDropdown.selectItem(at: index)
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        updateTimeTakenLabel()
+        updateLastRebuildTimeLabel()
+    }
+    
+    // MARK: - Update UI
+    
+    func updateTimeTakenLabel() {
+        
+        if let seconds = RebuildManager.shared.lastResults?.timeTaken {
+            let intSeconds = max(Int(seconds), 1)
+            let unit = intSeconds == 1 ? "second" : "seconds"
+            timeTakenLabel.stringValue = "Took \(intSeconds) \(unit)"
+        }
+        else{
+          timeTakenLabel.stringValue = ""
+        }
+    }
+    
+    func updateLastRebuildTimeLabel() {
+        
+        if let date = RebuildManager.shared.lastResults?.timeCompleted {
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = .short
+            let dateString = dateFormatter.string(from: date)
+            lastRebuildTimeLabel.stringValue = "Last refresh: \(dateString)"
+        }
+        else{
+            lastRebuildTimeLabel.stringValue = ""
+        }
     }
     
     // MARK: - Actions
