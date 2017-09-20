@@ -51,16 +51,14 @@ class DecisionNode<T: DecisionTreeElement> {
         case let .textValue(_, _, makeWithText):
             if let text = textValue {
                 return makeWithText(text)
-            }
-            else{
+            } else {
                 return nil
             }
             
         case let .pathValue(_, _, makeWithPath):
             if let text = textValue {
                 return makeWithPath(text)
-            }
-            else{
+            } else {
                 return nil
             }
             
@@ -103,37 +101,37 @@ class DecisionNode<T: DecisionTreeElement> {
 
 // MARK: - File Condtion Decision Tree
 
+// swiftlint:disable line_length
 func fileConditionDecisionTree() -> DecisionNode<FileRule.Condition> {
     
     return
         DecisionNode<FileRule.Condition>(.list("root", [
             DecisionNode(.list("Name", [
-                DecisionNode(.textValue("is", placeholder: "Name"){ .name(.matching($0)) }),
-                DecisionNode(.textValue("is not", placeholder: "Name"){ .name(.notMatching($0)) }),
-                DecisionNode(.textValue("contains", placeholder: "String"){ .name(.containing($0)) }),
-                DecisionNode(.textValue("does not contain", placeholder: "String"){ .name(.notContaining($0)) }),
+                DecisionNode(.textValue("is", placeholder: "Name") { .name(.matching($0)) }),
+                DecisionNode(.textValue("is not", placeholder: "Name") { .name(.notMatching($0)) }),
+                DecisionNode(.textValue("contains", placeholder: "String") { .name(.containing($0)) }),
+                DecisionNode(.textValue("does not contain", placeholder: "String") { .name(.notContaining($0)) })
                 ])),
             DecisionNode(.list("Extension", [
-                DecisionNode(.textValue("is", placeholder: "eg. pdf"){ .ext(.matching($0)) }),
-                DecisionNode(.textValue("is not", placeholder: "eg. pdf"){ .ext(.notMatching($0)) }),
+                DecisionNode(.textValue("is", placeholder: "eg. pdf") { .ext(.matching($0)) }),
+                DecisionNode(.textValue("is not", placeholder: "eg. pdf") { .ext(.notMatching($0)) })
                 ])),
             DecisionNode(.list("Full name", [
-                DecisionNode(.textValue("is", placeholder: "eg. report.pdf"){ .fullName(.matching($0)) }),
-                DecisionNode(.textValue("is not", placeholder: "eg. report.pdf"){ .fullName(.notMatching($0)) }),
+                DecisionNode(.textValue("is", placeholder: "eg. report.pdf") { .fullName(.matching($0)) }),
+                DecisionNode(.textValue("is not", placeholder: "eg. report.pdf") { .fullName(.notMatching($0)) })
                 ])),
             DecisionNode(.list("Parent Folder", [
                 DecisionNode(.list("contains", [
-                    DecisionNode(.textValue("files with extension", placeholder: "eg. pdf"){ .parentContains(.filesWithExtension($0)) }),
-                    DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf"){ .parentContains(.filesWithFullName($0)) }),
+                    DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentContains(.filesWithExtension($0)) }),
+                    DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentContains(.filesWithFullName($0)) })
                     ])),
                 DecisionNode(.list("doesn't contain", [
-                    DecisionNode(.textValue("files with extension", placeholder: "eg. pdf"){ .parentDoesntContain(.filesWithExtension($0)) }),
-                    DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf"){ .parentDoesntContain(.filesWithFullName($0)) }),
-                    ])),
-                ])),
+                    DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentDoesntContain(.filesWithExtension($0)) }),
+                    DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentDoesntContain(.filesWithFullName($0)) })
+                    ]))
+                ]))
             ]))
 }
-
 
 // MARK: - Folder Condtion Decision Tree
 
@@ -146,10 +144,8 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
             return nil
         }
         
-        for component in components {
-            if component.length == 0 {
-                return nil
-            }
+        if components.contains(where: { $0.length == 0 }) {
+            return nil
         }
         
         return (components[0], components[1])
@@ -158,35 +154,35 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
     // 'Expression was too complex to be solved in a reasonable amount of time', so split up the top level items
     
     let name = DecisionNode<FolderRule.Condition>(.list("Name", [
-        DecisionNode(.textValue("is", placeholder: "Name"){ .name(.matching($0)) }),
-        DecisionNode(.textValue("is not", placeholder: "Name"){ .name(.notMatching($0)) }),
-        DecisionNode(.textValue("contains", placeholder: "Name"){ .name(.containing($0)) }),
-        DecisionNode(.textValue("does not contain", placeholder: "Name"){ .name(.notContaining($0)) }),
+        DecisionNode(.textValue("is", placeholder: "Name") { .name(.matching($0)) }),
+        DecisionNode(.textValue("is not", placeholder: "Name") { .name(.notMatching($0)) }),
+        DecisionNode(.textValue("contains", placeholder: "Name") { .name(.containing($0)) }),
+        DecisionNode(.textValue("does not contain", placeholder: "Name") { .name(.notContaining($0)) })
         ]))
     
     let path = DecisionNode<FolderRule.Condition>(.list("Path", [
-        DecisionNode(.pathValue("is", placeholder: "Path"){ .path(.matching($0)) }),
-        DecisionNode(.textValue("is not", placeholder: "Path"){ .path(.notMatching($0)) }),
+        DecisionNode(.pathValue("is", placeholder: "Path") { .path(.matching($0)) }),
+        DecisionNode(.textValue("is not", placeholder: "Path") { .path(.notMatching($0)) })
         ]))
     
     let contains = DecisionNode<FolderRule.Condition>(.list("Contains", [
         DecisionNode(.list("files", [
-            DecisionNode(.textValue("with extension", placeholder: "Extension"){ .contains(.filesWithExtension($0)) }),
-            DecisionNode(.textValue("with full name", placeholder: "Full name (eg. report.pdf)"){ .contains(.filesWithFullName($0)) }),
+            DecisionNode(.textValue("with extension", placeholder: "Extension") { .contains(.filesWithExtension($0)) }),
+            DecisionNode(.textValue("with full name", placeholder: "Full name (eg. report.pdf)") { .contains(.filesWithFullName($0)) })
             ])),
         DecisionNode(.list("folders", [
-            DecisionNode(.textValue("with name", placeholder: "Extension"){ .contains(.foldersWithName($0)) }),
-            ])),
+            DecisionNode(.textValue("with name", placeholder: "Extension") { .contains(.foldersWithName($0)) })
+            ]))
         ]))
     
     let doesntContain = DecisionNode<FolderRule.Condition>(.list("Doesn't contain", [
         DecisionNode(.list("files", [
-            DecisionNode(.textValue("with extension", placeholder: "Extension"){ .doesntContain(.filesWithExtension($0)) }),
-            DecisionNode(.textValue("with full name", placeholder: "Full name (eg. report.pdf)"){ .doesntContain(.filesWithFullName($0)) }),
+            DecisionNode(.textValue("with extension", placeholder: "Extension") { .doesntContain(.filesWithExtension($0)) }),
+            DecisionNode(.textValue("with full name", placeholder: "Full name (eg. report.pdf)") { .doesntContain(.filesWithFullName($0)) })
             ])),
         DecisionNode(.list("folders", [
-            DecisionNode(.textValue("with name", placeholder: "Extension"){ .doesntContain(.foldersWithName($0)) }),
-            ])),
+            DecisionNode(.textValue("with name", placeholder: "Extension") { .doesntContain(.foldersWithName($0)) })
+            ]))
         ]))
     
     return
@@ -194,9 +190,8 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
             name,
             path,
             contains,
-            doesntContain,
+            doesntContain
             ]))
-    
     
     /*
      return
@@ -236,5 +231,3 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
      ]))
      */
 }
-
-

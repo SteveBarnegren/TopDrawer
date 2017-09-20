@@ -6,6 +6,8 @@
 //  Copyright © 2017 SteveBarnegren. All rights reserved.
 //
 
+// swiftlint:disable legacy_constructor
+
 import Foundation
 import AppKit
 
@@ -17,7 +19,10 @@ extension NSImage {
         img.lockFocus()
         let ctx = NSGraphicsContext.current
         ctx?.imageInterpolation = .high
-        self.draw(in: NSMakeRect(0, 0, width, height), from: NSMakeRect(0, 0, size.width, size.height), operation: .copy, fraction: 1)
+        self.draw(in: NSMakeRect(0, 0, width, height),
+                  from: NSMakeRect(0, 0, size.width, size.height),
+                  operation: .copy,
+                  fraction: 1)
         img.unlockFocus()
         
         return img

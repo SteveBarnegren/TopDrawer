@@ -71,6 +71,7 @@ class FolderRuleTests: XCTestCase {
     
     // MARK: - Test Dictionary Represenatable
     
+    // swiftlint:disable function_body_length
     func testFolderRuleToDictionaryAndBackIsTheSame() {
         
         var allConditions = [FolderCondition]()
@@ -81,84 +82,84 @@ class FolderRuleTests: XCTestCase {
         }
 
         // Name is
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.name(.matching("birds")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Name is not
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.name(.notMatching("birds")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Name containing
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.name(.containing("birds")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Name not containing
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.name(.notContaining("birds")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Path is
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.path(.matching("birds")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Path is not
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.path(.notMatching("birds")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Contains files with extension
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.contains(.filesWithExtension("png")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Contains files with full name
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.contains(.filesWithFullName("report.pdf")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Contains folder with name
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.contains(.foldersWithName("birds")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Doesn't contain files with extension
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.doesntContain(.filesWithExtension("png")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Doesn't contain files with full name
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.doesntContain(.filesWithFullName("report.pdf")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
         }()
         
         // Doesn't contain folders with name
-        let _ = {
+        _ = {
             let condition = makeCondition(FolderCondition.doesntContain(.foldersWithName("birds")))
             let rule = FolderRule(conditions: [condition])
             XCTAssertTrue(rule == rule.convertedToDictionaryAndBack)
@@ -171,6 +172,6 @@ class FolderRuleTests: XCTestCase {
         let allConditionsRule = FolderRule(conditions: allConditions)
         XCTAssertTrue(allConditionsRule == allConditionsRule.convertedToDictionaryAndBack)
     }
-    
+    // swiftlint:enable function_body_length
     
 }

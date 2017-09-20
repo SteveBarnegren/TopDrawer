@@ -69,7 +69,7 @@ class RulesViewController<T: Rule>: NSViewController {
 
     // MARK: - Actions
     
-    @IBAction private func addRuleButtonPressed(sender: NSButton){
+    @IBAction private func addRuleButtonPressed(sender: NSButton) {
         print("Add rule button pressed")
         
         addNewRule()
@@ -160,7 +160,8 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
     
     func itemForObject(atIndexPath indexPath: IndexPath) -> NSCollectionViewItem {
         
-        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RuleCollectionViewItem"), for: indexPath)
+        let identifier = NSUserInterfaceItemIdentifier(rawValue: "RuleCollectionViewItem")
+        let item = collectionView.makeItem(withIdentifier: identifier, for: indexPath)
         
         guard let collectionViewItem = item as? RuleCollectionViewItem else {
             fatalError("Unable to create collection view item")
@@ -175,7 +176,6 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
         return collectionViewItem
     }
 }
-
 
 extension RulesViewController: RuleCollectionViewItemDelegate {
     
@@ -221,7 +221,9 @@ extension RulesViewController: EditRuleViewControllerDelegate {
 
 // MARK: - RulesViewControllerDataSource
 
-// Generic types cannot implement ObjC protocols, so RulesCollectionDataSource is a non-generic bridge to implement collection view datasource
+// Generic types cannot implement ObjC protocols,
+// so RulesCollectionDataSource is a non-generic
+// bridge to implement collection view datasource
 
 protocol RulesCollectionDataSourceProvider: class {
     
@@ -231,7 +233,10 @@ protocol RulesCollectionDataSourceProvider: class {
     func itemForObject(atIndexPath indexPath: IndexPath) -> NSCollectionViewItem
 }
 
-class RulesCollectionDataSource: NSObject, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+class RulesCollectionDataSource: NSObject,
+                                 NSCollectionViewDataSource,
+                                 NSCollectionViewDelegate,
+                                 NSCollectionViewDelegateFlowLayout {
     
     weak var provider: RulesCollectionDataSourceProvider!
     
@@ -243,14 +248,16 @@ class RulesCollectionDataSource: NSObject, NSCollectionViewDataSource, NSCollect
         return provider.numberOfItems(inSection: section)
     }
     
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+    func collectionView(_ collectionView: NSCollectionView,
+                        layout collectionViewLayout: NSCollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> NSSize {
    
         return provider.sizeForItem(atIndexPath: indexPath)
     }
     
-    func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+    func collectionView(_ collectionView: NSCollectionView,
+                        itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         
         return provider.itemForObject(atIndexPath: indexPath)
     }
 }
-

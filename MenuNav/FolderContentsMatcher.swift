@@ -18,8 +18,6 @@ enum FolderContentsMatcher {
         switch self {
         case let .filesWithExtension(ext):
             
-           
-            
             return directory.extendedAttributes!.containsFiles(withExtension: ext)
             
             /*
@@ -51,7 +49,7 @@ enum FolderContentsMatcher {
         }
     }
     
-    static func ==(lhs: FolderContentsMatcher, rhs: FolderContentsMatcher) -> Bool {
+    static func == (lhs: FolderContentsMatcher, rhs: FolderContentsMatcher) -> Bool {
         
         switch (lhs, rhs) {
         case let (.filesWithExtension(e1), .filesWithExtension(e2)):
@@ -81,7 +79,7 @@ extension FolderContentsMatcher: DictionaryRepresentable {
         static let Extension = "Extension"
     }
     
-    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+    init?(dictionaryRepresentation dictionary: [String: Any]) {
         
         guard let caseType = dictionary[Keys.CaseKey] as? String else {
             return nil
@@ -114,15 +112,14 @@ extension FolderContentsMatcher: DictionaryRepresentable {
         
         if let result = result {
             self = result
-        }
-        else{
+        } else {
             return nil
         }
     }
     
-    var dictionaryRepresentation: Dictionary<String, Any> {
+    var dictionaryRepresentation: [String: Any] {
         
-        var dictionary = Dictionary<String, Any>()
+    var dictionary = [String: Any]()
         
         switch self {
         case let .filesWithExtension(ext):

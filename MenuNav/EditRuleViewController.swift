@@ -33,7 +33,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
     fileprivate var conditionViews = [ConditionEditorView<T.Condition>]()
     //weak var delegate: EditRuleViewControllerDelegate?
     
-    var didEditRuleHandler: (T) -> () = {_ in}
+    var didEditRuleHandler: (T) -> Void = {_ in}
     
     private var state: State {
         
@@ -41,10 +41,8 @@ class EditRuleViewController<T: Rule>: NSViewController {
             return .noConditions
         }
         
-        for conditionView in conditionViews {
-            if !conditionView.hasValidCondition {
-                return .invalidConditions
-            }
+        if conditionViews.contains(where: { $0.hasValidCondition == false }) {
+            return .invalidConditions
         }
         
         return .validConditions
@@ -94,12 +92,10 @@ class EditRuleViewController<T: Rule>: NSViewController {
         // Create existing rule condition views
         if let rule = existingRule {
             
-            rule.conditions.forEach{
+            rule.conditions.forEach {
                 addConditionView(fromCondition: $0)
             }
         }
-        
-        
     }
     
     override func viewDidAppear() {
@@ -179,10 +175,10 @@ class EditRuleViewController<T: Rule>: NSViewController {
     
     func removeConditionView(_ conditionView: ConditionEditorView<T.Condition>) {
         
-        conditionViews.filter{ $0 === conditionView }
-            .forEach{ $0.removeFromSuperview() }
+        conditionViews.filter { $0 === conditionView }
+            .forEach { $0.removeFromSuperview() }
         
-        conditionViews = conditionViews.filter{ $0 !== conditionView }
+        conditionViews = conditionViews.filter { $0 !== conditionView }
         
         view.needsLayout = true
         updateForCurrentState()
@@ -190,15 +186,15 @@ class EditRuleViewController<T: Rule>: NSViewController {
     
     // MARK: - Actions
     
-    @IBAction private func addButtonPressed(sender: NSButton){
+    @IBAction private func addButtonPressed(sender: NSButton) {
         print("add button pressed")
         addConditionView()
     }
     
-    @IBAction private func finishButtonPressed(sender: NSButton){
+    @IBAction private func finishButtonPressed(sender: NSButton) {
         print("Finish button pressed")
         
-        let conditions = conditionViews.map{ $0.makeCondition()! }
+        let conditions = conditionViews.map { $0.makeCondition()! }
         let rule = T(conditions: conditions)
         // delegate?.editRuleViewControllerDidEditRule(rule)
         
@@ -207,7 +203,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
         dismiss()
     }
     
-    @IBAction private func closeButtonPressed(sender: NSButton){
+    @IBAction private func closeButtonPressed(sender: NSButton) {
         print("Close button pressed")
         dismiss()
     }

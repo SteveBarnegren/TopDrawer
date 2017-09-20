@@ -17,7 +17,7 @@ protocol RebuildManagerListener: class {
 extension RebuildManagerListener {
     func rebuildManagerDidChangeState(state: RebuildManager.State) {}
     func rebuildManagerDidRebuild(directory: Directory) {}
-    func rebuildManagerDidFailRebuildDueToNoRootPathSet(){}
+    func rebuildManagerDidFailRebuildDueToNoRootPathSet() {}
 }
 
 class RebuildManager {
@@ -39,19 +39,19 @@ class RebuildManager {
     // MARK: - Properties
         
     private var state = State.idle {
-        didSet{
+        didSet {
             switch state {
             case .idle:
                 startRefreshTimer()
             case .rebuilding:
                 stopRefreshTimer()
             }
-            listeners.objects.forEach{ $0.rebuildManagerDidChangeState(state: state) }
+            listeners.objects.forEach { $0.rebuildManagerDidChangeState(state: state) }
         }
     }
     
     var needsRebuild = false {
-        didSet{
+        didSet {
             if needsRebuild {
                 switch state {
                 case .idle:
@@ -110,6 +110,7 @@ class RebuildManager {
         }
     }
     
+    // swiftlint:disable function_body_length
     private func buildMenu() {
         
         rebuildStartTime = CFAbsoluteTimeGetCurrent()
@@ -151,8 +152,7 @@ class RebuildManager {
                 if let item = self?.workItem, item.isCancelled {
                     print("Cancelled building menu")
                     return true
-                }
-                else{
+                } else {
                     return false
                 }
             }
@@ -172,7 +172,7 @@ class RebuildManager {
                 DispatchQueue.main.async(execute: {
                     print("Finished Building menu")
                     self?.state = .idle
-                    self?.listeners.objects.forEach{ $0.rebuildManagerDidFailRebuildDueToNoRootPathSet() }
+                    self?.listeners.objects.forEach { $0.rebuildManagerDidFailRebuildDueToNoRootPathSet() }
                 })
                 return
             }
@@ -194,7 +194,7 @@ class RebuildManager {
             DispatchQueue.main.async(execute: {
                 print("Finished Building menu")
                 self?.state = .idle
-                self?.listeners.objects.forEach{
+                self?.listeners.objects.forEach {
                     $0.rebuildManagerDidRebuild(directory: rootDirectory)
                 }
             })

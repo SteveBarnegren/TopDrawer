@@ -81,14 +81,14 @@ class Setting<T: KeyValueStorable> {
     }
     
     func remove(changeObserver: Observer) {
-        observers = observers.filter{ $0.object !== changeObserver }
+        observers = observers.filter { $0.object !== changeObserver }
     }
     
     private func sendChangeEvent() {
         
-        observers = observers.filter{ $0.object != nil }
-        observers.forEach{
-            let _ = $0.object?.perform($0.selector)
+        observers = observers.filter { $0.object != nil }
+        observers.forEach {
+            _ = $0.object?.perform($0.selector)
         }
     }
 }

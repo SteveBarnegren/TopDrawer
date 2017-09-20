@@ -12,7 +12,7 @@ class WeakArrayTests: XCTestCase {
     
     class TestObject: Equatable {
     
-        static func ==(lhs: TestObject, rhs: TestObject) -> Bool {
+        static func == (lhs: TestObject, rhs: TestObject) -> Bool {
             return lhs === rhs
         }
     }

@@ -58,8 +58,7 @@ final class NSTimerBasedTimer: Timer {
     }
     
     @objc private func timerCallBack() {
-        let _ = target?.perform(selector)
+        _ = target?.perform(selector)
     }
-    
     
 }

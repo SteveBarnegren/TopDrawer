@@ -13,8 +13,8 @@ class ConditionPromptView: NSView {
     
     // MARK: - Properties
     
-    private let handler: () -> ()
-    
+    private let handler: () -> Void
+
     private lazy var stackView: NSStackView = {
         let stackView = NSStackView(views: [self.promptLabel, self.actionButton])
         stackView.orientation = .vertical
@@ -31,10 +31,9 @@ class ConditionPromptView: NSView {
         return button
     }()
     
-    
     // MARK: - Init
     
-    init(prompt: String, buttonTitle: String, handler: @escaping () -> ()) {
+    init(prompt: String, buttonTitle: String, handler: @escaping () -> Void) {
         
         self.handler = handler
         

@@ -10,6 +10,6 @@ import Foundation
 
 protocol DictionaryRepresentable {
 
-    init?(dictionaryRepresentation: Dictionary<String, Any>)
-    var dictionaryRepresentation: Dictionary<String, Any> {get}
+    init?(dictionaryRepresentation: [String: Any])
+    var dictionaryRepresentation: [String: Any] {get}
 }

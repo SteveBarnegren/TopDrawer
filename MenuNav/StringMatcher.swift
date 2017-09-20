@@ -28,7 +28,7 @@ enum StringMatcher {
         }
     }
     
-    static func ==(lhs: StringMatcher, rhs: StringMatcher) -> Bool {
+    static func == (lhs: StringMatcher, rhs: StringMatcher) -> Bool {
         
         switch (lhs, rhs) {
         case let (.matching(s1), .matching(s2)):
@@ -47,6 +47,7 @@ enum StringMatcher {
 
 // MARK: - DictionaryRepresentable
 
+// swiftlint:disable identifier_name
 extension StringMatcher: DictionaryRepresentable {
     
     struct Keys {
@@ -60,7 +61,7 @@ extension StringMatcher: DictionaryRepresentable {
         static let Value = "Value"
     }
     
-    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+    init?(dictionaryRepresentation dictionary: [String: Any]) {
         
         guard
             let caseType = dictionary[Keys.Case._key] as? String,
@@ -86,15 +87,14 @@ extension StringMatcher: DictionaryRepresentable {
         
         if let result = result {
             self = result
-        }
-        else{
+        } else {
             return nil
         }
     }
     
-    var dictionaryRepresentation: Dictionary<String, Any> {
+    var dictionaryRepresentation: [String: Any] {
         
-        var dictionary = Dictionary<String, Any>()
+        var dictionary = [String: Any]()
         switch self {
         case let .matching(string):
             dictionary[Keys.Case._key] = Keys.Case.Matching
@@ -113,4 +113,3 @@ extension StringMatcher: DictionaryRepresentable {
         return dictionary
     }
 }
-

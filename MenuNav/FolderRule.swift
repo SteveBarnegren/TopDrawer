@@ -49,7 +49,7 @@ struct FolderRule: Rule {
 
 extension FolderRule: Equatable {
     
-    static func ==(lhs: FolderRule, rhs: FolderRule) -> Bool {
+    static func == (lhs: FolderRule, rhs: FolderRule) -> Bool {
         return lhs.conditions == rhs.conditions
     }
 }
@@ -61,25 +61,25 @@ extension FolderRule: DictionaryRepresentable {
         static let Conditions = "Conditions"
     }
     
-    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+    init?(dictionaryRepresentation dictionary: [String: Any]) {
         
-        guard let conditionsArray = dictionary[Keys.Conditions] as? Array<Dictionary<String, Any>> else {
+        guard let conditionsArray = dictionary[Keys.Conditions] as? [[String: Any]] else {
             return nil
         }
         
-        let conditions = conditionsArray.flatMap{ Condition(dictionaryRepresentation: $0) }
+        let conditions = conditionsArray.flatMap { Condition(dictionaryRepresentation: $0) }
         if conditions.count < 1 {
             print("No conditions found")
-            return nil;
+            return nil
         }
         
         self.init(conditions: conditions)
     }
     
-    var dictionaryRepresentation: Dictionary<String, Any> {
+    var dictionaryRepresentation: [String: Any] {
         
-        var dictionary = Dictionary<String, Any>()
-        dictionary[Keys.Conditions] = conditions.map{ $0.dictionaryRepresentation }
+        var dictionary = [String: Any]()
+        dictionary[Keys.Conditions] = conditions.map { $0.dictionaryRepresentation }
         return dictionary
     }
 }

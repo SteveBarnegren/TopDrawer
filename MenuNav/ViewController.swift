@@ -56,11 +56,13 @@ class ViewController: NSViewController {
         print("Show folder rules")
         self.segmentedControl.selectedSegment = 1
         
+        // swiftlint:disable line_length
         let viewModel = RulesViewModel(editRuleTitle: "Add Folder Rule",
                                        addConditionPrompt: "Add condtions to exclude a folder, even if it contains matching files",
                                        addConditionPromptButtonTitle: "Add a Condition",
                                        overviewExplanation: "Exclude folders matching any of the following sets of rules:",
                                        editorExplanation: "Exclude folders matching all of the following conditions:")
+        // swiftlint:enable line_length
         
         let folderRules = RulesViewController<FolderRule>(viewModel: viewModel)
         self.show(contentViewController: folderRules)
@@ -81,7 +83,7 @@ class ViewController: NSViewController {
             existing.view.removeFromSuperview()
         }
         
-        addChildViewController(newViewController);
+        addChildViewController(newViewController)
         contentView.addSubview(newViewController.view)
         newViewController.view.pinToSuperviewEdges()
         contentViewController = newViewController
@@ -89,7 +91,7 @@ class ViewController: NSViewController {
     
     // MARK: - Actions
     
-    @IBAction func chooseFolderButtonPressed(sender: NSButton){
+    @IBAction func chooseFolderButtonPressed(sender: NSButton) {
         print("Choose folder button pressed")
         
         let openDialogue = NSOpenPanel()
@@ -113,7 +115,7 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func addFileRuleButtonPressed(sender: NSButton){
+    @IBAction func addFileRuleButtonPressed(sender: NSButton) {
         print("Add file type button pressed")
                 
 //        let editor = EditFileRuleViewController.create(existingRule: nil)
@@ -124,15 +126,15 @@ class ViewController: NSViewController {
 //        editor.view.pinToSuperviewEdges()
     }
     
-    @IBAction private func addFolderRuleButtonPressed(sender: NSButton){
+    @IBAction private func addFolderRuleButtonPressed(sender: NSButton) {
         print("Add folder rule button pressed")
     }
     
-    @IBAction private func deleteFolderRuleButtonPressed(sender: NSButton){
+    @IBAction private func deleteFolderRuleButtonPressed(sender: NSButton) {
         print("Delete folder rule button pressed")
     }
     
-    @IBAction private func segmentedControlValueChanged(sender: NSSegmentedControl){
+    @IBAction private func segmentedControlValueChanged(sender: NSSegmentedControl) {
         
         switch segmentedControl.selectedSegment {
         case 0: showFileRules()

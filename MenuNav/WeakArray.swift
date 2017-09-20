@@ -14,7 +14,7 @@ class WeakArray<T> {
     
     private struct Wrapper {
         
-        weak var object : AnyObject?
+        weak var object: AnyObject?
         
         init(object: T) {
             self.object = object as AnyObject
@@ -34,19 +34,19 @@ class WeakArray<T> {
     
     func remove(_ object: T) {
         
-        array = array.filter{ $0.object !== object as AnyObject }
+        array = array.filter { $0.object !== object as AnyObject }
     }
     
     // MARK: - Remove Deallocated Objects
     
     func removeDeallocatedObjects() {
-        array = array.filter{ $0.object != nil }
+        array = array.filter { $0.object != nil }
     }
     
     // MARK: - Retrive All Objects
     
     var objects: [T] {
         removeDeallocatedObjects()
-        return array.flatMap{ $0.object as? T }
+        return array.flatMap { $0.object as? T }
     }
 }

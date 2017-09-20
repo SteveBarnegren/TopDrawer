@@ -59,7 +59,4 @@ class FolderConditionFormatter {
             return "folder with name \(name)"
         }
     }
-
-    
-    
 }

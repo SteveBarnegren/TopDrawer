@@ -6,6 +6,9 @@
 //  Copyright © 2017 SteveBarnegren. All rights reserved.
 //
 
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
+
 import XCTest
 
 // MARK: - ****** FileReaderMock ******
@@ -33,7 +36,7 @@ enum MockFileObject {
         let remainingPath = objectNames.dropFirst().joined(separator: "/")
 
         switch self {
-        case .file(_):
+        case .file:
             return nil
         case let .folder(_, contents):
             
@@ -49,7 +52,7 @@ enum MockFileObject {
                 $0.name == nextObjectName
             })?.getObject(atPath: remainingPath)
         
-        case .alias(_, _):
+        case .alias:
             return nil
         }
     }
@@ -60,14 +63,14 @@ enum MockFileObject {
     
     func printHeirarchyRecursive(indent: Int) {
         
-        let spaces = (0..<indent).reduce(""){ (result, _) in result + " "}
+        let spaces = (0..<indent).reduce("") { (result, _) in result + " "}
         
         switch self {
         case let .file(name):
             print("\(spaces) - \(name)")
         case let .folder(name, contents):
             print("\(spaces) - [\(name)]")
-            contents.forEach{
+            contents.forEach {
                 $0.printHeirarchyRecursive(indent: indent + 1)
             }
         case let .alias(name, path):
@@ -91,11 +94,11 @@ class MockFileReader: FileReader {
         }
     
         switch object {
-        case .file(_):
+        case .file:
             isDirectory?.pointee = false
-        case .folder(_, _):
+        case .folder:
             isDirectory?.pointee = true
-        case .alias(_, _):
+        case .alias:
             isDirectory?.pointee = false
         }
     
@@ -111,11 +114,11 @@ class MockFileReader: FileReader {
         }
         
         switch object {
-        case .alias(_, _): fallthrough
-        case .file(_):
+        case .alias: fallthrough
+        case .file:
             fatalError("Expected Object to be directory")
         case let .folder(_, contents):
-            return contents.map{ $0.name }
+            return contents.map { $0.name }
         }
     }
     
@@ -146,8 +149,7 @@ class MockFileReader: FileReader {
         
         if case let MockFileObject.alias(_, path: aliasPath) = object {
             return aliasPath
-        }
-        else{
+        } else {
             return path
         }
     }
@@ -163,24 +165,21 @@ extension Directory {
         
         if components.count == 0 {
             return false
-        }
-        else if components.count == 1 {
+        } else if components.count == 1 {
             
-            let file = contents.flatMap{ $0 as? File }
-                .first{ "\($0.name).\($0.ext)" == components.first!}
+            let file = contents.flatMap { $0 as? File }
+                .first { "\($0.name).\($0.ext)" == components.first!}
             
             return !(file == nil)
-        }
-        else {
+        } else {
             
-            let directory = contents.flatMap{ $0 as? Directory }
-                .first{ "\($0.name)" == components.first!}
+            let directory = contents.flatMap { $0 as? Directory }
+                .first { "\($0.name)" == components.first!}
             
             if let d = directory {
                 let remainingPath = components.dropFirst().joined(separator: "/")
                 return d.containsObject(atPath: remainingPath)
-            }
-            else{
+            } else {
                 return false
             }
         }
@@ -201,8 +200,8 @@ class Tests: XCTestCase {
                 .file("document.pdf"),
                 .folder("TestFolder", [
                     .file("dog.png"),
-                    .file("report.pdf"),
-                    ]),
+                    .file("report.pdf")
+                    ])
                 ])
         )
         
@@ -232,14 +231,14 @@ class Tests: XCTestCase {
                     .alias("Photos", path: "Root/Exclude/Alias Folder"),
                     .folder("TestFolder", [
                         .file("parrot.png"),
-                        .file("report.pdf"),
-                        ]),
+                        .file("report.pdf")
+                        ])
                     ]),
                 .folder( "Exclude", [
                     .folder( "Alias Folder", [
-                        .file("dog.png"),
-                        ]),
-                    ]),
+                        .file("dog.png")
+                        ])
+                    ])
                 ])
         )
         
@@ -267,15 +266,6 @@ class Tests: XCTestCase {
         XCTAssertFalse(noAliasDirectory.containsObject(atPath: "A Folder/Photos/dog.png"))
     }
     
-    func testAliasesUseOriginName() {
-        
-        
-        
-        
-        
-        
-    }
-    
     func testFollowAliasesOptionDoesntAllowRecursion() {
         
         let fileReader = MockFileReader(
@@ -283,8 +273,8 @@ class Tests: XCTestCase {
                 .file("cow.png"),
                 .folder( "A Folder", [
                     .file("dog.png"),
-                    .alias("Photos", path: "Root/A Folder"),
-                    ]),
+                    .alias("Photos", path: "Root/A Folder")
+                    ])
                 ])
         )
         
@@ -299,7 +289,6 @@ class Tests: XCTestCase {
         XCTAssertFalse(directory.containsObject(atPath: "A Folder/A Folder/dog.png"))
     }
 
-    
     // MARK: - File Rules: Name
     
     func testStructureIncludesFilesWithName() {
@@ -307,7 +296,7 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .file("cat.png"),
-                .file("dog.png"),
+                .file("dog.png")
             ])
         )
         
@@ -329,7 +318,7 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .file("cat.png"),
-                .file("dog.png"),
+                .file("dog.png")
             ])
         )
         
@@ -351,7 +340,7 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .file("a photo of a cat.png"),
-                .file("a photo of a dog.png"),
+                .file("a photo of a dog.png")
             ])
         )
         
@@ -373,7 +362,7 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .file("a photo of a cat.png"),
-                .file("a photo of a dog.png"),
+                .file("a photo of a dog.png")
                 ])
         )
         
@@ -397,7 +386,7 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .file("dog.png"),
-                .file("cat.gif"),
+                .file("cat.gif")
                 ])
         )
         
@@ -419,7 +408,7 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .file("dog.png"),
-                .file("cat.gif"),
+                .file("cat.gif")
                 ])
         )
         
@@ -443,7 +432,7 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .file("dog.png"),
-                .file("cat.gif"),
+                .file("cat.gif")
                 ])
         )
         
@@ -465,7 +454,7 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .file("dog.png"),
-                .file("cat.gif"),
+                .file("cat.gif")
                 ])
         )
         
@@ -490,11 +479,11 @@ class Tests: XCTestCase {
             .folder( "Root", [
                 .folder("ContainsGif", [
                     .file("cat.gif"),
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("DoesntContainGif", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
         
@@ -517,11 +506,11 @@ class Tests: XCTestCase {
             .folder( "Root", [
                 .folder("ContainsGif", [
                     .file("cat.gif"),
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("DoesntContainGif", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
         
@@ -546,11 +535,11 @@ class Tests: XCTestCase {
             .folder( "Root", [
                 .folder("ContainsGif", [
                     .file("cat.gif"),
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("DoesntContainGif", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
         
@@ -573,11 +562,11 @@ class Tests: XCTestCase {
             .folder( "Root", [
                 .folder("ContainsGif", [
                     .file("cat.gif"),
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("DoesntContainGif", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
         
@@ -594,7 +583,6 @@ class Tests: XCTestCase {
         XCTAssertTrue(directory.containsObject(atPath: "DoesntContainGif/dog.png"))
     }
 
-    
     // MARK: - Folder Rules: Name
     
     func dogPngFileRules() -> [FileRule] {
@@ -608,14 +596,13 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("Include Me", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("Exclude Me", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
-        
         
         let condition = FolderCondition.name(.matching("Exclude Me"))
         let rule = FolderRule(conditions: [condition])
@@ -635,14 +622,13 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("Include Me", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("Exclude Me", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
-        
         
         let condition = FolderCondition.name(.notMatching("Include Me"))
         let rule = FolderRule(conditions: [condition])
@@ -662,14 +648,13 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("-- Include Me --", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("-- Exclude Me --", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
-        
         
         let condition = FolderCondition.name(.containing("Exclude Me"))
         let rule = FolderRule(conditions: [condition])
@@ -689,14 +674,13 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("-- Include Me --", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("-- Exclude Me --", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
-        
         
         let condition = FolderCondition.name(.notContaining("Include Me"))
         let rule = FolderRule(conditions: [condition])
@@ -718,14 +702,13 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("Include Me", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("Exclude Me", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
-        
         
         let condition = FolderCondition.path(.matching("Root/Exclude Me"))
         let rule = FolderRule(conditions: [condition])
@@ -745,14 +728,13 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("Include Me", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("Exclude Me", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
-        
         
         let condition = FolderCondition.path(.notMatching("Root/Include Me"))
         let rule = FolderRule(conditions: [condition])
@@ -774,12 +756,12 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("Include Me", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("Exclude Me", [
                     .file("dog.png"),
-                    .file("cat.gif"),
-                    ]),
+                    .file("cat.gif")
+                    ])
                 ])
         )
         
@@ -801,12 +783,12 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("Include Me", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("Exclude Me", [
                     .file("dog.png"),
-                    .file("cat.gif"),
-                    ]),
+                    .file("cat.gif")
+                    ])
                 ])
         )
         
@@ -828,12 +810,12 @@ class Tests: XCTestCase {
         let fileReader = MockFileReader(
             .folder( "Root", [
                 .folder("Include Me", [
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("Exclude Me", [
                     .folder("A Folder", []),
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
         
@@ -858,11 +840,11 @@ class Tests: XCTestCase {
             .folder( "Root", [
                 .folder("Include Me", [
                     .file("dog.png"),
-                    .file("cat.gif"),
+                    .file("cat.gif")
                     ]),
                 .folder("Exclude Me", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
         
@@ -885,11 +867,11 @@ class Tests: XCTestCase {
             .folder( "Root", [
                 .folder("Include Me", [
                     .file("dog.png"),
-                    .file("cat.gif"),
+                    .file("cat.gif")
                     ]),
                 .folder("Exclude Me", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
         
@@ -912,11 +894,11 @@ class Tests: XCTestCase {
             .folder( "Root", [
                 .folder("Include Me", [
                     .folder("A Folder", []),
-                    .file("dog.png"),
+                    .file("dog.png")
                     ]),
                 .folder("Exclude Me", [
-                    .file("dog.png"),
-                    ]),
+                    .file("dog.png")
+                    ])
                 ])
         )
         

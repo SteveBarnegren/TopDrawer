@@ -15,7 +15,7 @@ class SettingsTests: XCTestCase {
     class MockSettingObserver {
         
         var numCallbacks = 0
-        var handler: () -> () = {}
+        var handler: () -> Void = {}
         
         init(setting: Setting<Int>) {
             setting.add(changeObserver: self, selector: #selector(callBack))
@@ -40,7 +40,7 @@ class SettingsTests: XCTestCase {
     func testSettingDoesSetDefaultValueInKeyValueStore() {
         
         let keyValueStore = DictionaryKeyValueStore()
-        let _ = Setting(keyValueStore: keyValueStore, key: "key", defaultValue: 100)
+        _ = Setting(keyValueStore: keyValueStore, key: "key", defaultValue: 100)
         XCTAssertNil(keyValueStore.dictionary["key"])
     }
     
@@ -81,10 +81,10 @@ class SettingsTests: XCTestCase {
         
         let setting = Setting(keyValueStore: DictionaryKeyValueStore(), key: "key", defaultValue: 0)
         
-        let observers = (0..<3).map{ _ in return MockSettingObserver(setting: setting) }
+        let observers = (0..<3).map { _ in return MockSettingObserver(setting: setting) }
         setting.value = 99
         setting.value = 2
-        XCTAssertEqual(observers.map{ $0.numCallbacks }, [2,2,2])
+        XCTAssertEqual(observers.map { $0.numCallbacks }, [2, 2, 2])
     }
     
     func testSettingDoesNotRetainObserver() {
@@ -124,5 +124,4 @@ class SettingsTests: XCTestCase {
         XCTAssertEqual(deallocatedObserverReceivedCallback, false)
     }
     
-
 }

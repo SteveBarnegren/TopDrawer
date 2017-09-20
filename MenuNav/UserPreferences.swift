@@ -69,5 +69,3 @@ class UserPreferences: KeyValueStore {
         return userDefaults.value(forKey: key) as? Int
     }
 }
-
-

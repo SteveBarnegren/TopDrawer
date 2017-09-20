@@ -22,10 +22,10 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
     private let nonGenericType = ConditionEditorViewNonGenericType()
     private var views = [NSView]()
     private var node: DecisionNode<T>!
-    fileprivate var viewsAndNodes = Dictionary<NSView, DecisionNode<T>>()
+    fileprivate var viewsAndNodes = [NSView: DecisionNode<T>]()
     
-    var wantsDeletionHandler: (ConditionEditorView<T>) -> () = {_ in}
-    var valueChangedHandler: (ConditionEditorView<T>) -> () = {_ in}
+    var wantsDeletionHandler: (ConditionEditorView<T>) -> Void = {_ in}
+    var valueChangedHandler: (ConditionEditorView<T>) -> Void = {_ in}
     
     private let stackView: NSStackView = {
         let sv = NSStackView(frame: .zero)
@@ -74,7 +74,7 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         self.node = node
         
         // Remove existing
-        views.forEach{
+        views.forEach {
             stackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
@@ -95,7 +95,7 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
             case let .list(_, itemNodes):
                 
                 let popupButton = makePopupButton()
-                itemNodes.forEach{
+                itemNodes.forEach {
                     popupButton.addItem(withTitle: $0.name)
                 }
                 popupButton.selectItem(at: node.selectedIndex)
@@ -161,10 +161,9 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         return input
     }
 
-    
     // MARK: - Actions
     
-    @objc private func popupButtonValueChanged(button: NSPopUpButton){
+    @objc private func popupButtonValueChanged(button: NSPopUpButton) {
         
         guard let item = button.selectedItem else {
             Swift.print("Unable to find selected item")
@@ -201,8 +200,7 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         
         if hasValidCondition {
             validityIndicator.stringValue = "Y"
-        }
-        else{
+        } else {
             validityIndicator.stringValue = "N"
         }
     }
@@ -221,11 +219,9 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         
         if let textField = nodeView as? NSTextField {
             node?.textValue = textField.stringValueOptional
-        }
-        else if let pathInputView = nodeView as? PathConditionInputView {
+        } else if let pathInputView = nodeView as? PathConditionInputView {
             node?.textValue = pathInputView.path
-        }
-        else{
+        } else {
             fatalError("Unknown node view type")
         }
         

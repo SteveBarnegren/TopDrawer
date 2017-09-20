@@ -69,7 +69,7 @@ class SettingsViewController: NSViewController {
         
         // Rebuild Interval Popup
         refreshIntervalDropdown.removeAllItems()
-        intervals.forEach{
+        intervals.forEach {
             refreshIntervalDropdown.addItem(withTitle: $0.title)
         }
         
@@ -94,8 +94,7 @@ class SettingsViewController: NSViewController {
             let intSeconds = max(Int(seconds), 1)
             let unit = intSeconds == 1 ? "second" : "seconds"
             timeTakenLabel.stringValue = "Took \(intSeconds) \(unit)"
-        }
-        else{
+        } else {
           timeTakenLabel.stringValue = ""
         }
     }
@@ -107,25 +106,24 @@ class SettingsViewController: NSViewController {
             dateFormatter.timeStyle = .short
             let dateString = dateFormatter.string(from: date)
             lastRebuildTimeLabel.stringValue = "Last refresh: \(dateString)"
-        }
-        else{
+        } else {
             lastRebuildTimeLabel.stringValue = ""
         }
     }
     
     // MARK: - Actions
     
-    @IBAction private func followAliasesButtonPressed(sender: NSButton){
+    @IBAction private func followAliasesButtonPressed(sender: NSButton) {
         let isOn = followAliasesButton.state == .on
         Settings.shared.followAliases.value = isOn
     }
     
-    @IBAction private func shortenPathsButtonPressed(sender: NSButton){
+    @IBAction private func shortenPathsButtonPressed(sender: NSButton) {
         let isOn = shortenPathsButton.state == .on
         Settings.shared.shortenPaths.value = isOn
     }
     
-    @IBAction private func openAtLoginButtonPressed(sender: NSButton){
+    @IBAction private func openAtLoginButtonPressed(sender: NSButton) {
         let isOn = openAtLoginButton.state == .on
         
         if isOn {
@@ -135,7 +133,7 @@ class SettingsViewController: NSViewController {
         }
     }
     
-    @IBAction private func refreshIntervalDropdownValueChanged(sender: NSPopUpButton){
+    @IBAction private func refreshIntervalDropdownValueChanged(sender: NSPopUpButton) {
         
         guard let interval = intervals.first(where: { $0.title == refreshIntervalDropdown.selectedItem?.title }) else {
             fatalError("Unable to get interval from dropdown choice")

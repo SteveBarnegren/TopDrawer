@@ -91,9 +91,9 @@ class MockRebuildManagerListener: RebuildManagerListener {
     }
     
     var events = [Event]()
-    var changeStateCallback: () -> () = {}
-    var didRebuildCallback: () -> () = {}
-    var noPathSetCallback: () -> () = {}
+    var changeStateCallback: () -> Void = {}
+    var didRebuildCallback: () -> Void = {}
+    var noPathSetCallback: () -> Void = {}
 
     func rebuildManagerDidChangeState(state: RebuildManager.State) {
         events.append(.stateChange(state))
@@ -120,7 +120,7 @@ class RebuildManagerTests: XCTestCase {
             .folder( "Root", [
                 .folder( "Photos", [
                     .file("dog.png"),
-                    .file("cat.png"),
+                    .file("cat.png")
                     ])
                 ])
         )
@@ -231,11 +231,4 @@ class RebuildManagerTests: XCTestCase {
         }
     }
  */
-
-
-    
-    
-
-  
-
 }

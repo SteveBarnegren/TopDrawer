@@ -77,5 +77,4 @@ class PathMatcherTests: XCTestCase {
         XCTAssertTrue(notMatching == notMatching.convertedToDictionaryAndBack)
     }
 
-   
 }

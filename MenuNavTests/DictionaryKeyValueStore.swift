@@ -10,7 +10,7 @@ import Foundation
 
 class DictionaryKeyValueStore: KeyValueStore {
     
-    var dictionary = [String:Any]()
+    var dictionary = [String: Any]()
     
     func set(value: Any, forKey key: String) {
         dictionary[key] = value
@@ -44,4 +44,3 @@ class DictionaryKeyValueStore: KeyValueStore {
         return dictionary[key] as? Int
     }
 }
-

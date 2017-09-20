@@ -24,7 +24,7 @@ protocol FileSystemObject: class {
 
 class ResultCache<InputType: Hashable, ResultType> {
     
-    var cache = Dictionary<InputType, ResultType>()
+    var cache = [InputType: ResultType]()
     let calculationHandler: (InputType) -> ResultType
     
     init(calculationHandler: @escaping (InputType) -> ResultType) {
@@ -35,8 +35,7 @@ class ResultCache<InputType: Hashable, ResultType> {
         
         if let storedValue = cache[input] {
             return storedValue
-        }
-        else {
+        } else {
             let calculatedValue = calculationHandler(input)
             cache[input] = calculatedValue
             return calculatedValue
@@ -57,17 +56,12 @@ class Directory: FileSystemObject {
         init() {
             
             // Contains files with full name cache
-            containsFilesWithFullNameResultCache = ResultCache<String, Bool>{
-                for fileName in self.containedFileNames {
-                    if fileName == $0 {
-                        return true
-                    }
-                }
-                return false
+            containsFilesWithFullNameResultCache = ResultCache<String, Bool> {
+                self.containedFileNames.contains($0)
             }
             
             // Contains files with extension cache
-            containsFilesWithExtensionResultCache = ResultCache<String, Bool>{
+            containsFilesWithExtensionResultCache = ResultCache<String, Bool> {
                 for fileName in self.containedFileNames {
                     
                     let components = fileName.components(separatedBy: ".")
@@ -80,13 +74,8 @@ class Directory: FileSystemObject {
             }
             
             // Contains folders with name cache
-            containsFoldersWithNameResultCache = ResultCache<String, Bool>{
-                for folderName in self.containedFolderNames {
-                    if folderName == $0 {
-                        return true
-                    }
-                }
-                return false
+            containsFoldersWithNameResultCache = ResultCache<String, Bool> {
+                self.containedFolderNames.contains($0)
             }
         }
         
@@ -119,11 +108,11 @@ class Directory: FileSystemObject {
     }
     
     var containedFiles: [File] {
-        return contents.flatMap{ $0 as? File }
+        return contents.flatMap { $0 as? File }
     }
     
     var containedDirectories: [Directory] {
-        return contents.flatMap{ $0 as? Directory }
+        return contents.flatMap { $0 as? Directory }
     }
     
     init(name: String, path: String) {
@@ -131,7 +120,7 @@ class Directory: FileSystemObject {
         self.path = path
     }
     
-    func add(object: FileSystemObject){
+    func add(object: FileSystemObject) {
         contents.append(object)
     }
     
@@ -141,15 +130,14 @@ class Directory: FileSystemObject {
     
     private func printHeirarchyRecursive(indent: Int) {
         
-        let spaces = (0..<indent).reduce(""){ (result, _) in result + "  "}
+        let spaces = (0..<indent).reduce("") { (result, _) in result + "  "}
         print("\(spaces) - [\(debugDescription)]")
         
         for object in contents {
             
             if let innerDir = object as? Directory {
                 innerDir.printHeirarchyRecursive(indent: indent + 1)
-            }
-            else{
+            } else {
                 print("\(spaces) - \(object.debugDescription)")
             }
         }
@@ -157,7 +145,7 @@ class Directory: FileSystemObject {
     
     func removeExtendedAttributes() {
         extendedAttributes = nil
-        contents.forEach{
+        contents.forEach {
             $0.removeExtendedAttributes()
         }
     }
@@ -179,8 +167,7 @@ class File: FileSystemObject {
         
         if ext.characters.count > 0 {
             return "\(name)" + "." + "\(ext)"
-        }
-        else{
+        } else {
             return name
         }
         
@@ -190,8 +177,7 @@ class File: FileSystemObject {
         
         if ext.characters.count > 0 {
             return "\(name).\(ext)"
-        }
-        else{
+        } else {
             return name
         }
     }

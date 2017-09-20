@@ -33,7 +33,7 @@ enum FolderCondition {
 
 extension FolderCondition: Equatable {
     
-    static func ==(lhs: FolderCondition, rhs: FolderCondition) -> Bool {
+    static func == (lhs: FolderCondition, rhs: FolderCondition) -> Bool {
         switch (lhs, rhs) {
         case let (.path(pathMatcher1), .path(pathMatcher2)):
             return pathMatcher1 == pathMatcher2
@@ -137,7 +137,7 @@ extension FolderCondition: DictionaryRepresentable {
         static let AssociatedValue = "AssociatedValue"
     }
     
-    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+    init?(dictionaryRepresentation dictionary: [String: Any]) {
         
         guard let caseType = dictionary[Keys.CaseKey] as? String else {
             return nil
@@ -148,28 +148,28 @@ extension FolderCondition: DictionaryRepresentable {
         switch caseType {
         case Keys.Case.Path:
             
-            if let pathMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let pathMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let pathMatcher = PathMatcher(dictionaryRepresentation: pathMatcherDictionary) {
                 result = .path(pathMatcher)
             }
             
         case Keys.Case.Name:
             
-            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
                 result = .name(stringMatcher)
             }
             
         case Keys.Case.Contains:
             
-            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: contentsMatcherDictionary) {
                 result = .contains(contentsMatcher)
             }
             
         case Keys.Case.DoesntContain:
             
-            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: contentsMatcherDictionary) {
                 result = .doesntContain(contentsMatcher)
             }
@@ -180,15 +180,14 @@ extension FolderCondition: DictionaryRepresentable {
         
         if let result = result {
             self = result
-        }
-        else{
+        } else {
             return nil
         }
     }
     
-    var dictionaryRepresentation: Dictionary<String, Any> {
+    var dictionaryRepresentation: [String: Any] {
         
-        var dictionary = Dictionary<String, Any>()
+        var dictionary = [String: Any]()
         
         switch self {
         case let .path(pathMatcher):
@@ -216,6 +215,3 @@ extension FolderCondition: DictionaryRepresentable {
     }
     
 }
-
-
-

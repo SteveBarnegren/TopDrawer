@@ -27,15 +27,15 @@ class RuleCollectionViewItem: NSCollectionViewItem {
     // MARK: - Configure
     
     func configure<T: Rule>(withRule rule: T,
-                   conditionHeight: CGFloat,
-                   conditionSpacing: CGFloat) {
+                            conditionHeight: CGFloat,
+                            conditionSpacing: CGFloat) {
         
-        conditionsStackView.subviews.forEach{
+        conditionsStackView.subviews.forEach {
             $0.removeFromSuperview()
         }
         //conditionsStackView.spacing = conditionSpacing
         
-        rule.conditions.forEach{
+        rule.conditions.forEach {
 
             let label = NSTextField.createWithLabelStyle()
             label.stringValue = $0.displayDiscription
@@ -46,7 +46,6 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         view.needsLayout = true
     }
     
-    
     // MARK: - NSCollectionViewItem
     
     override func viewDidLoad() {
@@ -54,7 +53,6 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         
         // Background Color
         view.backgroundColor = NSColor.white
-        
         
         // Edit button
         editButton.target = self
@@ -74,12 +72,12 @@ class RuleCollectionViewItem: NSCollectionViewItem {
     
     // MARK: - Actions
     
-    @IBAction private func editButtonPressed(sender: NSButton){
+    @IBAction private func editButtonPressed(sender: NSButton) {
         print("Edit button pressed")
         delegate?.ruleCollectionViewItemEditPressed(item: self)
     }
     
-    @IBAction private func deleteButtonPressed(sender: NSButton){
+    @IBAction private func deleteButtonPressed(sender: NSButton) {
         print("Delete button pressed")
         delegate?.ruleCollectionViewItemDeletePressed(item: self)
     }

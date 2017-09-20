@@ -24,7 +24,7 @@ class PathConditionInputView: NSView {
         set { textField.stringValue = newValue ?? "" }
     }
     
-    var valueChangedHandler: () -> () = {}
+    var valueChangedHandler: () -> Void = {}
     
     // MARK: - Properties
 
@@ -38,7 +38,10 @@ class PathConditionInputView: NSView {
     }()
     
     private lazy var button: NSButton = {
-        let button = NSButton(title: "P", image: NSImage(), target: self, action: #selector(selectPathButtonPressed(_:)))
+        let button = NSButton(title: "P",
+                              image: NSImage(),
+                              target: self,
+                              action: #selector(selectPathButtonPressed(_:)))
         return button
     }()
     

@@ -36,11 +36,11 @@ enum FileCondition {
     var perfomanceValue: Int {
         
         switch self {
-        case .fullName(_): return 0
-        case .name(_): return 1
-        case .ext(_): return 2
-        case .parentContains(_): return 3
-        case .parentDoesntContain(_): return 4
+        case .fullName: return 0
+        case .name: return 1
+        case .ext: return 2
+        case .parentContains: return 3
+        case .parentDoesntContain: return 4
         }
     }
 }
@@ -95,7 +95,7 @@ extension FileCondition: CondtionProtocol {
 
 extension FileCondition: Equatable {
     
-    static func ==(lhs: FileCondition, rhs: FileCondition) -> Bool {
+    static func == (lhs: FileCondition, rhs: FileCondition) -> Bool {
         switch (lhs, rhs) {
         case let (.name(sm1), .name(sm2)):
             return sm1 == sm2
@@ -150,7 +150,7 @@ extension FileCondition: DictionaryRepresentable {
         static let AssociatedValue = "AssociatedValue"
     }
     
-    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+    init?(dictionaryRepresentation dictionary: [String: Any]) {
         
         guard let caseType = dictionary[Keys.CaseKey] as? String else {
             return nil
@@ -161,35 +161,35 @@ extension FileCondition: DictionaryRepresentable {
         switch caseType {
         case Keys.Case.Name:
             
-            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
                 result = .name(stringMatcher)
             }
             
         case Keys.Case.Ext:
             
-            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
                 result = .ext(stringMatcher)
             }
             
         case Keys.Case.FullName:
             
-            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let stringMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let stringMatcher = StringMatcher(dictionaryRepresentation: stringMatcherDictionary) {
                 result = .fullName(stringMatcher)
             }
             
         case Keys.Case.ParentContains:
             
-            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: contentsMatcherDictionary) {
                 result = .parentContains(contentsMatcher)
             }
             
         case Keys.Case.ParentDoesntContain:
             
-            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? Dictionary<String, Any>,
+            if let contentsMatcherDictionary = dictionary[Keys.AssociatedValue] as? [String: Any],
                 let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: contentsMatcherDictionary) {
                 result = .parentDoesntContain(contentsMatcher)
             }
@@ -200,15 +200,14 @@ extension FileCondition: DictionaryRepresentable {
         
         if let result = result {
             self = result
-        }
-        else {
+        } else {
             return nil
         }
     }
     
-    var dictionaryRepresentation: Dictionary<String, Any> {
+    var dictionaryRepresentation: [String: Any] {
         
-        var dictionary = Dictionary<String, Any>()
+        var dictionary = [String: Any]()
         
         switch self {
         case let .name(stringMatcher):
@@ -235,5 +234,3 @@ extension FileCondition: DictionaryRepresentable {
         return dictionary
     }
 }
-
-

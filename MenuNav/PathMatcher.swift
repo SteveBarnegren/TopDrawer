@@ -22,7 +22,7 @@ enum PathMatcher {
         }
     }
     
-    static func ==(lhs: PathMatcher, rhs: PathMatcher) -> Bool {
+    static func == (lhs: PathMatcher, rhs: PathMatcher) -> Bool {
         
         switch (lhs, rhs) {
         case let (.matching(s1), .matching(s2)):
@@ -48,7 +48,7 @@ extension PathMatcher: DictionaryRepresentable {
         static let Value = "Value"
     }
     
-    init?(dictionaryRepresentation dictionary: Dictionary<String, Any>) {
+    init?(dictionaryRepresentation dictionary: [String: Any]) {
         
         guard
             let caseType = dictionary[Keys.CaseKey] as? String,
@@ -69,15 +69,14 @@ extension PathMatcher: DictionaryRepresentable {
         
         if let result = result {
             self = result
-        }
-        else{
+        } else {
             return nil
         }
     }
     
-    var dictionaryRepresentation: Dictionary<String, Any> {
+    var dictionaryRepresentation: [String: Any] {
         
-        var dictionary = Dictionary<String, Any>()
+        var dictionary = [String: Any]()
         
         switch self {
         case let .matching(string):

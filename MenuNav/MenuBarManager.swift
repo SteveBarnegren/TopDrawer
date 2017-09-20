@@ -17,7 +17,7 @@ class MenuBarManager {
     
     // MARK: - Start
     
-    func start()  {
+    func start() {
         
         if let button = statusItem.button {
             button.image = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
@@ -162,4 +162,3 @@ extension Directory {
         return menu
     }
 }
-

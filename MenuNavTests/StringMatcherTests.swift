@@ -56,7 +56,6 @@ class StringMatcherTests: XCTestCase {
         XCTAssertTrue(matcher.matches(string: "Cats like milk"))
     }
     
-    
     // MARK: - Test Equatable
     
     func testStringMatchersAreEqualWithCaseMatchingAndSameString() {
@@ -106,7 +105,6 @@ class StringMatcherTests: XCTestCase {
         
         XCTAssertFalse(firstMatcher == secondMatcher)
     }
-    
     
     func testStringMatchersAreEqualWithCaseNotContainingAndSameString() {
         

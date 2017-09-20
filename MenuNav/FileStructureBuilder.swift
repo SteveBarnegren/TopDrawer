@@ -6,6 +6,8 @@
 //  Copyright © 2017 SteveBarnegren. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import Foundation
 import AppKit
 
@@ -29,7 +31,7 @@ extension FileManager: FileReader {
                 let original = try URL(resolvingAliasFileAt: url)
                 return original.path
             }
-        } catch  {
+        } catch {
             print(error)
         }
         return path
@@ -42,7 +44,7 @@ class FileStructureBuilder {
     
     // MARK: - Types
     
-    struct Options : OptionSet {
+    struct Options: OptionSet {
         let rawValue: Int
         static let shortenPaths = Options(rawValue: 1 << 0)
         static let followAliases = Options(rawValue: 1 << 1)
@@ -125,7 +127,7 @@ class FileStructureBuilder {
         var isDirectory: ObjCBool = false
         let exists = fileReader.fileExists(atPath: path, isDirectory: &isDirectory)
         
-        guard exists else{
+        guard exists else {
             return nil
         }
         
@@ -149,8 +151,8 @@ class FileStructureBuilder {
             }
             
             let extendedAttributes = Directory.ExtendedDictionaryAttributes()
-            extendedAttributes.containedFileNames = contents.filter{ $0.contains(".") }
-            extendedAttributes.containedFolderNames = contents.filter{ $0.contains(".") == false }
+            extendedAttributes.containedFileNames = contents.filter { $0.contains(".") }
+            extendedAttributes.containedFolderNames = contents.filter { $0.contains(".") == false }
             directory.extendedAttributes = extendedAttributes
             
             if !isBaseDirectory && shouldExclude(directory: directory) {
@@ -159,15 +161,14 @@ class FileStructureBuilder {
             
             directory.image = imageForPath(path)
             
-            contents.map{ "\(path)" + "/" + $0 }
-                .flatMap{ fileSystemObject(atPath: $0, withParent: directory) }
-                .forEach{
+            contents.map { "\(path)" + "/" + $0 }
+                .flatMap { fileSystemObject(atPath: $0, withParent: directory) }
+                .forEach {
                     directory.add(object: $0)
             }
             
             return directory.contents.count > 0 ? directory : nil
-        }
-        else{
+        } else {
             
             let nameWithExtension = path.components(separatedBy: "/").last!
             
@@ -178,8 +179,7 @@ class FileStructureBuilder {
                 
                 name = nameWithExtension.components(separatedBy: ".").first!
                 ext = nameWithExtension.components(separatedBy: ".").last!
-            }
-            else{
+            } else {
                 name = nameWithExtension.deletingPathExtension()
                 ext = nameWithExtension.pathExtension
             }
@@ -250,7 +250,6 @@ class FileStructureBuilder {
             newContents.append($0)
         }
         
-        
         for innerDir in directory.containedDirectories {
             
             if innerDir.containedFiles.count == 0 && innerDir.containedDirectories.count == 1 {
@@ -260,8 +259,7 @@ class FileStructureBuilder {
                     newDir.name = innerDir.name
                     newContents.append(newDir)
                 }
-            }
-            else{
+            } else {
                 newContents.append(directoryByShorteningPaths(inDirectory: innerDir))
             }
         }

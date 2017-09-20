@@ -40,7 +40,6 @@ protocol FormatterProvider {
     func string(from: T) -> String
 }
 
-
 // MARK: - Rule Loader
 
 class RuleLoader<T: Rule> {
@@ -59,14 +58,14 @@ class RuleLoader<T: Rule> {
         get {
             let key = T.storageKey
             
-            guard let array = keyValueStore.value(forKey: key) as? Array<Dictionary<String, Any>> else {
+            guard let array = keyValueStore.value(forKey: key) as? [[String: Any]] else {
                 return []
             }
-            return array.flatMap{ T(dictionaryRepresentation: $0) }
+            return array.flatMap { T(dictionaryRepresentation: $0) }
         }
         set {
             let key = T.storageKey
-            let array = newValue.map{ $0.dictionaryRepresentation }
+            let array = newValue.map { $0.dictionaryRepresentation }
             keyValueStore.set(value: array, forKey: key)
         }
     }

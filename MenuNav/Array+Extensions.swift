@@ -9,12 +9,11 @@
 import Foundation
 
 extension Array {
-    
+
     func appending(_ item: Element) -> [Element] {
-        
+
         var copy = self
         copy.append(item)
         return copy
     }
-    
 }
