@@ -13,7 +13,7 @@ class MenuBarManager {
         
     var appWindowController: NSWindowController?
     let statusItem = NSStatusBar.system.statusItem(withLength: -2)
-    let rebuildManager = RebuildManager.shared
+    let rebuildManager = RebuildManager()
     
     // MARK: - Start
     
@@ -112,6 +112,8 @@ class MenuBarManager {
         appWindowController?.showWindow(self)
         appWindowController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
         appWindowController?.window?.makeKeyAndOrderFront(self)
+        let viewController = appWindowController?.window?.contentViewController as! ViewController
+        viewController.configure(withRebuildManager: rebuildManager)
     }
     
     @objc func rebuildItemPressed() {

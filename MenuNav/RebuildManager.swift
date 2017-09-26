@@ -21,9 +21,7 @@ extension RebuildManagerListener {
 }
 
 class RebuildManager {
-    
-    static let shared = RebuildManager()
-    
+        
     // MARK: - Types
     
     enum State {

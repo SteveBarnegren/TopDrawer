@@ -28,11 +28,13 @@ class RulesViewController<T: Rule>: NSViewController {
     var state = State.normal
     let ruleLoader = RuleLoader<T>(keyValueStore: UserPreferences())
     let viewModel: RulesViewModel
+    let rebuildManager: RebuildManager
     
     // MARK: - Init
     
-    init(viewModel: RulesViewModel) {
+    init(viewModel: RulesViewModel, rebuildManager: RebuildManager) {
         self.viewModel = viewModel
+        self.rebuildManager = rebuildManager
         super.init(nibName: NSNib.Name(rawValue: "RulesViewController"), bundle: nil)
     }
     
@@ -130,7 +132,7 @@ class RulesViewController<T: Rule>: NSViewController {
         state = .normal
         collectionView.reloadData()
         
-        RebuildManager.shared.needsRebuild = true
+        rebuildManager.needsRebuild = true
     }
 }
 
@@ -195,7 +197,7 @@ extension RulesViewController: RuleCollectionViewItemDelegate {
         ruleLoader.deleteRule(atIndex: indexPath.item)
         collectionView.reloadData()
         
-        RebuildManager.shared.needsRebuild = true
+        rebuildManager.needsRebuild = true
     }
 }
 

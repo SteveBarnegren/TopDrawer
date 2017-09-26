@@ -19,6 +19,7 @@ class ViewController: NSViewController {
     
     @IBOutlet weak fileprivate var contentView: NSView!
     fileprivate var contentViewController: NSViewController?
+    private var rebuildManager: RebuildManager!
 
     // MARK: - NSViewController
     
@@ -30,8 +31,12 @@ class ViewController: NSViewController {
         
         // Update UI
         updatePathLabel()
+    }
     
-        // Show file rules content
+    // MARK: - Pass in dependancies
+    
+    func configure(withRebuildManager rebuildManager: RebuildManager) {
+        self.rebuildManager = rebuildManager
         showFileRules()
     }
     
@@ -48,7 +53,7 @@ class ViewController: NSViewController {
                                        overviewExplanation: "Show files matching any of the following sets of rules:",
                                        editorExplanation: "Show files matching all of the following conditions:")
         
-        let fileRules = RulesViewController<FileRule>(viewModel: viewModel)
+        let fileRules = RulesViewController<FileRule>(viewModel: viewModel, rebuildManager: rebuildManager)
         self .show(contentViewController: fileRules)
     }
     
@@ -64,7 +69,7 @@ class ViewController: NSViewController {
                                        editorExplanation: "Exclude folders matching all of the following conditions:")
         // swiftlint:enable line_length
         
-        let folderRules = RulesViewController<FolderRule>(viewModel: viewModel)
+        let folderRules = RulesViewController<FolderRule>(viewModel: viewModel, rebuildManager: rebuildManager)
         self.show(contentViewController: folderRules)
     }
     
@@ -72,7 +77,7 @@ class ViewController: NSViewController {
         print("Show settings")
         self.segmentedControl.selectedSegment = 2
         
-        let settings = SettingsViewController(nibName: NSNib.Name(rawValue: "SettingsViewController"), bundle: nil)
+        let settings = SettingsViewController(rebuildManager: rebuildManager)
         self.show(contentViewController: settings)
     }
     

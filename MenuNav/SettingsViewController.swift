@@ -41,6 +41,8 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak fileprivate var refreshIntervalDropdown: NSPopUpButton!
     @IBOutlet weak fileprivate var lastRebuildTimeLabel: NSTextField!
     @IBOutlet weak fileprivate var timeTakenLabel: NSTextField!
+    
+    let rebuildManager: RebuildManager
 
         let intervals: [Interval] = [
             .minutes(5),
@@ -52,7 +54,16 @@ class SettingsViewController: NSViewController {
             .minutes(60),
             .never
         ]
-
+    
+    init(rebuildManager: RebuildManager) {
+        self.rebuildManager = rebuildManager
+        super.init(nibName: NSNib.Name(rawValue: "SettingsViewController"), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - NSViewController
 
     override func viewDidLoad() {
@@ -77,7 +88,7 @@ class SettingsViewController: NSViewController {
         refreshIntervalDropdown.selectItem(at: index)
         
         // Observe Rebuild Manager
-        RebuildManager.shared.addListener(self)
+        rebuildManager.addListener(self)
     }
     
     override func viewWillAppear() {
@@ -90,7 +101,7 @@ class SettingsViewController: NSViewController {
     
     fileprivate func updateTimeTakenLabel() {
         
-        if let seconds = RebuildManager.shared.lastResults?.timeTaken {
+        if let seconds = rebuildManager.lastResults?.timeTaken {
             let intSeconds = max(Int(seconds), 1)
             let unit = intSeconds == 1 ? "second" : "seconds"
             timeTakenLabel.stringValue = "Took \(intSeconds) \(unit)"
@@ -101,7 +112,7 @@ class SettingsViewController: NSViewController {
     
     fileprivate func updateLastRebuildTimeLabel() {
         
-        if let date = RebuildManager.shared.lastResults?.timeCompleted {
+        if let date = rebuildManager.lastResults?.timeCompleted {
             let dateFormatter = DateFormatter()
             dateFormatter.timeStyle = .short
             let dateString = dateFormatter.string(from: date)
