@@ -6,8 +6,7 @@ target 'MenuNav' do
   pod 'IYLoginItem'
   pod 'SBSwiftUtils'
   pod 'SBAutoLayout'
-  #pod 'AttributedStringBuilder'
-  pod 'AttributedStringBuilder', :path => ENV['AttributedStringBuilder']
+  pod 'AttributedStringBuilder'
 
   target 'MenuNavTests' do
     inherit! :search_paths
