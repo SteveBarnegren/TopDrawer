@@ -13,50 +13,31 @@
 		0978BEC61EB393110023AC66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0978BEC41EB393110023AC66 /* Main.storyboard */; };
 		29FFD854BC8674F6F2B2DC7F /* Pods_MenuNavTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480C88363C8F497977E2ABE1 /* Pods_MenuNavTests.framework */; };
 		671941E71F63FB14003AB65A /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941E61F63FB14003AB65A /* NSView+Extensions.swift */; };
-		671941E81F63FB1A003AB65A /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941E61F63FB14003AB65A /* NSView+Extensions.swift */; };
 		671941EA1F63FE46003AB65A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941E91F63FE46003AB65A /* Colors.swift */; };
-		671941EB1F63FE46003AB65A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941E91F63FE46003AB65A /* Colors.swift */; };
 		671942001F6492B1003AB65A /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941FF1F6492B1003AB65A /* MenuBarManager.swift */; };
-		671942011F6492B1003AB65A /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671941FF1F6492B1003AB65A /* MenuBarManager.swift */; };
 		671942031F6495F6003AB65A /* RebuildManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942021F6495F6003AB65A /* RebuildManager.swift */; };
-		671942041F6495F6003AB65A /* RebuildManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942021F6495F6003AB65A /* RebuildManager.swift */; };
 		671942061F649A37003AB65A /* WeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942051F649A37003AB65A /* WeakArray.swift */; };
-		671942071F649A37003AB65A /* WeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942051F649A37003AB65A /* WeakArray.swift */; };
 		671942091F649D10003AB65A /* WeakArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942081F649D10003AB65A /* WeakArrayTests.swift */; };
 		6719420B1F656DE4003AB65A /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719420A1F656DE4003AB65A /* UserPreferences.swift */; };
-		6719420C1F656DE4003AB65A /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719420A1F656DE4003AB65A /* UserPreferences.swift */; };
 		6719420F1F657E9B003AB65A /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719420E1F657E9B003AB65A /* SettingsTests.swift */; };
 		671942111F6593D9003AB65A /* RebuildManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942101F6593D9003AB65A /* RebuildManagerTests.swift */; };
-		671942141F659A45003AB65A /* RuleLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942131F659A45003AB65A /* RuleLoaderTests.swift */; };
-		671942171F659B2A003AB65A /* DictionaryKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942161F659B2A003AB65A /* DictionaryKeyValueStore.swift */; };
 		6724C1921F801F3B003E40D1 /* RichTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724C1911F801F3B003E40D1 /* RichTextAttributes.swift */; };
-		6724C1931F801F3B003E40D1 /* RichTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724C1911F801F3B003E40D1 /* RichTextAttributes.swift */; };
 		6724C1951F8429CB003E40D1 /* FIleConditionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724C1941F8429CB003E40D1 /* FIleConditionFormatter.swift */; };
-		6724C1961F8429CB003E40D1 /* FIleConditionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724C1941F8429CB003E40D1 /* FIleConditionFormatter.swift */; };
 		6724F5051F5699F500BFF4B5 /* PathConditionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */; };
+		6745B1991F843B32001F8C78 /* RuleLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942131F659A45003AB65A /* RuleLoaderTests.swift */; };
+		6745B19A1F843B34001F8C78 /* MockTimerBenign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679900B51F67341200B9AC45 /* MockTimerBenign.swift */; };
+		6745B19B1F843B36001F8C78 /* DictionaryKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671942161F659B2A003AB65A /* DictionaryKeyValueStore.swift */; };
 		6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */; };
 		6748CE0B1F3B9E29002941D4 /* RuleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */; };
 		6748CE0D1F3BAB4D002941D4 /* FolderConditionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */; };
 		6748CE131F3CBFFE002941D4 /* StringMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE121F3CBFFE002941D4 /* StringMatcher.swift */; };
-		6748CE141F3CBFFE002941D4 /* StringMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE121F3CBFFE002941D4 /* StringMatcher.swift */; };
 		6748CE161F3CC083002941D4 /* PathMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE151F3CC083002941D4 /* PathMatcher.swift */; };
-		6748CE171F3CC083002941D4 /* PathMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE151F3CC083002941D4 /* PathMatcher.swift */; };
 		6748CE191F3CC135002941D4 /* FolderContentsMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE181F3CC135002941D4 /* FolderContentsMatcher.swift */; };
-		6748CE1A1F3CC135002941D4 /* FolderContentsMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE181F3CC135002941D4 /* FolderContentsMatcher.swift */; };
 		6748CE1C1F3CCC0C002941D4 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE1B1F3CCC0C002941D4 /* Rule.swift */; };
-		6748CE1D1F3CCC0C002941D4 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE1B1F3CCC0C002941D4 /* Rule.swift */; };
 		6748CE201F3D0670002941D4 /* DecisionTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE1F1F3D0670002941D4 /* DecisionTree.swift */; };
-		6748CE211F3D0670002941D4 /* DecisionTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE1F1F3D0670002941D4 /* DecisionTree.swift */; };
 		6748CE231F3D9EB9002941D4 /* FileCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE221F3D9EB9002941D4 /* FileCondition.swift */; };
-		6748CE241F3D9EB9002941D4 /* FileCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE221F3D9EB9002941D4 /* FileCondition.swift */; };
 		6748CE261F3D9FAB002941D4 /* FolderCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE251F3D9FAB002941D4 /* FolderCondition.swift */; };
-		6748CE271F3D9FAB002941D4 /* FolderCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE251F3D9FAB002941D4 /* FolderCondition.swift */; };
 		6748CE2A1F3DBCC4002941D4 /* RulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE291F3DBCC4002941D4 /* RulesViewModel.swift */; };
-		6748CE2B1F3DC191002941D4 /* ConditionPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B77EFE1F3A0E9A000830EF /* ConditionPromptView.swift */; };
-		6748CE2C1F3DC19A002941D4 /* NSTextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */; };
-		6748CE2D1F3DC1AE002941D4 /* FolderConditionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */; };
-		6748CE2E1F3DC1BC002941D4 /* RulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE291F3DBCC4002941D4 /* RulesViewModel.swift */; };
-		6748CE2F1F3DC1C2002941D4 /* RuleCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */; };
 		6748CE321F3DC34E002941D4 /* StringMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE311F3DC34E002941D4 /* StringMatcherTests.swift */; };
 		6748CE351F3DC79C002941D4 /* PathMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE341F3DC79C002941D4 /* PathMatcherTests.swift */; };
 		6748CE381F3DC990002941D4 /* DictionaryRepresentable+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE371F3DC990002941D4 /* DictionaryRepresentable+Testing.swift */; };
@@ -67,47 +48,28 @@
 		6748CE461F3DE8B4002941D4 /* FolderConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE451F3DE8B4002941D4 /* FolderConditionTests.swift */; };
 		674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
 		676B80C61F4323DF00D2C88F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676B80C41F4323DF00D2C88F /* SettingsViewController.swift */; };
-		676B80C71F4323DF00D2C88F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676B80C41F4323DF00D2C88F /* SettingsViewController.swift */; };
 		676B80C81F4323DF00D2C88F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 676B80C51F4323DF00D2C88F /* SettingsViewController.xib */; };
 		676B80C91F4323DF00D2C88F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 676B80C51F4323DF00D2C88F /* SettingsViewController.xib */; };
 		679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
-		679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
 		6793709E1F27B890003E6A9A /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6793709D1F27B890003E6A9A /* Array+Extensions.swift */; };
-		6793709F1F27B890003E6A9A /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6793709D1F27B890003E6A9A /* Array+Extensions.swift */; };
 		679900B31F67275700B9AC45 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679900B21F67275700B9AC45 /* Timer.swift */; };
-		679900B41F67275700B9AC45 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679900B21F67275700B9AC45 /* Timer.swift */; };
-		679900B71F67341200B9AC45 /* MockTimerBenign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679900B51F67341200B9AC45 /* MockTimerBenign.swift */; };
 		67A02E191EB4001A00D2A8CA /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */; };
 		67A02E1B1EB4079B00D2A8CA /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A02E1A1EB4079B00D2A8CA /* App.storyboard */; };
 		67A02E1E1EB4F21D00D2A8CA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E1D1EB4F21D00D2A8CA /* Settings.swift */; };
-		67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E1D1EB4F21D00D2A8CA /* Settings.swift */; };
 		67AE4A661F2CD53400E9D1FE /* FileRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A651F2CD53400E9D1FE /* FileRuleTests.swift */; };
-		67AE4A671F2CD92100E9D1FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BEBE1EB393110023AC66 /* AppDelegate.swift */; };
-		67AE4A681F2CD92700E9D1FE /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */; };
-		67AE4A691F2CD92C00E9D1FE /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */; };
-		67AE4A6A1F2CD93300E9D1FE /* FileRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD51EB79ADE00224C24 /* FileRule.swift */; };
-		67AE4A6B1F2CD93600E9D1FE /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
-		67AE4A6D1F2CD93D00E9D1FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BEC01EB393110023AC66 /* ViewController.swift */; };
 		67AE4A711F2CE3BA00E9D1FE /* FileStructureBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A701F2CE3BA00E9D1FE /* FileStructureBuilderTests.swift */; };
 		67AE4A731F30FD2C00E9D1FE /* FolderRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A721F30FD2C00E9D1FE /* FolderRule.swift */; };
-		67AE4A741F30FD2C00E9D1FE /* FolderRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE4A721F30FD2C00E9D1FE /* FolderRule.swift */; };
 		67B4361A1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */; };
-		67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */; };
 		67B77EFF1F3A0E9A000830EF /* ConditionPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B77EFE1F3A0E9A000830EF /* ConditionPromptView.swift */; };
 		67B77F011F3A0F46000830EF /* NSTextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */; };
 		67C530111F3383E200D3B5FD /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5300F1F3383E200D3B5FD /* RulesViewController.swift */; };
-		67C530121F3383E200D3B5FD /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5300F1F3383E200D3B5FD /* RulesViewController.swift */; };
 		67C530131F3383E200D3B5FD /* RulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C530101F3383E200D3B5FD /* RulesViewController.xib */; };
 		67C530141F3383E200D3B5FD /* RulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C530101F3383E200D3B5FD /* RulesViewController.xib */; };
 		67C5301D1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5301B1F338A9400D3B5FD /* EditRuleViewController.swift */; };
-		67C5301E1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C5301B1F338A9400D3B5FD /* EditRuleViewController.swift */; };
 		67C5301F1F338A9400D3B5FD /* EditRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */; };
 		67C530201F338A9400D3B5FD /* EditRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */; };
 		67C530221F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530211F33980100D3B5FD /* FolderRuleBuilder.swift */; };
-		67C530231F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530211F33980100D3B5FD /* FolderRuleBuilder.swift */; };
 		67C530251F339D1700D3B5FD /* ConditionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530241F339D1700D3B5FD /* ConditionEditorView.swift */; };
-		67C530261F339D1700D3B5FD /* ConditionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530241F339D1700D3B5FD /* ConditionEditorView.swift */; };
-		67E6CFD41F59399800C0DCE8 /* PathConditionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */; };
 		67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */; };
 		67FAAAD61EB79ADE00224C24 /* FileRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD51EB79ADE00224C24 /* FileRule.swift */; };
 		EDCEB08F82E917D13DEF915D /* Pods_MenuNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1F7D33AD80C55EA1FDA055 /* Pods_MenuNav.framework */; };
@@ -814,59 +776,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67AE4A671F2CD92100E9D1FE /* AppDelegate.swift in Sources */,
-				67AE4A6B1F2CD93600E9D1FE /* FileSystemObject.swift in Sources */,
-				6748CE2C1F3DC19A002941D4 /* NSTextField+Extensions.swift in Sources */,
-				67C5301E1F338A9400D3B5FD /* EditRuleViewController.swift in Sources */,
 				6748CE461F3DE8B4002941D4 /* FolderConditionTests.swift in Sources */,
-				676B80C71F4323DF00D2C88F /* SettingsViewController.swift in Sources */,
-				671942011F6492B1003AB65A /* MenuBarManager.swift in Sources */,
-				6748CE1D1F3CCC0C002941D4 /* Rule.swift in Sources */,
-				671942041F6495F6003AB65A /* RebuildManager.swift in Sources */,
+				6745B19B1F843B36001F8C78 /* DictionaryKeyValueStore.swift in Sources */,
 				671942111F6593D9003AB65A /* RebuildManagerTests.swift in Sources */,
 				6748CE381F3DC990002941D4 /* DictionaryRepresentable+Testing.swift in Sources */,
-				671942171F659B2A003AB65A /* DictionaryKeyValueStore.swift in Sources */,
-				67B4361B1EB3DCDB003E5886 /* FileStructureBuilder.swift in Sources */,
 				6748CE441F3DE7F9002941D4 /* FolderRuleTests.swift in Sources */,
-				6748CE2B1F3DC191002941D4 /* ConditionPromptView.swift in Sources */,
-				6748CE241F3D9EB9002941D4 /* FileCondition.swift in Sources */,
-				67C530121F3383E200D3B5FD /* RulesViewController.swift in Sources */,
-				67AE4A6A1F2CD93300E9D1FE /* FileRule.swift in Sources */,
-				67AE4A691F2CD92C00E9D1FE /* NSImage+Extensions.swift in Sources */,
-				6719420C1F656DE4003AB65A /* UserPreferences.swift in Sources */,
-				6793709F1F27B890003E6A9A /* Array+Extensions.swift in Sources */,
 				6748CE351F3DC79C002941D4 /* PathMatcherTests.swift in Sources */,
-				671941E81F63FB1A003AB65A /* NSView+Extensions.swift in Sources */,
-				6748CE141F3CBFFE002941D4 /* StringMatcher.swift in Sources */,
-				6748CE271F3D9FAB002941D4 /* FolderCondition.swift in Sources */,
-				67C530231F33980100D3B5FD /* FolderRuleBuilder.swift in Sources */,
 				67AE4A711F2CE3BA00E9D1FE /* FileStructureBuilderTests.swift in Sources */,
-				6748CE2D1F3DC1AE002941D4 /* FolderConditionFormatter.swift in Sources */,
-				67C530261F339D1700D3B5FD /* ConditionEditorView.swift in Sources */,
-				671941EB1F63FE46003AB65A /* Colors.swift in Sources */,
-				6724C1931F801F3B003E40D1 /* RichTextAttributes.swift in Sources */,
-				679900B71F67341200B9AC45 /* MockTimerBenign.swift in Sources */,
-				6748CE211F3D0670002941D4 /* DecisionTree.swift in Sources */,
 				6719420F1F657E9B003AB65A /* SettingsTests.swift in Sources */,
-				671942141F659A45003AB65A /* RuleLoaderTests.swift in Sources */,
-				679900B41F67275700B9AC45 /* Timer.swift in Sources */,
 				6748CE411F3DE1A3002941D4 /* FileConditionTests.swift in Sources */,
-				67AE4A6D1F2CD93D00E9D1FE /* ViewController.swift in Sources */,
-				6748CE2F1F3DC1C2002941D4 /* RuleCollectionViewItem.swift in Sources */,
-				6748CE1A1F3CC135002941D4 /* FolderContentsMatcher.swift in Sources */,
-				6724C1961F8429CB003E40D1 /* FIleConditionFormatter.swift in Sources */,
-				67A02E1F1EB4F21D00D2A8CA /* Settings.swift in Sources */,
-				671942071F649A37003AB65A /* WeakArray.swift in Sources */,
-				6748CE2E1F3DC1BC002941D4 /* RulesViewModel.swift in Sources */,
 				67AE4A661F2CD53400E9D1FE /* FileRuleTests.swift in Sources */,
-				67AE4A681F2CD92700E9D1FE /* StringRepresentable.swift in Sources */,
-				6748CE171F3CC083002941D4 /* PathMatcher.swift in Sources */,
 				671942091F649D10003AB65A /* WeakArrayTests.swift in Sources */,
+				6745B1991F843B32001F8C78 /* RuleLoaderTests.swift in Sources */,
 				6748CE3F1F3DDDDA002941D4 /* TestDirectoryBuilder.swift in Sources */,
-				67E6CFD41F59399800C0DCE8 /* PathConditionInputView.swift in Sources */,
 				6748CE321F3DC34E002941D4 /* StringMatcherTests.swift in Sources */,
-				679370981F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */,
-				67AE4A741F30FD2C00E9D1FE /* FolderRule.swift in Sources */,
+				6745B19A1F843B34001F8C78 /* MockTimerBenign.swift in Sources */,
 				6748CE3C1F3DCAC7002941D4 /* FolderContentsMatcherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

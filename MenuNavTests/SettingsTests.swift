@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import MenuNav
 
 class SettingsTests: XCTestCase {
    

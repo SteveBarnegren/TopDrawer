@@ -11,14 +11,26 @@ import XCTest
 
 class FileRuleTests: XCTestCase {
     
+    func testFileRuleReportsCorrectNumberOfConditions() {
+        
+        let conditions = [
+            FileCondition.ext(.matching("png")),
+            FileCondition.ext(.matching("png")),
+            FileCondition.ext(.matching("png"))
+        ]
+        
+        let rule = FileRule(conditions: conditions)
+        XCTAssertEqual(rule.numberOfConditions, 3)
+    }
+    
     // MARK: - Test Matching
     
     func testMatchesFilesWithASingleCondition() {
         
         let file = File(name: "dog", ext: "png", path: "animals/dog.png")
         
-        let condtion = FileCondition.ext(.matching("png"))
-        let rule = FileRule(conditions: [condtion])
+        let condition = FileCondition.ext(.matching("png"))
+        let rule = FileRule(conditions: [condition])
         
         XCTAssertTrue(rule.includes(file: file))
     }
@@ -27,10 +39,10 @@ class FileRuleTests: XCTestCase {
         
         let file = File(name: "dog", ext: "png", path: "animals/dog.png")
         
-        let condtion1 = FileCondition.ext(.matching("png"))
-        let condtion2 = FileCondition.name(.notContaining("cat"))
+        let condition1 = FileCondition.ext(.matching("png"))
+        let condition2 = FileCondition.name(.notContaining("cat"))
 
-        let rule = FileRule(conditions: [condtion1, condtion2])
+        let rule = FileRule(conditions: [condition1, condition2])
         
         XCTAssertTrue(rule.includes(file: file))
     }
@@ -39,9 +51,9 @@ class FileRuleTests: XCTestCase {
         
         let file = File(name: "dog", ext: "png", path: "animals/dog.png")
         
-        let condtion = FileCondition.ext(.matching("pdf"))
+        let condition = FileCondition.ext(.matching("pdf"))
         
-        let rule = FileRule(conditions: [condtion])
+        let rule = FileRule(conditions: [condition])
         
         XCTAssertFalse(rule.includes(file: file))
     }
@@ -50,10 +62,10 @@ class FileRuleTests: XCTestCase {
         
         let file = File(name: "dog", ext: "png", path: "animals/dog.png")
         
-        let condtion1 = FileCondition.ext(.matching("png"))
-        let condtion2 = FileCondition.name(.notContaining("dog"))
+        let condition1 = FileCondition.ext(.matching("png"))
+        let condition2 = FileCondition.name(.notContaining("dog"))
         
-        let rule = FileRule(conditions: [condtion1, condtion2])
+        let rule = FileRule(conditions: [condition1, condition2])
         
         XCTAssertFalse(rule.includes(file: file))
     }

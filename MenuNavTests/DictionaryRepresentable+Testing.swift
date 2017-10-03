@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import MenuNav
 
 extension DictionaryRepresentable {
     
