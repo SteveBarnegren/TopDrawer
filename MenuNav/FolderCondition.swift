@@ -52,55 +52,15 @@ extension FolderCondition: Equatable {
 // MARK: - CondtionProtocol
 
 extension FolderCondition: CondtionProtocol {
-    
-    var displayDiscription: String {
-        
-        switch self {
-        case let .path(pathMatcher):
-            return "Path " + makeString(fromPathMatcher: pathMatcher)
-        case let .name(stringMatcher):
-            return "Name " + makeString(fromStringMatcher: stringMatcher)
-        case let .contains(contentsMatcher):
-            return "Contains " + makeString(fromContentsMatcher: contentsMatcher)
-        case let .doesntContain(contentsMatcher):
-            return "Doesn't contain " + makeString(fromContentsMatcher: contentsMatcher)
-        }
+ 
+    var displayDescription: String {
+        let formatter = FolderConditionFormatter()
+        return formatter.string(fromCondition: self)
     }
     
-    private func makeString(fromPathMatcher pathMatcher: PathMatcher) -> String {
-        
-        switch pathMatcher {
-        case let .matching(string):
-            return "is \(string)"
-        case let .notMatching(string):
-            return "is not \(string)"
-        }
-    }
-    
-    private func makeString(fromStringMatcher stringMatcher: StringMatcher) -> String {
-        
-        switch stringMatcher {
-        case let .matching(string):
-            return "is \(string)"
-        case let .notMatching(string):
-            return "is not \(string)"
-        case let .containing(string):
-            return "contains \(string)"
-        case let .notContaining(string):
-            return "doesn't contain \(string)"
-        }
-    }
-    
-    private func makeString(fromContentsMatcher contentsMatcher: FolderContentsMatcher) -> String {
-        
-        switch contentsMatcher {
-        case let .filesWithExtension(ext):
-            return "files with extension \(ext)"
-        case let .filesWithFullName(name):
-            return "file \(name)"
-        case let .foldersWithName(name):
-            return "folder with name \(name)"
-        }
+    func attributedDisplayDescription(withAttributes attributes: RichTextAttributes) -> NSAttributedString {
+        let formatter = FolderConditionFormatter()
+        return formatter.attributedString(fromCondition: self, withAttributes: attributes)
     }
 }
 

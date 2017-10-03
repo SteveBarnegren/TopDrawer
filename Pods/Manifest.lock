@@ -1,18 +1,25 @@
 PODS:
+  - AttributedStringBuilder (0.1.1)
   - IYLoginItem (0.1)
   - SBAutoLayout (1.2.0)
   - SBSwiftUtils (0.1.3)
 
 DEPENDENCIES:
+  - AttributedStringBuilder (from `/Users/stevebarnegren/Documents/PROJECTS/CodeProjects/AttributedStringBuilder/`)
   - IYLoginItem
   - SBAutoLayout
   - SBSwiftUtils
 
+EXTERNAL SOURCES:
+  AttributedStringBuilder:
+    :path: /Users/stevebarnegren/Documents/PROJECTS/CodeProjects/AttributedStringBuilder/
+
 SPEC CHECKSUMS:
+  AttributedStringBuilder: 5336c1334eeb1315dd4fc50ee6640766c3cc7bdd
   IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
   SBAutoLayout: 0d0e7719a818639c1d1fef9bd2fd0531541a6e5f
   SBSwiftUtils: 09cfad8f2a0d481d6d278951607c9e12316da03c
 
-PODFILE CHECKSUM: f1542851535438bb765c00c2f56faabb6bef97ab
+PODFILE CHECKSUM: a73c19dabefe43fa95a4a33c0a3f4acdd5108c9d
 
 COCOAPODS: 1.3.1

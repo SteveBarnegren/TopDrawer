@@ -48,46 +48,17 @@ enum FileCondition {
 // MARK: - ConditionProtocol
 
 extension FileCondition: CondtionProtocol {
-    var displayDiscription: String {
+    
+    var displayDescription: String {
         
-        switch self {
-        case let .name(stringMatcher):
-            return "Name " + makeString(fromStringMatcher: stringMatcher)
-        case let .ext(stringMatcher):
-            return "Extension " + makeString(fromStringMatcher: stringMatcher)
-        case let .fullName(stringMatcher):
-            return "Full name " + makeString(fromStringMatcher: stringMatcher)
-        case let .parentContains(contentsMatcher):
-            return "Parent folder contains " + makeString(fromContentsMatcher: contentsMatcher)
-        case let .parentDoesntContain(contentsMatcher):
-            return "Parent folder doesn't contain " + makeString(fromContentsMatcher: contentsMatcher)
-        }
+        let formatter = FileConditionFormatter()
+        return formatter.string(fromCondition: self)
     }
     
-    private func makeString(fromStringMatcher stringMatcher: StringMatcher) -> String {
+    func attributedDisplayDescription(withAttributes attributes: RichTextAttributes) -> NSAttributedString {
         
-        switch stringMatcher {
-        case let .matching(string):
-            return "is \(string)"
-        case let .notMatching(string):
-            return "is not \(string)"
-        case let .containing(string):
-            return "contains \(string)"
-        case let .notContaining(string):
-            return "doesn't contain \(string)"
-        }
-    }
-    
-    private func makeString(fromContentsMatcher contentsMatcher: FolderContentsMatcher) -> String {
-        
-        switch contentsMatcher {
-        case let .filesWithExtension(string):
-            return "files with extension \(string)"
-        case let .filesWithFullName(string):
-            return "file with full name \(string)"
-        case let .foldersWithName(string):
-            return "folder with name \(string)"
-        }
+        let formatter = FileConditionFormatter()
+        return formatter.attributedString(fromCondition: self, withAttributes: attributes)
     }
 }
 

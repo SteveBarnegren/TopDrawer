@@ -3,17 +3,11 @@
 target 'MenuNav' do
   use_frameworks!
 
-  # IYLoginItem
   pod 'IYLoginItem'
-
-  # SBSwiftUtils
   pod 'SBSwiftUtils'
-  #pod 'SBSwiftUtils', :path => ENV['SwiftUtils']
-
-  # SBAutoLayout
   pod 'SBAutoLayout'
-  #pod 'SBAutoLayout', :path => ENV['SBAutoLayout']
-
+  #pod 'AttributedStringBuilder'
+  pod 'AttributedStringBuilder', :path => ENV['AttributedStringBuilder']
 
   target 'MenuNavTests' do
     inherit! :search_paths

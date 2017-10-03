@@ -102,11 +102,13 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AttributedStringBuilder/AttributedStringBuilder.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IYLoginItem/IYLoginItem.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SBAutoLayout/SBAutoLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SBSwiftUtils/SBSwiftUtils.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AttributedStringBuilder/AttributedStringBuilder.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IYLoginItem/IYLoginItem.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SBAutoLayout/SBAutoLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SBSwiftUtils/SBSwiftUtils.framework"

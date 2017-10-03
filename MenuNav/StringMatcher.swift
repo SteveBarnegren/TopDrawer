@@ -14,6 +14,15 @@ enum StringMatcher {
     case containing(String)
     case notContaining(String)
     
+    var string: String {
+        switch self {
+        case .matching(let string): return string
+        case .notMatching(let string): return string
+        case .containing(let string): return string
+        case .notContaining(let string): return string
+        }
+    }
+    
     func matches(string: String) -> Bool {
         
         switch self {

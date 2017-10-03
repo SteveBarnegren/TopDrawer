@@ -11,7 +11,8 @@ import Foundation
 // MARK: - ConditionProtocol
 
 protocol CondtionProtocol {
-    var displayDiscription: String {get}
+    var displayDescription: String {get}
+    func attributedDisplayDescription(withAttributes attributes: RichTextAttributes) -> NSAttributedString
 }
 
 // MARK: - Rule
