@@ -29,7 +29,8 @@ enum PathMatcher {
             return s1 == s2
         case let (.notMatching(s1), .notMatching(s2)):
             return s1 == s2
-        default:
+        case (.notMatching, .matching): fallthrough
+        case (.matching, .notMatching):
             return false
         }
     }

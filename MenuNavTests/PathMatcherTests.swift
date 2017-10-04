@@ -67,15 +67,75 @@ class PathMatcherTests: XCTestCase {
         XCTAssertFalse(firstMatcher == secondMatcher)
     }
     
+    func testPathMatchersAreNotEqualWithMatchingAndNotMatchingCases() {
+        
+        let firstMatcher = PathMatcher.matching("animals/Dog.png")
+        let secondMatcher = PathMatcher.notMatching("animals/Dog.png")
+        
+        XCTAssertFalse(firstMatcher == secondMatcher)
+    }
+    
+    func testPathMatchersAreNotEqualWithNotMatchingAndMatchingCases() {
+        
+        let firstMatcher = PathMatcher.notMatching("animals/Dog.png")
+        let secondMatcher = PathMatcher.matching("animals/Dog.png")
+        
+        XCTAssertFalse(firstMatcher == secondMatcher)
+    }
+    
+    // MARK: - Descision Tree Input Strings
+    
+    func testPathMatcherInputStrings() {
+        
+        let matchersAndOutputs: [(PathMatcher, String)] = [
+            (.matching("a/a.a"), "a/a.a"),
+            (.notMatching("b/b.b"), "b/b.b"),
+        ]
+        
+        for (matcher, expectedOutput) in matchersAndOutputs {
+            XCTAssertEqual(matcher.inputString, expectedOutput)
+        }
+    }
+    
     // MARK: - Test DictionaryRepresentable
     
-    func testPathMatcherToDictionaryAndBackIsTheSame() {
+    func testPathMatchersToDictionaryAndBackAreTheSame() {
         
         let matching = PathMatcher.matching("animals/Dog.png")
-        let notMatching = PathMatcher.notMatching("animals/Dog.png")
-
         XCTAssertTrue(matching == matching.convertedToDictionaryAndBack)
+        
+        let notMatching = PathMatcher.notMatching("animals/Dog.png")
         XCTAssertTrue(notMatching == notMatching.convertedToDictionaryAndBack)
+    }
+    
+    func testPathMatcherFromDictionaryWithMissingCaseTypeFieldCreatesNilInstance() {
+        
+        // Get dictionary from PathMatcher
+        let matching = PathMatcher.matching("animals/Dog.png")
+        var dictionary = matching.dictionaryRepresentation
+        
+        // Remove the case key
+        let caseTypeKey = "Case Key"
+        XCTAssertNotNil(dictionary[caseTypeKey], "Expected dictionary to have case type, key may be incorrect")
+        dictionary[caseTypeKey] = nil
+
+        // Should be nil
+        XCTAssertNil( PathMatcher(dictionaryRepresentation: dictionary) )
+    }
+    
+    func testPathMatcherFromDictionaryWithUnknownCaseTypeFieldCreatesNilInstance() {
+        
+        // Get dictionary from PathMatcher
+        let matching = PathMatcher.matching("animals/Dog.png")
+        var dictionary = matching.dictionaryRepresentation
+        
+        // Replace the case key with an unknown one
+        let caseTypeKey = "Case Key"
+        XCTAssertNotNil(dictionary[caseTypeKey], "Expected dictionary to have case type, key may be incorrect")
+        dictionary[caseTypeKey] = "Not a real case"
+        
+        // Should be nil
+        XCTAssertNil( PathMatcher(dictionaryRepresentation: dictionary) )
     }
 
 }
