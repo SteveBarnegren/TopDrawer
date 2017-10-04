@@ -35,6 +35,21 @@ enum PathMatcher {
     }
 }
 
+// MARK: - Decision Tree Input
+
+extension PathMatcher {
+    
+    var inputString: String {
+        
+        switch self {
+        case let .matching(s):
+            return s
+        case let .notMatching(s):
+            return s
+        }
+    }
+}
+
 // MARK: - DictionaryRepresentable
 
 extension PathMatcher: DictionaryRepresentable {

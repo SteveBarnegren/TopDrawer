@@ -17,35 +17,11 @@ enum FolderContentsMatcher {
         
         switch self {
         case let .filesWithExtension(ext):
-            
             return directory.extendedAttributes!.containsFiles(withExtension: ext)
-            
-            /*
-            guard let extendedAttributes = directory.extendedAttributes else {
-                return false
-            }
-            for fileName in extendedAttributes.containedFileNames {
-                let components = fileName.components(separatedBy: ".")
-                
-                if components.count < 2 {
-                    continue
-                }
-                
-                if components.last! == ext {
-                    return true
-                }
-            }
-
-            
-            return false
-  */
-            
         case let .filesWithFullName(name):
             return directory.extendedAttributes!.containsFiles(withFullName: name)
-            //return directory.extendedAttributes!.containedFileNames.contains{ $0 == name }
         case let .foldersWithName(name):
             return directory.extendedAttributes!.containsFolders(withName: name)
-           // return directory.extendedAttributes!.containedFolderNames.contains{ $0 == name }
         }
     }
     
@@ -60,6 +36,22 @@ enum FolderContentsMatcher {
             return n1 == n2
         default:
             return false
+        }
+    }
+}
+
+// MARK: - Decision Tree Input
+
+extension FolderContentsMatcher {
+    
+    var inputString: String {
+        switch self {
+        case let .filesWithExtension(s):
+            return s
+        case let .filesWithFullName(s):
+            return s
+        case let .foldersWithName(s):
+            return s
         }
     }
 }

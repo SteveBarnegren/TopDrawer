@@ -54,6 +54,25 @@ enum StringMatcher {
     }
 }
 
+// MARK: - Decision Tree Input
+
+extension StringMatcher {
+    
+    var inputString: String {
+        
+        switch self {
+        case let .containing(s):
+            return s
+        case let .notContaining(s):
+            return s
+        case let .matching(s):
+            return s
+        case let .notMatching(s):
+            return s
+        }
+    }
+}
+
 // MARK: - DictionaryRepresentable
 
 // swiftlint:disable identifier_name
