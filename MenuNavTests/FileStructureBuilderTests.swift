@@ -915,4 +915,40 @@ class Tests: XCTestCase {
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
     }
+    
+    // MARK: - Shorten Paths
+    
+    func testShortenPathsOptionShortensPaths() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("Folder", [
+                    .file("dog.png"),
+                    .folder("No Files Here", [
+                        .folder("Files here", [
+                            .file("dog.png")
+                            ])
+                        ])
+                    ])
+                ])
+        )
+        
+        let condition = FileRule.Condition.ext(.matching("png"))
+        let rule = FileRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: [rule],
+                                           folderRules: [],
+                                           options: [.shortenPaths])
+        
+        guard let directory = builder.buildFileSystemStructure(atPath: "Root") else {
+            XCTFail("Expected directory")
+            return
+        }
+        
+        directory.printHeirarchy()
+
+        XCTAssertFalse(directory.containsObject(atPath: "Folder/No Files Here/Files here/dog.png"))
+        XCTAssertTrue(directory.containsObject(atPath: "Folder/No Files Here/dog.png"))
+    }
 }
