@@ -200,46 +200,6 @@ class FileStructureBuilder {
         
     }
     
-    // MARK: - Removing Dead paths
-    
-    func directoryByRemovingDeadPaths(inDirectory directory: Directory) -> Directory {
-        
-        var newContents = [FileSystemObject]()
-        
-        for file in directory.containedFiles {
-            newContents.append(file)
-        }
-        
-        for innerDir in directory.containedDirectories {
-            if doesDirectoryLeadToAcceptedFileType(innerDir) {
-                newContents.append(directoryByRemovingDeadPaths(inDirectory: innerDir))
-            }
-        }
-        
-        let newDirectory = directory
-        newDirectory.contents = newContents
-        
-        return newDirectory
-    }
-    
-    func doesDirectoryLeadToAcceptedFileType(_ directory: Directory) -> Bool {
-        
-        for file in directory.containedFiles {
-            if shouldInclude(file: file) {
-                return true
-            }
-        }
-        
-        for innerDir in directory.containedDirectories {
-            
-            if doesDirectoryLeadToAcceptedFileType(innerDir) {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
     // MARK: - Shortening Paths
     
     func directoryByShorteningPaths(inDirectory directory: Directory) -> Directory {
@@ -311,6 +271,46 @@ class FileStructureBuilder {
         let image = NSWorkspace.shared.icon(forFile: path)
         image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
         return image
+    }
+    
+    // MARK: - Removing Dead paths (unused)
+    
+    func directoryByRemovingDeadPaths(inDirectory directory: Directory) -> Directory {
+        
+        var newContents = [FileSystemObject]()
+        
+        for file in directory.containedFiles {
+            newContents.append(file)
+        }
+        
+        for innerDir in directory.containedDirectories {
+            if doesDirectoryLeadToAcceptedFileType(innerDir) {
+                newContents.append(directoryByRemovingDeadPaths(inDirectory: innerDir))
+            }
+        }
+        
+        let newDirectory = directory
+        newDirectory.contents = newContents
+        
+        return newDirectory
+    }
+    
+    func doesDirectoryLeadToAcceptedFileType(_ directory: Directory) -> Bool {
+        
+        for file in directory.containedFiles {
+            if shouldInclude(file: file) {
+                return true
+            }
+        }
+        
+        for innerDir in directory.containedDirectories {
+            
+            if doesDirectoryLeadToAcceptedFileType(innerDir) {
+                return true
+            }
+        }
+        
+        return false
     }
     
 }
