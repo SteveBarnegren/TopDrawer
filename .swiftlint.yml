@@ -4,5 +4,6 @@ disabled_rules:
   - nesting
   - type_name
   - force_cast
+  - identifier_name
 excluded:
   - Pods

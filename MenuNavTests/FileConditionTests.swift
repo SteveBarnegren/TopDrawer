@@ -18,7 +18,7 @@ class FileConditionTests: XCTestCase {
         let condition = FileCondition.name(.matching("dog"))
         let file = File(name: "dog", ext: "png", path: "animals/dog.png")
         
-        XCTAssertTrue(condition.matches(file: file))
+        XCTAssertTrue(condition.matches(file: file, inHierarchy: HierarchyInformation()))
     }
     
     func testFileConditionFailsToMatchName() {
@@ -26,7 +26,7 @@ class FileConditionTests: XCTestCase {
         let condition = FileCondition.name(.matching("dog"))
         let file = File(name: "cat", ext: "png", path: "animals/dog.png")
         
-        XCTAssertFalse(condition.matches(file: file))
+        XCTAssertFalse(condition.matches(file: file, inHierarchy: HierarchyInformation()))
     }
     
     func testFileConditionMatchesExtension() {
@@ -34,7 +34,7 @@ class FileConditionTests: XCTestCase {
         let condition = FileCondition.ext(.matching("png"))
         let file = File(name: "dog", ext: "png", path: "animals/dog.png")
         
-        XCTAssertTrue(condition.matches(file: file))
+        XCTAssertTrue(condition.matches(file: file, inHierarchy: HierarchyInformation()))
     }
     
     func testFileConditionFailsToMatchExtension() {
@@ -42,7 +42,7 @@ class FileConditionTests: XCTestCase {
         let condition = FileCondition.ext(.matching("png"))
         let file = File(name: "dog", ext: "pdf", path: "animals/dog.png")
         
-        XCTAssertFalse(condition.matches(file: file))
+        XCTAssertFalse(condition.matches(file: file, inHierarchy: HierarchyInformation()))
     }
     
     func testFileConditionMatchesFullName() {
@@ -50,7 +50,7 @@ class FileConditionTests: XCTestCase {
         let condition = FileCondition.fullName(.matching("dog.png"))
         let file = File(name: "dog", ext: "png", path: "animals/dog.png")
         
-        XCTAssertTrue(condition.matches(file: file))
+        XCTAssertTrue(condition.matches(file: file, inHierarchy: HierarchyInformation()))
     }
     
     func testFileConditionFailsToMatchFullName() {
@@ -58,7 +58,26 @@ class FileConditionTests: XCTestCase {
         let condition = FileCondition.fullName(.matching("dog.png"))
         let file = File(name: "cat", ext: "png", path: "animals/dog.png")
         
-        XCTAssertFalse(condition.matches(file: file))
+        XCTAssertFalse(condition.matches(file: file, inHierarchy: HierarchyInformation()))
+    }
+    
+    func testFileConditionMatchesHierarchy() {
+        
+        let condition = FileCondition.hierarchyContains(.folderWithName(.matching("Photos")))
+        let file = File(name: "photo", ext: "png", path: "Photos/photo.png")
+        
+        var hierarchy = HierarchyInformation()
+        hierarchy.add(folderName: "Photos")
+        
+        XCTAssertTrue(condition.matches(file: file, inHierarchy: hierarchy))
+    }
+    
+    func testFileConditionFailsToMatchHierarchy() {
+        
+        let condition = FileCondition.hierarchyContains(.folderWithName(.matching("Photos")))
+        let file = File(name: "photo", ext: "png", path: "Photos/photo.png")
+        
+        XCTAssertFalse(condition.matches(file: file, inHierarchy: HierarchyInformation()))
     }
 
     // MARK: - Test Equatable

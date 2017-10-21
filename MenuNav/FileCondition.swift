@@ -14,8 +14,9 @@ enum FileCondition {
     case fullName(StringMatcher)
     case parentContains(FolderContentsMatcher)
     case parentDoesntContain(FolderContentsMatcher)
+    case hierarchyContains(HierarcyMatcher)
 
-    func matches(file: File) -> Bool {
+    func matches(file: File, inHierarchy hierarchy: HierarchyInformation) -> Bool {
         
         switch self {
         case let .name(stringMatcher):
@@ -30,6 +31,8 @@ enum FileCondition {
         case let .parentDoesntContain(contentsMatcher):
             guard let parent = file.parent else { return false }
             return !contentsMatcher.matches(directory: parent)
+        case let .hierarchyContains(hierarchyMatcher):
+            return hierarchyMatcher.matches(hierarchy: hierarchy)
         }
     }
     
@@ -39,8 +42,9 @@ enum FileCondition {
         case .fullName: return 0
         case .name: return 1
         case .ext: return 2
-        case .parentContains: return 3
-        case .parentDoesntContain: return 4
+        case .hierarchyContains: return  3
+        case .parentContains: return 4
+        case .parentDoesntContain: return 5
         }
     }
 }
@@ -101,6 +105,8 @@ extension FileCondition: DecisionTreeElement {
             return contentsMatcher.inputString
         case let .parentDoesntContain(contentsMatcher):
             return contentsMatcher.inputString
+        case let .hierarchyContains(hierarchyMatcher):
+            return hierarchyMatcher.inputString
         }
     }
 }
@@ -117,6 +123,7 @@ extension FileCondition: DictionaryRepresentable {
             static let FullName = "FullName"
             static let ParentContains = "ParentContains"
             static let ParentDoesntContain = "ParentDoesntContain"
+            static let HierarchyContains = "HierarchyContains"
         }
         static let AssociatedValue = "AssociatedValue"
     }
@@ -164,6 +171,13 @@ extension FileCondition: DictionaryRepresentable {
                 let contentsMatcher = FolderContentsMatcher(dictionaryRepresentation: contentsMatcherDictionary) {
                 result = .parentDoesntContain(contentsMatcher)
             }
+            
+        case Keys.Case.HierarchyContains:
+            
+            if let matcherDict = dictionary[Keys.AssociatedValue] as? [String: Any],
+                let hierarchyMatcher = HierarcyMatcher(dictionaryRepresentation: matcherDict) {
+                result = .hierarchyContains(hierarchyMatcher)
+            }
 
         default:
             break
@@ -200,6 +214,10 @@ extension FileCondition: DictionaryRepresentable {
         case let .parentDoesntContain(contentsMatcher):
             dictionary[Keys.CaseKey] = Keys.Case.ParentDoesntContain
             dictionary[Keys.AssociatedValue] = contentsMatcher.dictionaryRepresentation
+            
+        case let .hierarchyContains(hierarchyMatcher):
+            dictionary[Keys.CaseKey] = Keys.Case.HierarchyContains
+            dictionary[Keys.AssociatedValue] = hierarchyMatcher.dictionaryRepresentation
         }
         
         return dictionary

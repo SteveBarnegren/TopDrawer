@@ -584,6 +584,36 @@ class Tests: XCTestCase {
         XCTAssertFalse(directory.containsObject(atPath: "ContainsGif/dog.png"))
         XCTAssertTrue(directory.containsObject(atPath: "DoesntContainGif/dog.png"))
     }
+    
+    // MARK: - File Rules: Hierarchy Contains
+    
+    func testStructureIncludesFilesWithHierarchyContainsFoldersNamed() {
+        
+        let fileReader = MockFileReader(
+            .folder( "Root", [
+                .folder("Documents", [
+                    .folder("Photos", [
+                        .file("dog.png")
+                        ])
+                    ]),
+                .folder("Images", [
+                    .file("cat.png")
+                    ])
+                ])
+        )
+        
+        let condition = FileCondition.hierarchyContains(.folderWithName(.matching("Documents")))
+        let rule = FileRule(conditions: [condition])
+        
+        let builder = FileStructureBuilder(fileReader: fileReader,
+                                           fileRules: [rule],
+                                           folderRules: [],
+                                           options: [])
+        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        
+        XCTAssertTrue(directory.containsObject(atPath: "Documents/Photos/dog.png"))
+        XCTAssertFalse(directory.containsObject(atPath: "Images/cat.png"))
+    }
 
     // MARK: - Folder Rules: Name
     

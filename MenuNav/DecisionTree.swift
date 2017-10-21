@@ -104,34 +104,88 @@ class DecisionNode<T: DecisionTreeElement> {
 // swiftlint:disable line_length
 func fileConditionDecisionTree() -> DecisionNode<FileRule.Condition> {
     
-    return
-        DecisionNode<FileRule.Condition>(.list("root", [
-            DecisionNode(.list("Name", [
-                DecisionNode(.textValue("is", placeholder: "Name") { .name(.matching($0)) }),
-                DecisionNode(.textValue("is not", placeholder: "Name") { .name(.notMatching($0)) }),
-                DecisionNode(.textValue("contains", placeholder: "String") { .name(.containing($0)) }),
-                DecisionNode(.textValue("does not contain", placeholder: "String") { .name(.notContaining($0)) })
-                ])),
-            DecisionNode(.list("Extension", [
-                DecisionNode(.textValue("is", placeholder: "eg. pdf") { .ext(.matching($0)) }),
-                DecisionNode(.textValue("is not", placeholder: "eg. pdf") { .ext(.notMatching($0)) })
-                ])),
-            DecisionNode(.list("Full name", [
-                DecisionNode(.textValue("is", placeholder: "eg. report.pdf") { .fullName(.matching($0)) }),
-                DecisionNode(.textValue("is not", placeholder: "eg. report.pdf") { .fullName(.notMatching($0)) })
-                ])),
-            DecisionNode(.list("Parent Folder", [
-                DecisionNode(.list("contains", [
-                    DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentContains(.filesWithExtension($0)) }),
-                    DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentContains(.filesWithFullName($0)) })
-                    ])),
-                DecisionNode(.list("doesn't contain", [
-                    DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentDoesntContain(.filesWithExtension($0)) }),
-                    DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentDoesntContain(.filesWithFullName($0)) })
-                    ]))
-                ]))
+    let nameNode = DecisionNode<FileRule.Condition>(.list("Name", [
+        DecisionNode(.textValue("is", placeholder: "Name") { .name(.matching($0)) }),
+        DecisionNode(.textValue("is not", placeholder: "Name") { .name(.notMatching($0)) }),
+        DecisionNode(.textValue("contains", placeholder: "String") { .name(.containing($0)) }),
+        DecisionNode(.textValue("does not contain", placeholder: "String") { .name(.notContaining($0)) })
+        ]))
+    
+    let extensionNode =  DecisionNode<FileRule.Condition>(.list("Extension", [
+        DecisionNode(.textValue("is", placeholder: "eg. pdf") { .ext(.matching($0)) }),
+        DecisionNode(.textValue("is not", placeholder: "eg. pdf") { .ext(.notMatching($0)) })
+        ]))
+    
+    let fullNameNode =  DecisionNode<FileRule.Condition>(.list("Full name", [
+        DecisionNode(.textValue("is", placeholder: "eg. report.pdf") { .fullName(.matching($0)) }),
+        DecisionNode(.textValue("is not", placeholder: "eg. report.pdf") { .fullName(.notMatching($0)) })
+        ]))
+    
+    let parentFolderNode = DecisionNode<FileRule.Condition>(.list("Parent Folder", [
+        DecisionNode(.list("contains", [
+            DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentContains(.filesWithExtension($0)) }),
+            DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentContains(.filesWithFullName($0)) })
+            ])),
+        DecisionNode(.list("doesn't contain", [
+            DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentDoesntContain(.filesWithExtension($0)) }),
+            DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentDoesntContain(.filesWithFullName($0)) })
             ]))
+        ]))
+    
+    let hierarchyNode =  DecisionNode<FileRule.Condition>(.list("Hierarchy", [
+        DecisionNode(.list("contains", [
+            DecisionNode(.textValue("folder with name", placeholder: "eg. documents") { .hierarchyContains(.folderWithName(.matching($0))) })
+            ]))
+        ]))
+    
+    return DecisionNode<FileRule.Condition>(.list("root", [
+        nameNode,
+        extensionNode,
+        fullNameNode,
+        parentFolderNode,
+        hierarchyNode
+        ]))
 }
+
+/*
+ func fileConditionDecisionTree() -> DecisionNode<FileRule.Condition> {
+ 
+ return
+ DecisionNode<FileRule.Condition>(.list("root", [
+ DecisionNode(.list("Name", [
+ DecisionNode(.textValue("is", placeholder: "Name") { .name(.matching($0)) }),
+ DecisionNode(.textValue("is not", placeholder: "Name") { .name(.notMatching($0)) }),
+ DecisionNode(.textValue("contains", placeholder: "String") { .name(.containing($0)) }),
+ DecisionNode(.textValue("does not contain", placeholder: "String") { .name(.notContaining($0)) })
+ ])),
+ DecisionNode(.list("Extension", [
+ DecisionNode(.textValue("is", placeholder: "eg. pdf") { .ext(.matching($0)) }),
+ DecisionNode(.textValue("is not", placeholder: "eg. pdf") { .ext(.notMatching($0)) })
+ ])),
+ DecisionNode(.list("Full name", [
+ DecisionNode(.textValue("is", placeholder: "eg. report.pdf") { .fullName(.matching($0)) }),
+ DecisionNode(.textValue("is not", placeholder: "eg. report.pdf") { .fullName(.notMatching($0)) })
+ ])),
+ DecisionNode(.list("Parent Folder", [
+ DecisionNode(.list("contains", [
+ DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentContains(.filesWithExtension($0)) }),
+ DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentContains(.filesWithFullName($0)) })
+ ])),
+ DecisionNode(.list("doesn't contain", [
+ DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentDoesntContain(.filesWithExtension($0)) }),
+ DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentDoesntContain(.filesWithFullName($0)) })
+ ]))
+ ])),
+ DecisionNode(.list("Hierarchy", [
+ DecisionNode(.list("contains", [
+ DecisionNode(.textValue("folder with name", placeholder: "eg. documents") { .hierarchyContains(.folderWithName(.matchich($0))) })
+ ]))
+ ]))
+ ]))
+ }
+ 
+ 
+ */
 
 // MARK: - Folder Condtion Decision Tree
 

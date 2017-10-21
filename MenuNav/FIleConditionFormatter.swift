@@ -49,17 +49,25 @@ class FileConditionFormatter {
         case let .parentContains(contentsMatcher):
             
             return AttributedStringBuilder()
-                .text("Parent folder ", attributes: attributes.regularAttributes)
-                .text("contains ", attributes: attributes.italicAttributes)
+                .text("Parent folder ", attributes: attributes.italicAttributes)
+                .text("contains ", attributes: attributes.regularAttributes)
                 .attributedText( makeAttributedString(fromContentsMatcher: contentsMatcher, attributes: attributes) )
                 .attributedString
             
         case let .parentDoesntContain(contentsMatcher):
             
             return AttributedStringBuilder()
-                .text("Parent folder ", attributes: attributes.regularAttributes)
-                .text("doesn't contain ", attributes: attributes.italicAttributes)
+                .text("Parent folder ", attributes: attributes.italicAttributes)
+                .text("doesn't contain ", attributes: attributes.regularAttributes)
                 .attributedText( makeAttributedString(fromContentsMatcher: contentsMatcher, attributes: attributes) )
+                .attributedString
+            
+        case let .hierarchyContains(hierarchyMatcher):
+            
+            return AttributedStringBuilder()
+                .text("Hierarchy ", attributes: attributes.italicAttributes)
+                .text("contains ", attributes: attributes.regularAttributes)
+                .attributedText( makeAttributedString(fromHierarchyMatcher: hierarchyMatcher, attributes: attributes))
                 .attributedString
         }
     }
@@ -95,6 +103,30 @@ class FileConditionFormatter {
             return makeAttributedString(withRegularText: "folder with name ",
                                         boldText: string,
                                         attributes: attributes)
+        }
+    }
+    
+    private func makeAttributedString(fromHierarchyMatcher hierarchyMatcher: HierarcyMatcher,
+                                      attributes: RichTextAttributes) -> NSAttributedString {
+        
+        func attrStringFromStringMatcher(_ stringMatcher: StringMatcher,
+                                         attributes: RichTextAttributes) -> NSAttributedString {
+            switch stringMatcher {
+            case let .matching(string):
+                return AttributedStringBuilder()
+                    .text(string, attributes: attributes.boldAttributes)
+                    .attributedString
+            default:
+                fatalError("Not implemented")
+            }
+        }
+        
+        switch hierarchyMatcher {
+        case let .folderWithName(stringMatcher):
+            return AttributedStringBuilder()
+                .text("folder with name ", attributes: attributes.regularAttributes)
+                .attributedText(attrStringFromStringMatcher(stringMatcher, attributes: attributes))
+                .attributedString
         }
     }
     

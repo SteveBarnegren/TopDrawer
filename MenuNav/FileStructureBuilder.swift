@@ -195,7 +195,7 @@ class FileStructureBuilder {
                             path: path)
             file.parent = parent
 
-            guard shouldInclude(file: file) else {
+            guard shouldInclude(file: file, inHierarchy: hierarchyInfo) else {
                 return nil
             }
             
@@ -238,22 +238,11 @@ class FileStructureBuilder {
     
     // MARK: - Helpers
     
-    private func doesDirectoryContainAcceptedFiles(_ directory: Directory) -> Bool {
-        
-        for file in directory.containedFiles {
-            if shouldInclude(file: file) {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
-    private func shouldInclude(file: File) -> Bool {
+    private func shouldInclude(file: File, inHierarchy hierarchyInfo: HierarchyInformation) -> Bool {
 
         for rule in fileRules {
             
-            if rule.includes(file: file) {
+            if rule.includes(file: file, inHierarchy: hierarchyInfo) {
                 return true
             }
         }
@@ -273,50 +262,12 @@ class FileStructureBuilder {
         return false
     }
     
+    // MARK: - Images
+    
     func imageForPath(_ path: String) -> NSImage {
         let image = NSWorkspace.shared.icon(forFile: path)
         image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
         return image
-    }
-    
-    // MARK: - Removing Dead paths (unused)
-    
-    func directoryByRemovingDeadPaths(inDirectory directory: Directory) -> Directory {
-        
-        var newContents = [FileSystemObject]()
-        
-        for file in directory.containedFiles {
-            newContents.append(file)
-        }
-        
-        for innerDir in directory.containedDirectories {
-            if doesDirectoryLeadToAcceptedFileType(innerDir) {
-                newContents.append(directoryByRemovingDeadPaths(inDirectory: innerDir))
-            }
-        }
-        
-        let newDirectory = directory
-        newDirectory.contents = newContents
-        
-        return newDirectory
-    }
-    
-    func doesDirectoryLeadToAcceptedFileType(_ directory: Directory) -> Bool {
-        
-        for file in directory.containedFiles {
-            if shouldInclude(file: file) {
-                return true
-            }
-        }
-        
-        for innerDir in directory.containedDirectories {
-            
-            if doesDirectoryLeadToAcceptedFileType(innerDir) {
-                return true
-            }
-        }
-        
-        return false
     }
     
 }

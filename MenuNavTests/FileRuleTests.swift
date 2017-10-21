@@ -13,6 +13,8 @@ import XCTest
 
 class FileRuleTests: XCTestCase {
     
+    // MARK: - Test number of conditions
+    
     func testFileRuleReportsCorrectNumberOfConditions() {
         
         let conditions = [
@@ -34,7 +36,7 @@ class FileRuleTests: XCTestCase {
         let condition = FileCondition.ext(.matching("png"))
         let rule = FileRule(conditions: [condition])
         
-        XCTAssertTrue(rule.includes(file: file))
+        XCTAssertTrue(rule.includes(file: file, inHierarchy: HierarchyInformation()))
     }
     
     func testMatchesFilesWithMultipleConditions() {
@@ -46,7 +48,7 @@ class FileRuleTests: XCTestCase {
 
         let rule = FileRule(conditions: [condition1, condition2])
         
-        XCTAssertTrue(rule.includes(file: file))
+        XCTAssertTrue(rule.includes(file: file, inHierarchy: HierarchyInformation()))
     }
     
     func testFailsToMatchFilesWithSingleCondition() {
@@ -57,7 +59,7 @@ class FileRuleTests: XCTestCase {
         
         let rule = FileRule(conditions: [condition])
         
-        XCTAssertFalse(rule.includes(file: file))
+        XCTAssertFalse(rule.includes(file: file, inHierarchy: HierarchyInformation()))
     }
     
     func testFailsToMatchFilesWithMultipleConditions() {
@@ -69,7 +71,7 @@ class FileRuleTests: XCTestCase {
         
         let rule = FileRule(conditions: [condition1, condition2])
         
-        XCTAssertFalse(rule.includes(file: file))
+        XCTAssertFalse(rule.includes(file: file, inHierarchy: HierarchyInformation()))
     }
     
     // MARK: - Test Equatable

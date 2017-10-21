@@ -33,10 +33,10 @@ struct FileRule: Rule {
     
     // MARK: - Matching
     
-    func includes(file: File) -> Bool {
+    func includes(file: File, inHierarchy hierarchy: HierarchyInformation) -> Bool {
         
         for condition in conditions {
-            if !condition.matches(file: file) {
+            if !condition.matches(file: file, inHierarchy: hierarchy) {
                 return false
             }
         }
