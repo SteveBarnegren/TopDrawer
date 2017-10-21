@@ -89,7 +89,7 @@ class PathMatcherTests: XCTestCase {
         
         let matchersAndOutputs: [(PathMatcher, String)] = [
             (.matching("a/a.a"), "a/a.a"),
-            (.notMatching("b/b.b"), "b/b.b"),
+            (.notMatching("b/b.b"), "b/b.b")
         ]
         
         for (matcher, expectedOutput) in matchersAndOutputs {

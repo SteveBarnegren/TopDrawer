@@ -10,8 +10,6 @@ import XCTest
 @testable import MenuNav
 import AttributedStringBuilder
 
-
-
 class FileConditionFormatterTests: XCTestCase {
 
     override func setUp() {
@@ -28,7 +26,5 @@ class FileConditionFormatterTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
-   
 
 }
