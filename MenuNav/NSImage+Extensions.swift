@@ -14,7 +14,7 @@ import AppKit
 extension NSImage {
     
     public func resizeImage(width: CGFloat, height: CGFloat) -> NSImage {
-        let img = NSImage(size: CGSize(width:width, height:height))
+        let img = NSImage(size: CGSize(width: width, height: height))
         
         img.lockFocus()
         let ctx = NSGraphicsContext.current

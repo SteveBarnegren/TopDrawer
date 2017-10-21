@@ -23,6 +23,11 @@ struct FileRule: Rule {
     // MARK: - Init
     
     init(conditions: [Condition]) {
+
+        if conditions.count == 0 {
+            fatalError("FileRule must have at least one condition")
+        }
+        
         self.conditions = conditions.sorted(by: { $0.perfomanceValue < $1.perfomanceValue })
     }
     
@@ -65,6 +70,10 @@ extension FileRule: DictionaryRepresentable {
     init?(dictionaryRepresentation dictionary: [String: Any]) {
         
         guard let conditionsArray = dictionary[Keys.Conditions] as? [[String: Any]] else {
+            return nil
+        }
+        
+        guard conditionsArray.count > 0 else {
             return nil
         }
 

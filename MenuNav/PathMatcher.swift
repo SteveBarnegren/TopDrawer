@@ -29,8 +29,25 @@ enum PathMatcher {
             return s1 == s2
         case let (.notMatching(s1), .notMatching(s2)):
             return s1 == s2
-        default:
+        case (.notMatching, .matching):
             return false
+        case (.matching, .notMatching):
+            return false
+        }
+    }
+}
+
+// MARK: - Decision Tree Input
+
+extension PathMatcher {
+    
+    var inputString: String {
+        
+        switch self {
+        case let .matching(s):
+            return s
+        case let .notMatching(s):
+            return s
         }
     }
 }

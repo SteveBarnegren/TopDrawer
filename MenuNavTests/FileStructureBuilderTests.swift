@@ -115,7 +115,8 @@ class MockFileReader: FileReader {
         }
         
         switch object {
-        case .alias: fallthrough
+        case .alias:
+            fatalError("Expected object to be directory")
         case .file:
             fatalError("Expected Object to be directory")
         case let .folder(_, contents):

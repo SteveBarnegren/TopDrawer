@@ -66,7 +66,7 @@ class FolderConditionFormatter {
         case let .matching(string):
             
             return AttributedStringBuilder()
-                .text("is ", attributes:attributes.regularAttributes)
+                .text("is ", attributes: attributes.regularAttributes)
                 .text(string, attributes: attributes.boldAttributes)
                 .attributedString
             

@@ -6,6 +6,8 @@
 //  Copyright © 2017 SteveBarnegren. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import XCTest
 @testable import MenuNav
 
@@ -155,7 +157,6 @@ class FileRuleTests: XCTestCase {
     
     // MARK: - Test Dictionary Representable
     
-    // swiftlint:disable function_body_length
     func testFileRuleToDictionaryAndBackAreTheSame() {
         
         var allConditions = [FileCondition]()
@@ -257,6 +258,28 @@ class FileRuleTests: XCTestCase {
         let allConditionsRule = FileRule(conditions: allConditions)
         XCTAssertTrue(allConditionsRule == allConditionsRule.convertedToDictionaryAndBack)
     }
-    // swiftlint:enable function_body_length
     
+    func testDictionaryRepresentableWithNoConditionsFieldCreatesNilInstance() {
+        
+        let dictionary: [String: Any] = [:]
+        let fileRule = FileRule(dictionaryRepresentation: dictionary)
+        XCTAssertNil(fileRule)
+    }
+    
+    func testDictionaryRepresentableWithEmptyConditionsArrayCreatesNilInstance() {
+        
+        // Get dictionary from FileRule
+        let condition = FileCondition.name(.matching("dog"))
+        let rule = FileRule(conditions: [condition])
+        var dictionary = rule.dictionaryRepresentation
+        
+        // Remove conditions
+        let conditionsKey = "Conditions"
+        XCTAssertNotNil(dictionary[conditionsKey], "Expected conditions, conditions key may be incorrect")
+        dictionary[conditionsKey] = []
+        
+        // Make a new rule (should be nil)
+        let fileRule = FileRule(dictionaryRepresentation: dictionary)
+        XCTAssertNil(fileRule)
+    }
 }
