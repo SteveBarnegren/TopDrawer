@@ -46,6 +46,8 @@
 		6748CE411F3DE1A3002941D4 /* FileConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE401F3DE1A3002941D4 /* FileConditionTests.swift */; };
 		6748CE441F3DE7F9002941D4 /* FolderRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE431F3DE7F9002941D4 /* FolderRuleTests.swift */; };
 		6748CE461F3DE8B4002941D4 /* FolderConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6748CE451F3DE8B4002941D4 /* FolderConditionTests.swift */; };
+		674EB0E01F9B4739003E5CBA /* HierarchyInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674EB0DF1F9B4739003E5CBA /* HierarchyInformation.swift */; };
+		674EB0E21F9B4896003E5CBA /* HeirarchyInformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674EB0E11F9B4896003E5CBA /* HeirarchyInformationTests.swift */; };
 		674F95181F27A07C000A5A4E /* FileSystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F95171F27A07C000A5A4E /* FileSystemObject.swift */; };
 		676B80C61F4323DF00D2C88F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676B80C41F4323DF00D2C88F /* SettingsViewController.swift */; };
 		676B80C81F4323DF00D2C88F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 676B80C51F4323DF00D2C88F /* SettingsViewController.xib */; };
@@ -131,6 +133,8 @@
 		6748CE401F3DE1A3002941D4 /* FileConditionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileConditionTests.swift; sourceTree = "<group>"; };
 		6748CE431F3DE7F9002941D4 /* FolderRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderRuleTests.swift; sourceTree = "<group>"; };
 		6748CE451F3DE8B4002941D4 /* FolderConditionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderConditionTests.swift; sourceTree = "<group>"; };
+		674EB0DF1F9B4739003E5CBA /* HierarchyInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyInformation.swift; sourceTree = "<group>"; };
+		674EB0E11F9B4896003E5CBA /* HeirarchyInformationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeirarchyInformationTests.swift; sourceTree = "<group>"; };
 		674F95171F27A07C000A5A4E /* FileSystemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemObject.swift; sourceTree = "<group>"; };
 		676B80C41F4323DF00D2C88F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		676B80C51F4323DF00D2C88F /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 				6748CE421F3DE7DD002941D4 /* Folder Rules */,
 				67AE4A701F2CE3BA00E9D1FE /* FileStructureBuilderTests.swift */,
 				671942101F6593D9003AB65A /* RebuildManagerTests.swift */,
+				674EB0E11F9B4896003E5CBA /* HeirarchyInformationTests.swift */,
 				0978BED21EB393110023AC66 /* Info.plist */,
 			);
 			path = MenuNavTests;
@@ -314,6 +319,7 @@
 			children = (
 				674F95171F27A07C000A5A4E /* FileSystemObject.swift */,
 				67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */,
+				674EB0DF1F9B4739003E5CBA /* HierarchyInformation.swift */,
 			);
 			name = "File Structure Builder";
 			sourceTree = "<group>";
@@ -757,6 +763,7 @@
 				67B77EFF1F3A0E9A000830EF /* ConditionPromptView.swift in Sources */,
 				671942001F6492B1003AB65A /* MenuBarManager.swift in Sources */,
 				0978BEBF1EB393110023AC66 /* AppDelegate.swift in Sources */,
+				674EB0E01F9B4739003E5CBA /* HierarchyInformation.swift in Sources */,
 				67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */,
 				6748CE0A1F3B9E29002941D4 /* RuleCollectionViewItem.swift in Sources */,
 				67B77F011F3A0F46000830EF /* NSTextField+Extensions.swift in Sources */,
@@ -791,6 +798,7 @@
 				6748CE3F1F3DDDDA002941D4 /* TestDirectoryBuilder.swift in Sources */,
 				6748CE321F3DC34E002941D4 /* StringMatcherTests.swift in Sources */,
 				6745B19A1F843B34001F8C78 /* MockTimerBenign.swift in Sources */,
+				674EB0E21F9B4896003E5CBA /* HeirarchyInformationTests.swift in Sources */,
 				6748CE3C1F3DCAC7002941D4 /* FolderContentsMatcherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

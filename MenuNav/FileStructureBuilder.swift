@@ -78,7 +78,9 @@ class FileStructureBuilder {
     func buildFileSystemStructure(atPath path: String) -> Directory? {
         
         // Get File Structure
-        guard var rootDirectory = fileSystemObject(atPath: path, withParent: nil) as? Directory else {
+        guard var rootDirectory = fileSystemObject(atPath: path,
+                                                   withParent: nil,
+                                                   hierarchyInfo: HierarchyInformation()) as? Directory else {
             return nil
         }
         
@@ -93,7 +95,8 @@ class FileStructureBuilder {
         // Check for cancelation
         if isCancelledHandler() == true { return nil }
         
-        // Remove extended attributes, only required for parsing, so we can remove them to keep the memory footprint low
+        // Remove extended attributes, only required for parsing,
+        // so we can remove them to keep the memory footprint low
         rootDirectory.removeExtendedAttributes()
         
         // Check for cancelation
@@ -102,7 +105,10 @@ class FileStructureBuilder {
         return rootDirectory
     }
     
-    private func fileSystemObject(atPath path: String, withParent parent: Directory?) -> FileSystemObject? {
+    private func fileSystemObject(atPath path: String,
+                                  withParent parent: Directory?,
+                                  hierarchyInfo: HierarchyInformation) -> FileSystemObject? {
+        var hierarchyInfo = hierarchyInfo
         
         if isCancelledHandler() == true {
             return nil
@@ -159,9 +165,10 @@ class FileStructureBuilder {
             }
             
             directory.image = imageForPath(path)
+            hierarchyInfo.add(folderName: directory.name)
             
             contents.map { "\(path)" + "/" + $0 }
-                .flatMap { fileSystemObject(atPath: $0, withParent: directory) }
+                .flatMap { fileSystemObject(atPath: $0, withParent: directory, hierarchyInfo: hierarchyInfo) }
                 .forEach {
                     directory.add(object: $0)
             }

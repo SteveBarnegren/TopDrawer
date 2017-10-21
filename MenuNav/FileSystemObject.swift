@@ -124,11 +124,11 @@ class Directory: FileSystemObject {
         contents.append(object)
     }
     
-    func printHeirarchy() {
-        printHeirarchyRecursive(indent: 0)
+    func printHierarchy() {
+        printHierarchyRecursive(indent: 0)
     }
     
-    private func printHeirarchyRecursive(indent: Int) {
+    private func printHierarchyRecursive(indent: Int) {
         
         let spaces = (0..<indent).reduce("") { (result, _) in result + "  "}
         print("\(spaces) - [\(debugDescription)]")
@@ -136,7 +136,7 @@ class Directory: FileSystemObject {
         for object in contents {
             
             if let innerDir = object as? Directory {
-                innerDir.printHeirarchyRecursive(indent: indent + 1)
+                innerDir.printHierarchyRecursive(indent: indent + 1)
             } else {
                 print("\(spaces) - \(object.debugDescription)")
             }

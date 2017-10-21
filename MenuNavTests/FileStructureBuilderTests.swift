@@ -58,11 +58,11 @@ enum MockFileObject {
         }
     }
     
-    func printHeirarchy() {
-        printHeirarchyRecursive(indent: 0)
+    func printHierarchy() {
+        printHierarchyRecursive(indent: 0)
     }
     
-    func printHeirarchyRecursive(indent: Int) {
+    func printHierarchyRecursive(indent: Int) {
         
         let spaces = (0..<indent).reduce("") { (result, _) in result + " "}
         
@@ -72,7 +72,7 @@ enum MockFileObject {
         case let .folder(name, contents):
             print("\(spaces) - [\(name)]")
             contents.forEach {
-                $0.printHeirarchyRecursive(indent: indent + 1)
+                $0.printHierarchyRecursive(indent: indent + 1)
             }
         case let .alias(name, path):
             print("\(spaces) - (Alias)\(name) -> \(path)")
@@ -264,7 +264,7 @@ class Tests: XCTestCase {
                                                     folderRules: [folderRule],
                                                     options: [])
         let noAliasDirectory = noAliasBuilder.buildFileSystemStructure(atPath: "Root")!
-        noAliasDirectory.printHeirarchy()
+        noAliasDirectory.printHierarchy()
         XCTAssertFalse(noAliasDirectory.containsObject(atPath: "A Folder/Photos/dog.png"))
     }
     
@@ -947,8 +947,6 @@ class Tests: XCTestCase {
             return
         }
         
-        directory.printHeirarchy()
-
         XCTAssertFalse(directory.containsObject(atPath: "Folder/No Files Here/Files here/dog.png"))
         XCTAssertTrue(directory.containsObject(atPath: "Folder/No Files Here/dog.png"))
     }
