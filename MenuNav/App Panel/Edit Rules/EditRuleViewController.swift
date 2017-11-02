@@ -160,9 +160,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
     }
     
     func addConditionView(fromCondition: T.Condition?) {
-        
-        print("Add condition view")
-        
+                
         let tree = T.makeDecisionTree()
         if let condition = fromCondition {
             tree.matchTree(toElement: condition)

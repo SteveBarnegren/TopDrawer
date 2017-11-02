@@ -141,7 +141,7 @@ class RulesViewController<T: Rule>: NSViewController {
     }
 }
 
-private let conditionLabelHeight = CGFloat(20)
+private let conditionLabelHeight = CGFloat(16)
 private let conditionLabelSpacing = CGFloat(2)
 
 extension RulesViewController: RulesCollectionDataSourceProvider {
@@ -156,13 +156,15 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
     
     func sizeForItem(atIndexPath indexPath: IndexPath) -> CGSize {
         
-        let verticalMargins = CGFloat(3)
+        let minHeight = CGFloat(28)
+        
+        let verticalMargins = CGFloat(4)
         
         let rule = ruleLoader.rules[indexPath.item]
         let numConditions = CGFloat(rule.conditions.count)
         let height = (numConditions * conditionLabelHeight) + ((numConditions-1) * conditionLabelSpacing)
         return CGSize(width: collectionView.bounds.size.width,
-                      height: height + (verticalMargins*2))
+                      height: max(minHeight, height + (verticalMargins*2)))
     }
     
     func itemForObject(atIndexPath indexPath: IndexPath) -> NSCollectionViewItem {
