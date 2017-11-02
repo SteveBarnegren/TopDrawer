@@ -217,10 +217,11 @@
 				6719420A1F656DE4003AB65A /* UserPreferences.swift */,
 				679900B21F67275700B9AC45 /* Timer.swift */,
 				679370951F27A93B003E6A9A /* Protocols */,
-				67B4361C1EB3E88C003E5886 /* Utils */,
-				67A02E1C1EB4F1FB00D2A8CA /* Settings */,
-				67B436181EB3DC9F003E5886 /* FileSystem */,
-				67FAAAD21EB724CD00224C24 /* AppPanel */,
+				672A26061FAA609C0046436D /* Utils */,
+				671E74D31FAA620900BAEA6D /* Settings */,
+				673CE1771FAA623A00DB9AE6 /* Decision Tree */,
+				673CE1781FABB35A00DB9AE6 /* File Structure Builder */,
+				672A26081FAA61250046436D /* App Panel */,
 				0978BEC21EB393110023AC66 /* Assets.xcassets */,
 				0978BEC41EB393110023AC66 /* Main.storyboard */,
 				0978BEC71EB393110023AC66 /* Info.plist */,
@@ -231,13 +232,13 @@
 		0978BECF1EB393110023AC66 /* MenuNavTests */ = {
 			isa = PBXGroup;
 			children = (
-				671942151F659B0F003AB65A /* Supporting */,
-				671942121F659A1D003AB65A /* Rule Loader */,
-				6748CE361F3DC980002941D4 /* Utils */,
-				6719420D1F657E84003AB65A /* Settings */,
-				6748CE331F3DC353002941D4 /* Matchers */,
-				6748CE3D1F3DDCD7002941D4 /* File Rules */,
-				6748CE421F3DE7DD002941D4 /* Folder Rules */,
+				673CE1801FABB49700DB9AE6 /* Supporting */,
+				673CE1811FABB4A400DB9AE6 /* Rule Loader */,
+				67BAE1611FABB4D900FE8FDE /* Utils */,
+				67BAE1621FABB4EA00FE8FDE /* Settings */,
+				670B717F1FABB51000F121E6 /* Matchers */,
+				670B71801FABB52900F121E6 /* File Rules */,
+				670B71811FABB53C00F121E6 /* Folder Rules */,
 				67AE4A701F2CE3BA00E9D1FE /* FileStructureBuilderTests.swift */,
 				671942101F6593D9003AB65A /* RebuildManagerTests.swift */,
 				674EB0E11F9B4896003E5CBA /* HeirarchyInformationTests.swift */,
@@ -255,81 +256,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6719420D1F657E84003AB65A /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				6719420E1F657E9B003AB65A /* SettingsTests.swift */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
-		671942121F659A1D003AB65A /* Rule Loader */ = {
-			isa = PBXGroup;
-			children = (
-				671942131F659A45003AB65A /* RuleLoaderTests.swift */,
-			);
-			name = "Rule Loader";
-			sourceTree = "<group>";
-		};
-		671942151F659B0F003AB65A /* Supporting */ = {
-			isa = PBXGroup;
-			children = (
-				671942161F659B2A003AB65A /* DictionaryKeyValueStore.swift */,
-				679900B51F67341200B9AC45 /* MockTimerBenign.swift */,
-			);
-			name = Supporting;
-			sourceTree = "<group>";
-		};
-		6748CE0F1F3CBFBA002941D4 /* Folder Rule */ = {
-			isa = PBXGroup;
-			children = (
-				67AE4A721F30FD2C00E9D1FE /* FolderRule.swift */,
-				6748CE251F3D9FAB002941D4 /* FolderCondition.swift */,
-				6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */,
-			);
-			name = "Folder Rule";
-			sourceTree = "<group>";
-		};
-		6748CE101F3CBFD1002941D4 /* File Rule */ = {
-			isa = PBXGroup;
-			children = (
-				67FAAAD51EB79ADE00224C24 /* FileRule.swift */,
-				6748CE221F3D9EB9002941D4 /* FileCondition.swift */,
-				6724C1941F8429CB003E40D1 /* FIleConditionFormatter.swift */,
-			);
-			name = "File Rule";
-			sourceTree = "<group>";
-		};
-		6748CE111F3CBFEC002941D4 /* Matchers */ = {
-			isa = PBXGroup;
-			children = (
-				6748CE151F3CC083002941D4 /* PathMatcher.swift */,
-				6748CE121F3CBFFE002941D4 /* StringMatcher.swift */,
-				6748CE181F3CC135002941D4 /* FolderContentsMatcher.swift */,
-				670F4FC21F9B7399002CC5D2 /* HierarchyMatcher.swift */,
-			);
-			name = Matchers;
-			sourceTree = "<group>";
-		};
-		6748CE1E1F3D0649002941D4 /* Decision Tree */ = {
-			isa = PBXGroup;
-			children = (
-				6748CE1F1F3D0670002941D4 /* DecisionTree.swift */,
-			);
-			name = "Decision Tree";
-			sourceTree = "<group>";
-		};
-		6748CE281F3DB57F002941D4 /* File Structure Builder */ = {
-			isa = PBXGroup;
-			children = (
-				674F95171F27A07C000A5A4E /* FileSystemObject.swift */,
-				67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */,
-				674EB0DF1F9B4739003E5CBA /* HierarchyInformation.swift */,
-			);
-			name = "File Structure Builder";
-			sourceTree = "<group>";
-		};
-		6748CE331F3DC353002941D4 /* Matchers */ = {
+		670B717F1FABB51000F121E6 /* Matchers */ = {
 			isa = PBXGroup;
 			children = (
 				6748CE311F3DC34E002941D4 /* StringMatcherTests.swift */,
@@ -337,48 +264,92 @@
 				6748CE3B1F3DCAC7002941D4 /* FolderContentsMatcherTests.swift */,
 				670F4FC41F9B78F4002CC5D2 /* HierarchyMatcherTests.swift */,
 			);
-			name = Matchers;
+			path = Matchers;
 			sourceTree = "<group>";
 		};
-		6748CE361F3DC980002941D4 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				6748CE371F3DC990002941D4 /* DictionaryRepresentable+Testing.swift */,
-				6748CE3E1F3DDDDA002941D4 /* TestDirectoryBuilder.swift */,
-				671942081F649D10003AB65A /* WeakArrayTests.swift */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
-		6748CE3D1F3DDCD7002941D4 /* File Rules */ = {
+		670B71801FABB52900F121E6 /* File Rules */ = {
 			isa = PBXGroup;
 			children = (
 				67AE4A651F2CD53400E9D1FE /* FileRuleTests.swift */,
 				6748CE401F3DE1A3002941D4 /* FileConditionTests.swift */,
 				67C4037F1F84BEDE0098A05F /* FileConditionFormatterTests.swift */,
 			);
-			name = "File Rules";
+			path = "File Rules";
 			sourceTree = "<group>";
 		};
-		6748CE421F3DE7DD002941D4 /* Folder Rules */ = {
+		670B71811FABB53C00F121E6 /* Folder Rules */ = {
 			isa = PBXGroup;
 			children = (
 				6748CE431F3DE7F9002941D4 /* FolderRuleTests.swift */,
 				6748CE451F3DE8B4002941D4 /* FolderConditionTests.swift */,
 			);
-			name = "Folder Rules";
+			path = "Folder Rules";
 			sourceTree = "<group>";
 		};
-		676B80C31F4323B300D2C88F /* Settings */ = {
+		671E74D21FAA618800BAEA6D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				676B80C41F4323DF00D2C88F /* SettingsViewController.swift */,
 				676B80C51F4323DF00D2C88F /* SettingsViewController.xib */,
 			);
-			name = Settings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		6773F2CB1F3A168300AFE89A /* Edit Rules */ = {
+		671E74D31FAA620900BAEA6D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				67A02E1D1EB4F21D00D2A8CA /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		672A26061FAA609C0046436D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6793709D1F27B890003E6A9A /* Array+Extensions.swift */,
+				67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */,
+				67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */,
+				671941E61F63FB14003AB65A /* NSView+Extensions.swift */,
+				671941E91F63FE46003AB65A /* Colors.swift */,
+				671942051F649A37003AB65A /* WeakArray.swift */,
+				6724C1911F801F3B003E40D1 /* RichTextAttributes.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		672A26081FAA61250046436D /* App Panel */ = {
+			isa = PBXGroup;
+			children = (
+				67A02E1A1EB4079B00D2A8CA /* App.storyboard */,
+				672A26091FAA613A0046436D /* Main */,
+				672A260A1FAA61450046436D /* Rules */,
+				672A260B1FAA61580046436D /* Edit Rules */,
+				671E74D21FAA618800BAEA6D /* Settings */,
+			);
+			path = "App Panel";
+			sourceTree = "<group>";
+		};
+		672A26091FAA613A0046436D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0978BEC01EB393110023AC66 /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		672A260A1FAA61450046436D /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				6748CE291F3DBCC4002941D4 /* RulesViewModel.swift */,
+				67C5300F1F3383E200D3B5FD /* RulesViewController.swift */,
+				67C530101F3383E200D3B5FD /* RulesViewController.xib */,
+				6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */,
+				6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		672A260B1FAA61580046436D /* Edit Rules */ = {
 			isa = PBXGroup;
 			children = (
 				67C5301B1F338A9400D3B5FD /* EditRuleViewController.swift */,
@@ -386,7 +357,93 @@
 				67C530241F339D1700D3B5FD /* ConditionEditorView.swift */,
 				6724F5041F5699F500BFF4B5 /* PathConditionInputView.swift */,
 			);
-			name = "Edit Rules";
+			path = "Edit Rules";
+			sourceTree = "<group>";
+		};
+		673CE1771FAA623A00DB9AE6 /* Decision Tree */ = {
+			isa = PBXGroup;
+			children = (
+				6748CE1F1F3D0670002941D4 /* DecisionTree.swift */,
+			);
+			path = "Decision Tree";
+			sourceTree = "<group>";
+		};
+		673CE1781FABB35A00DB9AE6 /* File Structure Builder */ = {
+			isa = PBXGroup;
+			children = (
+				67B436191EB3DCDB003E5886 /* FileStructureBuilder.swift */,
+				673CE1791FABB3AC00DB9AE6 /* Model */,
+				673CE17C1FABB43600DB9AE6 /* Rules */,
+				673CE17A1FABB3C600DB9AE6 /* Matchers */,
+			);
+			path = "File Structure Builder";
+			sourceTree = "<group>";
+		};
+		673CE1791FABB3AC00DB9AE6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				674F95171F27A07C000A5A4E /* FileSystemObject.swift */,
+				674EB0DF1F9B4739003E5CBA /* HierarchyInformation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		673CE17A1FABB3C600DB9AE6 /* Matchers */ = {
+			isa = PBXGroup;
+			children = (
+				6748CE151F3CC083002941D4 /* PathMatcher.swift */,
+				6748CE121F3CBFFE002941D4 /* StringMatcher.swift */,
+				6748CE181F3CC135002941D4 /* FolderContentsMatcher.swift */,
+				670F4FC21F9B7399002CC5D2 /* HierarchyMatcher.swift */,
+			);
+			path = Matchers;
+			sourceTree = "<group>";
+		};
+		673CE17C1FABB43600DB9AE6 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				6748CE1B1F3CCC0C002941D4 /* Rule.swift */,
+				673CE17E1FABB44900DB9AE6 /* Folder Rule */,
+				673CE17D1FABB43E00DB9AE6 /* File Rule */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		673CE17D1FABB43E00DB9AE6 /* File Rule */ = {
+			isa = PBXGroup;
+			children = (
+				67FAAAD51EB79ADE00224C24 /* FileRule.swift */,
+				6748CE221F3D9EB9002941D4 /* FileCondition.swift */,
+				6724C1941F8429CB003E40D1 /* FIleConditionFormatter.swift */,
+			);
+			path = "File Rule";
+			sourceTree = "<group>";
+		};
+		673CE17E1FABB44900DB9AE6 /* Folder Rule */ = {
+			isa = PBXGroup;
+			children = (
+				67AE4A721F30FD2C00E9D1FE /* FolderRule.swift */,
+				6748CE251F3D9FAB002941D4 /* FolderCondition.swift */,
+				6748CE0C1F3BAB4D002941D4 /* FolderConditionFormatter.swift */,
+			);
+			path = "Folder Rule";
+			sourceTree = "<group>";
+		};
+		673CE1801FABB49700DB9AE6 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				671942161F659B2A003AB65A /* DictionaryKeyValueStore.swift */,
+				679900B51F67341200B9AC45 /* MockTimerBenign.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		673CE1811FABB4A400DB9AE6 /* Rule Loader */ = {
+			isa = PBXGroup;
+			children = (
+				671942131F659A45003AB65A /* RuleLoaderTests.swift */,
+			);
+			path = "Rule Loader";
 			sourceTree = "<group>";
 		};
 		679370951F27A93B003E6A9A /* Protocols */ = {
@@ -399,79 +456,22 @@
 			path = MenuNav/Protocols;
 			sourceTree = SOURCE_ROOT;
 		};
-		67A02E1C1EB4F1FB00D2A8CA /* Settings */ = {
+		67BAE1611FABB4D900FE8FDE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				67A02E1D1EB4F21D00D2A8CA /* Settings.swift */,
+				6748CE371F3DC990002941D4 /* DictionaryRepresentable+Testing.swift */,
+				6748CE3E1F3DDDDA002941D4 /* TestDirectoryBuilder.swift */,
+				671942081F649D10003AB65A /* WeakArrayTests.swift */,
 			);
-			name = Settings;
+			path = Utils;
 			sourceTree = "<group>";
 		};
-		67AE4A751F311C4D00E9D1FE /* Main */ = {
+		67BAE1621FABB4EA00FE8FDE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				0978BEC01EB393110023AC66 /* ViewController.swift */,
+				6719420E1F657E9B003AB65A /* SettingsTests.swift */,
 			);
-			name = Main;
-			sourceTree = "<group>";
-		};
-		67B436181EB3DC9F003E5886 /* FileSystem */ = {
-			isa = PBXGroup;
-			children = (
-				6748CE1E1F3D0649002941D4 /* Decision Tree */,
-				67C530001F3375D100D3B5FD /* Rules */,
-				6748CE281F3DB57F002941D4 /* File Structure Builder */,
-			);
-			name = FileSystem;
-			sourceTree = "<group>";
-		};
-		67B4361C1EB3E88C003E5886 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				6793709D1F27B890003E6A9A /* Array+Extensions.swift */,
-				67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */,
-				67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */,
-				671941E61F63FB14003AB65A /* NSView+Extensions.swift */,
-				671941E91F63FE46003AB65A /* Colors.swift */,
-				671942051F649A37003AB65A /* WeakArray.swift */,
-				6724C1911F801F3B003E40D1 /* RichTextAttributes.swift */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
-		67C530001F3375D100D3B5FD /* Rules */ = {
-			isa = PBXGroup;
-			children = (
-				6748CE1B1F3CCC0C002941D4 /* Rule.swift */,
-				6748CE111F3CBFEC002941D4 /* Matchers */,
-				6748CE101F3CBFD1002941D4 /* File Rule */,
-				6748CE0F1F3CBFBA002941D4 /* Folder Rule */,
-			);
-			name = Rules;
-			sourceTree = "<group>";
-		};
-		67C5300E1F3383BE00D3B5FD /* Rules */ = {
-			isa = PBXGroup;
-			children = (
-				6748CE291F3DBCC4002941D4 /* RulesViewModel.swift */,
-				67C5300F1F3383E200D3B5FD /* RulesViewController.swift */,
-				67C530101F3383E200D3B5FD /* RulesViewController.xib */,
-				6748CE081F3B9E29002941D4 /* RuleCollectionViewItem.swift */,
-				6748CE091F3B9E29002941D4 /* RuleCollectionViewItem.xib */,
-			);
-			name = Rules;
-			sourceTree = "<group>";
-		};
-		67FAAAD21EB724CD00224C24 /* AppPanel */ = {
-			isa = PBXGroup;
-			children = (
-				67A02E1A1EB4079B00D2A8CA /* App.storyboard */,
-				67AE4A751F311C4D00E9D1FE /* Main */,
-				67C5300E1F3383BE00D3B5FD /* Rules */,
-				6773F2CB1F3A168300AFE89A /* Edit Rules */,
-				676B80C31F4323B300D2C88F /* Settings */,
-			);
-			name = AppPanel;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		D075667EEC942CB0D78B84E8 /* Pods */ = {
