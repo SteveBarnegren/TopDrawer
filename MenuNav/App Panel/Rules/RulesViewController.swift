@@ -68,6 +68,11 @@ class RulesViewController<T: Rule>: NSViewController {
         explanationLabel.textColor = Colors.lightTextColor
         explanationLabel.stringValue = viewModel.overviewExplanation
     }
+    
+    override func viewWillLayout() {
+        super.viewWillLayout()
+        collectionView.collectionViewLayout?.invalidateLayout()
+    }
 
     // MARK: - Actions
     
@@ -152,6 +157,8 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
     func sizeForItem(atIndexPath indexPath: IndexPath) -> CGSize {
         
         let verticalMargins = CGFloat(3)
+        
+        print("Collection view width: \(self.collectionView.bounds.size.width)")
         
         let rule = ruleLoader.rules[indexPath.item]
         let numConditions = CGFloat(rule.conditions.count)

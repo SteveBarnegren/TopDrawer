@@ -69,7 +69,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="zX6-BV-GKk"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="600" id="zX6-BV-GKk"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
