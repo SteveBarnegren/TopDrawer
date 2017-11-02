@@ -158,8 +158,6 @@ extension RulesViewController: RulesCollectionDataSourceProvider {
         
         let verticalMargins = CGFloat(3)
         
-        print("Collection view width: \(self.collectionView.bounds.size.width)")
-        
         let rule = ruleLoader.rules[indexPath.item]
         let numConditions = CGFloat(rule.conditions.count)
         let height = (numConditions * conditionLabelHeight) + ((numConditions-1) * conditionLabelSpacing)

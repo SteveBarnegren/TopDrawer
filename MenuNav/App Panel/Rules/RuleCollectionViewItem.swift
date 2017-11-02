@@ -36,13 +36,17 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         //conditionsStackView.spacing = conditionSpacing
         
         let fontSize = CGFloat(12)
-        let attributes = RichTextAttributes(font: NSFont.systemFont(ofSize: fontSize),
-                                            color: NSColor.black,
-                                            boldFont: NSFont.systemFont(ofSize: fontSize, weight: .bold),
-                                            boldColor: NSColor.black)
+        
+        let attributes =
+            ConditionFormatterAttributes(regularFont: NSFont.systemFont(ofSize: fontSize),
+                                         regularColor: NSColor.black,
+                                         typeEmphasisFont: NSFont.systemFont(ofSize: fontSize, weight: .bold),
+                                         typeEmphasisColor: NSColor(calibratedWhite: 0.25, alpha: 1),
+                                         nameEmphasisFont: NSFont.systemFont(ofSize: fontSize, weight: .bold),
+                                         nameEmphasisColor: NSColor.black)
         
         rule.conditions.forEach {
-
+            
             let label = NSTextField.createWithLabelStyle()
             label.attributedStringValue = $0.attributedDisplayDescription(withAttributes: attributes)
             conditionsStackView.addArrangedSubview(label)

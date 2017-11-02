@@ -13,43 +13,47 @@ class FileConditionFormatter {
     
     func string(fromCondition condition: FileRule.Condition) -> String {
         
-        let attributes = RichTextAttributes(font: NSFont.systemFont(ofSize: 10),
-                                            color: NSColor.black,
-                                            boldFont: NSFont.systemFont(ofSize: 10),
-                                            boldColor: NSColor.black)
+        let font = NSFont.systemFont(ofSize: 10)
+        let color = NSColor.black
+        let attributes = ConditionFormatterAttributes(regularFont: font,
+                                                      regularColor: color,
+                                                      typeEmphasisFont: font,
+                                                      typeEmphasisColor: color,
+                                                      nameEmphasisFont: font,
+                                                      nameEmphasisColor: color)
         
         return attributedString(fromCondition: condition, withAttributes: attributes).string
     }
     
     func attributedString(fromCondition condition: FileRule.Condition,
-                          withAttributes attributes: RichTextAttributes) -> NSAttributedString {
+                          withAttributes attributes: ConditionFormatterAttributes) -> NSAttributedString {
         
         switch condition {
         case let .name(stringMatcher):
             
             return AttributedStringBuilder()
-                .text("Name ", attributes: attributes.italicAttributes)
+                .text("Name ", attributes: attributes.typeEmphasisAttributes)
                 .attributedText( makeAttributedString(fromStringMatcher: stringMatcher, attributes: attributes) )
                 .attributedString
             
         case let .ext(stringMatcher):
             
             return AttributedStringBuilder()
-                .text("Extension ", attributes: attributes.italicAttributes)
+                .text("Extension ", attributes: attributes.typeEmphasisAttributes)
                 .attributedText( makeAttributedString(fromStringMatcher: stringMatcher, attributes: attributes) )
                 .attributedString
             
         case let .fullName(stringMatcher):
             
             return AttributedStringBuilder()
-                .text("Full name ", attributes: attributes.italicAttributes)
+                .text("Full name ", attributes: attributes.typeEmphasisAttributes)
                 .attributedText( makeAttributedString(fromStringMatcher: stringMatcher, attributes: attributes) )
                 .attributedString
             
         case let .parentContains(contentsMatcher):
             
             return AttributedStringBuilder()
-                .text("Parent folder ", attributes: attributes.italicAttributes)
+                .text("Parent folder ", attributes: attributes.typeEmphasisAttributes)
                 .text("contains ", attributes: attributes.regularAttributes)
                 .attributedText( makeAttributedString(fromContentsMatcher: contentsMatcher, attributes: attributes) )
                 .attributedString
@@ -57,7 +61,7 @@ class FileConditionFormatter {
         case let .parentDoesntContain(contentsMatcher):
             
             return AttributedStringBuilder()
-                .text("Parent folder ", attributes: attributes.italicAttributes)
+                .text("Parent folder ", attributes: attributes.typeEmphasisAttributes)
                 .text("doesn't contain ", attributes: attributes.regularAttributes)
                 .attributedText( makeAttributedString(fromContentsMatcher: contentsMatcher, attributes: attributes) )
                 .attributedString
@@ -65,7 +69,7 @@ class FileConditionFormatter {
         case let .hierarchyContains(hierarchyMatcher):
             
             return AttributedStringBuilder()
-                .text("Hierarchy ", attributes: attributes.italicAttributes)
+                .text("Hierarchy ", attributes: attributes.typeEmphasisAttributes)
                 .text("contains ", attributes: attributes.regularAttributes)
                 .attributedText( makeAttributedString(fromHierarchyMatcher: hierarchyMatcher, attributes: attributes))
                 .attributedString
@@ -73,48 +77,48 @@ class FileConditionFormatter {
     }
     
     private func makeAttributedString(fromStringMatcher stringMatcher: StringMatcher,
-                                      attributes: RichTextAttributes) -> NSAttributedString {
+                                      attributes: ConditionFormatterAttributes) -> NSAttributedString {
         
         switch stringMatcher {
         case let .matching(string):
-            return makeAttributedString(withRegularText: "is ", boldText: string, attributes: attributes)
+            return makeAttributedString(withRegularText: "is ", nameText: string, attributes: attributes)
         case let .notMatching(string):
-            return makeAttributedString(withRegularText: "is not ", boldText: string, attributes: attributes)
+            return makeAttributedString(withRegularText: "is not ", nameText: string, attributes: attributes)
         case let .containing(string):
-            return makeAttributedString(withRegularText: "contains ", boldText: string, attributes: attributes)
+            return makeAttributedString(withRegularText: "contains ", nameText: string, attributes: attributes)
         case let .notContaining(string):
-            return makeAttributedString(withRegularText: "doesn't contain ", boldText: string, attributes: attributes)
+            return makeAttributedString(withRegularText: "doesn't contain ", nameText: string, attributes: attributes)
         }
     }
     
     private func makeAttributedString(fromContentsMatcher contentsMatcher: FolderContentsMatcher,
-                                      attributes: RichTextAttributes) -> NSAttributedString {
+                                      attributes: ConditionFormatterAttributes) -> NSAttributedString {
         
         switch contentsMatcher {
         case let .filesWithExtension(string):
             return makeAttributedString(withRegularText: "files with extension ",
-                                        boldText: string,
+                                        nameText: string,
                                         attributes: attributes)
         case let .filesWithFullName(string):
             return makeAttributedString(withRegularText: "file with full name ",
-                                        boldText: string,
+                                        nameText: string,
                                         attributes: attributes)
         case let .foldersWithName(string):
             return makeAttributedString(withRegularText: "folder with name ",
-                                        boldText: string,
+                                        nameText: string,
                                         attributes: attributes)
         }
     }
     
     private func makeAttributedString(fromHierarchyMatcher hierarchyMatcher: HierarcyMatcher,
-                                      attributes: RichTextAttributes) -> NSAttributedString {
+                                      attributes: ConditionFormatterAttributes) -> NSAttributedString {
         
-        func attrStringFromStringMatcher(_ stringMatcher: StringMatcher,
-                                         attributes: RichTextAttributes) -> NSAttributedString {
+        func attrStringFromHierarchyStringMatcher(_ stringMatcher: StringMatcher,
+                                                  attributes: ConditionFormatterAttributes) -> NSAttributedString {
             switch stringMatcher {
             case let .matching(string):
                 return AttributedStringBuilder()
-                    .text(string, attributes: attributes.boldAttributes)
+                    .text(string, attributes: attributes.nameEmphasisAttributes)
                     .attributedString
             default:
                 fatalError("Not implemented")
@@ -125,18 +129,18 @@ class FileConditionFormatter {
         case let .folderWithName(stringMatcher):
             return AttributedStringBuilder()
                 .text("folder with name ", attributes: attributes.regularAttributes)
-                .attributedText(attrStringFromStringMatcher(stringMatcher, attributes: attributes))
+                .attributedText(attrStringFromHierarchyStringMatcher(stringMatcher, attributes: attributes))
                 .attributedString
         }
     }
     
     private func makeAttributedString(withRegularText regularText: String,
-                                      boldText: String,
-                                      attributes: RichTextAttributes) -> NSAttributedString {
+                                      nameText: String,
+                                      attributes: ConditionFormatterAttributes) -> NSAttributedString {
         
         return AttributedStringBuilder()
             .text(regularText, attributes: attributes.regularAttributes)
-            .text(boldText, attributes: attributes.boldAttributes)
+            .text(nameText, attributes: attributes.nameEmphasisAttributes)
             .attributedString
     }
 }

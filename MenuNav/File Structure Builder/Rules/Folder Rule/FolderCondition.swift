@@ -58,7 +58,7 @@ extension FolderCondition: CondtionProtocol {
         return formatter.string(fromCondition: self)
     }
     
-    func attributedDisplayDescription(withAttributes attributes: RichTextAttributes) -> NSAttributedString {
+    func attributedDisplayDescription(withAttributes attributes: ConditionFormatterAttributes) -> NSAttributedString {
         let formatter = FolderConditionFormatter()
         return formatter.attributedString(fromCondition: self, withAttributes: attributes)
     }

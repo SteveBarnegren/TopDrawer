@@ -59,7 +59,7 @@ extension FileCondition: CondtionProtocol {
         return formatter.string(fromCondition: self)
     }
     
-    func attributedDisplayDescription(withAttributes attributes: RichTextAttributes) -> NSAttributedString {
+    func attributedDisplayDescription(withAttributes attributes: ConditionFormatterAttributes) -> NSAttributedString {
         
         let formatter = FileConditionFormatter()
         return formatter.attributedString(fromCondition: self, withAttributes: attributes)

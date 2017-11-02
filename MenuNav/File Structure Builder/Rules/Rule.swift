@@ -12,7 +12,7 @@ import Foundation
 
 protocol CondtionProtocol {
     var displayDescription: String {get}
-    func attributedDisplayDescription(withAttributes attributes: RichTextAttributes) -> NSAttributedString
+    func attributedDisplayDescription(withAttributes attributes: ConditionFormatterAttributes) -> NSAttributedString
 }
 
 // MARK: - Rule

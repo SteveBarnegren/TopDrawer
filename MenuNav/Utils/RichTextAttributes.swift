@@ -10,22 +10,35 @@ import Foundation
 import AppKit
 import AttributedStringBuilder
 
-struct RichTextAttributes {
+struct ConditionFormatterAttributes {
     
-    let font: NSFont
-    let color: NSColor
-    let boldFont: NSFont
-    let boldColor: NSColor
+    let regularFont: NSFont
+    let regularColor: NSColor
+    let typeEmphasisFont: NSFont
+    let typeEmphasisColor: NSColor
+    let nameEmphasisFont: NSFont
+    let nameEmphasisColor: NSColor
+    
+    static let standard: ConditionFormatterAttributes = {
+        let font = NSFont.systemFont(ofSize: 10)
+        let color = NSColor.black
+        return ConditionFormatterAttributes(regularFont: font,
+                                            regularColor: color,
+                                            typeEmphasisFont: font,
+                                            typeEmphasisColor: color,
+                                            nameEmphasisFont: font,
+                                            nameEmphasisColor: color)
+    }()
     
     var regularAttributes: [AttributedStringBuilder.Attribute] {
-        return [.font(font), .textColor(color)]
+        return [.font(regularFont), .textColor(regularColor)]
     }
     
-    var boldAttributes: [AttributedStringBuilder.Attribute] {
-        return [.font(boldFont), .textColor(boldColor)]
+    var typeEmphasisAttributes: [AttributedStringBuilder.Attribute] {
+        return [.font(typeEmphasisFont), .textColor(typeEmphasisColor)]
     }
     
-    var italicAttributes: [AttributedStringBuilder.Attribute] {
-        return [.font(font), .textColor(color), .skew(0.1)]
+    var nameEmphasisAttributes: [AttributedStringBuilder.Attribute] {
+        return [.font(nameEmphasisFont), .textColor(nameEmphasisColor)]
     }
 }
