@@ -35,7 +35,8 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
     }()
     
     private lazy var deleteButton: NSButton = {
-        let button = NSButton(title: "D", image: NSImage(), target: self, action: #selector(deleteButtonPressed))
+        let image = NSImage(named: .init(rawValue: "Delete"))!
+        let button = NSButton(title: "", image: image, target: self, action: #selector(deleteButtonPressed))
         return button
     }()
     
@@ -56,7 +57,10 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         nonGenericType.delegate = self
         
         addSubview(stackView)
-        stackView.pinToSuperviewEdges()
+        stackView.pinToSuperviewLeft(margin: 8)
+        stackView.pinToSuperviewRight(margin: 8)
+        stackView.pinToSuperviewTop(margin: 2)
+        stackView.pinToSuperviewBottom(margin: 2)
     }
     
     required init?(coder: NSCoder) {
@@ -120,10 +124,10 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         addControl(forNode: node)
         
         // Add the validitiy indicator
-        if validityIndicator.superview != nil {
-            validityIndicator.removeFromSuperview()
-        }
-        stackView.addArrangedSubview(validityIndicator)
+//        if validityIndicator.superview != nil {
+//            validityIndicator.removeFromSuperview()
+//        }
+//        stackView.addArrangedSubview(validityIndicator)
         
         // Add the delete button
         if deleteButton.superview != nil {

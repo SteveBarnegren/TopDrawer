@@ -87,7 +87,16 @@ class EditRuleViewController<T: Rule>: NSViewController {
         
         // Set background color
         view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.white.cgColor
+        view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        
+        // Set scrollview background color
+        let scrollViewBackgroundColor = NSColor(calibratedWhite: 0.993, alpha: 1).cgColor
+        
+        scrollView.wantsLayer = true
+        scrollView.layer?.backgroundColor = scrollViewBackgroundColor
+        
+        scrollView.documentView?.wantsLayer = true
+        scrollView.documentView?.layer?.backgroundColor = scrollViewBackgroundColor
         
         // Create existing rule condition views
         if let rule = existingRule {
@@ -117,13 +126,13 @@ class EditRuleViewController<T: Rule>: NSViewController {
             
             conditionView.frame = CGRect(x: 0,
                                          y: contentHeight - (CGFloat(index+1) * height),
-                                         width: scrollView.bounds.size.width,
+                                         width: scrollView.bounds.size.width - 2,
                                          height: height)
         }
         
         scrollView.documentView?.frame = CGRect(x: 0,
                                                 y: 0,
-                                                width: scrollView.bounds.size.width,
+                                                width: scrollView.bounds.size.width - 2,
                                                 height: contentHeight)
     }
     
