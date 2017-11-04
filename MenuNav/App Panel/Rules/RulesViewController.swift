@@ -208,26 +208,6 @@ extension RulesViewController: RuleCollectionViewItemDelegate {
     }
 }
 
-/*
-extension RulesViewController: EditRuleViewControllerDelegate {
-    
-    func editRuleViewControllerDidEditRule(_ rule: FolderRule) {
-        
-        switch state {
-        case .newRule:
-            Settings.add(folderRule: rule)
-        case let .editingRule(index):
-            Settings.update(folderRule: rule, atIndex: index)
-        default:
-            break
-        }
-        
-        state = .normal
-        collectionView.reloadData()
-    }
-}
- */
-
 // MARK: - RulesViewControllerDataSource
 
 // Generic types cannot implement ObjC protocols,

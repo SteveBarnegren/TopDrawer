@@ -120,24 +120,7 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func addFileRuleButtonPressed(sender: NSButton) {
-        print("Add file type button pressed")
-                
-//        let editor = EditFileRuleViewController.create(existingRule: nil)
-//        editor.delegate = self
-//        
-//        addChildViewController(editor)
-//        view.addSubview(editor.view)
-//        editor.view.pinToSuperviewEdges()
-    }
-    
-    @IBAction private func addFolderRuleButtonPressed(sender: NSButton) {
-        print("Add folder rule button pressed")
-    }
-    
-    @IBAction private func deleteFolderRuleButtonPressed(sender: NSButton) {
-        print("Delete folder rule button pressed")
-    }
+    // MARK: - Actions
     
     @IBAction private func segmentedControlValueChanged(sender: NSSegmentedControl) {
         

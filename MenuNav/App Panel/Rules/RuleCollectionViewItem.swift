@@ -33,7 +33,6 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         conditionsStackView.subviews.forEach {
             $0.removeFromSuperview()
         }
-        //conditionsStackView.spacing = conditionSpacing
         
         let fontSize = CGFloat(12)
         
@@ -50,7 +49,6 @@ class RuleCollectionViewItem: NSCollectionViewItem {
             let label = NSTextField.createWithLabelStyle()
             label.attributedStringValue = $0.attributedDisplayDescription(withAttributes: attributes)
             conditionsStackView.addArrangedSubview(label)
-            //label.pinHeight(conditionHeight)
         }
         
         view.needsLayout = true
@@ -67,10 +65,6 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         // Edit button
         editButton.target = self
         editButton.action = #selector(editButtonPressed(sender:))
-        //editButton.image?.isTemplate = true
-        
-        // Delete Button
-        //deleteButton.image?.isTemplate = true
         
         // Bottom Separator line
         let separatorLine = NSView(frame: .zero)

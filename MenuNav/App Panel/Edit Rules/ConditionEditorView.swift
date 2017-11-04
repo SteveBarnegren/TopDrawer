@@ -9,15 +9,9 @@
 import Cocoa
 import SBAutoLayout
 
-//protocol ConditionEditorViewDelegate: class {
-//    associatedtype T: DecisionTreeElement
-//    func conditionEditorViewWantsDeletion(conditionView: ConditionEditorView<T>)
-//    func conditionEditorViewValueChanged(conditionView: ConditionEditorView<T>)
-//}
-
 class ConditionEditorView<T: DecisionTreeElement>: NSView {
     
-    // MARK: - Preperties
+    // MARK: - Properties
     
     private let nonGenericType = ConditionEditorViewNonGenericType()
     private var views = [NSView]()
@@ -186,16 +180,12 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         updateValidityIndicator()
         
         valueChangedHandler(self)
-        
-        //delegate?.conditionEditorViewValueChanged(conditionView: self)
     }
     
     @objc private func deleteButtonPressed() {
         Swift.print("Delete button pressed")
         
-        wantsDeletionHandler(self)
-        
-        //delegate?.conditionEditorViewWantsDeletion(conditionView: self)
+        wantsDeletionHandler(self)        
     }
     
     // MARK: - Update UI

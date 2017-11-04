@@ -8,10 +8,6 @@
 
 import Cocoa
 
-//protocol EditRuleViewControllerDelegate: class {
-//    func editRuleViewControllerDidEditRule<T: Rule>(_ rule: T)
-//}
-
 class EditRuleViewController<T: Rule>: NSViewController {
     
     // MARK: - Types
@@ -31,7 +27,6 @@ class EditRuleViewController<T: Rule>: NSViewController {
 
     fileprivate var existingRule: T?
     fileprivate var conditionViews = [ConditionEditorView<T.Condition>]()
-    //weak var delegate: EditRuleViewControllerDelegate?
     
     var didEditRuleHandler: (T) -> Void = {_ in}
     
@@ -235,15 +230,3 @@ class EditRuleViewController<T: Rule>: NSViewController {
     }
     
 }
-
-//extension EditRuleViewController: ConditionEditorViewDelegate {
-//
-//    func conditionEditorViewWantsDeletion<T>(conditionView: ConditionEditorView<T>) where T : DecisionTreeElement {
-//        print("VC: condition wants deletion")
-//        removeConditionView(conditionView)
-//    }
-//
-//    func conditionEditorViewValueChanged<T>(conditionView: ConditionEditorView<T>) where T : DecisionTreeElement {
-//        updateForCurrentState()
-//    }
-//}
