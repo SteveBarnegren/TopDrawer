@@ -45,44 +45,24 @@ class PathConditionInputView: NSView {
         return button
     }()
     
+    private lazy var stackView: NSStackView = {
+        let stackView = NSStackView(views: [self.textField, self.button])
+        return stackView
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        wantsLayer = true
-        layer?.backgroundColor = NSColor.orange.cgColor
-
-        addSubview(textField)
-        addSubview(button)
+        addSubview(stackView)
+        stackView.pinToSuperviewEdges()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - UIView
-    
-    override func layout() {
-        super.layout()
-        
-        textField.sizeToFit()
-        button.sizeToFit()
-        let height = textField.frame.size.height
-        
-        // Label
-        textField.frame = CGRect(x: 0,
-                             y: bounds.size.height - height,
-                             width: bounds.size.width - button.frame.size.width,
-                             height: height)
-        
-        // Button
-        button.frame = CGRect(x: textField.bounds.size.width,
-                              y: bounds.size.height - height,
-                              width: button.frame.size.width,
-                              height: height)
-    }
-    
     // MARK: - Actions
     
     @objc private func selectPathButtonPressed(_ button: NSButton) {
