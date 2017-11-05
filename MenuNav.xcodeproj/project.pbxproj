@@ -217,6 +217,7 @@
 				6719420A1F656DE4003AB65A /* UserPreferences.swift */,
 				679900B21F67275700B9AC45 /* Timer.swift */,
 				679370951F27A93B003E6A9A /* Protocols */,
+				6726D9641FAF619C004D7161 /* Extensions */,
 				672A26061FAA609C0046436D /* Utils */,
 				671E74D31FAA620900BAEA6D /* Settings */,
 				673CE1771FAA623A00DB9AE6 /* Decision Tree */,
@@ -303,16 +304,23 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		672A26061FAA609C0046436D /* Utils */ = {
+		6726D9641FAF619C004D7161 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				6793709D1F27B890003E6A9A /* Array+Extensions.swift */,
 				67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */,
 				67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */,
 				671941E61F63FB14003AB65A /* NSView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		672A26061FAA609C0046436D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
 				671941E91F63FE46003AB65A /* Colors.swift */,
-				671942051F649A37003AB65A /* WeakArray.swift */,
 				6724C1911F801F3B003E40D1 /* RichTextAttributes.swift */,
+				671942051F649A37003AB65A /* WeakArray.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -432,6 +440,8 @@
 		673CE1801FABB49700DB9AE6 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				6748CE371F3DC990002941D4 /* DictionaryRepresentable+Testing.swift */,
+				6748CE3E1F3DDDDA002941D4 /* TestDirectoryBuilder.swift */,
 				671942161F659B2A003AB65A /* DictionaryKeyValueStore.swift */,
 				679900B51F67341200B9AC45 /* MockTimerBenign.swift */,
 			);
@@ -459,8 +469,6 @@
 		67BAE1611FABB4D900FE8FDE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				6748CE371F3DC990002941D4 /* DictionaryRepresentable+Testing.swift */,
-				6748CE3E1F3DDDDA002941D4 /* TestDirectoryBuilder.swift */,
 				671942081F649D10003AB65A /* WeakArrayTests.swift */,
 			);
 			path = Utils;

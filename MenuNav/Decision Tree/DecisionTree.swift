@@ -147,46 +147,6 @@ func fileConditionDecisionTree() -> DecisionNode<FileRule.Condition> {
         ]))
 }
 
-/*
- func fileConditionDecisionTree() -> DecisionNode<FileRule.Condition> {
- 
- return
- DecisionNode<FileRule.Condition>(.list("root", [
- DecisionNode(.list("Name", [
- DecisionNode(.textValue("is", placeholder: "Name") { .name(.matching($0)) }),
- DecisionNode(.textValue("is not", placeholder: "Name") { .name(.notMatching($0)) }),
- DecisionNode(.textValue("contains", placeholder: "String") { .name(.containing($0)) }),
- DecisionNode(.textValue("does not contain", placeholder: "String") { .name(.notContaining($0)) })
- ])),
- DecisionNode(.list("Extension", [
- DecisionNode(.textValue("is", placeholder: "eg. pdf") { .ext(.matching($0)) }),
- DecisionNode(.textValue("is not", placeholder: "eg. pdf") { .ext(.notMatching($0)) })
- ])),
- DecisionNode(.list("Full name", [
- DecisionNode(.textValue("is", placeholder: "eg. report.pdf") { .fullName(.matching($0)) }),
- DecisionNode(.textValue("is not", placeholder: "eg. report.pdf") { .fullName(.notMatching($0)) })
- ])),
- DecisionNode(.list("Parent Folder", [
- DecisionNode(.list("contains", [
- DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentContains(.filesWithExtension($0)) }),
- DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentContains(.filesWithFullName($0)) })
- ])),
- DecisionNode(.list("doesn't contain", [
- DecisionNode(.textValue("files with extension", placeholder: "eg. pdf") { .parentDoesntContain(.filesWithExtension($0)) }),
- DecisionNode(.textValue("files with full name", placeholder: "eg. report.pdf") { .parentDoesntContain(.filesWithFullName($0)) })
- ]))
- ])),
- DecisionNode(.list("Hierarchy", [
- DecisionNode(.list("contains", [
- DecisionNode(.textValue("folder with name", placeholder: "eg. documents") { .hierarchyContains(.folderWithName(.matchich($0))) })
- ]))
- ]))
- ]))
- }
- 
- 
- */
-
 // MARK: - Folder Condtion Decision Tree
 
 func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
@@ -246,42 +206,4 @@ func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
             contains,
             doesntContain
             ]))
-    
-    /*
-     return
-     DecisionNode<FolderRule.Condition>(.list("root", [
-     DecisionNode(.list("Name", [
-     DecisionNode(.textValue("is", placeholder: "Name"){ .name(.matching($0)) }),
-     DecisionNode(.textValue("is not", placeholder: "Name"){ .name(.notMatching($0)) }),
-     DecisionNode(.textValue("contains", placeholder: "Name"){ .name(.containing($0)) }),
-     DecisionNode(.textValue("does not contain", placeholder: "Name"){ .name(.notContaining($0)) }),
-     ])),
-     DecisionNode(.list("Path", [
-     DecisionNode(.textValue("is", placeholder: "Path"){ .path(.matching($0)) }),
-     DecisionNode(.textValue("is not", placeholder: "Path"){ .path(.notMatching($0)) }),
-     ])),
-     DecisionNode(.list("Contains", [
-     DecisionNode(.list("files", [
-     DecisionNode(.textValue("with extension", placeholder: "Extension"){ .contains(.filesWithExtension($0)) }),
-     DecisionNode(.textValues("with name and extension", placeholders: ["Name", "Extension"]){
-     .contains(.filesWithNameAndExtension(name: $0[0], ext: $0[1]))
-     }),
-     ])),
-     DecisionNode(.list("folders", [
-     DecisionNode(.textValue("with name", placeholder: "Extension"){ .contains(.foldersWithName($0)) }),
-     ])),
-     ])),
-     DecisionNode(.list("Doesn't contain", [
-     DecisionNode(.list("files", [
-     DecisionNode(.textValue("with extension", placeholder: "Extension"){ .doesntContain(.filesWithExtension($0)) }),
-     DecisionNode(.textValues("with name and extension", placeholders: ["Name", "Extension"]){
-     .doesntContain(.filesWithNameAndExtension(name: $0[0], ext: $0[1]))
-     }),
-     ])),
-     DecisionNode(.list("folders", [
-     DecisionNode(.textValue("with name", placeholder: "Extension"){ .doesntContain(.foldersWithName($0)) }),
-     ])),
-     ]))
-     ]))
-     */
 }
