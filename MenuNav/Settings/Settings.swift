@@ -80,8 +80,8 @@ class Setting<T: KeyValueStorable> {
         observers.append(observer)
     }
     
-    func remove(changeObserver: Observer) {
-        observers = observers.filter { $0.object !== changeObserver }
+    func remove(changeObserver observerToRemove: AnyObject) {
+        observers = observers.filter { $0.object !== observerToRemove }
     }
     
     private func sendChangeEvent() {
