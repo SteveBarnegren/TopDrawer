@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class PanelViewController: NSViewController {
     
     // MARK: - Outlets
     

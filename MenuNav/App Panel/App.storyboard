@@ -30,10 +30,10 @@
             </objects>
             <point key="canvasLocation" x="-483" y="146"/>
         </scene>
-        <!--View Controller-->
+        <!--Panel View Controller-->
         <scene sceneID="cmg-TG-pqA">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="Arv-Nj-IMh" customClass="ViewController" customModule="MenuNav" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="Arv-Nj-IMh" customClass="PanelViewController" customModule="MenuNav" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cf1-ga-p4k">
                         <rect key="frame" x="0.0" y="0.0" width="640" height="460"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -112,7 +112,7 @@ class MenuBarManager {
         appWindowController?.showWindow(self)
         appWindowController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
         appWindowController?.window?.makeKeyAndOrderFront(self)
-        let viewController = appWindowController?.window?.contentViewController as! ViewController
+        let viewController = appWindowController?.window?.contentViewController as! PanelViewController
         viewController.configure(withRebuildManager: rebuildManager)
     }
     
