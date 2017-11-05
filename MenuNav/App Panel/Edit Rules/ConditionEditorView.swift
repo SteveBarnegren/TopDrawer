@@ -111,6 +111,7 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
                 
                 let pathView = self.makePathInputView()
                 pathView.placeholder = placeholder
+                pathView.path = node.textValue ?? ""
                 addViewToStackView(pathView, fromNode: node)
             }
         }

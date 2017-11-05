@@ -38,8 +38,8 @@ class PathConditionInputView: NSView {
     }()
     
     private lazy var button: NSButton = {
-        let button = NSButton(title: "P",
-                              image: NSImage(),
+        let button = NSButton(title: "",
+                              image: NSImage(named: NSImage.Name(rawValue: "Edit"))!,
                               target: self,
                               action: #selector(selectPathButtonPressed(_:)))
         return button
