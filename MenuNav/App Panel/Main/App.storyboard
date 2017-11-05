@@ -102,9 +102,13 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="247" id="bsD-Lp-2J6"/>
                                 </constraints>
                             </customView>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="EVT-UM-Llh">
+                                <rect key="frame" x="604" y="424" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Uah-XU-0ba" firstAttribute="centerX" secondItem="cf1-ga-p4k" secondAttribute="centerX" id="Biy-cK-OT0"/>
+                            <constraint firstItem="EVT-UM-Llh" firstAttribute="trailing" secondItem="6Ot-s0-Cy6" secondAttribute="trailing" id="FKM-30-haR"/>
                             <constraint firstItem="FJY-hQ-lAU" firstAttribute="leading" secondItem="cf1-ga-p4k" secondAttribute="leading" constant="20" id="Fi8-Qs-eEY"/>
                             <constraint firstItem="FJY-hQ-lAU" firstAttribute="top" secondItem="Uah-XU-0ba" secondAttribute="bottom" constant="8" id="PQb-Dy-T0c"/>
                             <constraint firstItem="6Ot-s0-Cy6" firstAttribute="top" secondItem="cf1-ga-p4k" secondAttribute="top" constant="20" id="QjY-wX-YN0"/>
@@ -113,12 +117,14 @@
                             <constraint firstAttribute="trailing" secondItem="6Ot-s0-Cy6" secondAttribute="trailing" constant="20" id="s5q-KI-u76"/>
                             <constraint firstAttribute="bottom" secondItem="FJY-hQ-lAU" secondAttribute="bottom" constant="20" id="wHp-my-ntq"/>
                             <constraint firstItem="6Ot-s0-Cy6" firstAttribute="leading" secondItem="cf1-ga-p4k" secondAttribute="leading" constant="20" id="xbo-o0-VAL"/>
+                            <constraint firstItem="EVT-UM-Llh" firstAttribute="top" secondItem="6Ot-s0-Cy6" secondAttribute="top" id="zFL-ki-9sG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="button" destination="gSr-TE-ehb" id="MHn-fC-b8F"/>
                         <outlet property="contentView" destination="FJY-hQ-lAU" id="wCs-df-KsE"/>
                         <outlet property="iconImageView" destination="GhN-E0-7Ld" id="TaC-Et-Yrz"/>
+                        <outlet property="rebuildingIndicator" destination="EVT-UM-Llh" id="lEt-HC-7OE"/>
                         <outlet property="segmentedControl" destination="Uah-XU-0ba" id="yMI-Zo-ocN"/>
                         <outlet property="textField" destination="zZd-ra-UMi" id="ob5-gK-EaP"/>
                     </connections>

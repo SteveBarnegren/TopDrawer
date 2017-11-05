@@ -16,11 +16,12 @@ class PanelViewController: NSViewController {
     @IBOutlet weak private var button: NSButton!
     @IBOutlet weak var iconImageView: NSImageView!
     @IBOutlet weak fileprivate var segmentedControl: NSSegmentedControl!
+    @IBOutlet weak fileprivate var rebuildingIndicator: NSProgressIndicator!
     
     @IBOutlet weak fileprivate var contentView: NSView!
     fileprivate var contentViewController: NSViewController?
     private var rebuildManager: RebuildManager!
-
+    
     // MARK: - NSViewController
     
     override func viewDidLoad() {
@@ -31,12 +32,17 @@ class PanelViewController: NSViewController {
         
         // Update UI
         updatePathLabel()
+        
+        // Rebuilding Indicator
+        rebuildingIndicator.isDisplayedWhenStopped = false
+        showRebuildingIndicator(false)
     }
     
     // MARK: - Pass in dependancies
     
     func configure(withRebuildManager rebuildManager: RebuildManager) {
         self.rebuildManager = rebuildManager
+        self.rebuildManager.addListener(self)
         showFileRules()
     }
     
@@ -139,6 +145,32 @@ class PanelViewController: NSViewController {
         let path = Settings.shared.path.value
         
         textField.stringValue = path.isEmpty ? "No path set" : path
+    }
+    
+    // MARK: - Rebulding Indicator
+    
+    func showRebuildingIndicator(_ show: Bool) {
+        
+        if show {
+            rebuildingIndicator.startAnimation(nil)
+        } else {
+            rebuildingIndicator.stopAnimation(nil)
+        }
+        
+    }
+    
+}
+
+// MARK: - RebuildManagerListener
+extension PanelViewController: RebuildManagerListener {
+    
+    func rebuildManagerDidChangeState(state: RebuildManager.State) {
+        
+        switch state {
+        case .idle: showRebuildingIndicator(false)
+        case .rebuilding: showRebuildingIndicator(true)
+        }
+        
     }
     
 }

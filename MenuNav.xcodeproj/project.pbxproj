@@ -328,7 +328,6 @@
 		672A26081FAA61250046436D /* App Panel */ = {
 			isa = PBXGroup;
 			children = (
-				67A02E1A1EB4079B00D2A8CA /* App.storyboard */,
 				672A26091FAA613A0046436D /* Main */,
 				672A260A1FAA61450046436D /* Rules */,
 				672A260B1FAA61580046436D /* Edit Rules */,
@@ -340,6 +339,7 @@
 		672A26091FAA613A0046436D /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				67A02E1A1EB4079B00D2A8CA /* App.storyboard */,
 				0978BEC01EB393110023AC66 /* PanelViewController.swift */,
 			);
 			path = Main;
