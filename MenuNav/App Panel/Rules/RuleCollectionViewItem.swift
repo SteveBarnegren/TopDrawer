@@ -47,6 +47,8 @@ class RuleCollectionViewItem: NSCollectionViewItem {
         rule.conditions.forEach {
             
             let label = NSTextField.createWithLabelStyle()
+            label.usesSingleLineMode = true
+            label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             label.attributedStringValue = $0.attributedDisplayDescription(withAttributes: attributes)
             conditionsStackView.addArrangedSubview(label)
         }
