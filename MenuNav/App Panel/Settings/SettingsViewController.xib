@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NgK-PV-sVN">
-                    <rect key="frame" x="0.0" y="174" width="690" height="99"/>
+                    <rect key="frame" x="0.0" y="309" width="690" height="99"/>
                     <subviews>
                         <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khV-8C-uUI">
                             <rect key="frame" x="245.5" y="41" width="199" height="58"/>
@@ -161,7 +161,7 @@
                 </stackView>
             </subviews>
             <constraints>
-                <constraint firstItem="NgK-PV-sVN" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="T1L-xm-Sne"/>
+                <constraint firstItem="NgK-PV-sVN" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="40" id="YGI-15-MOC"/>
                 <constraint firstItem="NgK-PV-sVN" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="lx0-vL-jDP"/>
                 <constraint firstAttribute="trailing" secondItem="NgK-PV-sVN" secondAttribute="trailing" id="nsc-8Z-gkm"/>
                 <constraint firstAttribute="trailing" secondItem="xAH-Wx-96t" secondAttribute="trailing" constant="8" id="xnT-BY-G1y"/>
