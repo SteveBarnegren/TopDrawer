@@ -10,50 +10,38 @@ import Cocoa
 
 class SettingsViewController: NSViewController {
     
-    enum Interval {
-        case minutes(Int)
-        case never
-        
-        var title: String {
-            switch self {
-            case let .minutes(m):
-                return "\(m)"
-            case .never:
-                return "Never"
-            }
-        }
-        
-        var value: Int {
-            switch self {
-            case let .minutes(m):
-                return m
-            case .never:
-                return -1
-            }
-        }
-    }
-    
     // MARK: - Properties
     
     @IBOutlet weak fileprivate var followAliasesButton: NSButton!
     @IBOutlet weak fileprivate var shortenPathsButton: NSButton!
     @IBOutlet weak fileprivate var openAtLoginButton: NSButton!
     @IBOutlet weak fileprivate var refreshIntervalDropdown: NSPopUpButton!
+    @IBOutlet weak fileprivate var timeoutIntervalDropdown: NSPopUpButton!
     @IBOutlet weak fileprivate var lastRebuildTimeLabel: NSTextField!
     @IBOutlet weak fileprivate var timeTakenLabel: NSTextField!
     
     let rebuildManager: RebuildManager
-
-        let intervals: [Interval] = [
-            .minutes(5),
-            .minutes(10),
-            .minutes(15),
-            .minutes(20),
-            .minutes(30),
-            .minutes(45),
-            .minutes(60),
-            .never
-        ]
+    
+    let refreshIntervals: [Interval] = [
+        .minutes(5),
+        .minutes(10),
+        .minutes(15),
+        .minutes(20),
+        .minutes(30),
+        .minutes(45),
+        .minutes(60),
+        .never
+    ]
+    
+    let timeoutIntervals: [Interval] = [
+        .seconds(15),
+        .seconds(30),
+        .seconds(45),
+        .minutes(1),
+        .minutes(2),
+        .minutes(3),
+        .never
+    ]
     
     init(rebuildManager: RebuildManager) {
         self.rebuildManager = rebuildManager
@@ -65,7 +53,7 @@ class SettingsViewController: NSViewController {
     }
     
     // MARK: - NSViewController
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,17 +66,38 @@ class SettingsViewController: NSViewController {
         // Open at login button
         openAtLoginButton.state = Bundle.main.isLoginItem() ? .on : .off
         
-        // Rebuild Interval Popup
-        refreshIntervalDropdown.removeAllItems()
-        intervals.forEach {
-            refreshIntervalDropdown.addItem(withTitle: $0.title)
-        }
+        // Rebuild interval Dropdown
+        setupRefreshIntervalDropdown()
         
-        let index = intervals.index(where: { $0.value == Settings.shared.refreshMinutes.value }) ?? intervals.count - 1
-        refreshIntervalDropdown.selectItem(at: index)
+        // Timeout interval dropdown
+        setupTimeoutIntervalDropdown()
         
         // Observe Rebuild Manager
         rebuildManager.addListener(self)
+    }
+    
+    func setupRefreshIntervalDropdown() {
+        refreshIntervalDropdown.removeAllItems()
+        refreshIntervals.forEach {
+            refreshIntervalDropdown.addItem(withTitle: $0.title)
+        }
+        
+        let index = refreshIntervals.index { Int($0.minutesValue) == Settings.shared.refreshMinutes.value }
+            ?? refreshIntervals.count - 1
+        
+        refreshIntervalDropdown.selectItem(at: index)
+    }
+    
+    func setupTimeoutIntervalDropdown() {
+        timeoutIntervalDropdown.removeAllItems()
+        timeoutIntervals.forEach {
+            timeoutIntervalDropdown.addItem(withTitle: $0.title)
+        }
+        
+        let index = timeoutIntervals.index { Int($0.secondsValue) == Settings.shared.timeout.value }
+            ?? timeoutIntervals.count - 1
+        
+        timeoutIntervalDropdown.selectItem(at: index)
     }
     
     override func viewWillAppear() {
@@ -99,26 +108,28 @@ class SettingsViewController: NSViewController {
     
     // MARK: - Update UI
     
-    fileprivate func updateTimeTakenLabel() {
-        
-        if let seconds = rebuildManager.lastResults?.timeTaken {
-            let intSeconds = max(Int(seconds), 1)
-            let unit = intSeconds == 1 ? "second" : "seconds"
-            timeTakenLabel.stringValue = "Took \(intSeconds) \(unit)"
-        } else {
-          timeTakenLabel.stringValue = ""
-        }
-    }
-    
     fileprivate func updateLastRebuildTimeLabel() {
         
-        if let date = rebuildManager.lastResults?.timeCompleted {
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeStyle = .short
-            let dateString = dateFormatter.string(from: date)
-            lastRebuildTimeLabel.stringValue = "Last refresh: \(dateString)"
-        } else {
+        let lastResult = rebuildManager.lastResults
+        
+        if case .none = lastResult {
             lastRebuildTimeLabel.stringValue = ""
+        } else {
+            let formatter = RebuildResultsFormatter()
+            lastRebuildTimeLabel.stringValue = formatter.lastRefreshString(fromResult: lastResult)
+        }
+        
+    }
+    
+    fileprivate func updateTimeTakenLabel() {
+        
+        let lastResult = rebuildManager.lastResults
+        
+        if case .none = lastResult {
+            timeTakenLabel.stringValue = ""
+        } else {
+            let formatter = RebuildResultsFormatter()
+            timeTakenLabel.stringValue = formatter.lastStatusString(fromResult: lastResult)
         }
     }
     
@@ -146,17 +157,35 @@ class SettingsViewController: NSViewController {
     
     @IBAction private func refreshIntervalDropdownValueChanged(sender: NSPopUpButton) {
         
-        guard let interval = intervals.first(where: { $0.title == refreshIntervalDropdown.selectedItem?.title }) else {
+        guard let interval = refreshIntervals.first(where: {
+            $0.title == refreshIntervalDropdown.selectedItem?.title
+        }) else {
             fatalError("Unable to get interval from dropdown choice")
         }
         
-        Settings.shared.refreshMinutes.value = interval.value
+        Settings.shared.refreshMinutes.value = Int(interval.minutesValue)
+    }
+    
+    @IBAction private func timeoutIntervalDropdownValueChanged(sender: NSPopUpButton) {
+        
+        guard let interval = timeoutIntervals.first(where: {
+            $0.title == timeoutIntervalDropdown.selectedItem?.title
+        }) else {
+            fatalError("Unable to get interval from dropdown choice")
+        }
+        
+        Settings.shared.timeout.value = Int(interval.secondsValue)
     }
 }
 
 extension SettingsViewController: RebuildManagerListener {
     
     func rebuildManagerDidRebuild(directory: Directory) {
+        updateTimeTakenLabel()
+        updateLastRebuildTimeLabel()
+    }
+    
+    func rebuildManagerDidChangeState(state: RebuildManager.State) {
         updateTimeTakenLabel()
         updateLastRebuildTimeLabel()
     }

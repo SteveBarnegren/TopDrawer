@@ -29,9 +29,10 @@ class RebuildManager {
         case rebuilding
     }
     
-    struct RebuildResults {
-        let timeTaken: TimeInterval
-        let timeCompleted: Date
+    enum Result {
+        case none
+        case success(timeTaken: TimeInterval, date: Date)
+        case tookTooLong(date: Date)
     }
     
     // MARK: - Properties
@@ -41,8 +42,10 @@ class RebuildManager {
             switch state {
             case .idle:
                 startRefreshTimer()
+                stopTimeoutTimer()
             case .rebuilding:
                 stopRefreshTimer()
+                startTimeoutTimer()
             }
             listeners.objects.forEach { $0.rebuildManagerDidChangeState(state: state) }
         }
@@ -67,12 +70,13 @@ class RebuildManager {
     
     private let timerType: Timer.Type
     private var refreshTimer: Timer?
+    private var timeoutTimer: Timer?
     private let settings: Settings
     private let fileReader: FileReader
     private let rulesKeyValueStore: KeyValueStore
     private var rebuildStartTime = CFAbsoluteTime(0)
     
-    var lastResults: RebuildResults?
+    var lastResults = Result.none
     
     // MARK: - Init
     
@@ -97,6 +101,7 @@ class RebuildManager {
         settings.path.add(changeObserver: self, selector: #selector(pathSettingChanged))
         settings.followAliases.add(changeObserver: self, selector: #selector(followAliasesSettingChanged))
         settings.shortenPaths.add(changeObserver: self, selector: #selector(shortenPathsSettingChanged))
+        settings.timeout.add(changeObserver: self, selector: #selector(timeoutSettingChanged))
     }
     
     // MARK: - Build menu
@@ -162,9 +167,11 @@ class RebuildManager {
                 }
                 
                 if item.isCancelled {
-                    self?.state = .idle
-                    self?.buildMenuIfNeeded()
-                    return
+                    DispatchQueue.main.async(execute: {
+                        self?.state = .idle
+                        self?.buildMenuIfNeeded()
+                        return
+                    })
                 }
                 
                 DispatchQueue.main.async(execute: {
@@ -175,26 +182,29 @@ class RebuildManager {
                 return
             }
             
-            guard let item = self?.workItem else {
-                self?.state = .idle
-                return
-            }
-            
-            if item.isCancelled {
-                self?.state = .idle
-                self?.buildMenuIfNeeded()
-                return
-            }
-            
-            self!.lastResults = RebuildResults(timeTaken: CFAbsoluteTimeGetCurrent() - self!.rebuildStartTime,
-                                              timeCompleted: Date())
-            
             DispatchQueue.main.async(execute: {
+                
+                guard let item = self?.workItem else {
+                    self?.state = .idle
+                    return
+                }
+                
+                if item.isCancelled {
+                    self?.state = .idle
+                    self!.lastResults = .tookTooLong(date: Date())
+                    self?.buildMenuIfNeeded()
+                    return
+                }
+                
+                self!.lastResults = .success(timeTaken: CFAbsoluteTimeGetCurrent() - self!.rebuildStartTime,
+                                             date: Date())
+                
                 print("Finished Building menu")
                 self?.state = .idle
                 self?.listeners.objects.forEach {
                     $0.rebuildManagerDidRebuild(directory: rootDirectory)
                 }
+                
             })
         }
         
@@ -214,11 +224,6 @@ class RebuildManager {
     
     // MARK: - Refresh Timer
     
-    private func stopRefreshTimer() {
-        refreshTimer?.stop()
-        refreshTimer = nil
-    }
-    
     private func startRefreshTimer() {
         
         stopRefreshTimer()
@@ -237,8 +242,48 @@ class RebuildManager {
         refreshTimer?.start()
     }
     
+    private func stopRefreshTimer() {
+        refreshTimer?.stop()
+        refreshTimer = nil
+    }
+    
     @objc private func refreshTimerFired() {
         needsRebuild = true
+    }
+    
+    // MARK: - Timeout Timer
+    
+    private func startTimeoutTimer() {
+        
+        stopTimeoutTimer()
+        
+        let seconds = TimeInterval(settings.timeout.value)
+        
+        if seconds <= 0 {
+            print("No timeout")
+            return
+        }
+        
+        print("Timeout: \(seconds)")
+        
+        timeoutTimer = timerType.init(interval: seconds,
+                                      target: self,
+                                      selector: #selector(timeoutTimerFired),
+                                      repeats: false,
+                                      pctTolerance: 0)
+        timeoutTimer?.start()
+    }
+    
+    private func stopTimeoutTimer() {
+        timeoutTimer?.stop()
+        timeoutTimer = nil
+    }
+    
+    @objc private func timeoutTimerFired() {
+        if case .rebuilding = state {
+            workItem!.cancel()
+            self.lastResults = .tookTooLong(date: Date())
+        }
     }
     
     // MARK: - Settings Observers
@@ -252,6 +297,10 @@ class RebuildManager {
     }
     
     @objc private func shortenPathsSettingChanged() {
+        needsRebuild = true
+    }
+    
+    @objc private func timeoutSettingChanged() {
         needsRebuild = true
     }
 }

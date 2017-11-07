@@ -15,6 +15,7 @@
                 <outlet property="refreshIntervalDropdown" destination="5xe-yD-BbI" id="tKU-cO-jlm"/>
                 <outlet property="shortenPathsButton" destination="a2T-3t-TJ5" id="the-Qz-plx"/>
                 <outlet property="timeTakenLabel" destination="lhJ-I5-f0T" id="KOi-oc-3oY"/>
+                <outlet property="timeoutIntervalDropdown" destination="Ajf-Lr-0RM" id="6W6-ph-xay"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -25,10 +26,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NgK-PV-sVN">
-                    <rect key="frame" x="0.0" y="309" width="690" height="99"/>
+                    <rect key="frame" x="0.0" y="268" width="690" height="140"/>
                     <subviews>
                         <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khV-8C-uUI">
-                            <rect key="frame" x="245.5" y="41" width="199" height="58"/>
+                            <rect key="frame" x="245.5" y="82" width="199" height="58"/>
                             <subviews>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="a2T-3t-TJ5">
                                     <rect key="frame" x="-2" y="42" width="203" height="18"/>
@@ -73,7 +74,7 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iom-LK-8Um">
-                            <rect key="frame" x="236" y="0.0" width="218" height="21"/>
+                            <rect key="frame" x="264.5" y="41" width="161" height="21"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XB5-WR-sxs">
                                     <rect key="frame" x="-2" y="2" width="86" height="17"/>
@@ -100,22 +101,50 @@
                                         <action selector="refreshIntervalDropdownValueChangedWithSender:" target="-2" id="Hcx-Yc-0br"/>
                                     </connections>
                                 </popUpButton>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3ag-mo-PcL">
-                                    <rect key="frame" x="167" y="2" width="53" height="17"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Minutes" id="Quj-iI-0ru">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                             </subviews>
                             <visibilityPriorities>
-                                <integer value="1000"/>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
                             </visibilityPriorities>
                             <customSpacing>
                                 <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cv0-yg-eOE">
+                            <rect key="frame" x="280.5" y="0.0" width="129" height="21"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rog-iC-Y3X">
+                                    <rect key="frame" x="-2" y="2" width="54" height="17"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Timeout" id="Ivh-qj-G1f">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ajf-Lr-0RM">
+                                    <rect key="frame" x="56" y="-3" width="76" height="26"/>
+                                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="L4P-B9-U8v" id="TyW-UO-azc">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="3de-zS-cib">
+                                            <items>
+                                                <menuItem title="Item 1" state="on" id="L4P-B9-U8v"/>
+                                                <menuItem title="Item 2" id="qGe-41-Ap3"/>
+                                                <menuItem title="Item 3" id="8rC-8f-vD8"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="timeoutIntervalDropdownValueChangedWithSender:" target="-2" id="bEV-BY-g4g"/>
+                                    </connections>
+                                </popUpButton>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
                                 <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
@@ -124,8 +153,10 @@
                     <visibilityPriorities>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>

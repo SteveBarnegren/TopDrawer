@@ -10,7 +10,7 @@ import Cocoa
 import SBSwiftUtils
 import AppKit
 
-let autoOpenSettings = false
+let autoOpenSettings = true
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

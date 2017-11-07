@@ -107,7 +107,8 @@ class Settings {
     let shortenPaths: Setting<Bool>
     let followAliases: Setting<Bool>
     let refreshMinutes: Setting<Int>
-    
+    let timeout: Setting<Int>
+
     // MARK: - Init
     
     init(keyValueStore: KeyValueStore) {
@@ -115,5 +116,6 @@ class Settings {
         self.shortenPaths = Setting(keyValueStore: keyValueStore, key: "shortenPaths", defaultValue: true)
         self.followAliases = Setting(keyValueStore: keyValueStore, key: "followAliases", defaultValue: false)
         self.refreshMinutes = Setting(keyValueStore: keyValueStore, key: "refreshMinutes", defaultValue: 10)
+        self.timeout = Setting(keyValueStore: keyValueStore, key: "timeout", defaultValue: 60)
     }
 }

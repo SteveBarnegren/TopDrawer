@@ -16,18 +16,21 @@ class MockSettingsKeyValueStore: KeyValueStore {
         static let shortenPaths = "shortenPaths"
         static let followAliases = "followAliases"
         static let refreshMinutes = "refreshMinutes"
+        static let timeout = "timeout"
     }
     
     var path: String?
     var shortenPaths: Bool?
     var followAliases: Bool?
     var refreshMinutes: Int?
+    var timeout: Int?
     
-    init(path: String?, shortenPaths: Bool?, followAliases: Bool?, refreshMinutes: Int?) {
+    init(path: String?, shortenPaths: Bool?, followAliases: Bool?, refreshMinutes: Int?, timeout: Int?) {
         self.path = path
         self.shortenPaths = shortenPaths
         self.followAliases = followAliases
         self.refreshMinutes = refreshMinutes
+        self.timeout = timeout
     }
     
     func set(value: Any, forKey key: String) {
@@ -70,6 +73,7 @@ class MockSettingsKeyValueStore: KeyValueStore {
     func set(int: Int, forKey key: String) {
         switch key {
         case Keys.refreshMinutes: refreshMinutes = int
+        case Keys.timeout: timeout = int
         default: fatalError("Unknown settings key: \(key)")
         }
     }
@@ -77,6 +81,7 @@ class MockSettingsKeyValueStore: KeyValueStore {
     func int(forKey key: String) -> Int? {
         switch key {
         case Keys.refreshMinutes: return refreshMinutes
+        case Keys.timeout: return timeout
         default: fatalError("Unknown settings key: \(key)")
         }
 
@@ -136,12 +141,17 @@ class RebuildManagerTests: XCTestCase {
         return keyValueStore
     }
     
-    func makeMockSettings(path: String?, shortenPaths: Bool?, followAliases: Bool?, refreshMinutes: Int?) -> Settings {
+    func makeMockSettings(path: String?,
+                          shortenPaths: Bool?,
+                          followAliases: Bool?,
+                          refreshMinutes: Int?,
+                          timeout: Int?) -> Settings {
         
         let mockKeyValueStore = MockSettingsKeyValueStore(path: path,
                                                           shortenPaths: shortenPaths,
                                                           followAliases: followAliases,
-                                                          refreshMinutes: refreshMinutes)
+                                                          refreshMinutes: refreshMinutes,
+                                                          timeout: timeout)
         return Settings(keyValueStore: mockKeyValueStore)
     }
     
@@ -151,7 +161,12 @@ class RebuildManagerTests: XCTestCase {
         
         let e = expectation(description: "RebuildManager calls didRebuild callback")
         
-        let mockSettings = makeMockSettings(path: "Root", shortenPaths: false, followAliases: false, refreshMinutes: 10)
+        let mockSettings = makeMockSettings(path: "Root",
+                                            shortenPaths: false,
+                                            followAliases: false,
+                                            refreshMinutes: 10,
+                                            timeout: 10)
+        
         let rebuildManager = RebuildManager(settings: mockSettings,
                                             fileReader: makeMockFileReader(),
                                             rulesKeyValueStore: makeMatchingRulesKeyValueStore(),
@@ -176,7 +191,12 @@ class RebuildManagerTests: XCTestCase {
         
         let e = expectation(description: "RebuildManager calls noPath callback")
         
-        let mockSettings = makeMockSettings(path: nil, shortenPaths: false, followAliases: false, refreshMinutes: 10)
+        let mockSettings = makeMockSettings(path: nil,
+                                            shortenPaths: false,
+                                            followAliases: false,
+                                            refreshMinutes: 10,
+                                            timeout: 10)
+        
         let rebuildManager = RebuildManager(settings: mockSettings,
                                             fileReader: makeMockFileReader(),
                                             rulesKeyValueStore: makeMatchingRulesKeyValueStore(),
