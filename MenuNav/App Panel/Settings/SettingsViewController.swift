@@ -9,6 +9,30 @@
 import Cocoa
 import AttributedStringBuilder
 
+struct SettingsIntervalChoices {
+    
+    static let refreshIntervals: [Interval] = [
+        .minutes(5),
+        .minutes(10),
+        .minutes(15),
+        .minutes(20),
+        .minutes(30),
+        .minutes(45),
+        .minutes(60),
+        .never
+    ]
+    
+    static let timeoutIntervals: [Interval] = [
+        .seconds(15),
+        .seconds(30),
+        .seconds(45),
+        .minutes(1),
+        .minutes(2),
+        .minutes(3),
+        .never
+    ]
+}
+
 class SettingsViewController: NSViewController {
     
     // MARK: - Properties
@@ -23,27 +47,6 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak fileprivate var gitHubButton: NSButton!
     
     let rebuildManager: RebuildManager
-    
-    let refreshIntervals: [Interval] = [
-        .minutes(5),
-        .minutes(10),
-        .minutes(15),
-        .minutes(20),
-        .minutes(30),
-        .minutes(45),
-        .minutes(60),
-        .never
-    ]
-    
-    let timeoutIntervals: [Interval] = [
-        .seconds(15),
-        .seconds(30),
-        .seconds(45),
-        .minutes(1),
-        .minutes(2),
-        .minutes(3),
-        .never
-    ]
     
     init(rebuildManager: RebuildManager) {
         self.rebuildManager = rebuildManager
@@ -83,24 +86,24 @@ class SettingsViewController: NSViewController {
     
     func setupRefreshIntervalDropdown() {
         refreshIntervalDropdown.removeAllItems()
-        refreshIntervals.forEach {
+        SettingsIntervalChoices.refreshIntervals.forEach {
             refreshIntervalDropdown.addItem(withTitle: $0.title)
         }
         
-        let index = refreshIntervals.index { Int($0.minutesValue) == Settings.shared.refreshMinutes.value }
-            ?? refreshIntervals.count - 1
+        let index = SettingsIntervalChoices.refreshIntervals.index { Int($0.minutesValue) == Settings.shared.refreshMinutes.value }
+            ?? SettingsIntervalChoices.refreshIntervals.count - 1
         
         refreshIntervalDropdown.selectItem(at: index)
     }
     
     func setupTimeoutIntervalDropdown() {
         timeoutIntervalDropdown.removeAllItems()
-        timeoutIntervals.forEach {
+        SettingsIntervalChoices.timeoutIntervals.forEach {
             timeoutIntervalDropdown.addItem(withTitle: $0.title)
         }
         
-        let index = timeoutIntervals.index { Int($0.secondsValue) == Settings.shared.timeout.value }
-            ?? timeoutIntervals.count - 1
+        let index = SettingsIntervalChoices.timeoutIntervals.index { Int($0.secondsValue) == Settings.shared.timeout.value }
+            ?? SettingsIntervalChoices.timeoutIntervals.count - 1
         
         timeoutIntervalDropdown.selectItem(at: index)
     }
@@ -176,7 +179,7 @@ class SettingsViewController: NSViewController {
     
     @IBAction private func refreshIntervalDropdownValueChanged(sender: NSPopUpButton) {
         
-        guard let interval = refreshIntervals.first(where: {
+        guard let interval = SettingsIntervalChoices.refreshIntervals.first(where: {
             $0.title == refreshIntervalDropdown.selectedItem?.title
         }) else {
             fatalError("Unable to get interval from dropdown choice")
@@ -187,7 +190,7 @@ class SettingsViewController: NSViewController {
     
     @IBAction private func timeoutIntervalDropdownValueChanged(sender: NSPopUpButton) {
         
-        guard let interval = timeoutIntervals.first(where: {
+        guard let interval = SettingsIntervalChoices.timeoutIntervals.first(where: {
             $0.title == timeoutIntervalDropdown.selectedItem?.title
         }) else {
             fatalError("Unable to get interval from dropdown choice")
@@ -196,7 +199,7 @@ class SettingsViewController: NSViewController {
         Settings.shared.timeout.value = Int(interval.secondsValue)
     }
     
-    @IBAction private func openGitHubPageButtonPressed(sender: NSButton){
+    @IBAction private func openGitHubPageButtonPressed(sender: NSButton) {
         if let url = URL(string: "https://github.com/SteveBarnegren/MenuNav") {
             NSWorkspace.shared.open(url)
         }

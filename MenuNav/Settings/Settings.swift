@@ -115,7 +115,7 @@ class Settings {
         self.path = Setting(keyValueStore: keyValueStore, key: "path", defaultValue: "")
         self.shortenPaths = Setting(keyValueStore: keyValueStore, key: "shortenPaths", defaultValue: true)
         self.followAliases = Setting(keyValueStore: keyValueStore, key: "followAliases", defaultValue: false)
-        self.refreshMinutes = Setting(keyValueStore: keyValueStore, key: "refreshMinutes", defaultValue: 10)
-        self.timeout = Setting(keyValueStore: keyValueStore, key: "timeout", defaultValue: 60)
+        self.refreshMinutes = Setting(keyValueStore: keyValueStore, key: "refreshMinutes", defaultValue: 30)
+        self.timeout = Setting(keyValueStore: keyValueStore, key: "timeout", defaultValue: 120)
     }
 }

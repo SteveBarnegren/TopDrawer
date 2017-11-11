@@ -225,4 +225,20 @@ class SettingsTests: XCTestCase {
         XCTAssertEqual(deallocatedObserverReceivedCallback, false)
     }
     
+    // MARK: - Test defaults are valid
+    
+    func testDefaultTimeoutIntervalShouldMapToAIntervalChoiceInSettingsPane() {
+        
+        let intervals = SettingsIntervalChoices.timeoutIntervals
+        let defaultValue = Settings(keyValueStore: DictionaryKeyValueStore()).timeout.value
+        XCTAssertTrue( intervals.contains { Int($0.secondsValue) == defaultValue })
+    }
+    
+    func testDefaultRefreshIntervalShouldMapToAIntervalChoiceInSettingsPane() {
+        
+        let intervals = SettingsIntervalChoices.refreshIntervals
+        let defaultValue = Settings(keyValueStore: DictionaryKeyValueStore()).refreshMinutes.value
+        XCTAssertTrue( intervals.contains { Int($0.minutesValue) == defaultValue })
+    }
+    
 }
