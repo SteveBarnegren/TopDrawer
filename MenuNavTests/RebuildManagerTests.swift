@@ -90,6 +90,15 @@ class MockSettingsKeyValueStore: KeyValueStore {
 
 class MockRebuildManagerListener: RebuildManagerListener {
     
+    var onRebuildManagerDidChangeState: (RebuildManager.State) -> Void = { _ in }
+    
+    func rebuildManagerDidChangeState(state: RebuildManager.State) {
+        onRebuildManagerDidChangeState(state)
+    }
+}
+/*
+class MockRebuildManagerListener: RebuildManagerListener {
+    
     enum Event {
         case stateChange(RebuildManager.State)
         case didRebuild
@@ -116,7 +125,7 @@ class MockRebuildManagerListener: RebuildManagerListener {
         noPathSetCallback()
     }
 }
-
+*/
 class RebuildManagerTests: XCTestCase {
     
     // MARK: - Helpers
@@ -156,7 +165,7 @@ class RebuildManagerTests: XCTestCase {
     }
     
     // MARK: - Tests
-    
+    /*
     func testRebuildManagerRebuildCallback() {
         
         let e = expectation(description: "RebuildManager calls didRebuild callback")
@@ -186,6 +195,40 @@ class RebuildManagerTests: XCTestCase {
             }
         }
     }
+ */
+    
+    func testRebuildManagerRebuildSuccessCallback() {
+        
+        let e = expectation(description: "RebuildManager calls didRebuild callback")
+        
+        let mockSettings = makeMockSettings(path: "Root",
+                                            shortenPaths: false,
+                                            followAliases: false,
+                                            refreshMinutes: 10,
+                                            timeout: 10)
+        
+        let rebuildManager = RebuildManager(settings: mockSettings,
+                                            fileReader: makeMockFileReader(),
+                                            rulesKeyValueStore: makeMatchingRulesKeyValueStore(),
+                                            timerType: MockTimerBenign.self)
+        
+        let mockListener = MockRebuildManagerListener()
+        mockListener.onRebuildManagerDidChangeState = { state in
+
+            if state == .idle, case .success = rebuildManager.lastResults.type {
+                e.fulfill()
+            }
+        }
+        
+        rebuildManager.addListener(mockListener)
+        rebuildManager.needsRebuild = true
+        
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("Expected didRebuild to be called \(error)")
+            }
+        }
+    }
     
     func testRebuildManagerNoPathCallback() {
         
@@ -203,8 +246,11 @@ class RebuildManagerTests: XCTestCase {
                                             timerType: MockTimerBenign.self)
         
         let mockListener = MockRebuildManagerListener()
-        mockListener.noPathSetCallback = {
-            e.fulfill()
+        mockListener.onRebuildManagerDidChangeState = { state in
+            
+            if state == .idle, case .noRootPathSet = rebuildManager.lastResults.type {
+                e.fulfill()
+            }
         }
         
         rebuildManager.addListener(mockListener)

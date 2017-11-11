@@ -8,6 +8,7 @@
 
 // swiftlint:disable file_length
 // swiftlint:disable type_body_length
+// swiftlint:disable force_try
 
 import XCTest
 @testable import MenuNav
@@ -213,7 +214,7 @@ class Tests: XCTestCase {
                                            fileRules: [matchPngRule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "cat.png"))
         XCTAssertTrue(directory.containsObject(atPath: "TestFolder/dog.png"))
@@ -255,7 +256,7 @@ class Tests: XCTestCase {
                                            fileRules: [fileRule],
                                            folderRules: [folderRule],
                                            options: [.followAliases])
-        let withAliasDirectory = withAliasBuilder.buildFileSystemStructure(atPath: "Root")!
+        let withAliasDirectory = try! withAliasBuilder.buildFileSystemStructure(atPath: "Root")
         XCTAssertTrue(withAliasDirectory.containsObject(atPath: "A Folder/Photos/dog.png"))
         
         // Build without alias option
@@ -263,7 +264,7 @@ class Tests: XCTestCase {
                                                     fileRules: [fileRule],
                                                     folderRules: [folderRule],
                                                     options: [])
-        let noAliasDirectory = noAliasBuilder.buildFileSystemStructure(atPath: "Root")!
+        let noAliasDirectory = try! noAliasBuilder.buildFileSystemStructure(atPath: "Root")
         noAliasDirectory.printHierarchy()
         XCTAssertFalse(noAliasDirectory.containsObject(atPath: "A Folder/Photos/dog.png"))
     }
@@ -287,7 +288,7 @@ class Tests: XCTestCase {
                                                     fileRules: [fileRule],
                                                     folderRules: [],
                                                     options: [.followAliases])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         XCTAssertFalse(directory.containsObject(atPath: "A Folder/A Folder/dog.png"))
     }
 
@@ -309,7 +310,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "cat.png"))
@@ -331,7 +332,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "dog.png"))
         XCTAssertTrue(directory.containsObject(atPath: "cat.png"))
@@ -353,7 +354,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "a photo of a dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "a photo of a cat.png"))
@@ -375,7 +376,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "a photo of a dog.png"))
         XCTAssertTrue(directory.containsObject(atPath: "a photo of a cat.png"))
@@ -399,7 +400,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "cat.gif"))
@@ -421,7 +422,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "dog.png"))
         XCTAssertTrue(directory.containsObject(atPath: "cat.gif"))
@@ -445,7 +446,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "cat.gif"))
@@ -467,7 +468,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "dog.png"))
         XCTAssertTrue(directory.containsObject(atPath: "cat.gif"))
@@ -496,7 +497,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "ContainsGif/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "DoesntContainGif/dog.png"))
@@ -523,7 +524,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "ContainsGif/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "DoesntContainGif/dog.png"))
@@ -552,7 +553,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "ContainsGif/dog.png"))
         XCTAssertTrue(directory.containsObject(atPath: "DoesntContainGif/dog.png"))
@@ -579,7 +580,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "ContainsGif/dog.png"))
         XCTAssertTrue(directory.containsObject(atPath: "DoesntContainGif/dog.png"))
@@ -609,7 +610,7 @@ class Tests: XCTestCase {
                                            fileRules: [rule],
                                            folderRules: [],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Documents/Photos/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Images/cat.png"))
@@ -643,7 +644,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -669,7 +670,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -695,7 +696,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "-- Include Me --/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "-- Exclude Me --/dog.png"))
@@ -721,7 +722,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "-- Include Me --/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "-- Exclude Me --/dog.png"))
@@ -749,7 +750,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -775,7 +776,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -804,7 +805,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -831,7 +832,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -858,7 +859,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -887,7 +888,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -914,7 +915,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -941,7 +942,7 @@ class Tests: XCTestCase {
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
                                            options: [])
-        let directory = builder.buildFileSystemStructure(atPath: "Root")!
+        let directory = try! builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
         XCTAssertFalse(directory.containsObject(atPath: "Exclude Me/dog.png"))
@@ -972,7 +973,7 @@ class Tests: XCTestCase {
                                            folderRules: [],
                                            options: [.shortenPaths])
         
-        guard let directory = builder.buildFileSystemStructure(atPath: "Root") else {
+        guard let directory = try? builder.buildFileSystemStructure(atPath: "Root") else {
             XCTFail("Expected directory")
             return
         }
