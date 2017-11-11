@@ -45,6 +45,7 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak fileprivate var lastRebuildTimeLabel: NSTextField!
     @IBOutlet weak fileprivate var timeTakenLabel: NSTextField!
     @IBOutlet weak fileprivate var gitHubButton: NSButton!
+    @IBOutlet weak fileprivate var quitAndRemoveDataButton: NSButton!
     
     let rebuildManager: RebuildManager
     
@@ -82,6 +83,10 @@ class SettingsViewController: NSViewController {
         
         // Observe Rebuild Manager
         rebuildManager.addListener(self)
+        
+        #if !DEBUG
+        quitAndRemoveDataButton.isHidden = true
+        #endif
     }
     
     func setupRefreshIntervalDropdown() {
@@ -203,6 +208,16 @@ class SettingsViewController: NSViewController {
         if let url = URL(string: "https://github.com/SteveBarnegren/MenuNav") {
             NSWorkspace.shared.open(url)
         }
+    }
+    
+    @IBAction private func quitAndRemoveDataButtonPressed(sender: NSButton){
+        
+        let userDefaults = UserDefaults.standard
+        for key in userDefaults.dictionaryRepresentation().keys where key.contains(subString: "debug") {
+            userDefaults.removeObject(forKey: key)
+        }
+        userDefaults.synchronize()
+        NSApp.terminate(self)
     }
 }
 
