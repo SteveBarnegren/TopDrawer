@@ -83,11 +83,18 @@ class FileStructureBuilder {
     
     func buildFileSystemStructure(atPath path: String) throws -> Directory {
         
+        // Check that the directory actually exists
+        var isDirectory: ObjCBool = false
+        let exists = fileReader.fileExists(atPath: path, isDirectory: &isDirectory)
+        if exists == false || isDirectory.boolValue == false {
+            throw FileStructureBuilderError.invalidRootPath
+        }
+        
         // Get File Structure
         guard var rootDirectory = fileSystemObject(atPath: path,
                                                    withParent: nil,
                                                    hierarchyInfo: HierarchyInformation()) as? Directory else {
-            throw FileStructureBuilderError.invalidRootPath
+            throw FileStructureBuilderError.noMatchingFiles
         }
         
         // Check for cancelation

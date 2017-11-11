@@ -151,6 +151,7 @@ class RebuildManager {
         
         if path.count == 0 {
             rebuildCompleted(resultType: .noRootPathSet, directory: nil)
+            return
         }
 
         // Create work item
