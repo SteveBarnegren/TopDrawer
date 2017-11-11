@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AttributedStringBuilder
 
 class SettingsViewController: NSViewController {
     
@@ -19,6 +20,7 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak fileprivate var timeoutIntervalDropdown: NSPopUpButton!
     @IBOutlet weak fileprivate var lastRebuildTimeLabel: NSTextField!
     @IBOutlet weak fileprivate var timeTakenLabel: NSTextField!
+    @IBOutlet weak fileprivate var gitHubButton: NSButton!
     
     let rebuildManager: RebuildManager
     
@@ -72,6 +74,9 @@ class SettingsViewController: NSViewController {
         // Timeout interval dropdown
         setupTimeoutIntervalDropdown()
         
+        // Setup github button
+        setupGitHubButton()
+        
         // Observe Rebuild Manager
         rebuildManager.addListener(self)
     }
@@ -98,6 +103,20 @@ class SettingsViewController: NSViewController {
             ?? timeoutIntervals.count - 1
         
         timeoutIntervalDropdown.selectItem(at: index)
+    }
+    
+    func setupGitHubButton() {
+        
+        let text = gitHubButton.title
+        let font = gitHubButton.font!
+        let color = NSColor.blue
+        
+        let attributedString =
+            AttributedStringBuilder()
+            .text(text, attributes: [.font(font), .textColor(color)])
+            .attributedString
+        
+        gitHubButton.attributedTitle = attributedString
     }
     
     override func viewWillAppear() {
@@ -175,6 +194,12 @@ class SettingsViewController: NSViewController {
         }
         
         Settings.shared.timeout.value = Int(interval.secondsValue)
+    }
+    
+    @IBAction private func openGitHubPageButtonPressed(sender: NSButton){
+        if let url = URL(string: "https://github.com/SteveBarnegren/MenuNav") {
+            NSWorkspace.shared.open(url)
+        }
     }
 }
 
