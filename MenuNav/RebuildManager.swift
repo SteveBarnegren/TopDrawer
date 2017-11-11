@@ -10,18 +10,14 @@ import Foundation
 
 protocol RebuildManagerListener: class {
     func rebuildManagerDidChangeState(state: RebuildManager.State) // Optional
-    func rebuildManagerDidRebuild(directory: Directory) // Optional
-    func rebuildManagerDidFailRebuildDueToNoRootPathSet() // Optional
 }
 
 extension RebuildManagerListener {
     func rebuildManagerDidChangeState(state: RebuildManager.State) {}
-    func rebuildManagerDidRebuild(directory: Directory) {}
-    func rebuildManagerDidFailRebuildDueToNoRootPathSet() {}
 }
 
 class RebuildManager {
-        
+    
     // MARK: - Types
     
     enum State {
@@ -29,15 +25,25 @@ class RebuildManager {
         case rebuilding
     }
     
-    enum Result {
+    enum ResultType {
         case none
-        case success(timeTaken: TimeInterval, date: Date)
-        case tookTooLong(date: Date)
+        case success(timeTaken: TimeInterval)
+        case tookTooLong
+        case noRootPathSet
+        case invalidRootPath
+        case noMatchingFiles
+        case unknownError
+    }
+    
+    struct Result {
+        let type: ResultType
+        let date: Date
+        let directory: Directory?
     }
     
     // MARK: - Properties
-        
-    private var state = State.idle {
+    
+    private(set) var state = State.idle {
         didSet {
             switch state {
             case .idle:
@@ -76,7 +82,7 @@ class RebuildManager {
     private let rulesKeyValueStore: KeyValueStore
     private var rebuildStartTime = CFAbsoluteTime(0)
     
-    var lastResults = Result.none
+    var lastResults = Result(type: .none, date: Date(), directory: nil)
     
     // MARK: - Init
     
@@ -143,12 +149,11 @@ class RebuildManager {
         
         let path = settings.path.value
         
-        /*
-        guard let path = settings.path.value else {
-            listeners.objects.forEach{ $0.rebuildManagerDidFailRebuildDueToNoRootPathSet() }
-            return
+        if path.count == 0 {
+            rebuildCompleted(resultType: .noRootPathSet, directory: nil)
         }
- */
+
+        // Create work item
         workItem = DispatchWorkItem { [weak self] in
             
             builder.isCancelledHandler = {
@@ -160,70 +165,76 @@ class RebuildManager {
                 }
             }
             
-            guard let rootDirectory = builder.buildFileSystemStructure(atPath: path) else {
-                
-                guard let item = self?.workItem else {
-                    return
-                }
-                
-                if item.isCancelled {
-                    DispatchQueue.main.async(execute: {
-                        self?.state = .idle
-                        self?.buildMenuIfNeeded()
-                        return
-                    })
-                }
-                
+            let rootDirectory: Directory
+            do {
+                rootDirectory = try builder.buildFileSystemStructure(atPath: path)
+            } catch FileStructureBuilderError.cancelled {
                 DispatchQueue.main.async(execute: {
-                    print("Finished Building menu")
                     self?.state = .idle
-                    self?.listeners.objects.forEach { $0.rebuildManagerDidFailRebuildDueToNoRootPathSet() }
+                    self?.buildMenuIfNeeded()
+                })
+                return 
+            } catch FileStructureBuilderError.invalidRootPath {
+                DispatchQueue.main.async(execute: {
+                    self?.rebuildCompleted(resultType: .invalidRootPath, directory: nil)
+                })
+                return
+            } catch FileStructureBuilderError.noMatchingFiles {
+                DispatchQueue.main.async(execute: {
+                    self?.rebuildCompleted(resultType: .noMatchingFiles, directory: nil)
+                })
+                return
+            } catch {
+                DispatchQueue.main.async(execute: {
+                    self?.rebuildCompleted(resultType: .unknownError, directory: nil)
                 })
                 return
             }
-            
+        
             DispatchQueue.main.async(execute: {
                 
                 guard let item = self?.workItem else {
-                    self?.state = .idle
+                    self?.rebuildCompleted(resultType: .unknownError, directory: nil)
                     return
                 }
                 
                 if item.isCancelled {
-                    self?.state = .idle
-                    self!.lastResults = .tookTooLong(date: Date())
+                    self?.rebuildCompleted(resultType: .tookTooLong, directory: nil)
                     self?.buildMenuIfNeeded()
                     return
                 }
                 
-                self!.lastResults = .success(timeTaken: CFAbsoluteTimeGetCurrent() - self!.rebuildStartTime,
-                                             date: Date())
-                
                 print("Finished Building menu")
-                self?.state = .idle
-                self?.listeners.objects.forEach {
-                    $0.rebuildManagerDidRebuild(directory: rootDirectory)
-                }
+                self?.rebuildCompleted(resultType: .success(timeTaken: CFAbsoluteTimeGetCurrent() - self!.rebuildStartTime),
+                                       directory: rootDirectory)
                 
             })
         }
-        
+    
         DispatchQueue.global().async(execute: workItem!)
-        
+    
     }
     
+    func rebuildCompleted(resultType: ResultType, directory: Directory?) {
+        
+        lastResults = Result(type: resultType,
+                             date: Date(),
+                             directory: directory ?? lastResults.directory)
+        self.state = .idle
+    }
+
     // MARK: - Manage Listeners
-    
+
     func addListener(_ listener: RebuildManagerListener) {
         listeners.append(listener)
     }
-    
+
     func removeListener(_ listener: RebuildManagerListener) {
         listeners.remove(listener)
     }
-    
+
     // MARK: - Refresh Timer
-    
+
     private func startRefreshTimer() {
         
         stopRefreshTimer()
@@ -241,18 +252,18 @@ class RebuildManager {
         
         refreshTimer?.start()
     }
-    
+
     private func stopRefreshTimer() {
         refreshTimer?.stop()
         refreshTimer = nil
     }
-    
+
     @objc private func refreshTimerFired() {
         needsRebuild = true
     }
-    
+
     // MARK: - Timeout Timer
-    
+
     private func startTimeoutTimer() {
         
         stopTimeoutTimer()
@@ -273,33 +284,33 @@ class RebuildManager {
                                       pctTolerance: 0)
         timeoutTimer?.start()
     }
-    
+
     private func stopTimeoutTimer() {
         timeoutTimer?.stop()
         timeoutTimer = nil
     }
-    
+
     @objc private func timeoutTimerFired() {
         if case .rebuilding = state {
             workItem!.cancel()
-            self.lastResults = .tookTooLong(date: Date())
+            self.rebuildCompleted(resultType: .tookTooLong, directory: nil)
         }
     }
-    
+
     // MARK: - Settings Observers
-    
+
     @objc private func followAliasesSettingChanged() {
         needsRebuild = true
     }
-    
+
     @objc private func pathSettingChanged() {
         needsRebuild = true
     }
-    
+
     @objc private func shortenPathsSettingChanged() {
         needsRebuild = true
     }
-    
+
     @objc private func timeoutSettingChanged() {
         needsRebuild = true
     }

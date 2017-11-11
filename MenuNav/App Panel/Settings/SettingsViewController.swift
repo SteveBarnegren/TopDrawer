@@ -134,7 +134,7 @@ class SettingsViewController: NSViewController {
         
         let lastResult = rebuildManager.lastResults
         
-        if case .none = lastResult {
+        if case .none = lastResult.type {
             lastRebuildTimeLabel.stringValue = ""
         } else {
             let formatter = RebuildResultsFormatter()
@@ -147,7 +147,7 @@ class SettingsViewController: NSViewController {
         
         let lastResult = rebuildManager.lastResults
         
-        if case .none = lastResult {
+        if case .none = lastResult.type {
             timeTakenLabel.stringValue = ""
         } else {
             let formatter = RebuildResultsFormatter()
@@ -207,11 +207,6 @@ class SettingsViewController: NSViewController {
 }
 
 extension SettingsViewController: RebuildManagerListener {
-    
-    func rebuildManagerDidRebuild(directory: Directory) {
-        updateTimeTakenLabel()
-        updateLastRebuildTimeLabel()
-    }
     
     func rebuildManagerDidChangeState(state: RebuildManager.State) {
         updateTimeTakenLabel()

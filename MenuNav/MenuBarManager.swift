@@ -24,8 +24,11 @@ class MenuBarManager {
             button.action = #selector(statusBarButtonPressed)
         }
         
+        // Show initial menu state
+        resetMenu(withDirectory: nil)
+        addPersistentBottomItemsToMenu()
+        
         // Build menu
-        showRebuldingMenu()
         rebuildManager.addListener(self)
         rebuildManager.needsRebuild = true
         
@@ -35,30 +38,40 @@ class MenuBarManager {
         }
     }
     
-    // MARK: - Show Menu States
+    // MARK: - Build NSMenu
     
-    func showSetupMenu() {
+    func resetMenu(withDirectory directory: Directory?) {
         
-        // Add setup item
-        let setupItem = NSMenuItem(title: "Setup (No root dir set)", action: #selector(openSettings), keyEquivalent: "")
-        setupItem.target = self
-        let setupMenu = NSMenu()
-        setupMenu.addItem(setupItem)
-        statusItem.menu = setupMenu
-        
-        // Add quit item
-        addQuitItemToStatusMenu()
+        if let dir = directory {
+            statusItem.menu = dir.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
+            addSeparatorToMenu()
+        } else {
+            statusItem.menu = NSMenu()
+        }
     }
     
-    func showFileStructureMenu(withRootDirectory rootDirectory: Directory) {
+    func addReadoutItemToMenu(withTitle title: String) {
         
-        statusItem.menu = rootDirectory.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
-        
-        // Add rebuild item
+        let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
+        statusItem.menu?.addItem(item)
+    }
+    
+    func addSeparatorToMenu() {
         statusItem.menu?.addItem(NSMenuItem.separator())
-        let rebuildItem = NSMenuItem(title: "Rebuild", action: #selector(rebuildItemPressed), keyEquivalent: "")
-        rebuildItem.target = self
-        statusItem.menu?.addItem(rebuildItem)
+    }
+    
+    func addRefreshItemToMenu() {
+        
+        if rebuildManager.state == .rebuilding {
+            addReadoutItemToMenu(withTitle: "Searching...")
+        } else {
+            let rebuildItem = NSMenuItem(title: "Rebuild", action: #selector(rebuildItemPressed), keyEquivalent: "")
+            rebuildItem.target = self
+            statusItem.menu?.addItem(rebuildItem)
+        }
+    }
+    
+    func addPersistentBottomItemsToMenu() {
         
         // Add settings item
         let settingsItem = NSMenuItem(title: "Settings", action: #selector(openSettings), keyEquivalent: "")
@@ -66,22 +79,6 @@ class MenuBarManager {
         statusItem.menu?.addItem(settingsItem)
         
         // Add quit item
-        addQuitItemToStatusMenu()
-    }
-    
-    func showRebuldingMenu() {
-        
-        // Add rebuilding item
-        let rebuildingItem = NSMenuItem(title: "Rebuilding... (please wait)", action: nil, keyEquivalent: "")
-        let menu = NSMenu()
-        menu.addItem(rebuildingItem)
-        statusItem.menu = menu
-        
-        // Add quit item
-        addQuitItemToStatusMenu()
-    }
-    
-    func addQuitItemToStatusMenu() {
         let quitItem = NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "")
         quitItem.target = self
         statusItem.menu?.addItem(quitItem)
@@ -129,16 +126,50 @@ class MenuBarManager {
 // MARK: - RebuildManagerListener
 extension MenuBarManager: RebuildManagerListener {
     
-    func rebuildManagerDidFailRebuildDueToNoRootPathSet() {
-        showSetupMenu()
-    }
-    
-    func rebuildManagerDidRebuild(directory: Directory) {
-        showFileStructureMenu(withRootDirectory: directory)
-    }
-    
     func rebuildManagerDidChangeState(state: RebuildManager.State) {
+        
+        let result = rebuildManager.lastResults
+        
+        switch result.type {
+        case .success:
+            resetMenu(withDirectory: result.directory)
+            addRefreshItemToMenu()
+            addPersistentBottomItemsToMenu()
+        case .tookTooLong:
+            resetMenu(withDirectory: result.directory)
+            addReadoutItemToMenu(withTitle: "Last rebuild failed: took too long")
+            addRefreshItemToMenu()
+            addPersistentBottomItemsToMenu()
+            
+        case .invalidRootPath:
+            resetMenu(withDirectory: nil)
+            addReadoutItemToMenu(withTitle: "Last rebuild failed: invalid path")
+            addPersistentBottomItemsToMenu()
+            
+        case .noMatchingFiles:
+            resetMenu(withDirectory: nil)
+            addReadoutItemToMenu(withTitle: "No matching files")
+            addRefreshItemToMenu()
+            addPersistentBottomItemsToMenu()
+            
+        case .noRootPathSet:
+            resetMenu(withDirectory: nil)
+            addReadoutItemToMenu(withTitle: "No root path set")
+            addPersistentBottomItemsToMenu()
+            
+        case .unknownError:
+            resetMenu(withDirectory: nil)
+            addReadoutItemToMenu(withTitle: "Last rebuild failed: unknown error")
+            addRefreshItemToMenu()
+            addPersistentBottomItemsToMenu()
+            
+        case .none:
+            resetMenu(withDirectory: nil)
+            addReadoutItemToMenu(withTitle: "Searching...")
+            addPersistentBottomItemsToMenu()
+        }
     }
+  
 }
 
 extension Directory {

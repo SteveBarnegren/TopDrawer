@@ -40,6 +40,12 @@ extension FileManager: FileReader {
 
 // MARK: - ****** FileStructureBuilder ******
 
+enum FileStructureBuilderError: Error {
+    case invalidRootPath
+    case cancelled
+    case noMatchingFiles
+}
+
 class FileStructureBuilder {
     
     // MARK: - Types
@@ -75,17 +81,17 @@ class FileStructureBuilder {
     
     // MARK: - Build Directory Structure
     
-    func buildFileSystemStructure(atPath path: String) -> Directory? {
+    func buildFileSystemStructure(atPath path: String) throws -> Directory {
         
         // Get File Structure
         guard var rootDirectory = fileSystemObject(atPath: path,
                                                    withParent: nil,
                                                    hierarchyInfo: HierarchyInformation()) as? Directory else {
-            return nil
+            throw FileStructureBuilderError.invalidRootPath
         }
         
         // Check for cancelation
-        if isCancelledHandler() == true { return nil }
+        if isCancelledHandler() == true { throw FileStructureBuilderError.cancelled }
         
         // Shorten paths?
         if options.contains(.shortenPaths) {
@@ -93,14 +99,19 @@ class FileStructureBuilder {
         }
         
         // Check for cancelation
-        if isCancelledHandler() == true { return nil }
+        if isCancelledHandler() == true { throw FileStructureBuilderError.cancelled }
         
         // Remove extended attributes, only required for parsing,
         // so we can remove them to keep the memory footprint low
         rootDirectory.removeExtendedAttributes()
         
         // Check for cancelation
-        if isCancelledHandler() == true { return nil }
+        if isCancelledHandler() == true { throw FileStructureBuilderError.cancelled }
+        
+        // Check if the directory is empty
+        if rootDirectory.contents.isEmpty {
+            throw FileStructureBuilderError.noMatchingFiles
+        }
         
         return rootDirectory
     }

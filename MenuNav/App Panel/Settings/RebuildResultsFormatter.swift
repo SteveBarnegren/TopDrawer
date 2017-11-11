@@ -18,30 +18,40 @@ class RebuildResultsFormatter {
     
     func lastRefreshString(fromResult rebuildResult: RebuildManager.Result) -> String {
         
-        switch rebuildResult {
-        case .success(_, let date):
-            let dateString = RebuildResultsFormatter.dateFormatter.string(from: date)
+        let dateString = RebuildResultsFormatter.dateFormatter.string(from: rebuildResult.date)
+
+        switch rebuildResult.type {
+        case .success, .noMatchingFiles:
             return "Last refresh: \(dateString)"
-            
-        case .tookTooLong(let date):
-            let dateString = RebuildResultsFormatter.dateFormatter.string(from: date)
+        case .tookTooLong, .invalidRootPath, .noRootPathSet, .unknownError:
             return "Last attempt: \(dateString)"
-            
         case .none:
-            return "No result"
+            return "None"
         }
     }
     
     func lastStatusString(fromResult rebuildResult: RebuildManager.Result) -> String {
         
-        switch rebuildResult {
-        case .success(let timeTaken, _):
+        switch rebuildResult.type {
+        case .success(let timeTaken):
             let seconds = max(Int(timeTaken), 1)
             let unit = seconds == 1 ? "second" : "seconds"
             return "Took \(seconds) \(unit)"
             
         case .tookTooLong:
             return "Cancelled, took too long"
+            
+        case .invalidRootPath:
+            return "Invalid root path"
+            
+        case .noMatchingFiles:
+            return "No matching files"
+            
+        case .noRootPathSet:
+            return "No root path set"
+            
+        case .unknownError:
+            return "Unknown error"
             
         case .none:
             return "No status"
