@@ -1,7 +1,7 @@
 PODS:
   - AttributedStringBuilder (0.1.2)
   - IYLoginItem (0.1)
-  - SBAutoLayout (1.2.0)
+  - SBAutoLayout (1.2.1)
   - SBSwiftUtils (0.1.3)
 
 DEPENDENCIES:
@@ -13,9 +13,9 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AttributedStringBuilder: a85c5f1ebf52bb04b360f18ecea16c7ee356cfff
   IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
-  SBAutoLayout: 0d0e7719a818639c1d1fef9bd2fd0531541a6e5f
+  SBAutoLayout: 12eb3f2f72c5935d98c47168f3a7f81acdfbba82
   SBSwiftUtils: 09cfad8f2a0d481d6d278951607c9e12316da03c
 
-PODFILE CHECKSUM: e991e0e8ed6705fa310b3bdb4e08583ccc4eb95b
+PODFILE CHECKSUM: b643e266031b61874aa335c79b74b8a5c4545aac
 
 COCOAPODS: 1.3.1

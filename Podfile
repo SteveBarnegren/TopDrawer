@@ -1,6 +1,6 @@
-# Uncomment the next line to define a global platform for your project
+platform :osx, '10.12'
 
-target 'MenuNav' do
+target 'TopDrawer' do
   use_frameworks!
 
   pod 'IYLoginItem'
@@ -8,9 +8,10 @@ target 'MenuNav' do
   pod 'SBAutoLayout'
   pod 'AttributedStringBuilder'
 
-  target 'MenuNavTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+end
 
+target 'TopDrawerTests' do
+  use_frameworks!
+
+  pod 'SBSwiftUtils'
 end

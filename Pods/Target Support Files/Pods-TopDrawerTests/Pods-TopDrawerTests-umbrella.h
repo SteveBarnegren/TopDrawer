@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_MenuNavTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_MenuNavTestsVersionString[];
+FOUNDATION_EXPORT double Pods_TopDrawerTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_TopDrawerTestsVersionString[];
 
