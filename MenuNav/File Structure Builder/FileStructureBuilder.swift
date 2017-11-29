@@ -185,11 +185,11 @@ class FileStructureBuilder {
             directory.image = imageForPath(path)
             hierarchyInfo.add(folderName: directory.name)
             
-            contents.map { "\(path)" + "/" + $0 }
+            contents
+                .sortedAscending()
+                .map { "\(path)" + "/" + $0 }
                 .flatMap { fileSystemObject(atPath: $0, withParent: directory, hierarchyInfo: hierarchyInfo) }
-                .forEach {
-                    directory.add(object: $0)
-            }
+                .forEach { directory.add(object: $0) }
             
             return directory.contents.count > 0 ? directory : nil
         } else {
