@@ -7,9 +7,9 @@
 //
 
 import Foundation
-@testable import MenuNav
+@testable import TopDrawer
 
-class MockTimerBenign: MenuNav.Timer {
+class MockTimerBenign: TopDrawer.Timer {
     
     required init(interval: TimeInterval, target: AnyObject, selector: Selector, repeats: Bool, pctTolerance: Double) {}
     

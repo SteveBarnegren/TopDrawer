@@ -94,13 +94,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0978BEBB1EB393110023AC66 /* MenuNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0978BEBB1EB393110023AC66 /* TopDrawer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDrawer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0978BEBE1EB393110023AC66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0978BEC01EB393110023AC66 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		0978BEC21EB393110023AC66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0978BEC51EB393110023AC66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0978BEC71EB393110023AC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0978BECC1EB393110023AC66 /* MenuNavTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuNavTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0978BECC1EB393110023AC66 /* TopDrawerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TopDrawerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0978BED21EB393110023AC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D1F7D33AD80C55EA1FDA055 /* Pods_MenuNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MenuNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2CB3F412642EAF9E03D2F4 /* Pods-MenuNavTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MenuNavTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MenuNavTests/Pods-MenuNavTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -209,8 +209,8 @@
 		0978BEBC1EB393110023AC66 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0978BEBB1EB393110023AC66 /* MenuNav.app */,
-				0978BECC1EB393110023AC66 /* MenuNavTests.xctest */,
+				0978BEBB1EB393110023AC66 /* TopDrawer.app */,
+				0978BECC1EB393110023AC66 /* TopDrawerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -516,9 +516,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0978BEBA1EB393110023AC66 /* MenuNav */ = {
+		0978BEBA1EB393110023AC66 /* TopDrawer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0978BED51EB393110023AC66 /* Build configuration list for PBXNativeTarget "MenuNav" */;
+			buildConfigurationList = 0978BED51EB393110023AC66 /* Build configuration list for PBXNativeTarget "TopDrawer" */;
 			buildPhases = (
 				1C27E10F1B47F5150283B284 /* [CP] Check Pods Manifest.lock */,
 				0978BEB71EB393110023AC66 /* Sources */,
@@ -532,14 +532,14 @@
 			);
 			dependencies = (
 			);
-			name = MenuNav;
+			name = TopDrawer;
 			productName = MenuNav;
-			productReference = 0978BEBB1EB393110023AC66 /* MenuNav.app */;
+			productReference = 0978BEBB1EB393110023AC66 /* TopDrawer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0978BECB1EB393110023AC66 /* MenuNavTests */ = {
+		0978BECB1EB393110023AC66 /* TopDrawerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0978BED81EB393110023AC66 /* Build configuration list for PBXNativeTarget "MenuNavTests" */;
+			buildConfigurationList = 0978BED81EB393110023AC66 /* Build configuration list for PBXNativeTarget "TopDrawerTests" */;
 			buildPhases = (
 				73D32AE5914B6D8274919F26 /* [CP] Check Pods Manifest.lock */,
 				0978BEC81EB393110023AC66 /* Sources */,
@@ -554,9 +554,9 @@
 			dependencies = (
 				0978BECE1EB393110023AC66 /* PBXTargetDependency */,
 			);
-			name = MenuNavTests;
+			name = TopDrawerTests;
 			productName = MenuNavTests;
-			productReference = 0978BECC1EB393110023AC66 /* MenuNavTests.xctest */;
+			productReference = 0978BECC1EB393110023AC66 /* TopDrawerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -597,8 +597,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0978BEBA1EB393110023AC66 /* MenuNav */,
-				0978BECB1EB393110023AC66 /* MenuNavTests */,
+				0978BEBA1EB393110023AC66 /* TopDrawer */,
+				0978BECB1EB393110023AC66 /* TopDrawerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -848,7 +848,7 @@
 /* Begin PBXTargetDependency section */
 		0978BECE1EB393110023AC66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0978BEBA1EB393110023AC66 /* MenuNav */;
+			target = 0978BEBA1EB393110023AC66 /* TopDrawer */;
 			targetProxy = 0978BECD1EB393110023AC66 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -978,7 +978,7 @@
 				DEVELOPMENT_TEAM = X7HC96WDW9;
 				INFOPLIST_FILE = MenuNav/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.MenuNav;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.TopDrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -994,7 +994,7 @@
 				DEVELOPMENT_TEAM = X7HC96WDW9;
 				INFOPLIST_FILE = MenuNav/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.MenuNav;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.TopDrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -1016,7 +1016,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MenuNav.app/Contents/MacOS/MenuNav";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TopDrawer.app/Contents/MacOS/TopDrawer";
 			};
 			name = Debug;
 		};
@@ -1034,7 +1034,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MenuNav.app/Contents/MacOS/MenuNav";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TopDrawer.app/Contents/MacOS/TopDrawer";
 			};
 			name = Release;
 		};
@@ -1050,7 +1050,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0978BED51EB393110023AC66 /* Build configuration list for PBXNativeTarget "MenuNav" */ = {
+		0978BED51EB393110023AC66 /* Build configuration list for PBXNativeTarget "TopDrawer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0978BED61EB393110023AC66 /* Debug */,
@@ -1059,7 +1059,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0978BED81EB393110023AC66 /* Build configuration list for PBXNativeTarget "MenuNavTests" */ = {
+		0978BED81EB393110023AC66 /* Build configuration list for PBXNativeTarget "TopDrawerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0978BED91EB393110023AC66 /* Debug */,

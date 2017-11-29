@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MenuNav
+@testable import TopDrawer
 
 class WeakArrayTests: XCTestCase {
     

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0978BEBA1EB393110023AC66"
-               BuildableName = "MenuNav.app"
-               BlueprintName = "MenuNav"
+               BuildableName = "TopDrawer.app"
+               BlueprintName = "TopDrawer"
                ReferencedContainer = "container:MenuNav.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -35,8 +35,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0978BECB1EB393110023AC66"
-               BuildableName = "MenuNavTests.xctest"
-               BlueprintName = "MenuNavTests"
+               BuildableName = "TopDrawerTests.xctest"
+               BlueprintName = "TopDrawerTests"
                ReferencedContainer = "container:MenuNav.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0978BEBA1EB393110023AC66"
-            BuildableName = "MenuNav.app"
-            BlueprintName = "MenuNav"
+            BuildableName = "TopDrawer.app"
+            BlueprintName = "TopDrawer"
             ReferencedContainer = "container:MenuNav.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0978BEBA1EB393110023AC66"
-            BuildableName = "MenuNav.app"
-            BlueprintName = "MenuNav"
+            BuildableName = "TopDrawer.app"
+            BlueprintName = "TopDrawer"
             ReferencedContainer = "container:MenuNav.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -94,8 +94,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0978BEBA1EB393110023AC66"
-            BuildableName = "MenuNav.app"
-            BlueprintName = "MenuNav"
+            BuildableName = "TopDrawer.app"
+            BlueprintName = "TopDrawer"
             ReferencedContainer = "container:MenuNav.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

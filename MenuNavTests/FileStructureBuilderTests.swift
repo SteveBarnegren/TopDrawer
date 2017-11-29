@@ -10,7 +10,7 @@
 // swiftlint:disable type_body_length
 
 import XCTest
-@testable import MenuNav
+@testable import TopDrawer
 
 // MARK: - ****** FileReaderMock ******
 

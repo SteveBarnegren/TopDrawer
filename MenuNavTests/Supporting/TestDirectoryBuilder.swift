@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import MenuNav
+@testable import TopDrawer
 
 class TestDirectoryBuilder {
     
