@@ -195,8 +195,8 @@
 		0978BEB21EB393110023AC66 = {
 			isa = PBXGroup;
 			children = (
-				0978BEBD1EB393110023AC66 /* MenuNav */,
-				0978BECF1EB393110023AC66 /* MenuNavTests */,
+				0978BEBD1EB393110023AC66 /* TopDrawer */,
+				0978BECF1EB393110023AC66 /* TopDrawerTests */,
 				0978BEBC1EB393110023AC66 /* Products */,
 				99807A2FFB31E71D2B249AE3 /* Pods */,
 				F8C7A0B7511EC0CDD158B2DE /* Frameworks */,
@@ -212,7 +212,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0978BEBD1EB393110023AC66 /* MenuNav */ = {
+		0978BEBD1EB393110023AC66 /* TopDrawer */ = {
 			isa = PBXGroup;
 			children = (
 				0978BEBE1EB393110023AC66 /* AppDelegate.swift */,
@@ -232,10 +232,10 @@
 				0978BEC41EB393110023AC66 /* Main.storyboard */,
 				0978BEC71EB393110023AC66 /* Info.plist */,
 			);
-			path = MenuNav;
+			path = TopDrawer;
 			sourceTree = "<group>";
 		};
-		0978BECF1EB393110023AC66 /* MenuNavTests */ = {
+		0978BECF1EB393110023AC66 /* TopDrawerTests */ = {
 			isa = PBXGroup;
 			children = (
 				67C7CE371FCF2BF800913BA1 /* Extensions */,
@@ -252,7 +252,7 @@
 				674EB0E11F9B4896003E5CBA /* HeirarchyInformationTests.swift */,
 				0978BED21EB393110023AC66 /* Info.plist */,
 			);
-			path = MenuNavTests;
+			path = TopDrawerTests;
 			sourceTree = "<group>";
 		};
 		670B717F1FABB51000F121E6 /* Matchers */ = {
@@ -580,7 +580,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0978BEB61EB393110023AC66 /* Build configuration list for PBXProject "MenuNav" */;
+			buildConfigurationList = 0978BEB61EB393110023AC66 /* Build configuration list for PBXProject "TopDrawer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1038,7 +1038,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0978BEB61EB393110023AC66 /* Build configuration list for PBXProject "MenuNav" */ = {
+		0978BEB61EB393110023AC66 /* Build configuration list for PBXProject "TopDrawer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0978BED31EB393110023AC66 /* Debug */,
