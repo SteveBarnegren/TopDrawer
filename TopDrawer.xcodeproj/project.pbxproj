@@ -1007,7 +1007,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D4510CDCC3764DF62DBE5BC /* Pods-TopDrawerTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = X7HC96WDW9;
@@ -1025,7 +1024,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7B75C09D1166B95D0C1AEF8 /* Pods-TopDrawerTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = X7HC96WDW9;
