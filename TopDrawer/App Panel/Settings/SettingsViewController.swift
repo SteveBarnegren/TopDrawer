@@ -209,7 +209,7 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction private func openGitHubPageButtonPressed(sender: NSButton) {
-        if let url = URL(string: "https://github.com/SteveBarnegren/MenuNav") {
+        if let url = URL(string: "https://github.com/SteveBarnegren/TopDrawer") {
             NSWorkspace.shared.open(url)
         }
     }
