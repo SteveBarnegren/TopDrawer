@@ -3,39 +3,39 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict/>
-	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5D4FB02F382A0A85157E3AEC40D94A78</key>
+		<key>AttributedStringBuilder.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>AB9CF187EE06B82DEE280F76E29D760E</key>
+		<key>IYLoginItem.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>BFAC59859457DCF9A4ACF17FCE7E601D</key>
+		<key>Pods-TopDrawer.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>CE92BF9E4A1DFAEDB2E3BB82490EFB36</key>
+		<key>Pods-TopDrawerTests.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>D050075C17E2800B2824A04B51F0F07A</key>
+		<key>SBAutoLayout.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>EC9368FB5C963483C0361F98095251E6</key>
+		<key>SBSwiftUtils.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict/>
 </dict>
 </plist>

@@ -161,7 +161,7 @@ class FileStructureBuilder {
         let isBaseDirectory = pathComponents.count == 1
         
         // Filter hidden files
-        if itemName.characters.count > 0, itemName.characters.first == "." {
+        if itemName.count > 0, itemName.first == "." {
             return nil
         }
         

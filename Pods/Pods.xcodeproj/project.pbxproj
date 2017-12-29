@@ -7,31 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00FCBEEB90C2BD58BE5FF65D480C20A7 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEAB677454EDF391B30EA30ED4DEAE6 /* String+Extensions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		0635602FEC524813C6B5A0DADBB3AC56 /* AttributedStringBuilder-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6C9244EB49162808B259A32F5DAE4D /* AttributedStringBuilder-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		086E49C1C734A68C40EC78C85EBF1C54 /* NSBundle+LoginItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C96D12D3759926B9E28F2E20937C701 /* NSBundle+LoginItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B7D11EF1778E28FFE991D472F342CC6 /* SBSwiftUtils-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6405390346A86E92D579C5534473E2 /* SBSwiftUtils-dummy.m */; };
-		0D0C11A9B8081377315242D3B6764C43 /* SBAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BC2D1FFA1D0F5D7D756C3630E9ED9F /* SBAutoLayout.swift */; };
 		11FCD084FB974C36534F198FD2A7D9A0 /* Pods-TopDrawerTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A64BC38DB35A77CEC3C330E4C5ED5685 /* Pods-TopDrawerTests-dummy.m */; };
-		1A209E7822F618BFF68DCF9CD44F7395 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEAB677454EDF391B30EA30ED4DEAE6 /* String+Extensions.swift */; };
 		1A324D97756E08AA693BEB8650C135FB /* Pods-TopDrawer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EECA59C254F6F8FAF5654A0824447FB /* Pods-TopDrawer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B4C9C78B9D32659314721C702F7CEE9 /* NSBundle+LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3389B0B6937F3B49C2D2BAFC18D64F98 /* NSBundle+LoginItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		3034046E5195C0E9AFDCCC9A3A137831 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F49DE9408207CE0B80BFC94FFAEC7C /* Cocoa.framework */; };
 		35DB77D06162223D16392C19B9A17B96 /* Pods-TopDrawerTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 938C895ACBAF3086052A8524DBF7F523 /* Pods-TopDrawerTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37B87FD4CACA486C564CEF9258354954 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F49DE9408207CE0B80BFC94FFAEC7C /* Cocoa.framework */; };
-		3A6F60F6A41F6ADA3A2A402261B4C472 /* AttributedStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244EB4394EBCCDF444EFD6866B1F235 /* AttributedStringBuilder.swift */; };
+		42EFCC37C4B29ACD6213405F65EB56A4 /* NSBundle+LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3389B0B6937F3B49C2D2BAFC18D64F98 /* NSBundle+LoginItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4D9C65738EDDACC08316B3B150D7A02F /* Pods-TopDrawer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E14C9E42694D9E148DD96E95FE717D /* Pods-TopDrawer-dummy.m */; };
 		54576DB657E9FD984399040669B39995 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F49DE9408207CE0B80BFC94FFAEC7C /* Cocoa.framework */; };
-		689037817CF59FE785B8E709B57016D6 /* VectorTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569DC48112EECF01BA1AC85D97C0B1E /* VectorTypes.swift */; };
 		701C1BE093ED41F89E7BF35CFA4A5F15 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F49DE9408207CE0B80BFC94FFAEC7C /* Cocoa.framework */; };
+		792BA5E39D9015CFB21144035F2B886B /* VectorTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569DC48112EECF01BA1AC85D97C0B1E /* VectorTypes.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		97C7830F81CA1F815396E007566CE635 /* AttributedStringBuilder-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E539CF6B9CA1E46D6F25D1E19A81E6 /* AttributedStringBuilder-dummy.m */; };
+		A0E617E542E506EAA2DB8A85E5F7D106 /* AttributedStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244EB4394EBCCDF444EFD6866B1F235 /* AttributedStringBuilder.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A5638922C875C6C6067B99D97093D67D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F49DE9408207CE0B80BFC94FFAEC7C /* Cocoa.framework */; };
 		B0872D09EB25676F11DE05C776BAF020 /* IYLoginItem-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 517F2E0BFC01E1F8820134A550C7A0EE /* IYLoginItem-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B0ED48C2DA34B562500E02D7C8ADCC33 /* AttributedStringBuilder-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E539CF6B9CA1E46D6F25D1E19A81E6 /* AttributedStringBuilder-dummy.m */; };
+		B1ECEE2269A3EE3C7A75A183DFBC03AD /* SBAutoLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C23ADB92C2FC994C34358C00DA3884 /* SBAutoLayout-dummy.m */; };
 		C08C6804D930FF2623EE4C3DD401A679 /* SBAutoLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9669A8864DC83D738E6563E22D3890B0 /* SBAutoLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7AFD702F4255AEBD656C794C9F56CD2 /* IYLoginItem-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 838131FC91966F6E3D619503397BAA35 /* IYLoginItem-dummy.m */; };
 		CC1E05241C4779C31F88286876174BDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F49DE9408207CE0B80BFC94FFAEC7C /* Cocoa.framework */; };
-		D2080FB814E670E3AC2D07E166D2BDD4 /* SBAutoLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C23ADB92C2FC994C34358C00DA3884 /* SBAutoLayout-dummy.m */; };
 		DD493C70E22717783B09B5537D020A91 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B636B2A2AC9B5F294743FE4D2A218C /* CoreServices.framework */; };
 		EA7CDAB5BADEE2A250B1FE575F87C71F /* SBSwiftUtils-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE0B947C516F8F17E5D55CB65517F9CF /* SBSwiftUtils-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE2B404BDAE898BE63890E6151FAADF0 /* SBAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BC2D1FFA1D0F5D7D756C3630E9ED9F /* SBAutoLayout.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F1A21CE9440AE2D7086CA1E9769406F1 /* SBSwiftUtils-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6405390346A86E92D579C5534473E2 /* SBSwiftUtils-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -441,7 +441,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87AA1F4D421536A89C4F74EB3EE1E549 /* Build configuration list for PBXNativeTarget "AttributedStringBuilder" */;
 			buildPhases = (
-				D85EB6C0B84AC777B7DDAF7B9B5549D8 /* Sources */,
+				8D08685AE7685BAE917108A26E97B9AE /* Sources */,
 				4073A5D93CDD529376B18694F873FE51 /* Frameworks */,
 				B5F9B9B513505B44307B1D06EBD23DAF /* Headers */,
 			);
@@ -458,7 +458,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 679E1D5D5D02D5E78DD5685EF488A77C /* Build configuration list for PBXNativeTarget "SBAutoLayout" */;
 			buildPhases = (
-				72F95853299374237C62AE7ACCB65E3F /* Sources */,
+				632CE0CFF2C065CCFC5E534D594A334B /* Sources */,
 				D850F72B69EA6FD9D2CFB81275A7731E /* Frameworks */,
 				6E0297D37C31980FD500D065D220F577 /* Headers */,
 			);
@@ -475,7 +475,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FF8F46D73F298E1112CE9C95ACAEEEC /* Build configuration list for PBXNativeTarget "SBSwiftUtils" */;
 			buildPhases = (
-				E48DE2D6744CEE6D61B7312B04DFC2EF /* Sources */,
+				71DCF138DA49734B7372B49B37068D82 /* Sources */,
 				884453D1E651F51FA2F2319B0CD09910 /* Frameworks */,
 				56428C38F6D47D29103C77B59376FAB8 /* Headers */,
 			);
@@ -576,6 +576,15 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		632CE0CFF2C065CCFC5E534D594A334B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1ECEE2269A3EE3C7A75A183DFBC03AD /* SBAutoLayout-dummy.m in Sources */,
+				EE2B404BDAE898BE63890E6151FAADF0 /* SBAutoLayout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6B48109BFDBB4D3EBAD9AF138B465D1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -584,12 +593,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		72F95853299374237C62AE7ACCB65E3F /* Sources */ = {
+		71DCF138DA49734B7372B49B37068D82 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2080FB814E670E3AC2D07E166D2BDD4 /* SBAutoLayout-dummy.m in Sources */,
-				0D0C11A9B8081377315242D3B6764C43 /* SBAutoLayout.swift in Sources */,
+				F1A21CE9440AE2D7086CA1E9769406F1 /* SBSwiftUtils-dummy.m in Sources */,
+				00FCBEEB90C2BD58BE5FF65D480C20A7 /* String+Extensions.swift in Sources */,
+				792BA5E39D9015CFB21144035F2B886B /* VectorTypes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D08685AE7685BAE917108A26E97B9AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97C7830F81CA1F815396E007566CE635 /* AttributedStringBuilder-dummy.m in Sources */,
+				A0E617E542E506EAA2DB8A85E5F7D106 /* AttributedStringBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,26 +625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7AFD702F4255AEBD656C794C9F56CD2 /* IYLoginItem-dummy.m in Sources */,
-				1B4C9C78B9D32659314721C702F7CEE9 /* NSBundle+LoginItem.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D85EB6C0B84AC777B7DDAF7B9B5549D8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B0ED48C2DA34B562500E02D7C8ADCC33 /* AttributedStringBuilder-dummy.m in Sources */,
-				3A6F60F6A41F6ADA3A2A402261B4C472 /* AttributedStringBuilder.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E48DE2D6744CEE6D61B7312B04DFC2EF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0B7D11EF1778E28FFE991D472F342CC6 /* SBSwiftUtils-dummy.m in Sources */,
-				1A209E7822F618BFF68DCF9CD44F7395 /* String+Extensions.swift in Sources */,
-				689037817CF59FE785B8E709B57016D6 /* VectorTypes.swift in Sources */,
+				42EFCC37C4B29ACD6213405F65EB56A4 /* NSBundle+LoginItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

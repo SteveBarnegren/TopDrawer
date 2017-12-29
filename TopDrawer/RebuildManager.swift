@@ -207,8 +207,10 @@ class RebuildManager {
                 }
                 
                 print("Finished Building menu")
-                self?.rebuildCompleted(resultType: .success(timeTaken: CFAbsoluteTimeGetCurrent() - self!.rebuildStartTime),
-                                       directory: rootDirectory)
+                self?.rebuildCompleted(
+                    resultType: .success(timeTaken: CFAbsoluteTimeGetCurrent() - self!.rebuildStartTime),
+                    directory: rootDirectory
+                )
                 
             })
         }

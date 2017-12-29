@@ -89,14 +89,16 @@ class SettingsViewController: NSViewController {
         #endif
     }
     
+    // swiftlint:disable line_length
     func setupRefreshIntervalDropdown() {
         refreshIntervalDropdown.removeAllItems()
         SettingsIntervalChoices.refreshIntervals.forEach {
             refreshIntervalDropdown.addItem(withTitle: $0.title)
         }
         
-        let index = SettingsIntervalChoices.refreshIntervals.index { Int($0.minutesValue) == Settings.shared.refreshMinutes.value }
-            ?? SettingsIntervalChoices.refreshIntervals.count - 1
+        let index =
+            SettingsIntervalChoices.refreshIntervals.index { Int($0.minutesValue) == Settings.shared.refreshMinutes.value }
+                ?? SettingsIntervalChoices.refreshIntervals.count - 1
         
         refreshIntervalDropdown.selectItem(at: index)
     }
@@ -107,11 +109,13 @@ class SettingsViewController: NSViewController {
             timeoutIntervalDropdown.addItem(withTitle: $0.title)
         }
         
-        let index = SettingsIntervalChoices.timeoutIntervals.index { Int($0.secondsValue) == Settings.shared.timeout.value }
-            ?? SettingsIntervalChoices.timeoutIntervals.count - 1
+        let index =
+            SettingsIntervalChoices.timeoutIntervals.index { Int($0.secondsValue) == Settings.shared.timeout.value }
+                ?? SettingsIntervalChoices.timeoutIntervals.count - 1
         
         timeoutIntervalDropdown.selectItem(at: index)
     }
+    // swiftlint:enable line_length
     
     func setupGitHubButton() {
         
@@ -210,7 +214,7 @@ class SettingsViewController: NSViewController {
         }
     }
     
-    @IBAction private func quitAndRemoveDataButtonPressed(sender: NSButton){
+    @IBAction private func quitAndRemoveDataButtonPressed(sender: NSButton) {
         
         let userDefaults = UserDefaults.standard
         for key in userDefaults.dictionaryRepresentation().keys where key.contains(subString: "debug") {

@@ -2,6 +2,7 @@ platform :osx, '10.12'
 
 target 'TopDrawer' do
   use_frameworks!
+  inhibit_all_warnings!
 
   pod 'IYLoginItem'
   pod 'SBSwiftUtils'
@@ -12,6 +13,7 @@ end
 
 target 'TopDrawerTests' do
   use_frameworks!
+  inhibit_all_warnings!
 
   pod 'SBSwiftUtils'
 end

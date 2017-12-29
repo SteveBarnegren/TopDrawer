@@ -165,7 +165,7 @@ class File: FileSystemObject {
     
     var menuName: String {
         
-        if ext.characters.count > 0 {
+        if ext.count > 0 {
             return "\(name)" + "." + "\(ext)"
         } else {
             return name
@@ -175,7 +175,7 @@ class File: FileSystemObject {
     
     var fullName: String {
         
-        if ext.characters.count > 0 {
+        if ext.count > 0 {
             return "\(name).\(ext)"
         } else {
             return name
