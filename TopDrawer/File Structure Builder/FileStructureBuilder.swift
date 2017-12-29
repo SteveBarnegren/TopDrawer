@@ -38,6 +38,21 @@ extension FileManager: FileReader {
     }
 }
 
+// MARK: - IconProvider
+
+protocol IconProvider {
+    func icon(forPath path: String) -> NSImage
+}
+
+class WorkspaceIconProvider: IconProvider {
+    
+    func icon(forPath path: String) -> NSImage {
+        let image = NSWorkspace.shared.icon(forFile: path)
+        image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
+        return image
+    }
+}
+
 // MARK: - ****** FileStructureBuilder ******
 
 enum FileStructureBuilderError: Error {
@@ -61,12 +76,14 @@ class FileStructureBuilder {
     init(fileReader: FileReader,
          fileRules: [FileRule],
          folderRules: [FolderRule],
-         options: Options) {
+         options: Options,
+         iconProvider: IconProvider) {
         
         self.fileRules = fileRules
         self.folderRules = folderRules
         self.fileReader = fileReader
         self.options = options
+        self.iconProvider = iconProvider
     }
 
     // MARK: - Properties
@@ -77,6 +94,7 @@ class FileStructureBuilder {
     private let folderRules: [FolderRule]
     private let fileReader: FileReader
     private let options: Options
+    private let iconProvider: IconProvider
     private var visitedFolderPaths = Set<String>()
     
     // MARK: - Build Directory Structure
@@ -182,7 +200,7 @@ class FileStructureBuilder {
                 return nil
             }
             
-            directory.image = imageForPath(path)
+            directory.image = iconProvider.icon(forPath: path)
             hierarchyInfo.add(folderName: directory.name)
             
             contents
@@ -217,8 +235,8 @@ class FileStructureBuilder {
                 return nil
             }
             
-            file.image = imageForPath(path)
-            
+            file.image = iconProvider.icon(forPath: path)
+
             return file
         }
         
@@ -279,13 +297,4 @@ class FileStructureBuilder {
         
         return false
     }
-    
-    // MARK: - Images
-    
-    func imageForPath(_ path: String) -> NSImage {
-        let image = NSWorkspace.shared.icon(forFile: path)
-        image.size = CGSize(width: image.size.width/2, height: image.size.height/2)
-        return image
-    }
-    
 }

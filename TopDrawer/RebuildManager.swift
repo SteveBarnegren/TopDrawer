@@ -145,7 +145,8 @@ class RebuildManager {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: fileRuleLoader.rules,
                                            folderRules: folderRuleLoader.rules,
-                                           options: options)
+                                           options: options,
+                                           iconProvider: WorkspaceIconProvider())
         
         let path = settings.path.value
         

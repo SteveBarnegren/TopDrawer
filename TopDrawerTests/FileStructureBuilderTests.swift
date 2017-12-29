@@ -218,7 +218,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [matchPngRule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "cat.png"))
@@ -260,7 +262,9 @@ class Tests: XCTestCase {
         let withAliasBuilder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [fileRule],
                                            folderRules: [folderRule],
-                                           options: [.followAliases])
+                                           options: [.followAliases],
+                                           iconProvider: MockIconProvider())
+        
         let withAliasDirectory = try withAliasBuilder.buildFileSystemStructure(atPath: "Root")
         XCTAssertTrue(withAliasDirectory.containsObject(atPath: "A Folder/Photos/dog.png"))
         
@@ -268,7 +272,9 @@ class Tests: XCTestCase {
         let noAliasBuilder = FileStructureBuilder(fileReader: fileReader,
                                                     fileRules: [fileRule],
                                                     folderRules: [folderRule],
-                                                    options: [])
+                                                    options: [],
+                                                    iconProvider: MockIconProvider())
+        
         let noAliasDirectory = try noAliasBuilder.buildFileSystemStructure(atPath: "Root")
         noAliasDirectory.printHierarchy()
         XCTAssertFalse(noAliasDirectory.containsObject(atPath: "A Folder/Photos/dog.png"))
@@ -292,7 +298,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                                     fileRules: [fileRule],
                                                     folderRules: [],
-                                                    options: [.followAliases])
+                                                    options: [.followAliases],
+                                                    iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         XCTAssertFalse(directory.containsObject(atPath: "A Folder/A Folder/dog.png"))
     }
@@ -314,7 +322,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "dog.png"))
@@ -336,7 +346,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "dog.png"))
@@ -358,7 +370,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "a photo of a dog.png"))
@@ -380,7 +394,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "a photo of a dog.png"))
@@ -404,7 +420,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "dog.png"))
@@ -426,7 +444,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "dog.png"))
@@ -450,7 +470,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "dog.png"))
@@ -472,7 +494,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "dog.png"))
@@ -501,7 +525,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "ContainsGif/dog.png"))
@@ -528,7 +554,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "ContainsGif/dog.png"))
@@ -557,7 +585,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "ContainsGif/dog.png"))
@@ -584,7 +614,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertFalse(directory.containsObject(atPath: "ContainsGif/dog.png"))
@@ -614,7 +646,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Documents/Photos/dog.png"))
@@ -648,7 +682,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -674,7 +710,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -700,7 +738,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "-- Include Me --/dog.png"))
@@ -726,7 +766,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "-- Include Me --/dog.png"))
@@ -754,7 +796,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -780,7 +824,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -809,7 +855,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -836,7 +884,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -863,7 +913,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -892,7 +944,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -919,7 +973,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -946,7 +1002,9 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: dogPngFileRules(),
                                            folderRules: [rule],
-                                           options: [])
+                                           options: [],
+                                           iconProvider: MockIconProvider())
+        
         let directory = try builder.buildFileSystemStructure(atPath: "Root")
         
         XCTAssertTrue(directory.containsObject(atPath: "Include Me/dog.png"))
@@ -976,7 +1034,8 @@ class Tests: XCTestCase {
         let builder = FileStructureBuilder(fileReader: fileReader,
                                            fileRules: [rule],
                                            folderRules: [],
-                                           options: [.shortenPaths])
+                                           options: [.shortenPaths],
+                                           iconProvider: MockIconProvider())
         
         guard let directory = try? builder.buildFileSystemStructure(atPath: "Root") else {
             XCTFail("Expected directory")

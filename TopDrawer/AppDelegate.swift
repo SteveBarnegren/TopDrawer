@@ -24,8 +24,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //        }
         //        return
         
-        let userDefaults = UserDefaults.standard
-        if userDefaults.bool(forKey: "RUNNING_TESTS") == true {
+        guard NSClassFromString("XCTestCase") == nil else {
+            print("AppDelegate preventing app from launching during tests")
             return
         }
         
