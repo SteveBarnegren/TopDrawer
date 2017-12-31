@@ -1,0 +1,8 @@
+language: swift
+os: osx
+osx_image: xcode9.2
+xcode_project: TopDrawer.xcworkspace
+xcode_scheme: Top-Drawer
+xcode_sdk: macosx10.13
+
+script: xcodebuild test -workspace TopDrawer.xcworkspace -scheme Top-Drawer -sdk macosx10.13
