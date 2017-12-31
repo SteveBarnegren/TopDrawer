@@ -1,24 +1,22 @@
-![icon](https://user-images.githubusercontent.com/6288713/34445381-3baca576-eccb-11e7-953c-b45c3f0d1590.png)
+![icon](https://user-images.githubusercontent.com/6288713/34455063-b66a46f8-ed6e-11e7-972f-c3ed6ff88e40.png)
 
 **Top-Drawer gives you quick access to the files you use most straight from your MenuBar!**
 
-![Gif](https://user-images.githubusercontent.com/6288713/34445419-74ca1f3c-eccb-11e7-9715-c5c1d017d5a7.gif)
+Simply tell **Top-Drawer** what kind of files you want to see, and where to find them!
 
-Simply tell **Top-Drawer** what kind of files you want to see, and where to find them, and it will do the rest.
+![gif 5](https://user-images.githubusercontent.com/6288713/34454891-54d29078-ed6c-11e7-91a3-bf1676c6af7b.gif)
 
 ## How to use
 
-Set a route directory, in this case `Projects`.
+Set a root folder, in this case `Projects`.
 
-Add a rule to show any files with extension `.workspace` or `.xcodeproj`: 
+Add rules to match the files that you want to see, in this example, files with the extension `.workspace` or `.xcodeproj`:
 
 ![simple settings](https://user-images.githubusercontent.com/6288713/34445447-a415ee7e-eccb-11e7-918e-0671838d8dbb.png)
 
-**TopDrawer** will find your files for quick access from the Menu Bar:
+![simple menu padded](https://user-images.githubusercontent.com/6288713/34455078-1f880940-ed6f-11e7-8b6a-3ee8a2625397.png)
 
-![simple menu](https://user-images.githubusercontent.com/6288713/34445450-a73471b6-eccb-11e7-8957-fef1e8d707b7.png)
-
-## Getting Fancy
+## More complex rules
 
 Rules can have any number of conditions.
 
@@ -27,6 +25,14 @@ Here, we show any `xcodeproj` files, but not if the parent directory also contai
 We might also be interested in files called `podfile`, but not if the extenion is `.lock`:
 
 ![complex settings](https://user-images.githubusercontent.com/6288713/34445456-aabc6ca8-eccb-11e7-8ac1-45338f364517.png)
+
+## Folder exclusion rules
+
+Often, there are cases where a program that you use might create it's own folders that contain the same kinds of files that you are interested in. In these cases, you can use a folder exclusion rule to omit a folder from the search.
+
+Here, we exclude any folders called `Pods`:
+
+![pods](https://user-images.githubusercontent.com/6288713/34455034-1f6c7c3a-ed6e-11e7-8e47-008655f4b571.png)
 
 ## Features
 
