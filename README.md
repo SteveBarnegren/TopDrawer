@@ -46,7 +46,7 @@ Here, we exclude any folders called `Pods`:
 
 ## How to install
 
-Either build from source, or install the the prebuilt binary here: ...
+Either build from source, or install the the prebuilt binary here: (soon...)
 
 ## Contributing
 
