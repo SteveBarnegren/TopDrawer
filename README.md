@@ -58,4 +58,4 @@ Follow me on twitter [@SteveBarnegren](https://twitter.com/stevebarnegren)
 
 ## License
 
-TopDrawer is available under the ??? license. See the LICENSE file for more info.
+TopDrawer is available under the MIT license. See the LICENSE file for more info.
