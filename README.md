@@ -51,7 +51,7 @@ Here, we exclude any folders called `Pods`:
 
 ## How to install
 
-Either build from source, or install the the prebuilt binary here: [Top-Drawer 1.0](Builds/TopDrawer.zip)
+Either build from source, or install the the prebuilt binary here: [Top-Drawer](https://github.com/SteveBarnegren/TopDrawer/releases)
 
 ## Contributing
 
