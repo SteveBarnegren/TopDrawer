@@ -1,5 +1,10 @@
 ![icon](https://user-images.githubusercontent.com/6288713/34455063-b66a46f8-ed6e-11e7-972f-c3ed6ff88e40.png)
 
+![version](https://img.shields.io/github/tag/SteveBarnegren/TopDrawer.svg)
+![min](https://img.shields.io/badge/min-macOS%2010.12-lightgrey.svg)
+![build](https://img.shields.io/travis/SteveBarnegren/TopDrawer/master.svg)
+
+
 **Top-Drawer gives you quick access to the files you use most straight from your MenuBar!**
 
 Simply tell **Top-Drawer** what kind of files you want to see, and where to find them!
