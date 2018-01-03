@@ -17,9 +17,7 @@ Set a root folder, in this case `Projects`.
 
 Add rules to match the files that you want to see, in this example, files with the extension `.workspace` or `.xcodeproj`:
 
-![simple settings](https://user-images.githubusercontent.com/6288713/34445447-a415ee7e-eccb-11e7-918e-0671838d8dbb.png)
-
-![simple menu padded](https://user-images.githubusercontent.com/6288713/34455078-1f880940-ed6f-11e7-8b6a-3ee8a2625397.png)
+![simple settings with menu](https://user-images.githubusercontent.com/6288713/34537750-6e991312-f0c1-11e7-8d5a-ef0c79c0f75d.png)
 
 ## More complex rules
 
@@ -45,13 +43,12 @@ Here, we exclude any folders called `Pods`:
 - Add rules to exclude folders
 - Shorten paths, no more navigating through 'connecting' folders
 - Aliases? No problem
-- Open at login
 - Adjustable search frequency
 - Option to open at login
 
 ## How to install
 
-Either build from source, or install the the prebuilt binary here: [Top-Drawer](https://github.com/SteveBarnegren/TopDrawer/releases)
+Either build from source, or download the the prebuilt binary: [Top-Drawer](https://github.com/SteveBarnegren/TopDrawer/releases/download/1.0/TopDrawer.zip)
 
 ## Contributing
 
