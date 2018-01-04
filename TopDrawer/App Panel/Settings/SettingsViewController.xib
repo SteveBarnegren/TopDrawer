@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="SettingsViewController" customModule="MenuNav" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="SettingsViewController" customModule="TopDrawer" customModuleProvider="target">
             <connections>
                 <outlet property="followAliasesButton" destination="seM-3e-0Ze" id="RwN-2t-fLp"/>
                 <outlet property="gitHubButton" destination="P28-yJ-ZeX" id="0H4-fy-HUj"/>
@@ -54,8 +54,8 @@
                                     </connections>
                                 </button>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="gDg-0W-PE0">
-                                    <rect key="frame" x="47" y="-2" width="105" height="18"/>
-                                    <buttonCell key="cell" type="check" title="Open At login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gkJ-DY-Xvq">
+                                    <rect key="frame" x="48" y="-2" width="103" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Open at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gkJ-DY-Xvq">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
