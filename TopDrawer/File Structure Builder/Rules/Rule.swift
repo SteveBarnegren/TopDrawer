@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - ConditionProtocol
 
-protocol CondtionProtocol {
+protocol ConditionProtocol {
     var displayDescription: String {get}
     func attributedDisplayDescription(withAttributes attributes: ConditionFormatterAttributes) -> NSAttributedString
 }
@@ -19,7 +19,7 @@ protocol CondtionProtocol {
 
 protocol Rule: DictionaryRepresentable {
     
-    associatedtype Condition: CondtionProtocol, DecisionTreeElement
+    associatedtype Condition: ConditionProtocol, DecisionTreeElement
     
     static var storageKey: String {get}
     

@@ -69,7 +69,7 @@ class PanelViewController: NSViewController {
         
         // swiftlint:disable line_length
         let viewModel = RulesViewModel(editRuleTitle: "Add Folder Rule",
-                                       addConditionPrompt: "Add condtions to exclude a folder, even if it contains matching files",
+                                       addConditionPrompt: "Add conditions to exclude a folder, even if it contains matching files",
                                        addConditionPromptButtonTitle: "Add a Condition",
                                        overviewExplanation: "Exclude folders matching any of the following sets of rules:",
                                        editorExplanation: "Exclude folders matching all of the following conditions:")

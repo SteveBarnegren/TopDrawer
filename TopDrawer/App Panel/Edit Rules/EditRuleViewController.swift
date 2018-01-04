@@ -168,8 +168,8 @@ class EditRuleViewController<T: Rule>: NSViewController {
         conditionViews.append(conditionView)
         layoutConditionViews()
         
-        conditionView.valueChangedHandler = condtionViewValueChanged
-        conditionView.wantsDeletionHandler = condtionViewWantsDeletion
+        conditionView.valueChangedHandler = conditionViewValueChanged
+        conditionView.wantsDeletionHandler = conditionViewWantsDeletion
         
         view.needsLayout = true
         updateForCurrentState()
@@ -219,12 +219,12 @@ class EditRuleViewController<T: Rule>: NSViewController {
     
     // MARK: - ConditionViewHandlers
     
-    func condtionViewValueChanged(_ conditionView: ConditionEditorView<T.Condition>) {
+    func conditionViewValueChanged(_ conditionView: ConditionEditorView<T.Condition>) {
         print("VC: Condition value changed")
         updateForCurrentState()
     }
     
-    func condtionViewWantsDeletion(_ conditionView: ConditionEditorView<T.Condition>) {
+    func conditionViewWantsDeletion(_ conditionView: ConditionEditorView<T.Condition>) {
         print("VC: Condition wants deletion")
         removeConditionView(conditionView)
     }

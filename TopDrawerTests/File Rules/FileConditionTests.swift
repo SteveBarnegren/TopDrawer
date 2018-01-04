@@ -157,7 +157,7 @@ class FileConditionTests: XCTestCase {
 
     // MARK: - Test DictionaryRepresentable
     
-    func testFileCondtionToDictionaryAndBackIsTheSame() {
+    func testFileConditionToDictionaryAndBackIsTheSame() {
         
         let name = FileCondition.name(.matching("dog"))
         let ext = FileCondition.ext(.matching("png"))

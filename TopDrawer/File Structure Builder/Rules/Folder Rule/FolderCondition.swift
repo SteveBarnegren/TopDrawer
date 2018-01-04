@@ -49,9 +49,9 @@ extension FolderCondition: Equatable {
     }
 }
 
-// MARK: - CondtionProtocol
+// MARK: - ConditionProtocol
 
-extension FolderCondition: CondtionProtocol {
+extension FolderCondition: ConditionProtocol {
  
     var displayDescription: String {
         let formatter = FolderConditionFormatter()

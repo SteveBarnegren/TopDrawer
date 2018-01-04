@@ -61,42 +61,42 @@ class FolderConditionTests: XCTestCase {
     
     func testFolderConditionsAreEqualWithEqualPath() {
         
-        let firstCondtion = FolderCondition.path(.matching("animals/birds"))
+        let firstCondition = FolderCondition.path(.matching("animals/birds"))
         let same = FolderCondition.path(.matching("animals/birds"))
         let different = FolderCondition.path(.matching("animals/reptiles"))
 
-        XCTAssertTrue(firstCondtion == same)
-        XCTAssertFalse(firstCondtion == different)
+        XCTAssertTrue(firstCondition == same)
+        XCTAssertFalse(firstCondition == different)
     }
     
     func testFolderConditionsAreEqualWithEqualName() {
         
-        let firstCondtion = FolderCondition.name(.matching("birds"))
+        let firstCondition = FolderCondition.name(.matching("birds"))
         let same = FolderCondition.name(.matching("birds"))
         let different = FolderCondition.name(.matching("reptiles"))
         
-        XCTAssertTrue(firstCondtion == same)
-        XCTAssertFalse(firstCondtion == different)
+        XCTAssertTrue(firstCondition == same)
+        XCTAssertFalse(firstCondition == different)
     }
     
     func testFolderConditionsAreEqualWithEqualContains() {
         
-        let firstCondtion = FolderCondition.contains(.filesWithExtension("png"))
+        let firstCondition = FolderCondition.contains(.filesWithExtension("png"))
         let same = FolderCondition.contains(.filesWithExtension("png"))
         let different = FolderCondition.contains(.filesWithExtension("gif"))
         
-        XCTAssertTrue(firstCondtion == same)
-        XCTAssertFalse(firstCondtion == different)
+        XCTAssertTrue(firstCondition == same)
+        XCTAssertFalse(firstCondition == different)
     }
     
     func testFolderConditionsAreEqualWithEqualDoesntContain() {
         
-        let firstCondtion = FolderCondition.doesntContain(.filesWithExtension("png"))
+        let firstCondition = FolderCondition.doesntContain(.filesWithExtension("png"))
         let same = FolderCondition.doesntContain(.filesWithExtension("png"))
         let different = FolderCondition.doesntContain(.filesWithExtension("gif"))
         
-        XCTAssertTrue(firstCondtion == same)
-        XCTAssertFalse(firstCondtion == different)
+        XCTAssertTrue(firstCondition == same)
+        XCTAssertFalse(firstCondition == different)
     }
     
     func testFolderConditionsAreNotEqualWithDifferentCases() {

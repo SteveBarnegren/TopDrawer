@@ -51,7 +51,7 @@ enum FileCondition {
 
 // MARK: - ConditionProtocol
 
-extension FileCondition: CondtionProtocol {
+extension FileCondition: ConditionProtocol {
     
     var displayDescription: String {
         
