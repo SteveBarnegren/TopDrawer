@@ -99,7 +99,7 @@ class DecisionNode<T: DecisionTreeElement> {
     }
 }
 
-// MARK: - File Condtion Decision Tree
+// MARK: - File Condition Decision Tree
 
 // swiftlint:disable line_length
 func fileConditionDecisionTree() -> DecisionNode<FileRule.Condition> {
@@ -147,7 +147,7 @@ func fileConditionDecisionTree() -> DecisionNode<FileRule.Condition> {
         ]))
 }
 
-// MARK: - Folder Condtion Decision Tree
+// MARK: - Folder Condition Decision Tree
 
 func folderConditionDecisionTree() -> DecisionNode<FolderRule.Condition> {
     
