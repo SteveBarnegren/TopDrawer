@@ -5,7 +5,7 @@
 ![build](https://img.shields.io/travis/SteveBarnegren/TopDrawer/master.svg)
 
 
-**Top-Drawer gives you quick access to the files you use most straight from your MenuBar!**
+**Top-Drawer gives you quick access to the files you use most straight from your menu bar!**
 
 Simply tell **Top-Drawer** what kind of files you want to see, and where to find them!
 
@@ -25,13 +25,13 @@ Rules can have any number of conditions.
 
 Here, we show any `xcodeproj` files, but not if the parent directory also contains an `xcworkspace` file.
 
-We might also be interested in files called `podfile`, but not if the extenion is `.lock`:
+We might also be interested in files called `podfile`, but not if the extension is `.lock`:
 
 ![complex settings](https://user-images.githubusercontent.com/6288713/34445456-aabc6ca8-eccb-11e7-8ac1-45338f364517.png)
 
 ## Folder exclusion rules
 
-Often, there are cases where a program that you use might create it's own folders that contain the same kinds of files that you are interested in. In these cases, you can use a folder exclusion rule to omit a folder from the search.
+Often, there are cases where a program that you use might create its own folders that contain the same kinds of files that you are interested in. In these cases, you can use a folder exclusion rule to omit a folder from the search.
 
 Here, we exclude any folders called `Pods`:
 
