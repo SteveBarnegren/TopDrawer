@@ -22,7 +22,7 @@ struct FileRule: Rule {
     
     // MARK: - Init
     
-    init(conditions: [Condition]) {
+    init(conditions: [FileCondition]) {
 
         if conditions.count == 0 {
             fatalError("FileRule must have at least one condition")
