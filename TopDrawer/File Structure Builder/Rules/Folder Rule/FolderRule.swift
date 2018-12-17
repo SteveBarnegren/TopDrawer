@@ -22,7 +22,7 @@ struct FolderRule: Rule {
     
     // MARK: - Init
     
-    init(conditions: [Condition]) {
+    init(conditions: [FolderCondition]) {
         self.conditions = conditions
     }
     
