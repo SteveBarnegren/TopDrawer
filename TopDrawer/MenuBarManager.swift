@@ -43,7 +43,10 @@ class MenuBarManager {
     func resetMenu(withDirectory directory: Directory?) {
         
         if let dir = directory {
-            statusItem.menu = dir.convertToNSMenu(target: self, selector: #selector(menuItemPressed))
+            statusItem.menu = dir.convertToNSMenu(target: self,
+                                                  selector: #selector(menuItemPressed),
+                                                  openTerminal: #selector(openTerminalPressed),
+                                                  isRootDirectory: true)
             addSeparatorToMenu()
         } else {
             statusItem.menu = NSMenu()
@@ -99,6 +102,18 @@ class MenuBarManager {
         }
         
         NSWorkspace.shared.openFile(path)
+    }
+    
+    @objc func openTerminalPressed(item: NSMenuItem) {
+        print("Open Terminal pressed")
+        
+        guard let path = item.representedObject as? String else {
+            print("Unable to obtain path from menu object")
+            return
+        }
+        
+        let arguments = ["-a", "Terminal", path]
+        Process.launchedProcess(launchPath: "/usr/bin/open", arguments: arguments)
     }
     
     @objc func openSettings() {
@@ -174,7 +189,10 @@ extension MenuBarManager: RebuildManagerListener {
 
 extension Directory {
     
-    func convertToNSMenu(target: AnyObject, selector: Selector) -> NSMenu {
+    func convertToNSMenu(target: AnyObject,
+                         selector: Selector,
+                         openTerminal: Selector,
+                         isRootDirectory: Bool) -> NSMenu {
         
         let menu = NSMenu()
         
@@ -186,10 +204,26 @@ extension Directory {
             item.image = inner.image
             
             if let innerDir = inner as? Directory, innerDir.contents.count > 0 {
-                item.submenu = innerDir.convertToNSMenu(target: target, selector: selector)
+                item.submenu = innerDir.convertToNSMenu(target: target,
+                                                        selector: selector,
+                                                        openTerminal: openTerminal,
+                                                        isRootDirectory: false)
             }
             
             menu.addItem(item)
+        }
+        
+        if isRootDirectory == false {
+            
+            let terminalHereItem = NSMenuItem(title: "Open Terminal Here", action: openTerminal, keyEquivalent: "")
+            terminalHereItem.target = target
+            terminalHereItem.representedObject = self.path
+            let terminalIcon = NSImage(named: NSImage.Name(rawValue: "terminalHereMenuIcon"))
+            terminalIcon?.size = NSSize(width: 20, height: 20)
+            terminalHereItem.image = terminalIcon
+            
+            menu.addItem(NSMenuItem.separator())
+            menu.addItem(terminalHereItem)
         }
         
         return menu
