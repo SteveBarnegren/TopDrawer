@@ -213,7 +213,7 @@ extension Directory {
             menu.addItem(item)
         }
         
-        if isRootDirectory == false {
+        if isRootDirectory == false && Settings.shared.enableTerminalHere.value {
             
             let terminalHereItem = NSMenuItem(title: "Open Terminal Here", action: openTerminal, keyEquivalent: "")
             terminalHereItem.target = target
