@@ -106,6 +106,7 @@ class RebuildManager {
         // Observe settings
         settings.path.add(changeObserver: self, selector: #selector(pathSettingChanged))
         settings.followAliases.add(changeObserver: self, selector: #selector(followAliasesSettingChanged))
+        settings.enableTerminalHere.add(changeObserver: self, selector: #selector(enableTerminalHereSettingChanged))
         settings.shortenPaths.add(changeObserver: self, selector: #selector(shortenPathsSettingChanged))
         settings.timeout.add(changeObserver: self, selector: #selector(timeoutSettingChanged))
     }
@@ -304,6 +305,10 @@ class RebuildManager {
     // MARK: - Settings Observers
 
     @objc private func followAliasesSettingChanged() {
+        needsRebuild = true
+    }
+    
+    @objc private func enableTerminalHereSettingChanged() {
         needsRebuild = true
     }
 

@@ -40,6 +40,7 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak fileprivate var followAliasesButton: NSButton!
     @IBOutlet weak fileprivate var shortenPathsButton: NSButton!
     @IBOutlet weak fileprivate var openAtLoginButton: NSButton!
+    @IBOutlet weak fileprivate var enableTerminalHereButton: NSButton!
     @IBOutlet weak fileprivate var refreshIntervalDropdown: NSPopUpButton!
     @IBOutlet weak fileprivate var timeoutIntervalDropdown: NSPopUpButton!
     @IBOutlet weak fileprivate var lastRebuildTimeLabel: NSTextField!
@@ -71,6 +72,9 @@ class SettingsViewController: NSViewController {
         
         // Open at login button
         openAtLoginButton.state = Bundle.main.isLoginItem() ? .on : .off
+        
+        // Enable terminal here button
+        enableTerminalHereButton.state = Settings.shared.enableTerminalHere.value ? .on : .off
         
         // Rebuild interval Dropdown
         setupRefreshIntervalDropdown()
@@ -184,6 +188,11 @@ class SettingsViewController: NSViewController {
         } else {
             Bundle.main.removeFromLoginItems()
         }
+    }
+    
+    @IBAction private func enableTerminalHereButtonPressed(sender: NSButton) {
+        let isOn = enableTerminalHereButton.state == .on
+        Settings.shared.enableTerminalHere.value = isOn
     }
     
     @IBAction private func refreshIntervalDropdownValueChanged(sender: NSPopUpButton) {
