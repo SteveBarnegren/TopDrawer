@@ -35,7 +35,7 @@ class RulesViewController<T: Rule>: NSViewController {
     init(viewModel: RulesViewModel, rebuildManager: RebuildManager) {
         self.viewModel = viewModel
         self.rebuildManager = rebuildManager
-        super.init(nibName: NSNib.Name(rawValue: "RulesViewController"), bundle: nil)
+        super.init(nibName: "RulesViewController", bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -96,7 +96,7 @@ class RulesViewController<T: Rule>: NSViewController {
         editRule.didEditRuleHandler = didEditRuleHandler
         
         // Reaching in to the parent here is terrible, will have to come up with a better solution
-        parentViewController.addChildViewController(editRule)
+        parentViewController.addChild(editRule)
         parentViewController.view.addSubview(editRule.view)
         editRule.view.pinToSuperviewEdges()
     }
@@ -114,7 +114,7 @@ class RulesViewController<T: Rule>: NSViewController {
         editRule.didEditRuleHandler = didEditRuleHandler
         
         // Reaching in to the parent here is terrible, will have to come up with a better solution
-        parentViewController.addChildViewController(editRule)
+        parentViewController.addChild(editRule)
         parentViewController.view.addSubview(editRule.view)
         editRule.view.pinToSuperviewEdges()
     }

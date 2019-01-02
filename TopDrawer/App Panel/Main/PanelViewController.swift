@@ -28,7 +28,7 @@ class PanelViewController: NSViewController {
         super.viewDidLoad()
         
         // IconImageView
-        iconImageView.image = NSImage(named: NSImage.Name(rawValue: "AppIcon"))
+        iconImageView.image = NSImage(named: "AppIcon")
         
         // Update UI
         updatePathLabel()
@@ -90,11 +90,11 @@ class PanelViewController: NSViewController {
     func show(contentViewController newViewController: NSViewController) {
         
         if let existing = contentViewController {
-            existing.removeFromParentViewController()
+            existing.removeFromParent()
             existing.view.removeFromSuperview()
         }
         
-        addChildViewController(newViewController)
+        addChild(newViewController)
         contentView.addSubview(newViewController.view)
         newViewController.view.pinToSuperviewEdges()
         contentViewController = newViewController

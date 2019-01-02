@@ -48,7 +48,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
     // MARK: - Init
     
     init(existingRule: T?, viewModel: RulesViewModel) {
-        super.init(nibName: NSNib.Name(rawValue: "EditRuleViewController"), bundle: nil)
+        super.init(nibName: "EditRuleViewController", bundle: nil)
         
         self.existingRule = existingRule
         
@@ -213,7 +213,7 @@ class EditRuleViewController<T: Rule>: NSViewController {
     // MARK: - Navigation
     
     func dismiss() {
-        removeFromParentViewController()
+        removeFromParent()
         view.removeFromSuperview()
     }
     

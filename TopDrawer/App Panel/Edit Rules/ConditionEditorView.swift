@@ -29,7 +29,7 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
     }()
     
     private lazy var deleteButton: NSButton = {
-        let image = NSImage(named: .init(rawValue: "Delete"))!
+        let image = NSImage(named: "Delete")!
         let button = NSButton(title: "", image: image, target: self, action: #selector(deleteButtonPressed))
         return button
     }()
@@ -249,7 +249,7 @@ class ConditionEditorViewNonGenericType: NSObject, NSTextFieldDelegate {
     
     weak var delegate: ConditionEditorViewNonGenericTypeDelegate?
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         delegate?.controlTextDidChange(notification: obj)
     }
 }

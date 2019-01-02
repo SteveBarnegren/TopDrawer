@@ -52,7 +52,7 @@ class SettingsViewController: NSViewController {
     
     init(rebuildManager: RebuildManager) {
         self.rebuildManager = rebuildManager
-        super.init(nibName: NSNib.Name(rawValue: "SettingsViewController"), bundle: nil)
+        super.init(nibName: "SettingsViewController", bundle: nil)
     }
     
     required init?(coder: NSCoder) {
