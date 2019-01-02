@@ -20,7 +20,7 @@ class MenuBarManager {
     func start() {
         
         if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
+            button.image = NSImage(named: "StatusBarButtonImage")
             button.action = #selector(statusBarButtonPressed)
         }
         
@@ -119,7 +119,7 @@ class MenuBarManager {
     @objc func openSettings() {
         print("Open settings")
         
-        let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "App"), bundle: nil)
+        let storyboard = NSStoryboard(name: "App", bundle: nil)
         appWindowController = storyboard.instantiateInitialController() as? NSWindowController
         appWindowController?.showWindow(self)
         appWindowController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
@@ -218,7 +218,7 @@ extension Directory {
             let terminalHereItem = NSMenuItem(title: "Open Terminal Here", action: openTerminal, keyEquivalent: "")
             terminalHereItem.target = target
             terminalHereItem.representedObject = self.path
-            let terminalIcon = NSImage(named: NSImage.Name(rawValue: "terminalHereMenuIcon"))
+            let terminalIcon = NSImage(named: "terminalHereMenuIcon")
             terminalIcon?.size = NSSize(width: 20, height: 20)
             terminalHereItem.image = terminalIcon
             

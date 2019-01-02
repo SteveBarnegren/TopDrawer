@@ -62,7 +62,7 @@ class RuleLoader<T: Rule> {
             guard let array = keyValueStore.value(forKey: key) as? [[String: Any]] else {
                 return []
             }
-            return array.flatMap { T(dictionaryRepresentation: $0) }
+            return array.compactMap { T(dictionaryRepresentation: $0) }
         }
         set {
             let key = T.storageKey

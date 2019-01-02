@@ -77,7 +77,7 @@ extension FileRule: DictionaryRepresentable {
             return nil
         }
 
-        let conditions = conditionsArray.flatMap { Condition(dictionaryRepresentation: $0) }
+        let conditions = conditionsArray.compactMap { Condition(dictionaryRepresentation: $0) }
         self.init(conditions: conditions)
     }
     

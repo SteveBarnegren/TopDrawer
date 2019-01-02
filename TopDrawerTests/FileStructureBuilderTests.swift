@@ -175,13 +175,13 @@ extension Directory {
             return false
         } else if components.count == 1 {
             
-            let file = contents.flatMap { $0 as? File }
+            let file = contents.compactMap { $0 as? File }
                 .first { "\($0.name).\($0.ext)" == components.first!}
             
             return !(file == nil)
         } else {
             
-            let directory = contents.flatMap { $0 as? Directory }
+            let directory = contents.compactMap { $0 as? Directory }
                 .first { "\($0.name)" == components.first!}
             
             if let d = directory {

@@ -67,7 +67,7 @@ extension FolderRule: DictionaryRepresentable {
             return nil
         }
         
-        let conditions = conditionsArray.flatMap { Condition(dictionaryRepresentation: $0) }
+        let conditions = conditionsArray.compactMap { Condition(dictionaryRepresentation: $0) }
         if conditions.count < 1 {
             print("No conditions found")
             return nil

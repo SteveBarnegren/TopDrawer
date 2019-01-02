@@ -47,7 +47,7 @@ final class NSTimerBasedTimer: Timer {
         nsTimer?.tolerance = interval * pctTolerance
         
         let runLoop = RunLoop.current
-        runLoop.add(nsTimer!, forMode: .commonModes)
+        runLoop.add(nsTimer!, forMode: RunLoop.Mode.common)
         
         isSpent = true
     }

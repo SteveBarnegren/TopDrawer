@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A generic Vector2 type
 public struct Vector2<T: Any> {
     
     public init(_ v0: T, _ v1: T) {
@@ -33,6 +34,7 @@ public struct Vector2<T: Any> {
     }
 }
 
+/// A generic Vector3 type
 public struct Vector3<T: Any> {
     
     public init(_ v0: T, _ v1: T, _ v2: T) {
@@ -85,6 +87,7 @@ public struct Vector3<T: Any> {
 
 }
 
+/// A generic Vector4 type
 public struct Vector4<T: Any> {
     
     public init(_ v0: T, _ v1: T, _ v2: T, _ v3: T) {

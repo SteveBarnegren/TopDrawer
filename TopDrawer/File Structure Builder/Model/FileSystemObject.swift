@@ -19,7 +19,7 @@ protocol FileSystemObject: class {
     
     func removeExtendedAttributes()
     
-    weak var parent: Directory? {get set}
+    var parent: Directory? {get set}
 }
 
 class ResultCache<InputType: Hashable, ResultType> {
@@ -108,11 +108,11 @@ class Directory: FileSystemObject {
     }
     
     var containedFiles: [File] {
-        return contents.flatMap { $0 as? File }
+        return contents.compactMap { $0 as? File }
     }
     
     var containedDirectories: [Directory] {
-        return contents.flatMap { $0 as? Directory }
+        return contents.compactMap { $0 as? Directory }
     }
     
     init(name: String, path: String) {

@@ -47,6 +47,6 @@ class WeakArray<T> {
     
     var objects: [T] {
         removeDeallocatedObjects()
-        return array.flatMap { $0.object as? T }
+        return array.compactMap { $0.object as? T }
     }
 }

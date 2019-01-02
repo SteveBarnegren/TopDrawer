@@ -39,7 +39,7 @@ class PathConditionInputView: NSView {
     
     private lazy var button: NSButton = {
         let button = NSButton(title: "",
-                              image: NSImage(named: NSImage.Name(rawValue: "Edit"))!,
+                              image: NSImage(named: "Edit")!,
                               target: self,
                               action: #selector(selectPathButtonPressed(_:)))
         return button
@@ -97,7 +97,7 @@ class PathConditionInputView: NSView {
 
 extension PathConditionInputView: NSTextFieldDelegate {
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         self.textFieldValueChanged()
     }
 }

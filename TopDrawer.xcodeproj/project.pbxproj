@@ -56,7 +56,6 @@
 		676B80C61F4323DF00D2C88F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676B80C41F4323DF00D2C88F /* SettingsViewController.swift */; };
 		676B80C81F4323DF00D2C88F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 676B80C51F4323DF00D2C88F /* SettingsViewController.xib */; };
 		679370971F27A999003E6A9A /* DictionaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679370961F27A999003E6A9A /* DictionaryRepresentable.swift */; };
-		6793709E1F27B890003E6A9A /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6793709D1F27B890003E6A9A /* Array+Extensions.swift */; };
 		679900B31F67275700B9AC45 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679900B21F67275700B9AC45 /* Timer.swift */; };
 		67A02E191EB4001A00D2A8CA /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */; };
 		67A02E1B1EB4079B00D2A8CA /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A02E1A1EB4079B00D2A8CA /* App.storyboard */; };
@@ -75,7 +74,6 @@
 		67C5301F1F338A9400D3B5FD /* EditRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */; };
 		67C530201F338A9400D3B5FD /* EditRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */; };
 		67C530251F339D1700D3B5FD /* ConditionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530241F339D1700D3B5FD /* ConditionEditorView.swift */; };
-		67C7CE391FCF2C1500913BA1 /* ArrayExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7CE381FCF2C1500913BA1 /* ArrayExtensionsTests.swift */; };
 		67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */; };
 		67FAAAD61EB79ADE00224C24 /* FileRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD51EB79ADE00224C24 /* FileRule.swift */; };
 		DFBFB8B3AC6EE5F7E2DF99DC /* Pods_TopDrawerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095B9477548A1C2736FD4355 /* Pods_TopDrawerTests.framework */; };
@@ -148,7 +146,6 @@
 		676B80C41F4323DF00D2C88F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		676B80C51F4323DF00D2C88F /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		679370961F27A999003E6A9A /* DictionaryRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryRepresentable.swift; sourceTree = "<group>"; };
-		6793709D1F27B890003E6A9A /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		679900B21F67275700B9AC45 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		679900B51F67341200B9AC45 /* MockTimerBenign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTimerBenign.swift; sourceTree = "<group>"; };
 		67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -166,7 +163,6 @@
 		67C5301B1F338A9400D3B5FD /* EditRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRuleViewController.swift; sourceTree = "<group>"; };
 		67C5301C1F338A9400D3B5FD /* EditRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditRuleViewController.xib; sourceTree = "<group>"; };
 		67C530241F339D1700D3B5FD /* ConditionEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionEditorView.swift; sourceTree = "<group>"; };
-		67C7CE381FCF2C1500913BA1 /* ArrayExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionsTests.swift; sourceTree = "<group>"; };
 		67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRepresentable.swift; sourceTree = "<group>"; };
 		67FAAAD51EB79ADE00224C24 /* FileRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRule.swift; sourceTree = "<group>"; };
 		9C4FE81B064E49AE32648E22 /* Pods_TopDrawer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TopDrawer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,7 +236,6 @@
 		0978BECF1EB393110023AC66 /* TopDrawerTests */ = {
 			isa = PBXGroup;
 			children = (
-				67C7CE371FCF2BF800913BA1 /* Extensions */,
 				673CE1801FABB49700DB9AE6 /* Supporting */,
 				673CE1811FABB4A400DB9AE6 /* Rule Loader */,
 				67BAE1611FABB4D900FE8FDE /* Utils */,
@@ -308,7 +303,6 @@
 		6726D9641FAF619C004D7161 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				6793709D1F27B890003E6A9A /* Array+Extensions.swift */,
 				67A02E181EB4001A00D2A8CA /* NSImage+Extensions.swift */,
 				67B77F001F3A0F46000830EF /* NSTextField+Extensions.swift */,
 				671941E61F63FB14003AB65A /* NSView+Extensions.swift */,
@@ -484,14 +478,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		67C7CE371FCF2BF800913BA1 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				67C7CE381FCF2C1500913BA1 /* ArrayExtensionsTests.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		99807A2FFB31E71D2B249AE3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,7 +511,6 @@
 				0978BEB91EB393110023AC66 /* Resources */,
 				676EBA371F71BFFB00913347 /* Run Swift Lint */,
 				19698628C48BCF2D16FC5519 /* [CP] Embed Pods Frameworks */,
-				90DC0B02067EFC102E5B5890 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -546,7 +531,6 @@
 				0978BECA1EB393110023AC66 /* Resources */,
 				676EBA361F71BFA900913347 /* Run Swift Lint */,
 				EF26037F9AA64DA7A00740F8 /* [CP] Embed Pods Frameworks */,
-				298246BDC687D302481CB154 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -571,13 +555,13 @@
 					0978BEBA1EB393110023AC66 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = X7HC96WDW9;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					0978BECB1EB393110023AC66 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = X7HC96WDW9;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0978BEBA1EB393110023AC66;
 					};
@@ -635,7 +619,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TopDrawer/Pods-TopDrawer-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-TopDrawer/Pods-TopDrawer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AttributedStringBuilder/AttributedStringBuilder.framework",
 				"${BUILT_PRODUCTS_DIR}/IYLoginItem/IYLoginItem.framework",
 				"${BUILT_PRODUCTS_DIR}/SBAutoLayout/SBAutoLayout.framework",
@@ -650,22 +634,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TopDrawer/Pods-TopDrawer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		298246BDC687D302481CB154 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TopDrawer/Pods-TopDrawer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		676EBA361F71BFA900913347 /* Run Swift Lint */ = {
@@ -696,21 +665,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		90DC0B02067EFC102E5B5890 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TopDrawer/Pods-TopDrawer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		91077830C3C841FE39F28937 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -735,7 +689,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SBSwiftUtils/SBSwiftUtils.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -744,7 +698,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F868D5B21392404C386A74E7 /* [CP] Check Pods Manifest.lock */ = {
@@ -775,7 +729,6 @@
 				67C530251F339D1700D3B5FD /* ConditionEditorView.swift in Sources */,
 				67FAAAD61EB79ADE00224C24 /* FileRule.swift in Sources */,
 				6724C1951F8429CB003E40D1 /* FIleConditionFormatter.swift in Sources */,
-				6793709E1F27B890003E6A9A /* Array+Extensions.swift in Sources */,
 				6748CE201F3D0670002941D4 /* DecisionTree.swift in Sources */,
 				67069EEF1FAF8A82001ACF8D /* Interval.swift in Sources */,
 				0978BEC11EB393110023AC66 /* PanelViewController.swift in Sources */,
@@ -821,7 +774,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6748CE461F3DE8B4002941D4 /* FolderConditionTests.swift in Sources */,
-				67C7CE391FCF2C1500913BA1 /* ArrayExtensionsTests.swift in Sources */,
 				6745B19B1F843B36001F8C78 /* DictionaryKeyValueStore.swift in Sources */,
 				67069EF21FAF988F001ACF8D /* IntervalTests.swift in Sources */,
 				671942111F6593D9003AB65A /* RebuildManagerTests.swift in Sources */,
@@ -981,8 +933,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -998,8 +949,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1014,8 +964,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.TopDrawerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TopDrawer.app/Contents/MacOS/TopDrawer";
 			};
 			name = Debug;
@@ -1031,8 +980,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.TopDrawerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TopDrawer.app/Contents/MacOS/TopDrawer";
 			};
 			name = Release;
