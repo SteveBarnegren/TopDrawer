@@ -1,8 +1,8 @@
 PODS:
-  - AttributedStringBuilder (0.1.2)
+  - AttributedStringBuilder (1.0)
   - IYLoginItem (0.1)
   - SBAutoLayout (1.2.1)
-  - SBSwiftUtils (0.1.3)
+  - SBSwiftUtils (1.4)
 
 DEPENDENCIES:
   - AttributedStringBuilder
@@ -10,12 +10,19 @@ DEPENDENCIES:
   - SBAutoLayout
   - SBSwiftUtils
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AttributedStringBuilder
+    - IYLoginItem
+    - SBAutoLayout
+    - SBSwiftUtils
+
 SPEC CHECKSUMS:
-  AttributedStringBuilder: a85c5f1ebf52bb04b360f18ecea16c7ee356cfff
+  AttributedStringBuilder: 27c40cd1da43d456bd57003e52b6888c04bc2440
   IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
   SBAutoLayout: 12eb3f2f72c5935d98c47168f3a7f81acdfbba82
-  SBSwiftUtils: 09cfad8f2a0d481d6d278951607c9e12316da03c
+  SBSwiftUtils: 0cee4114c71234a9264ab3d341033256fb2ea0fb
 
 PODFILE CHECKSUM: 6c04f55fe85b9f40aec994805171c4e262518f89
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.6.0.beta.2
