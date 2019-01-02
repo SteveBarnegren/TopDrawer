@@ -45,6 +45,7 @@ Here, we exclude any folders called `Pods`:
 - Aliases? No problem
 - Adjustable search frequency
 - Option to open at login
+- Open a folder in Terminal (thanks [Josh Rideout](https://github.com/Jride))
 
 ## How to install
 
