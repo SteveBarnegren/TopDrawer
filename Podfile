@@ -4,7 +4,6 @@ target 'TopDrawer' do
   use_frameworks!
   inhibit_all_warnings!
 
-  pod 'IYLoginItem'
   pod 'SBSwiftUtils'
   pod 'SBAutoLayout'
   pod 'AttributedStringBuilder'

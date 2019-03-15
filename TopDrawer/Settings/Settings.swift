@@ -9,7 +9,6 @@
 import Foundation
 import AppKit
 import ServiceManagement
-import IYLoginItem
 
 // MARK: - Setting
 
@@ -105,6 +104,7 @@ class Settings {
     
     let path: Setting<String>
     let shortenPaths: Setting<Bool>
+    let launchAtLogin: Setting<Bool>
     let followAliases: Setting<Bool>
     let enableTerminalHere: Setting<Bool>
     let refreshMinutes: Setting<Int>
@@ -115,6 +115,7 @@ class Settings {
     init(keyValueStore: KeyValueStore) {
         self.path = Setting(keyValueStore: keyValueStore, key: "path", defaultValue: "")
         self.shortenPaths = Setting(keyValueStore: keyValueStore, key: "shortenPaths", defaultValue: true)
+        self.launchAtLogin = Setting(keyValueStore: keyValueStore, key: AppDelegate.launchAtLoginUserDefaultKey, defaultValue: true)
         self.followAliases = Setting(keyValueStore: keyValueStore, key: "followAliases", defaultValue: false)
         self.enableTerminalHere = Setting(keyValueStore: keyValueStore, key: "enableTerminalHere", defaultValue: false)
         self.refreshMinutes = Setting(keyValueStore: keyValueStore, key: "refreshMinutes", defaultValue: 30)
