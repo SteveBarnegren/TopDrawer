@@ -8,10 +8,6 @@
 
 import Cocoa
 
-extension Notification.Name {
-  static let killLauncher = Notification.Name("killTopDrawerLauncher")
-}
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   
