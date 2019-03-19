@@ -8,6 +8,7 @@
 
 import Cocoa
 import AttributedStringBuilder
+import ServiceManagement
 
 struct SettingsIntervalChoices {
     
@@ -183,6 +184,7 @@ class SettingsViewController: NSViewController {
     @IBAction private func openAtLoginButtonPressed(sender: NSButton) {
         let isOn = openAtLoginButton.state == .on
         Settings.shared.launchAtLogin.value = isOn
+        SMLoginItemSetEnabled(AppDelegate.launcherAppId as CFString, isOn)
     }
     
     @IBAction private func enableTerminalHereButtonPressed(sender: NSButton) {

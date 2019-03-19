@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       components.removeLast()
       components.removeLast()
       components.append("MacOS")
-      components.append("Top Drawer")
+      components.append("TopDrawer")
       
       let topDrawerAppPath = NSString.path(withComponents: components)
       
