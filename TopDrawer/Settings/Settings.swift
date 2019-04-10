@@ -115,8 +115,7 @@ class Settings {
     init(keyValueStore: KeyValueStore) {
         self.path = Setting(keyValueStore: keyValueStore, key: "path", defaultValue: "")
         self.shortenPaths = Setting(keyValueStore: keyValueStore, key: "shortenPaths", defaultValue: true)
-        self.launchAtLogin = Setting(keyValueStore: keyValueStore, key: AppDelegate.launchAtLoginUserDefaultKey, defaultValue: true)
-        SMLoginItemSetEnabled(AppDelegate.launcherAppId as CFString, true)
+        self.launchAtLogin = Setting(keyValueStore: keyValueStore, key: AppDelegate.launchAtLoginUserDefaultKey, defaultValue: false)
         self.followAliases = Setting(keyValueStore: keyValueStore, key: "followAliases", defaultValue: false)
         self.enableTerminalHere = Setting(keyValueStore: keyValueStore, key: "enableTerminalHere", defaultValue: false)
         self.refreshMinutes = Setting(keyValueStore: keyValueStore, key: "refreshMinutes", defaultValue: 30)
