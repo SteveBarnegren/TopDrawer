@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="cnC-Q8-qNf">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="cnC-Q8-qNf">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
-        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
         <scene sceneID="NwQ-lr-cIY">
             <objects>
                 <windowController id="cnC-Q8-qNf" sceneMemberID="viewController">
-                    <window key="window" title="Top-Drawer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="v1w-eh-bdx">
+                    <window key="window" title="Top-Drawer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="v1w-eh-bdx">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="1865" y="183" width="480" height="270"/>
@@ -33,13 +29,13 @@
         <!--Panel View Controller-->
         <scene sceneID="cmg-TG-pqA">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="Arv-Nj-IMh" customClass="PanelViewController" customModule="MenuNav" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="Arv-Nj-IMh" customClass="PanelViewController" customModule="TopDrawer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cf1-ga-p4k">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="493"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ot-s0-Cy6">
-                                <rect key="frame" x="20" y="316" width="600" height="124"/>
+                                <rect key="frame" x="20" y="349" width="600" height="124"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GhN-E0-7Ld">
                                         <rect key="frame" x="265" y="54" width="70" height="70"/>
@@ -83,7 +79,7 @@
                                 </customSpacing>
                             </stackView>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uah-XU-0ba">
-                                <rect key="frame" x="182" y="273" width="276" height="24"/>
+                                <rect key="frame" x="181" y="306" width="278" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="JdZ-Rf-9FL">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -97,13 +93,13 @@
                                 </connections>
                             </segmentedControl>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="FJY-hQ-lAU">
-                                <rect key="frame" x="20" y="20" width="600" height="247"/>
+                                <rect key="frame" x="20" y="20" width="600" height="280"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="247" id="bsD-Lp-2J6"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="280" id="bsD-Lp-2J6"/>
                                 </constraints>
                             </customView>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="EVT-UM-Llh">
-                                <rect key="frame" x="604" y="424" width="16" height="16"/>
+                                <rect key="frame" x="604" y="457" width="16" height="16"/>
                             </progressIndicator>
                         </subviews>
                         <constraints>
@@ -136,7 +132,7 @@
         <!--Edit File Rule View Controller-->
         <scene sceneID="wEH-ZH-j5U">
             <objects>
-                <viewController storyboardIdentifier="EditFileRuleViewController" id="bRV-gS-PhU" customClass="EditFileRuleViewController" customModule="MenuNav" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditFileRuleViewController" id="bRV-gS-PhU" customClass="EditFileRuleViewController" customModule="TopDrawer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="6hY-Tm-eKm">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="365"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -153,7 +149,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9E6-hN-mqq">
-                                        <rect key="frame" x="136" y="148" width="146" height="24"/>
+                                        <rect key="frame" x="136" y="148" width="147" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="9Mi-mp-hCn">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -186,7 +182,7 @@
                                                         </constraints>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="(Optional)" drawsBackground="YES" id="mC4-gZ-aKi">
                                                             <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
@@ -215,7 +211,7 @@
                                                         <rect key="frame" x="130" y="0.0" width="150" height="22"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="(Optional)" drawsBackground="YES" id="tyf-tK-mRs">
                                                             <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
@@ -315,7 +311,7 @@
         <!--Edit Folder Rule View Controller-->
         <scene sceneID="5Sg-yu-mIj">
             <objects>
-                <viewController storyboardIdentifier="EditFolderRuleViewController" id="GDp-An-iXJ" customClass="EditFolderRuleViewController" customModule="MenuNav" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditFolderRuleViewController" id="GDp-An-iXJ" customClass="EditFolderRuleViewController" customModule="TopDrawer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="mSC-TU-9z8">
                         <rect key="frame" x="0.0" y="0.0" width="519" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -357,10 +353,10 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
                                         </textFieldCell>
                                     </textField>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xxP-GK-T8n">
-                                        <rect key="frame" x="204" y="79" width="71" height="21"/>
+                                        <rect key="frame" x="204" y="79" width="72" height="21"/>
                                         <subviews>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iha-LL-buw">
-                                                <rect key="frame" x="-2" y="-3" width="76" height="26"/>
+                                                <rect key="frame" x="-2" y="-3" width="77" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="uPB-59-nZk" id="Fd0-F3-TkC">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
@@ -396,7 +392,7 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
                                                 <rect key="frame" x="48" y="0.0" width="431" height="22"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sWE-am-nLY">
                                                     <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
@@ -450,6 +446,6 @@ Add a folder exclusion rule to exclude a folder even if it contains matching fil
         </scene>
     </scenes>
     <resources>
-        <image name="CloseButton" width="64" height="64"/>
+        <image name="CloseButton" width="32" height="32"/>
     </resources>
 </document>
