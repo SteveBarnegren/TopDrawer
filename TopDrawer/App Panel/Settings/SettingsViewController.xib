@@ -227,10 +227,10 @@
                     </customSpacing>
                 </stackView>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qQp-T5-Yxq">
-                    <rect key="frame" x="224" y="8" width="242" height="31"/>
+                    <rect key="frame" x="224" y="8" width="242" height="49"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NYd-0N-NJW">
-                            <rect key="frame" x="45" y="18" width="153" height="13"/>
+                            <rect key="frame" x="45" y="36" width="153" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Developed by Steve Barnegren" id="dRE-tT-f2C">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -238,7 +238,7 @@
                             </textFieldCell>
                         </textField>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="1" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UX4-e7-DGU">
-                            <rect key="frame" x="0.0" y="0.0" width="242" height="16"/>
+                            <rect key="frame" x="0.0" y="18" width="242" height="16"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zV8-eI-d0D">
                                     <rect key="frame" x="-2" y="2" width="138" height="13"/>
@@ -271,12 +271,27 @@
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
                         </stackView>
+                        <button verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jiV-p8-Swp">
+                            <rect key="frame" x="55" y="0.0" width="132" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="k7a-rc-LeM"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" title="See full list of contributors" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="UsV-5e-Qnp">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system" size="10"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showContributorsButtonPressedWithSender:" target="-2" id="ZdU-9U-pVj"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <visibilityPriorities>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
