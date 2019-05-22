@@ -21,7 +21,7 @@ public extension NSTextField {
         return textField
     }
     
-    public var stringValueOptional: String? {
+    var stringValueOptional: String? {
         
         let text = stringValue
         return text == "" ? nil : text
