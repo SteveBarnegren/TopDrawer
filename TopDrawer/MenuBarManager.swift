@@ -215,7 +215,7 @@ extension Directory {
         
         if isRootDirectory == false && Settings.shared.enableTerminalHere.value {
             
-            let terminalHereItem = NSMenuItem(title: "Open Terminal Here", action: openTerminal, keyEquivalent: "")
+            let terminalHereItem = NSMenuItem(title: "Open", action: openTerminal, keyEquivalent: "")
             terminalHereItem.target = target
             terminalHereItem.representedObject = self.path
             let terminalIcon = NSImage(named: "terminalHereMenuIcon")

@@ -220,6 +220,12 @@ class SettingsViewController: NSViewController {
         }
     }
     
+    @IBAction private func showContributorsButtonPressed(sender: NSButton) {
+        if let url = URL(string: "https://github.com/SteveBarnegren/TopDrawer/graphs/contributors") {
+            NSWorkspace.shared.open(url)
+        }
+    }
+    
     @IBAction private func quitAndRemoveDataButtonPressed(sender: NSButton) {
         
         let userDefaults = UserDefaults.standard
