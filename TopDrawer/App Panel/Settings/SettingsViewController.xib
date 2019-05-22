@@ -17,6 +17,7 @@
                 <outlet property="shortenPathsButton" destination="a2T-3t-TJ5" id="the-Qz-plx"/>
                 <outlet property="timeTakenLabel" destination="lhJ-I5-f0T" id="KOi-oc-3oY"/>
                 <outlet property="timeoutIntervalDropdown" destination="Ajf-Lr-0RM" id="6W6-ph-xay"/>
+                <outlet property="versionLabel" destination="0Mw-49-aC8" id="8xn-tx-ZcT"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -296,9 +297,19 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Mw-49-aC8">
+                    <rect key="frame" x="6" y="8" width="25" height="13"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v0.0" id="1u0-ks-XWo">
+                        <font key="font" metaFont="system" size="10"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="0Mw-49-aC8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="6eh-kW-f46"/>
                 <constraint firstAttribute="bottom" secondItem="qQp-T5-Yxq" secondAttribute="bottom" constant="8" id="AKi-Fd-UUR"/>
+                <constraint firstAttribute="bottom" secondItem="0Mw-49-aC8" secondAttribute="bottom" constant="8" id="KLU-5o-xwe"/>
                 <constraint firstItem="qQp-T5-Yxq" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="Ozu-Qr-PtN"/>
                 <constraint firstItem="NgK-PV-sVN" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="30" id="YGI-15-MOC"/>
                 <constraint firstItem="NgK-PV-sVN" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="lx0-vL-jDP"/>

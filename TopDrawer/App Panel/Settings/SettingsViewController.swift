@@ -38,16 +38,17 @@ class SettingsViewController: NSViewController {
     
     // MARK: - Properties
     
-    @IBOutlet weak fileprivate var followAliasesButton: NSButton!
-    @IBOutlet weak fileprivate var shortenPathsButton: NSButton!
-    @IBOutlet weak fileprivate var openAtLoginButton: NSButton!
-    @IBOutlet weak fileprivate var enableTerminalHereButton: NSButton!
-    @IBOutlet weak fileprivate var refreshIntervalDropdown: NSPopUpButton!
-    @IBOutlet weak fileprivate var timeoutIntervalDropdown: NSPopUpButton!
-    @IBOutlet weak fileprivate var lastRebuildTimeLabel: NSTextField!
-    @IBOutlet weak fileprivate var timeTakenLabel: NSTextField!
-    @IBOutlet weak fileprivate var gitHubButton: NSButton!
-    @IBOutlet weak fileprivate var quitAndRemoveDataButton: NSButton!
+    @IBOutlet private var followAliasesButton: NSButton!
+    @IBOutlet private var shortenPathsButton: NSButton!
+    @IBOutlet private var openAtLoginButton: NSButton!
+    @IBOutlet private var enableTerminalHereButton: NSButton!
+    @IBOutlet private var refreshIntervalDropdown: NSPopUpButton!
+    @IBOutlet private var timeoutIntervalDropdown: NSPopUpButton!
+    @IBOutlet private var lastRebuildTimeLabel: NSTextField!
+    @IBOutlet private var timeTakenLabel: NSTextField!
+    @IBOutlet private var gitHubButton: NSButton!
+    @IBOutlet private var quitAndRemoveDataButton: NSButton!
+    @IBOutlet private var versionLabel: NSTextField!
     
     let rebuildManager: RebuildManager
     
@@ -85,6 +86,9 @@ class SettingsViewController: NSViewController {
         
         // Setup github button
         setupGitHubButton()
+        
+        // Setup version label
+        setupVersionLabel()
         
         // Observe Rebuild Manager
         rebuildManager.addListener(self)
@@ -134,6 +138,14 @@ class SettingsViewController: NSViewController {
             .attributedString
         
         gitHubButton.attributedTitle = attributedString
+    }
+    
+    func setupVersionLabel() {
+        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return
+        }
+        
+        versionLabel.stringValue = version
     }
     
     override func viewWillAppear() {
