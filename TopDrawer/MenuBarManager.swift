@@ -33,7 +33,7 @@ class MenuBarManager {
         rebuildManager.needsRebuild = true
         
         // Auto open settings
-        if autoOpenSettings {
+        if autoOpenSettings || Settings.shared.path.value.isEmpty {
             self.openSettings()
         }
     }

@@ -16,14 +16,7 @@
 		37231729223BDD42007617A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37231728223BDD42007617A8 /* AppDelegate.swift */; };
 		3723172B223BDD43007617A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3723172A223BDD43007617A8 /* Assets.xcassets */; };
 		3723172E223BDD43007617A8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3723172C223BDD43007617A8 /* MainMenu.xib */; };
-		37231736223BEB3D007617A8 /* TopDrawerLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; };
-		37231737223BEB43007617A8 /* TopDrawerLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; };
-		37231738223BEB50007617A8 /* TopDrawerLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; };
 		37231739223BEB59007617A8 /* TopDrawerLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; };
-		3723173A223BEB5D007617A8 /* TopDrawerLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; };
-		3723173D223BEC98007617A8 /* TopDrawerLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; };
-		3723173E223BECA2007617A8 /* TopDrawerLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; };
-		3723173F223BECA8007617A8 /* TopDrawerLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; };
 		37231742223BECF6007617A8 /* TopDrawerLauncher.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37231726223BDD42007617A8 /* TopDrawerLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67069EEF1FAF8A82001ACF8D /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67069EEE1FAF8A82001ACF8D /* Interval.swift */; };
 		67069EF21FAF988F001ACF8D /* IntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67069EF11FAF988F001ACF8D /* IntervalTests.swift */; };
@@ -631,35 +624,35 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = SteveBarnegren;
 				TargetAttributes = {
 					0978BEBA1EB393110023AC66 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = X7HC96WDW9;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					0978BECB1EB393110023AC66 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = X7HC96WDW9;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0978BEBA1EB393110023AC66;
 					};
 					37231725223BDD42007617A8 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = X7HC96WDW9;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 0978BEB61EB393110023AC66 /* Build configuration list for PBXProject "TopDrawer" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -681,20 +674,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				37231739223BEB59007617A8 /* TopDrawerLauncher.app in Resources */,
-				37231738223BEB50007617A8 /* TopDrawerLauncher.app in Resources */,
 				67C530131F3383E200D3B5FD /* RulesViewController.xib in Resources */,
-				37231737223BEB43007617A8 /* TopDrawerLauncher.app in Resources */,
 				0978BEC31EB393110023AC66 /* Assets.xcassets in Resources */,
 				67C5301F1F338A9400D3B5FD /* EditRuleViewController.xib in Resources */,
 				0978BEC61EB393110023AC66 /* Main.storyboard in Resources */,
 				67A02E1B1EB4079B00D2A8CA /* App.storyboard in Resources */,
 				676B80C81F4323DF00D2C88F /* SettingsViewController.xib in Resources */,
-				37231736223BEB3D007617A8 /* TopDrawerLauncher.app in Resources */,
-				3723173F223BECA8007617A8 /* TopDrawerLauncher.app in Resources */,
-				3723173A223BEB5D007617A8 /* TopDrawerLauncher.app in Resources */,
 				6748CE0B1F3B9E29002941D4 /* RuleCollectionViewItem.xib in Resources */,
-				3723173E223BECA2007617A8 /* TopDrawerLauncher.app in Resources */,
-				3723173D223BEC98007617A8 /* TopDrawerLauncher.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -959,6 +945,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -966,6 +953,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1015,6 +1003,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1022,6 +1011,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1061,7 +1051,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1077,7 +1067,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1092,7 +1082,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.TopDrawerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TopDrawer.app/Contents/MacOS/TopDrawer";
 			};
 			name = Debug;
@@ -1108,7 +1098,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.TopDrawerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TopDrawer.app/Contents/MacOS/TopDrawer";
 			};
 			name = Release;
@@ -1134,7 +1124,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawerlauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1158,7 +1148,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawerlauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
