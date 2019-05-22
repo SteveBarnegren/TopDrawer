@@ -36,7 +36,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         killLauncherIfRunning()
     }
   
-  
     func killLauncherIfRunning() {
         let runningApps = NSWorkspace.shared.runningApplications
         let isRunning = !runningApps.filter { $0.bundleIdentifier == AppDelegate.launcherAppId }.isEmpty

@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     
     let runningApps = NSWorkspace.shared.runningApplications
-    let isRunning = !runningApps.filter { $0.bundleIdentifier == mainAppIdentifier }.isEmpty
+    let isRunning = runningApps.contains { $0.bundleIdentifier == mainAppIdentifier }
     
     if !isRunning {
       DistributedNotificationCenter.default().addObserver(self,
