@@ -629,9 +629,9 @@
 				TargetAttributes = {
 					0978BEBA1EB393110023AC66 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = X7HC96WDW9;
+						DevelopmentTeam = VAA3W4LPY2;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					0978BECB1EB393110023AC66 = {
 						CreatedOnToolsVersion = 8.3;
@@ -642,9 +642,9 @@
 					};
 					37231725223BDD42007617A8 = {
 						CreatedOnToolsVersion = 10.1;
-						DevelopmentTeam = X7HC96WDW9;
+						DevelopmentTeam = VAA3W4LPY2;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1045,12 +1045,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = X7HC96WDW9;
+				DEVELOPMENT_TEAM = VAA3W4LPY2;
 				INFOPLIST_FILE = TopDrawer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "TopDrawer-macOS-Distribution";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1061,12 +1064,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = X7HC96WDW9;
+				DEVELOPMENT_TEAM = VAA3W4LPY2;
 				INFOPLIST_FILE = TopDrawer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "TopDrawer-macOS-Distribution";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1113,10 +1119,10 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = TopDrawerLauncher/TopDrawerLauncher.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = X7HC96WDW9;
+				DEVELOPMENT_TEAM = VAA3W4LPY2;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TopDrawerLauncher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -1124,6 +1130,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawerlauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "TopDrawerLauncher-macOS-Distribution";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1138,16 +1145,17 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = TopDrawerLauncher/TopDrawerLauncher.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = X7HC96WDW9;
+				DEVELOPMENT_TEAM = VAA3W4LPY2;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TopDrawerLauncher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawerlauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "TopDrawerLauncher-macOS-Distribution";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
