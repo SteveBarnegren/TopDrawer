@@ -102,7 +102,7 @@ class SettingsViewController: NSViewController {
         }
         
         let index =
-            SettingsIntervalChoices.refreshIntervals.index { Int($0.minutesValue) == Settings.shared.refreshMinutes.value }
+            SettingsIntervalChoices.refreshIntervals.firstIndex { Int($0.minutesValue) == Settings.shared.refreshMinutes.value }
                 ?? SettingsIntervalChoices.refreshIntervals.count - 1
         
         refreshIntervalDropdown.selectItem(at: index)
@@ -115,7 +115,7 @@ class SettingsViewController: NSViewController {
         }
         
         let index =
-            SettingsIntervalChoices.timeoutIntervals.index { Int($0.secondsValue) == Settings.shared.timeout.value }
+            SettingsIntervalChoices.timeoutIntervals.firstIndex { Int($0.secondsValue) == Settings.shared.timeout.value }
                 ?? SettingsIntervalChoices.timeoutIntervals.count - 1
         
         timeoutIntervalDropdown.selectItem(at: index)
