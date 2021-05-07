@@ -56,12 +56,12 @@ class Directory: FileSystemObject {
         init() {
             
             // Contains files with full name cache
-            containsFilesWithFullNameResultCache = ResultCache<String, Bool> {
+            containsFilesWithFullNameResultCache = ResultCache<String, Bool> { [unowned self] in
                 self.containedFileNames.contains($0)
             }
             
             // Contains files with extension cache
-            containsFilesWithExtensionResultCache = ResultCache<String, Bool> {
+            containsFilesWithExtensionResultCache = ResultCache<String, Bool> { [unowned self] in
                 for fileName in self.containedFileNames {
                     
                     let components = fileName.components(separatedBy: ".")
@@ -74,7 +74,7 @@ class Directory: FileSystemObject {
             }
             
             // Contains folders with name cache
-            containsFoldersWithNameResultCache = ResultCache<String, Bool> {
+            containsFoldersWithNameResultCache = ResultCache<String, Bool> { [unowned self] in
                 self.containedFolderNames.contains($0)
             }
         }
