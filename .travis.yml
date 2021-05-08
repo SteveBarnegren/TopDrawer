@@ -3,3 +3,4 @@ os: osx
 osx_image: xcode12.5
 xcode_workspace: TopDrawer.xcworkspace
 xcode_scheme: Top-Drawer
+xcode_sdk: macosx10.14
