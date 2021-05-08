@@ -1,5 +1,5 @@
 language: swift
 os: osx
 osx_image: xcode12.5
-xcode_project: TopDrawer.xcworkspace
+xcode_workspace: TopDrawer.xcworkspace
 xcode_scheme: Top-Drawer
