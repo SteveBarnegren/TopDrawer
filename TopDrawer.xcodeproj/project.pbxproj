@@ -76,6 +76,7 @@
 		67C530251F339D1700D3B5FD /* ConditionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530241F339D1700D3B5FD /* ConditionEditorView.swift */; };
 		67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */; };
 		67FAAAD61EB79ADE00224C24 /* FileRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD51EB79ADE00224C24 /* FileRule.swift */; };
+		AA0135C426470441009E9FDD /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = AA0135C326470441009E9FDD /* Sparkle */; };
 		AA3447BF2646FAA1009D07C1 /* SBAutoLayout in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447BE2646FAA1009D07C1 /* SBAutoLayout */; };
 		AA3447C22646FAD5009D07C1 /* SBSwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447C12646FAD5009D07C1 /* SBSwiftUtils */; };
 		AA3447C52646FAE1009D07C1 /* AttributedStringBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447C42646FAE1009D07C1 /* AttributedStringBuilder */; };
@@ -183,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0135C426470441009E9FDD /* Sparkle in Frameworks */,
 				AA3447C22646FAD5009D07C1 /* SBSwiftUtils in Frameworks */,
 				AA3447C52646FAE1009D07C1 /* AttributedStringBuilder in Frameworks */,
 				AA3447BF2646FAA1009D07C1 /* SBAutoLayout in Frameworks */,
@@ -510,6 +512,7 @@
 				AA3447BE2646FAA1009D07C1 /* SBAutoLayout */,
 				AA3447C12646FAD5009D07C1 /* SBSwiftUtils */,
 				AA3447C42646FAE1009D07C1 /* AttributedStringBuilder */,
+				AA0135C326470441009E9FDD /* Sparkle */,
 			);
 			productName = MenuNav;
 			productReference = 0978BEBB1EB393110023AC66 /* TopDrawer.app */;
@@ -571,6 +574,7 @@
 				AA3447BD2646FAA1009D07C1 /* XCRemoteSwiftPackageReference "SBAutoLayout" */,
 				AA3447C02646FAD5009D07C1 /* XCRemoteSwiftPackageReference "SBSwiftUtils" */,
 				AA3447C32646FAE1009D07C1 /* XCRemoteSwiftPackageReference "AttributedStringBuilder" */,
+				AA0135C226470441009E9FDD /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 0978BEBC1EB393110023AC66 /* Products */;
 			projectDirPath = "";
@@ -988,6 +992,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AA0135C226470441009E9FDD /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = exactVersion;
+				version = 1.26.0;
+			};
+		};
 		AA3447BD2646FAA1009D07C1 /* XCRemoteSwiftPackageReference "SBAutoLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SteveBarnegren/SBAutoLayout";
@@ -1023,6 +1035,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA0135C326470441009E9FDD /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA0135C226470441009E9FDD /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
 		AA3447BE2646FAA1009D07C1 /* SBAutoLayout */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA3447BD2646FAA1009D07C1 /* XCRemoteSwiftPackageReference "SBAutoLayout" */;
