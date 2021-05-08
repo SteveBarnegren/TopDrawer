@@ -73,7 +73,7 @@ class SettingsViewController: NSViewController {
         shortenPathsButton.state = Settings.shared.shortenPaths.value ? .on : .off
         
         // Open at login button
-        openAtLoginButton.state = Settings.shared.launchAtLogin.value ? .on : .off
+        openAtLoginButton.state = Settings.shared.launchAtLogin ? .on : .off
         
         // Enable terminal here button
         enableTerminalHereButton.state = Settings.shared.enableTerminalHere.value ? .on : .off
@@ -195,7 +195,7 @@ class SettingsViewController: NSViewController {
     
     @IBAction private func openAtLoginButtonPressed(sender: NSButton) {
         let isOn = openAtLoginButton.state == .on
-        Settings.shared.launchAtLogin.value = isOn
+        Settings.shared.launchAtLogin = isOn
         SMLoginItemSetEnabled(AppDelegate.launcherAppId as CFString, isOn)
     }
     

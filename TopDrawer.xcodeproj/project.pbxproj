@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -76,8 +76,10 @@
 		67C530251F339D1700D3B5FD /* ConditionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C530241F339D1700D3B5FD /* ConditionEditorView.swift */; };
 		67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */; };
 		67FAAAD61EB79ADE00224C24 /* FileRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FAAAD51EB79ADE00224C24 /* FileRule.swift */; };
-		DFBFB8B3AC6EE5F7E2DF99DC /* Pods_TopDrawerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095B9477548A1C2736FD4355 /* Pods_TopDrawerTests.framework */; };
-		FB3BFF8EEA30D00347008674 /* Pods_TopDrawer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4FE81B064E49AE32648E22 /* Pods_TopDrawer.framework */; };
+		AA3447BF2646FAA1009D07C1 /* SBAutoLayout in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447BE2646FAA1009D07C1 /* SBAutoLayout */; };
+		AA3447C22646FAD5009D07C1 /* SBSwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447C12646FAD5009D07C1 /* SBSwiftUtils */; };
+		AA3447C52646FAE1009D07C1 /* AttributedStringBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447C42646FAE1009D07C1 /* AttributedStringBuilder */; };
+		AAB43CA82646F72B00072F6C /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = AAB43CA72646F72B00072F6C /* LaunchAtLogin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +105,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		095B9477548A1C2736FD4355 /* Pods_TopDrawerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TopDrawerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0978BEBB1EB393110023AC66 /* TopDrawer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDrawer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0978BEBE1EB393110023AC66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0978BEC01EB393110023AC66 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
@@ -112,8 +113,6 @@
 		0978BEC71EB393110023AC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0978BECC1EB393110023AC66 /* TopDrawerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TopDrawerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0978BED21EB393110023AC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B8EC427C94BCEB3F7DAFC66 /* Pods-TopDrawer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopDrawer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TopDrawer/Pods-TopDrawer.debug.xcconfig"; sourceTree = "<group>"; };
-		6136824D725623EEBA4AE3FC /* Pods-TopDrawer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopDrawer.release.xcconfig"; path = "Pods/Target Support Files/Pods-TopDrawer/Pods-TopDrawer.release.xcconfig"; sourceTree = "<group>"; };
 		67069EEE1FAF8A82001ACF8D /* Interval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		67069EF11FAF988F001ACF8D /* IntervalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTests.swift; sourceTree = "<group>"; };
 		670F4FC21F9B7399002CC5D2 /* HierarchyMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyMatcher.swift; sourceTree = "<group>"; };
@@ -177,9 +176,6 @@
 		67C530241F339D1700D3B5FD /* ConditionEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionEditorView.swift; sourceTree = "<group>"; };
 		67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRepresentable.swift; sourceTree = "<group>"; };
 		67FAAAD51EB79ADE00224C24 /* FileRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRule.swift; sourceTree = "<group>"; };
-		9C4FE81B064E49AE32648E22 /* Pods_TopDrawer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TopDrawer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D4510CDCC3764DF62DBE5BC /* Pods-TopDrawerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopDrawerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B7B75C09D1166B95D0C1AEF8 /* Pods-TopDrawerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopDrawerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +183,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB3BFF8EEA30D00347008674 /* Pods_TopDrawer.framework in Frameworks */,
+				AA3447C22646FAD5009D07C1 /* SBSwiftUtils in Frameworks */,
+				AA3447C52646FAE1009D07C1 /* AttributedStringBuilder in Frameworks */,
+				AA3447BF2646FAA1009D07C1 /* SBAutoLayout in Frameworks */,
+				AAB43CA82646F72B00072F6C /* LaunchAtLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +194,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFBFB8B3AC6EE5F7E2DF99DC /* Pods_TopDrawerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,8 +206,6 @@
 				0978BEBD1EB393110023AC66 /* TopDrawer */,
 				0978BECF1EB393110023AC66 /* TopDrawerTests */,
 				0978BEBC1EB393110023AC66 /* Products */,
-				99807A2FFB31E71D2B249AE3 /* Pods */,
-				F8C7A0B7511EC0CDD158B2DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -490,26 +486,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		99807A2FFB31E71D2B249AE3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2B8EC427C94BCEB3F7DAFC66 /* Pods-TopDrawer.debug.xcconfig */,
-				6136824D725623EEBA4AE3FC /* Pods-TopDrawer.release.xcconfig */,
-				9D4510CDCC3764DF62DBE5BC /* Pods-TopDrawerTests.debug.xcconfig */,
-				B7B75C09D1166B95D0C1AEF8 /* Pods-TopDrawerTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		F8C7A0B7511EC0CDD158B2DE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9C4FE81B064E49AE32648E22 /* Pods_TopDrawer.framework */,
-				095B9477548A1C2736FD4355 /* Pods_TopDrawerTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -517,12 +493,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0978BED51EB393110023AC66 /* Build configuration list for PBXNativeTarget "TopDrawer" */;
 			buildPhases = (
-				91077830C3C841FE39F28937 /* [CP] Check Pods Manifest.lock */,
 				0978BEB71EB393110023AC66 /* Sources */,
 				0978BEB81EB393110023AC66 /* Frameworks */,
 				0978BEB91EB393110023AC66 /* Resources */,
+				AAB43CAA2646F75C00072F6C /* Copy Launch at Login Helper */,
 				676EBA371F71BFFB00913347 /* Run Swift Lint */,
-				19698628C48BCF2D16FC5519 /* [CP] Embed Pods Frameworks */,
 				37231741223BECEE007617A8 /* CopyFiles */,
 			);
 			buildRules = (
@@ -530,6 +505,12 @@
 			dependencies = (
 			);
 			name = TopDrawer;
+			packageProductDependencies = (
+				AAB43CA72646F72B00072F6C /* LaunchAtLogin */,
+				AA3447BE2646FAA1009D07C1 /* SBAutoLayout */,
+				AA3447C12646FAD5009D07C1 /* SBSwiftUtils */,
+				AA3447C42646FAE1009D07C1 /* AttributedStringBuilder */,
+			);
 			productName = MenuNav;
 			productReference = 0978BEBB1EB393110023AC66 /* TopDrawer.app */;
 			productType = "com.apple.product-type.application";
@@ -538,12 +519,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0978BED81EB393110023AC66 /* Build configuration list for PBXNativeTarget "TopDrawerTests" */;
 			buildPhases = (
-				F868D5B21392404C386A74E7 /* [CP] Check Pods Manifest.lock */,
 				0978BEC81EB393110023AC66 /* Sources */,
 				0978BEC91EB393110023AC66 /* Frameworks */,
 				0978BECA1EB393110023AC66 /* Resources */,
 				676EBA361F71BFA900913347 /* Run Swift Lint */,
-				EF26037F9AA64DA7A00740F8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -587,6 +566,12 @@
 				Base,
 			);
 			mainGroup = 0978BEB21EB393110023AC66;
+			packageReferences = (
+				AAB43CA62646F72B00072F6C /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				AA3447BD2646FAA1009D07C1 /* XCRemoteSwiftPackageReference "SBAutoLayout" */,
+				AA3447C02646FAD5009D07C1 /* XCRemoteSwiftPackageReference "SBSwiftUtils" */,
+				AA3447C32646FAE1009D07C1 /* XCRemoteSwiftPackageReference "AttributedStringBuilder" */,
+			);
 			productRefGroup = 0978BEBC1EB393110023AC66 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -624,28 +609,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		19698628C48BCF2D16FC5519 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TopDrawer/Pods-TopDrawer-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AttributedStringBuilder/AttributedStringBuilder.framework",
-				"${BUILT_PRODUCTS_DIR}/SBAutoLayout/SBAutoLayout.framework",
-				"${BUILT_PRODUCTS_DIR}/SBSwiftUtils/SBSwiftUtils.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AttributedStringBuilder.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SBAutoLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SBSwiftUtils.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TopDrawer/Pods-TopDrawer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		676EBA361F71BFA900913347 /* Run Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -674,59 +637,23 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		91077830C3C841FE39F28937 /* [CP] Check Pods Manifest.lock */ = {
+		AAB43CAA2646F75C00072F6C /* Copy Launch at Login Helper */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+			inputFileListPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			inputPaths = (
+			);
+			name = "Copy Launch at Login Helper";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TopDrawer-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EF26037F9AA64DA7A00740F8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SBSwiftUtils/SBSwiftUtils.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SBSwiftUtils.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TopDrawerTests/Pods-TopDrawerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F868D5B21392404C386A74E7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TopDrawerTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -931,21 +858,26 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
 		0978BED61EB393110023AC66 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B8EC427C94BCEB3F7DAFC66 /* Pods-TopDrawer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = TopDrawer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -955,15 +887,19 @@
 		};
 		0978BED71EB393110023AC66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6136824D725623EEBA4AE3FC /* Pods-TopDrawer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = TopDrawer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.topdrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -973,15 +909,20 @@
 		};
 		0978BED91EB393110023AC66 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D4510CDCC3764DF62DBE5BC /* Pods-TopDrawerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = TopDrawerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.TopDrawerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -992,15 +933,20 @@
 		};
 		0978BEDA1EB393110023AC66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7B75C09D1166B95D0C1AEF8 /* Pods-TopDrawerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = TopDrawerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevebarnegren.TopDrawerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1040,6 +986,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AA3447BD2646FAA1009D07C1 /* XCRemoteSwiftPackageReference "SBAutoLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SteveBarnegren/SBAutoLayout";
+			requirement = {
+				kind = exactVersion;
+				version = 1.4.0;
+			};
+		};
+		AA3447C02646FAD5009D07C1 /* XCRemoteSwiftPackageReference "SBSwiftUtils" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SteveBarnegren/SBSwiftUtils";
+			requirement = {
+				kind = exactVersion;
+				version = 1.6.0;
+			};
+		};
+		AA3447C32646FAE1009D07C1 /* XCRemoteSwiftPackageReference "AttributedStringBuilder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SteveBarnegren/AttributedStringBuilder";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.0;
+			};
+		};
+		AAB43CA62646F72B00072F6C /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				kind = exactVersion;
+				version = 4.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA3447BE2646FAA1009D07C1 /* SBAutoLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA3447BD2646FAA1009D07C1 /* XCRemoteSwiftPackageReference "SBAutoLayout" */;
+			productName = SBAutoLayout;
+		};
+		AA3447C12646FAD5009D07C1 /* SBSwiftUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA3447C02646FAD5009D07C1 /* XCRemoteSwiftPackageReference "SBSwiftUtils" */;
+			productName = SBSwiftUtils;
+		};
+		AA3447C42646FAE1009D07C1 /* AttributedStringBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA3447C32646FAE1009D07C1 /* XCRemoteSwiftPackageReference "AttributedStringBuilder" */;
+			productName = AttributedStringBuilder;
+		};
+		AAB43CA72646F72B00072F6C /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAB43CA62646F72B00072F6C /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0978BEB31EB393110023AC66 /* Project object */;
 }

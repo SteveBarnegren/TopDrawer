@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 import ServiceManagement
+import LaunchAtLogin
 
 // MARK: - Setting
 
@@ -104,20 +105,21 @@ class Settings {
     
     let path: Setting<String>
     let shortenPaths: Setting<Bool>
-    let launchAtLogin: Setting<Bool>
     let followAliases: Setting<Bool>
     let enableTerminalHere: Setting<Bool>
     let refreshMinutes: Setting<Int>
     let timeout: Setting<Int>
-
+    
+    var launchAtLogin: Bool {
+        get { LaunchAtLogin.isEnabled }
+        set { LaunchAtLogin.isEnabled = newValue }
+    }
+    
     // MARK: - Init
     
     init(keyValueStore: KeyValueStore) {
         self.path = Setting(keyValueStore: keyValueStore, key: "path", defaultValue: "")
         self.shortenPaths = Setting(keyValueStore: keyValueStore, key: "shortenPaths", defaultValue: true)
-        self.launchAtLogin = Setting(keyValueStore: keyValueStore,
-                                     key: AppDelegate.launchAtLoginUserDefaultKey,
-                                     defaultValue: false)
         self.followAliases = Setting(keyValueStore: keyValueStore, key: "followAliases", defaultValue: false)
         self.enableTerminalHere = Setting(keyValueStore: keyValueStore, key: "enableTerminalHere", defaultValue: false)
         self.refreshMinutes = Setting(keyValueStore: keyValueStore, key: "refreshMinutes", defaultValue: 30)

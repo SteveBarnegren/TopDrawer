@@ -8,6 +8,7 @@
 
 import Foundation
 import AttributedStringBuilder
+import AppKit
 
 class FileConditionFormatter {
     

@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AttributedStringBuilder",
+        "repositoryURL": "https://github.com/SteveBarnegren/AttributedStringBuilder",
+        "state": {
+          "branch": null,
+          "revision": "3872edbf39ec91ef49bb95a72d2825a63de19f5f",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "LaunchAtLogin",
+        "repositoryURL": "https://github.com/sindresorhus/LaunchAtLogin",
+        "state": {
+          "branch": null,
+          "revision": "6b16bcdf7d45a9d76a768a5c4912dde925cf0e95",
+          "version": "4.1.0"
+        }
+      },
+      {
+        "package": "SBAutoLayout",
+        "repositoryURL": "https://github.com/SteveBarnegren/SBAutoLayout",
+        "state": {
+          "branch": null,
+          "revision": "bf6989e72fc9d686a52f0442ce6d6e3235673878",
+          "version": "1.4.0"
+        }
+      },
+      {
+        "package": "SBSwiftUtils",
+        "repositoryURL": "https://github.com/SteveBarnegren/SBSwiftUtils",
+        "state": {
+          "branch": null,
+          "revision": "9ac1dd77a3c25e2e106d0163249af2ffb1c155c8",
+          "version": "1.6.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

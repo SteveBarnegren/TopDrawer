@@ -1,6 +1,0 @@
-framework module SBAutoLayout {
-  umbrella header "SBAutoLayout-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -51,10 +51,10 @@ class ConditionEditorView<T: DecisionTreeElement>: NSView {
         nonGenericType.delegate = self
         
         addSubview(stackView)
-        stackView.pinToSuperviewLeft(margin: 8)
-        stackView.pinToSuperviewRight(margin: 8)
-        stackView.pinToSuperviewTop(margin: 2)
-        stackView.pinToSuperviewBottom(margin: 2)
+        stackView.pinToSuperviewLeft(8)
+        stackView.pinToSuperviewRight(8)
+        stackView.pinToSuperviewTop(2)
+        stackView.pinToSuperviewBottom(2)
     }
     
     required init?(coder: NSCoder) {
