@@ -14,7 +14,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Top-Drawer" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem title="Check for Updates..." id="LDY-ZC-rnk">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -110,7 +109,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="MenuNav Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="MenuNav Help" keyEquivalent="?" id="FKE-Sm-Kum" userLabel="Top-Drawer Help">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>

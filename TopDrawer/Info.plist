@@ -32,5 +32,7 @@
 	<string>https://steve-barnegren-app-resources.s3-eu-west-1.amazonaws.com/top-drawer-update-feed.xml</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+    <key>SUPublicEDKey</key>
+    <string>Hd2pVlpHDNdck4P6LaL0Fskb3Zh6PFq1SuKCAfAPurA=</string>
 </dict>
 </plist>

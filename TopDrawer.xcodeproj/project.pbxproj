@@ -498,6 +498,7 @@
 				0978BEB71EB393110023AC66 /* Sources */,
 				0978BEB81EB393110023AC66 /* Frameworks */,
 				0978BEB91EB393110023AC66 /* Resources */,
+				AA0135C526471A82009E9FDD /* Set Build Number */,
 				AAB43CAA2646F75C00072F6C /* Copy Launch at Login Helper */,
 				676EBA371F71BFFB00913347 /* Run Swift Lint */,
 				37231741223BECEE007617A8 /* CopyFiles */,
@@ -640,6 +641,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		AA0135C526471A82009E9FDD /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate the build number using current date and time\nbuildNumber=$(date \"+%Y%m.%d.%H%M\")\n\n# Set the build number in plist file\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
 		};
 		AAB43CAA2646F75C00072F6C /* Copy Launch at Login Helper */ = {
 			isa = PBXShellScriptBuildPhase;
