@@ -19,4 +19,8 @@ class AppUpdater {
     func checkForUpdates() {
         updater.checkForUpdates(self)
     }
+    
+    func checkForUpdatesInBackground() {
+        updater.checkForUpdatesInBackground()
+    }
 }
