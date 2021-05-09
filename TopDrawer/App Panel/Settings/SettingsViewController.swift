@@ -93,9 +93,9 @@ class SettingsViewController: NSViewController {
         // Observe Rebuild Manager
         rebuildManager.addListener(self)
         
-        #if !DEBUG
+        //#if !DEBUG
         quitAndRemoveDataButton.isHidden = true
-        #endif
+        //#endif
     }
     
     // swiftlint:disable line_length
@@ -246,6 +246,10 @@ class SettingsViewController: NSViewController {
         }
         userDefaults.synchronize()
         NSApp.terminate(self)
+    }
+    
+    @IBAction private func checkForUpdatesButtonPressed(sender: NSButton) {
+        AppUpdater.shared.checkForUpdates()
     }
 }
 

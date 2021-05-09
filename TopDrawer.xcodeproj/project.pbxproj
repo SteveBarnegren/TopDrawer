@@ -80,6 +80,7 @@
 		AA3447BF2646FAA1009D07C1 /* SBAutoLayout in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447BE2646FAA1009D07C1 /* SBAutoLayout */; };
 		AA3447C22646FAD5009D07C1 /* SBSwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447C12646FAD5009D07C1 /* SBSwiftUtils */; };
 		AA3447C52646FAE1009D07C1 /* AttributedStringBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = AA3447C42646FAE1009D07C1 /* AttributedStringBuilder */; };
+		AAB3863626487BE100F569BE /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3863526487BE100F569BE /* AppUpdater.swift */; };
 		AAB43CA82646F72B00072F6C /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = AAB43CA72646F72B00072F6C /* LaunchAtLogin */; };
 /* End PBXBuildFile section */
 
@@ -177,6 +178,7 @@
 		67C530241F339D1700D3B5FD /* ConditionEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionEditorView.swift; sourceTree = "<group>"; };
 		67F5F1701F2A3DB700483F57 /* StringRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRepresentable.swift; sourceTree = "<group>"; };
 		67FAAAD51EB79ADE00224C24 /* FileRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRule.swift; sourceTree = "<group>"; };
+		AAB3863526487BE100F569BE /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				0978BEBE1EB393110023AC66 /* AppDelegate.swift */,
+				AAB3863526487BE100F569BE /* AppUpdater.swift */,
 				671941FF1F6492B1003AB65A /* MenuBarManager.swift */,
 				67B77EFE1F3A0E9A000830EF /* ConditionPromptView.swift */,
 				671942021F6495F6003AB65A /* RebuildManager.swift */,
@@ -712,6 +715,7 @@
 				671941E71F63FB14003AB65A /* NSView+Extensions.swift in Sources */,
 				67B77EFF1F3A0E9A000830EF /* ConditionPromptView.swift in Sources */,
 				671942001F6492B1003AB65A /* MenuBarManager.swift in Sources */,
+				AAB3863626487BE100F569BE /* AppUpdater.swift in Sources */,
 				0978BEBF1EB393110023AC66 /* AppDelegate.swift in Sources */,
 				674EB0E01F9B4739003E5CBA /* HierarchyInformation.swift in Sources */,
 				67F5F1711F2A3DB700483F57 /* StringRepresentable.swift in Sources */,

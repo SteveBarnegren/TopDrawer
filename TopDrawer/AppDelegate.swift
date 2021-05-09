@@ -9,7 +9,6 @@
 import Cocoa
 import SBSwiftUtils
 import AppKit
-import Sparkle
 
 let autoOpenSettings = false
 
@@ -19,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let menuBarManager = MenuBarManager()
     static let launcherAppId = "com.stevebarnegren.topdrawerlauncher"
     static let launchAtLoginUserDefaultKey = "launchAtLogin"
-    private let updater = SUUpdater()
+    private let appUpdater = AppUpdater.shared
   
     func applicationDidFinishLaunching(_ aNotification: Notification) {
       
@@ -33,6 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction private func checkForUpdates(sender: Any) {
-        updater.checkForUpdates(self)
+        appUpdater.checkForUpdates()
     }
 }
