@@ -49,7 +49,7 @@ Here, we exclude any folders called `Pods`:
 
 ## How to install
 
-Either build from source, or download the the prebuilt binary: [Top-Drawer](https://github.com/SteveBarnegren/TopDrawer/releases/download/1.1/TopDrawer.zip)
+Either build from source, or download the app: [Top-Drawer](https://github.com/SteveBarnegren/TopDrawer/releases)
 
 ## Contributing
 
