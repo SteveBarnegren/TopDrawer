@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
@@ -28,11 +28,11 @@
 	<string>Copyright © 2017 SteveBarnegren. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
-	<key>SUFeedURL</key>
-	<string>https://steve-barnegren-app-resources.s3-eu-west-1.amazonaws.com/top-drawer-update-feed.xml</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-    <key>SUPublicEDKey</key>
-    <string>Hd2pVlpHDNdck4P6LaL0Fskb3Zh6PFq1SuKCAfAPurA=</string>
+	<key>SUFeedURL</key>
+	<string>https://top-drawer.s3-eu-west-1.amazonaws.com/updates/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>Hd2pVlpHDNdck4P6LaL0Fskb3Zh6PFq1SuKCAfAPurA=</string>
 </dict>
 </plist>

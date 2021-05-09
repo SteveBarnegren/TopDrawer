@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>TopDrawer</title>
+        <item>
+            <title>1.2</title>
+            <pubDate>Sun, 09 May 2021 01:01:46 +0100</pubDate>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>https://top-drawer.s3-eu-west-1.amazonaws.com/updates/TopDrawer_1_2.app.html</sparkle:releaseNotesLink>
+            <enclosure url="https://top-drawer.s3-eu-west-1.amazonaws.com/updates/TopDrawer_1_2.app.zip" sparkle:version="202105.09.0058" sparkle:shortVersionString="1.2" length="1685244" type="application/octet-stream" sparkle:edSignature="XoKzFzCkqKXLxN3kxTNDOVYE4Pm+LU+adfz5X8AoFIntZ86LRFkh9vTzKBJO82dhlarBF+13T/CsLrVu3Hj5Bg=="/>
+        </item>
+    </channel>
+</rss>
