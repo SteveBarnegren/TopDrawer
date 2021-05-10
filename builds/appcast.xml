@@ -9,5 +9,15 @@
             <sparkle:releaseNotesLink>https://top-drawer.s3-eu-west-1.amazonaws.com/updates/TopDrawer_1_2.app.html</sparkle:releaseNotesLink>
             <enclosure url="https://top-drawer.s3-eu-west-1.amazonaws.com/updates/TopDrawer_1_2.app.zip" sparkle:version="202105.09.0058" sparkle:shortVersionString="1.2" length="1685244" type="application/octet-stream" sparkle:edSignature="XoKzFzCkqKXLxN3kxTNDOVYE4Pm+LU+adfz5X8AoFIntZ86LRFkh9vTzKBJO82dhlarBF+13T/CsLrVu3Hj5Bg=="/>
         </item>
+        <item>
+            <title>1.2.1</title>
+            <pubDate>Mon, 10 May 2021 21:27:38 +0100</pubDate>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>https://top-drawer.s3-eu-west-1.amazonaws.com/updates/TopDrawer_1_2_1.app.html</sparkle:releaseNotesLink>
+            <enclosure url="https://top-drawer.s3-eu-west-1.amazonaws.com/updates/TopDrawer_1_2_1.app.zip" sparkle:version="202105.10.2122" sparkle:shortVersionString="1.2.1" length="1689522" type="application/octet-stream" sparkle:edSignature="EF/2eMxNc7DXRxM82NYRvQDmwO7iEruqbQ/siSm/fNNHh3/SBYUFsOzgAvGMN/qea0cZsT0hIo5l5FYG6sIxCQ=="/>
+            <sparkle:deltas>
+                <enclosure url="https://top-drawer.s3-eu-west-1.amazonaws.com/updates/TopDrawer202105.10.2122-202105.09.0058.delta" sparkle:version="202105.10.2122" sparkle:shortVersionString="1.2.1" sparkle:deltaFrom="202105.09.0058" length="105988" type="application/octet-stream" sparkle:edSignature="jSEyyuHmTPl5XzBh4vhkVX9z8BQlMp5l8Gw/nkfmIy6fLvcFKlOZIrl7pPLIO7kJ78OTBU1q8sjiplfbQoynCQ=="/>
+            </sparkle:deltas>
+        </item>
     </channel>
 </rss>
