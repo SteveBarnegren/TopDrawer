@@ -9,7 +9,6 @@
 import Foundation
 import AppKit
 
-/*
 struct MenuModel {
     var path: String
     var contents = [MenuItemModel]()
@@ -24,32 +23,6 @@ struct MenuItemModel {
     var path: String
     var image: NSImage?
     var subMenu: MenuModel?
-}
- */
-
-class MenuModel {
-    var path: String
-    var contents = [MenuItemModel]()
-    
-    func add(item: MenuItemModel) {
-        self.contents.append(item)
-    }
-    
-    init(path: String) {
-        self.path = path
-    }
-}
-
-class MenuItemModel {
-    var title: String
-    var path: String
-    var image: NSImage?
-    var subMenu: MenuModel?
-    
-    init(title: String, path: String) {
-        self.title = title
-        self.path = path
-    }
 }
 
 extension Directory {

@@ -41,7 +41,7 @@ class MenuBarManager {
     // MARK: - Build NSMenu
     
     func resetMenu(withMenuModel menuModel: MenuModel?) {
-        
+                
         if let menu = menuModel {
             statusItem.menu = menu.convertToNSMenu(target: self,
                                                    selector: #selector(menuItemPressed),
@@ -185,47 +185,4 @@ extension MenuBarManager: RebuildManagerListener {
         }
     }
   
-}
-
-extension Directory {
-    
-    func convertToNSMenu(target: AnyObject,
-                         selector: Selector,
-                         openTerminal: Selector,
-                         isRootDirectory: Bool) -> NSMenu {
-        
-        let menu = NSMenu()
-        
-        for inner in self.contents {
-            
-            let item = NSMenuItem(title: inner.menuName, action: selector, keyEquivalent: "")
-            item.target = target
-            item.representedObject = inner.path
-            item.image = inner.image
-            
-            if let innerDir = inner as? Directory, innerDir.contents.count > 0 {
-                item.submenu = innerDir.convertToNSMenu(target: target,
-                                                        selector: selector,
-                                                        openTerminal: openTerminal,
-                                                        isRootDirectory: false)
-            }
-            
-            menu.addItem(item)
-        }
-        
-        if isRootDirectory == false && Settings.shared.enableTerminalHere.value {
-            
-            let terminalHereItem = NSMenuItem(title: "Open", action: openTerminal, keyEquivalent: "")
-            terminalHereItem.target = target
-            terminalHereItem.representedObject = self.path
-            let terminalIcon = NSImage(named: "terminalHereMenuIcon")
-            terminalIcon?.size = NSSize(width: 20, height: 20)
-            terminalHereItem.image = terminalIcon
-            
-            menu.addItem(NSMenuItem.separator())
-            menu.addItem(terminalHereItem)
-        }
-        
-        return menu
-    }
 }
