@@ -38,7 +38,7 @@ class RebuildManager {
     struct Result {
         let type: ResultType
         let date: Date
-        let directory: Directory?
+        let menuModel: MenuModel?
     }
     
     // MARK: - Properties
@@ -82,7 +82,7 @@ class RebuildManager {
     private let rulesKeyValueStore: KeyValueStore
     private var rebuildStartTime = CFAbsoluteTime(0)
     
-    var lastResults = Result(type: .none, date: Date(), directory: nil)
+    var lastResults = Result(type: .none, date: Date(), menuModel: nil)
     
     // MARK: - Init
     
@@ -221,10 +221,9 @@ class RebuildManager {
     }
     
     func rebuildCompleted(resultType: ResultType, directory: Directory?) {
-        
         lastResults = Result(type: resultType,
                              date: Date(),
-                             directory: directory ?? lastResults.directory)
+                             menuModel: directory?.asMenuItemModel() ?? lastResults.menuModel)
         self.state = .idle
     }
 

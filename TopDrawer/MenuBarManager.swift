@@ -25,7 +25,7 @@ class MenuBarManager {
         }
         
         // Show initial menu state
-        resetMenu(withDirectory: nil)
+        resetMenu(withMenuModel: nil)
         addPersistentBottomItemsToMenu()
         
         // Build menu
@@ -40,13 +40,13 @@ class MenuBarManager {
     
     // MARK: - Build NSMenu
     
-    func resetMenu(withDirectory directory: Directory?) {
+    func resetMenu(withMenuModel menuModel: MenuModel?) {
         
-        if let dir = directory {
-            statusItem.menu = dir.convertToNSMenu(target: self,
-                                                  selector: #selector(menuItemPressed),
-                                                  openTerminal: #selector(openTerminalPressed),
-                                                  isRootDirectory: true)
+        if let menu = menuModel {
+            statusItem.menu = menu.convertToNSMenu(target: self,
+                                                   selector: #selector(menuItemPressed),
+                                                   openTerminal: #selector(openTerminalPressed),
+                                                   isRootDirectory: true)
             addSeparatorToMenu()
         } else {
             statusItem.menu = NSMenu()
@@ -147,39 +147,39 @@ extension MenuBarManager: RebuildManagerListener {
         
         switch result.type {
         case .success:
-            resetMenu(withDirectory: result.directory)
+            resetMenu(withMenuModel: result.menuModel)
             addRefreshItemToMenu()
             addPersistentBottomItemsToMenu()
         case .tookTooLong:
-            resetMenu(withDirectory: result.directory)
+            resetMenu(withMenuModel: result.menuModel)
             addReadoutItemToMenu(withTitle: "Last rebuild failed: took too long")
             addRefreshItemToMenu()
             addPersistentBottomItemsToMenu()
             
         case .invalidRootPath:
-            resetMenu(withDirectory: nil)
+            resetMenu(withMenuModel: nil)
             addReadoutItemToMenu(withTitle: "Last rebuild failed: invalid path")
             addPersistentBottomItemsToMenu()
             
         case .noMatchingFiles:
-            resetMenu(withDirectory: nil)
+            resetMenu(withMenuModel: nil)
             addReadoutItemToMenu(withTitle: "No matching files")
             addRefreshItemToMenu()
             addPersistentBottomItemsToMenu()
             
         case .noRootPathSet:
-            resetMenu(withDirectory: nil)
+            resetMenu(withMenuModel: nil)
             addReadoutItemToMenu(withTitle: "No root path set")
             addPersistentBottomItemsToMenu()
             
         case .unknownError:
-            resetMenu(withDirectory: nil)
+            resetMenu(withMenuModel: nil)
             addReadoutItemToMenu(withTitle: "Last rebuild failed: unknown error")
             addRefreshItemToMenu()
             addPersistentBottomItemsToMenu()
             
         case .none:
-            resetMenu(withDirectory: nil)
+            resetMenu(withMenuModel: nil)
             addReadoutItemToMenu(withTitle: "Searching...")
             addPersistentBottomItemsToMenu()
         }
